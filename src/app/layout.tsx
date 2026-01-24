@@ -1,3 +1,4 @@
+import cn from '@/utils/cn';
 import type { Metadata } from 'next';
 import { ReactNode } from 'react';
 import './globals.css';
@@ -12,9 +13,21 @@ export default function RootLayout({
 }: Readonly<{
   children: ReactNode;
 }>) {
+  const { body } = {
+    body: cn([
+      'bg-gray-050 dark:bg-gray-950 antialiased',
+      'select-none',
+      'focus-visible:outline-2 focus-visible:outline-black',
+    ]),
+  };
+
   return (
-    <html lang="en">
-      <body className={`antialiased`}>{children}</body>
+    <html
+      lang="en"
+      data-scroll-behavior="smooth"
+      className="overscroll-none"
+    >
+      <body className={body}>{children}</body>
     </html>
   );
 }
