@@ -6,7 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "sanity:predev": "pnpm run typegen",
+    "sanity:prebuild": "pnpm run typegen",
+    "sanity:typegen": "sanity schema extract --enforce-required-fields --path=./src/sanity/extract.json && sanity typegen generate",
+    "prettier:write": "npx prettier . --write",
+    "prettier:check": "npx prettier . --check"
   },
   "dependencies": {
     "@sanity/client": "^7.14.1",
@@ -14,6 +19,9 @@
     "@sanity/vision": "^4.22.0",
     "next": "16.1.4",
     "next-sanity": "^11.6.12",
+    "prettier": "^3.8.1",
+    "prettier-plugin-organize-imports": "^4.3.0",
+    "prettier-plugin-tailwindcss": "^0.7.2",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "sanity": "^4.22.0",
