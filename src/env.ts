@@ -20,6 +20,7 @@ export const env = createEnv({
       'error',
       'fatal',
     ]),
+    HUMANTIX_API_KEY: z.string(),
   },
   /*
    * Environment variables available on the client (and server).

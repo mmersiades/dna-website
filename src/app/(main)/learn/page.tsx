@@ -7,7 +7,7 @@ export default async function LearningPage() {
     query: EXT_RESOURCES_QUERY,
   });
   return (
-    <div>
+    <div className={'container mr-auto ml-auto'}>
       <p className={'text-center font-bold'}>Learn</p>
       <div className="flex flex-col gap-2">
         {extResources.map((er) => {

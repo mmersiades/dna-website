@@ -31,38 +31,24 @@ creating their own Vercel account and transferring the deployment to there.
 
 `POST /api/send-email`
 
-Sends an email to predefined aliases.
+Sends an email to predefined email addresses.
+Aliases are used to keep email addresses out of the client code.
+
+SMTP2GO is used to send emails.
+
+SMTP2GO is currently configured to use Neon King Kong's account temporarily. Once DNA has their own SMTP2GO account,
+reconfigure.
 
 #### Request Body
 
-```yaml
-openapi: 3.0.0
-content:
-  application/json:
-    schema:
-      type: object
-      required:
-        - from
-        - to
-      properties:
-        from:
-          type: string
-          description: The sender's email address.
-        to:
-          type: array
-          items:
-            type: string
-            enum: [dna]
-          description: A list of email aliases to send to.
-        subject:
-          type: string
-          description: The email subject.
-        text:
-          type: string
-          description: The plain text content of the email.
-        html:
-          type: string
-          description: The HTML content of the email.
+```ts
+type SendEmailBody = {
+    from: string;
+    to: EmailAlias[];
+    subject?: string;
+    text?: string;
+    html?: string;
+};
 ```
 
 #### Responses
@@ -86,7 +72,7 @@ pnpm start
 # Runs ESLint to find and fix code quality issues
 pnpm lint
 
-# Re-run this every time you modify your schema types or GROQ queries
+# Generates types for Sanity content. Re-run whenever schema changes.
 pnpm sanity:typegen
 
 # Formats the entire codebase using Prettier

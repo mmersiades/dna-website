@@ -10,6 +10,9 @@ and development workflows.
 - **CMS**: [Sanity v4](https://www.sanity.io/) (via `next-sanity`)
 - **Styling**: [Tailwind CSS 4](https://tailwindcss.com/) & [Styled Components](https://styled-components.com/)
 - **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Email**: [Nodemailer](https://nodemailer.com/)
+- **Logging**: [Pino](https://getpino.io/)
+- **Environment**: [@t3-oss/env-nextjs](https://env.t3.gg/) (with [Zod](https://zod.dev/))
 - **Package Manager**: `pnpm`
 - **Linting & Formatting
   **: [ESLint](https://eslint.org/), [Prettier](https://prettier.io/), [Husky](https://typicode.github.io/husky/)
@@ -24,6 +27,8 @@ and development workflows.
     - `schemaTypes/`: Definition of Sanity content types.
     - `lib/`: Sanity client, image utilities, and queries.
     - `types.ts`: Generated types from Sanity schema (do not edit manually).
+- `src/utils/`: Utility functions and shared helpers (e.g., logging).
+- `src/env.ts`: Type-safe environment variable configuration.
 - `public/`: Static assets like images and fonts.
 - `.husky/`: Git hooks for pre-commit linting and formatting.
 
@@ -70,6 +75,8 @@ The project uses Husky and `lint-staged`. On every commit:
 ### ✅ Best Practices
 
 - **Type Safety**: Avoid using `any`. Ensure Sanity types are kept up to date.
+- **Environment Variables**: Use `src/env.ts` to access environment variables. This ensures type safety and validates that all required variables are present.
+- **Logging**: Use the central logger in `src/utils/pino.ts` for consistent logging across the application.
 - **Imports**: Imports are automatically organized via `prettier-plugin-organize-imports`. Keep them clean.
 - **Components**: Prefer React Server Components (RSC) by default; use `'use client'` only when necessary for
   interactivity or browser APIs.

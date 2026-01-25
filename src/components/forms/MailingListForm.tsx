@@ -20,7 +20,7 @@ const MailingListForm: FC<Props> = ({ subscribeTo }) => {
       from: email,
       to: [subscribeTo],
     };
-    console.log('email', email);
+
     const response = await fetch('/api/send-email', {
       method: 'POST',
       body: JSON.stringify(body),
