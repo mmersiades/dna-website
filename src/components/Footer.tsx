@@ -1,3 +1,4 @@
+import MailingListForm from '@/components/forms/MailingListForm';
 import cn from '@/utils/cn';
 import Link, { LinkProps } from 'next/link';
 import { FC, PropsWithChildren } from 'react';
@@ -48,6 +49,7 @@ const Footer: FC = () => {
         <div id={'contact'}>
           <p>Contact details go here</p>
         </div>
+        <MailingListForm subscribeTo={'dna'} />
         <h6>Sitemap</h6>
         <div className={'flex items-center justify-between gap-4'}>
           {links.map((link) => (

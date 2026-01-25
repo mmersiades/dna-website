@@ -19,6 +19,58 @@ vercel
 vercel --prod
 ```
 
+The website is configured to deploy to Neon King Kong's Vercel account temporarily.
+
+We will explore the possibility of deploying it
+to [Merri-bek Tech](https://www.merri-bek.tech/services/for-community-groups/). Failing that, DNA should consider
+creating their own Vercel account and transferring the deployment to there.
+
+## API Routes
+
+### Send Email
+
+`POST /api/send-email`
+
+Sends an email to predefined aliases.
+
+#### Request Body
+
+```yaml
+openapi: 3.0.0
+content:
+  application/json:
+    schema:
+      type: object
+      required:
+        - from
+        - to
+      properties:
+        from:
+          type: string
+          description: The sender's email address.
+        to:
+          type: array
+          items:
+            type: string
+            enum: [dna]
+          description: A list of email aliases to send to.
+        subject:
+          type: string
+          description: The email subject.
+        text:
+          type: string
+          description: The plain text content of the email.
+        html:
+          type: string
+          description: The HTML content of the email.
+```
+
+#### Responses
+
+- **204 No Content**: Email sent successfully.
+- **400 Bad Request**: Invalid email alias provided.
+- **500 Internal Server Error**: Failed to send email.
+
 ## Commands
 
 ```bash

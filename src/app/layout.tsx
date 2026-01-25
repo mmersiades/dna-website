@@ -1,6 +1,7 @@
 import cn from '@/utils/cn';
 import type { Metadata } from 'next';
 import { ReactNode } from 'react';
+import { ToastContainer } from 'react-toastify';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -27,7 +28,10 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
       className="overscroll-none"
     >
-      <body className={body}>{children}</body>
+      <body className={body}>
+        {children}
+        <ToastContainer />
+      </body>
     </html>
   );
 }
