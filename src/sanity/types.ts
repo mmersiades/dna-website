@@ -195,18 +195,20 @@ export type GROUP_QUERYResult = {
   slug: Slug | null;
 } | null;
 // Variable: EXT_RESOURCES_QUERY
-// Query: *[_type == "external-resource" && defined(slug.current)][0...12]{  _id, name, slug}
+// Query: *[_type == "external-resource" && defined(slug.current)][0...12]{  _id, name, slug, url}
 export type EXT_RESOURCES_QUERYResult = Array<{
   _id: string;
   name: string | null;
   slug: Slug;
+  url: string | null;
 }>;
 // Variable: EXT_RESOURCE_QUERY
-// Query: *[_type == "external-resource" && slug.current == $slug][0]{  _id, name, slug}
+// Query: *[_type == "external-resource" && slug.current == $slug][0]{  _id, name, slug, url}
 export type EXT_RESOURCE_QUERYResult = {
   _id: string;
   name: string | null;
   slug: Slug | null;
+  url: string | null;
 } | null;
 // Variable: W_CHATS_QUERY
 // Query: *[_type == "whatsapp-chat" && defined(slug.current)][0...12]{  _id, name, slug}
@@ -229,8 +231,8 @@ declare module '@sanity/client' {
   interface SanityQueries {
     '*[_type == "group" && defined(slug.current)][0...12]{\n  _id, name, slug\n}': GROUPS_QUERYResult;
     '*[_type == "group" && slug.current == $slug][0]{\n  _id, name, slug\n}': GROUP_QUERYResult;
-    '*[_type == "external-resource" && defined(slug.current)][0...12]{\n  _id, name, slug\n}': EXT_RESOURCES_QUERYResult;
-    '*[_type == "external-resource" && slug.current == $slug][0]{\n  _id, name, slug\n}': EXT_RESOURCE_QUERYResult;
+    '*[_type == "external-resource" && defined(slug.current)][0...12]{\n  _id, name, slug, url\n}': EXT_RESOURCES_QUERYResult;
+    '*[_type == "external-resource" && slug.current == $slug][0]{\n  _id, name, slug, url\n}': EXT_RESOURCE_QUERYResult;
     '*[_type == "whatsapp-chat" && defined(slug.current)][0...12]{\n  _id, name, slug\n}': W_CHATS_QUERYResult;
     '*[_type == "whatsapp-chat" && slug.current == $slug][0]{\n  _id, name, slug\n}': W_CHAT_QUERYResult;
   }

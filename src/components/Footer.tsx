@@ -27,7 +27,10 @@ const links: PropsWithChildren<LinkProps>[] = [
     children: 'Get Involved',
     href: '/get-involved',
   },
-
+  {
+    children: 'WhatsApp Chats',
+    href: '/get-involved/whatsapp',
+  },
   {
     children: 'Admin',
     href: '/studio',
@@ -42,6 +45,9 @@ const Footer: FC = () => {
   return (
     <div className={container}>
       <div className={innerContainer}>
+        <div id={'contact'}>
+          <p>Contact details go here</p>
+        </div>
         <h6>Sitemap</h6>
         <div className={'flex items-center justify-between gap-4'}>
           {links.map((link) => (

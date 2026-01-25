@@ -1,5 +1,6 @@
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
+import { SanityLive } from '@/sanity/lib/live';
 import cn from '@/utils/cn';
 import { ReactNode } from 'react';
 
@@ -17,6 +18,7 @@ export default function MainLayout({
       <Header />
       <main className={main}>{children}</main>
       <Footer />
+      <SanityLive />
     </>
   );
 }
