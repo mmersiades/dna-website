@@ -15,6 +15,8 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@iconify/json": "^2.2.431",
+    "@iconify/tailwind4": "^1.2.1",
     "@sanity/client": "^7.14.1",
     "@sanity/image-url": "^1.2.0",
     "@sanity/vision": "^4.22.0",

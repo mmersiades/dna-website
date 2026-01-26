@@ -12,7 +12,9 @@ export default async function EventsPage() {
             <a
               key={e._id}
               href={e.url}
-              className={'rounded-md border border-gray-300 bg-gray-200 p-2'}
+              className={
+                'rounded-md border border-gray-300 bg-gray-200 p-2 dark:border-gray-600 dark:bg-gray-700'
+              }
               target={'_blank'}
             >
               <h6>{e.name}</h6>

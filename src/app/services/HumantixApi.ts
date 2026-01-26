@@ -218,11 +218,14 @@ class HumantixApi {
       method: 'GET',
       headers: this.authHeader,
     };
+
     const response = await fetch(
       `${this.baseApiUrl}/v1/events?page=${page}&pageSize=${pageSize}&inFutureOnly=${futureOnly}${since ? '&since=' + since : ''}`,
       config,
     );
 
+    // TODO handle 400 and 401
+    // https://humanitix.stoplight.io/docs/humanitix-public-api/476881e4b5d55-get-events
     const json = await response.json();
     return humantixPaginatedEventResponseSchema.parse(json);
   };

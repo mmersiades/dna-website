@@ -1,5 +1,6 @@
 import IconButton from '@/components/buttons/IconButton';
 import BreakPoint from '@/components/dev/BreakPoint';
+import CtaLink from '@/components/links/CtaLink';
 import NavbarLink, { NavbarLinkProps } from '@/components/links/NavbarLink';
 import cn from '@/utils/cn';
 import { FC } from 'react';
@@ -20,10 +21,6 @@ const links: NavbarLinkProps[] = [
   {
     label: 'Learn More',
     path: '/learn',
-  },
-  {
-    label: 'Get Involved',
-    path: '/get-involved',
   },
   {
     label: 'Contact',
@@ -54,12 +51,14 @@ const Header: FC = () => {
       'ml-auto mr-auto',
       'h-(--header-height)',
       'bg-gray-100 dark:bg-gray-700',
-      'hidden md:flex flex-row items-center gap-4 xl:gap-6 2xl:gap-8 justify-between',
+      'hidden md:flex flex-row items-center gap-4 xl:gap-6 2xl:gap-8 justify-start',
       'p-2',
     ]),
     menuContainer: cn([
       'size-full',
+      'border border-black',
       'transition transition-discrete',
+      'bg-gray-50 dark:bg-gray-900',
       'opacity-0',
       'transform-(--transform-move-to-bottom)',
       'starting:open:opacity-0 open:opacity-100',
@@ -69,8 +68,8 @@ const Header: FC = () => {
       'w-full',
       'h-(--header-height)',
       'dark:text-white font-bold text-lg italic',
-      'flex flex-row items-center justify-between gap-4',
-      'bg-secondary-100 dark:bg-secondary-800',
+      'flex flex-row items-center justify-start gap-4',
+      'bg-gray-100 dark:bg-gray-800',
       'pr-2 pl-8',
     ]),
     menuList: cn(['flex flex-col gap-8 items-start', 'p-8']),
@@ -82,15 +81,16 @@ const Header: FC = () => {
         className={mobileContainer}
         aria-label="Main Navigation"
       >
+        <IconButton
+          popoverTarget="nav-menu"
+          iconName={'icon-[lucide--menu]'}
+          srName={'Open Navigation Menu'}
+          size={'size-12'}
+          aria-label={'Open Navigation Menu'}
+        />
         <BreakPoint />
-        <div>
-          <IconButton
-            popoverTarget="nav-menu"
-            iconName={'icon-[lucide--menu]'}
-            srName={'Open Navigation Menu'}
-            size={'size-12'}
-            aria-label={'Open Navigation Menu'}
-          />
+        <div className={'ml-auto'}>
+          <CtaLink href={'/get-involved'}>Get Involved</CtaLink>
         </div>
       </nav>
 
@@ -107,6 +107,9 @@ const Header: FC = () => {
           );
         })}
         <BreakPoint />
+        <div className={'ml-auto'}>
+          <CtaLink href={'/get-involved'}>Get Involved</CtaLink>
+        </div>
       </nav>
       <menu
         className={menuContainer}
@@ -114,7 +117,6 @@ const Header: FC = () => {
         id="nav-menu"
       >
         <div className={menuHeader}>
-          <p>Site Navigation</p>
           <IconButton
             popoverTarget="nav-menu"
             popoverTargetAction={'hide'}
@@ -123,6 +125,7 @@ const Header: FC = () => {
             aria-label={'Close Navigation Menu'}
             size={'size-12'}
           />
+          <p>Site Navigation</p>
         </div>
         <div className={menuList}>
           {links.map((linkProps) => {
@@ -134,6 +137,9 @@ const Header: FC = () => {
               />
             );
           })}
+          <div className={'absolute right-0 bottom-0 p-8'}>
+            <CtaLink href={'/get-involved'}>Get Involved</CtaLink>
+          </div>
         </div>
       </menu>
     </div>

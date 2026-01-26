@@ -16,7 +16,7 @@ const NavbarLink: FC<NavbarLinkProps> = ({ label, path, mobile = false }) => {
 
   const { link } = {
     link: cn([
-      'text-xl sm:text-2xl md:text-lg lg:text-xl xl:text-2xl',
+      'text-xl sm:text-2xl md:text-lg lg:text-lg xl:text-xl',
       'font-bold dark:text-shadow-contrast dark:text-white',
       'relative',
       'after:absolute after:bottom-0 after:left-0 after:h-1 after:w-0 after:bg-tertiary after:opacity-0',

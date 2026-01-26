@@ -13,7 +13,9 @@ export default async function LocalGroupsPage() {
           return (
             <div
               key={g._id}
-              className={'rounded-md border border-gray-300 bg-gray-200 p-2'}
+              className={
+                'rounded-md border border-gray-300 bg-gray-200 p-2 dark:border-gray-600 dark:bg-gray-700'
+              }
             >
               <h6>{g.name}</h6>
             </div>

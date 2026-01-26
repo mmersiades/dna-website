@@ -22,6 +22,7 @@ export const anchor = cn([
 export const iconButton = {
   icon: cn([
     'size-full',
+    'block',
     'font-foreground font-bold dark:text-shadow-contrast',
   ]),
   button: cn([
