@@ -5,9 +5,10 @@ import { toast } from 'react-toastify';
 
 interface Props {
   subscribeTo: EmailAlias;
+  id?: string;
 }
 
-const MailingListForm: FC<Props> = ({ subscribeTo }) => {
+const MailingListForm: FC<Props> = ({ subscribeTo, id }) => {
   const [email, setEmail] = useState('');
 
   const handleEmailChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -36,10 +37,10 @@ const MailingListForm: FC<Props> = ({ subscribeTo }) => {
 
   return (
     <form onSubmit={onSubmit}>
-      <label htmlFor="email">Email:</label>
+      <label htmlFor={id}>Email:</label>
       <input
         type="email"
-        id="email"
+        id={id}
         name="email"
         required
         onChange={handleEmailChange}

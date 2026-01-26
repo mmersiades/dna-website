@@ -10,7 +10,7 @@ export default function MainLayout({
   children: ReactNode;
 }>) {
   const { main } = {
-    main: cn(['mr-auto ml-auto', 'pt-(--header-height)', 'min-h-[100svh]']),
+    main: cn(['pt-(--header-height)', 'min-h-svh']),
   };
 
   return (

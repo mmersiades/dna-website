@@ -40,7 +40,7 @@ const links: PropsWithChildren<LinkProps>[] = [
 
 const Footer: FC = () => {
   const { container, innerContainer } = {
-    container: cn(['bg-gray-100 dark:bg-gray-700', 'w-screen']),
+    container: cn(['bg-gray-100 dark:bg-gray-700', 'w-screen h-200']),
     innerContainer: cn(['mr-auto ml-auto', 'container', 'p-4']),
   };
   return (
@@ -49,9 +49,15 @@ const Footer: FC = () => {
         <div id={'contact'}>
           <p>Contact details go here</p>
         </div>
-        <MailingListForm subscribeTo={'dna'} />
+        <div id={'socials'}>
+          <p>Socials go here</p>
+        </div>
+        <MailingListForm
+          id={'subscribe'}
+          subscribeTo={'dna'}
+        />
         <h6>Sitemap</h6>
-        <div className={'flex items-center justify-between gap-4'}>
+        <div className={'flex flex-wrap items-center justify-between gap-4'}>
           {links.map((link) => (
             <Link
               key={link.href.toString()}
