@@ -48,11 +48,15 @@
     "eslint-config-next": "16.1.4",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.7",
+    "react-hook-form": "^7.71.1",
     "tailwindcss": "^4",
     "typescript": "^5"
   },
   "lint-staged": {
     "*.{ts,tsx}": "eslint --cache --fix",
     "*.{js,jsx,ts,tsx,json}": "prettier --write"
+  },
+  "peerDependencies": {
+    "react-hook-form": "^7.71.1"
   }
 }

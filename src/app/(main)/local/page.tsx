@@ -1,3 +1,4 @@
+import GroupIntentForm from '@/components/forms/GroupIntentForm';
 import { sanityFetch } from '@/sanity/lib/live';
 import { GROUPS_QUERY } from '@/sanity/lib/queries';
 
@@ -22,6 +23,12 @@ export default async function LocalGroupsPage() {
           );
         })}
       </div>
+      <h6>Can&#39;t see a group in your area?</h6>
+      <p>
+        Let us know where you are and we&#39;ll help a group get established in
+        your area.
+      </p>
+      <GroupIntentForm />
     </div>
   );
 }
