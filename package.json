@@ -18,6 +18,7 @@
     "@iconify/json": "^2.2.431",
     "@iconify/tailwind4": "^1.2.1",
     "@sanity/client": "^7.14.1",
+    "@sanity/icons": "^3.7.4",
     "@sanity/image-url": "^1.2.0",
     "@sanity/vision": "^4.22.0",
     "@t3-oss/env-nextjs": "^0.13.10",
@@ -39,6 +40,7 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
+    "@tailwindcss/typography": "^0.5.19",
     "@types/node": "^20",
     "@types/nodemailer": "^7.0.5",
     "@types/react": "^19",

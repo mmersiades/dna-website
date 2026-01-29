@@ -21,10 +21,6 @@ vercel --prod
 
 The website is configured to deploy to Neon King Kong's Vercel account temporarily.
 
-We will explore the possibility of deploying it
-to [Merri-bek Tech](https://www.merri-bek.tech/services/for-community-groups/). Failing that, DNA should consider
-creating their own Vercel account and transferring the deployment to there.
-
 ## API Routes
 
 ### Send Email

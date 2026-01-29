@@ -13,6 +13,173 @@
  */
 
 // Source: schema.json
+export type RichTextSection = {
+  _type: 'richTextSection';
+  title?: string;
+  content?: BlockContent;
+};
+
+export type BlockContent = Array<
+  | {
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: 'span';
+        _key: string;
+      }>;
+      style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'blockquote';
+      listItem?: 'bullet';
+      markDefs?: Array<{
+        href?: string;
+        _type: 'link';
+        _key: string;
+      }>;
+      level?: number;
+      _type: 'block';
+      _key: string;
+    }
+  | {
+      asset?: {
+        _ref: string;
+        _type: 'reference';
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      alt?: string;
+      _type: 'image';
+      _key: string;
+    }
+>;
+
+export type Video = {
+  _type: 'video';
+  videoLabel?: string;
+  url?: string;
+};
+
+export type TextWithIllustration = {
+  _type: 'textWithIllustration';
+  heading?: string;
+  tagline?: string;
+  excerpt?: string;
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: 'reference';
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: 'image';
+  };
+};
+
+export type SanityImageCrop = {
+  _type: 'sanity.imageCrop';
+  top: number;
+  bottom: number;
+  left: number;
+  right: number;
+};
+
+export type SanityImageHotspot = {
+  _type: 'sanity.imageHotspot';
+  x: number;
+  y: number;
+  height: number;
+  width: number;
+};
+
+export type Gallery = {
+  _type: 'gallery';
+  images: Array<{
+    asset?: {
+      _ref: string;
+      _type: 'reference';
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: 'image';
+    _key: string;
+  }>;
+};
+
+export type Hero = {
+  _type: 'hero';
+  heading?: string;
+  tagline?: string;
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: 'reference';
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: 'image';
+  };
+};
+
+export type Promotion = {
+  _id: string;
+  _type: 'promotion';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  link?: string;
+};
+
+export type Page = {
+  _id: string;
+  _type: 'page';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug: Slug;
+  pageBuilder: Array<
+    | ({
+        _key: string;
+      } & Hero)
+    | ({
+        _key: string;
+      } & RichTextSection)
+    | ({
+        _key: string;
+      } & Gallery)
+    | ({
+        _key: string;
+      } & Video)
+    | {
+        _ref: string;
+        _type: 'reference';
+        _weak?: boolean;
+        _key: string;
+        [internalGroqTypeReferenceTo]?: 'promotion';
+      }
+  >;
+};
+
+export type Slug = {
+  _type: 'slug';
+  current: string;
+  source?: string;
+};
+
 export type WhatsappChat = {
   _id: string;
   _type: 'whatsapp-chat';
@@ -22,12 +189,6 @@ export type WhatsappChat = {
   name?: string;
   slug?: Slug;
   url?: string;
-};
-
-export type Slug = {
-  _type: 'slug';
-  current: string;
-  source?: string;
 };
 
 export type ExternalResource = {
@@ -86,22 +247,6 @@ export type SanityImageMetadata = {
   blurHash?: string;
   hasAlpha?: boolean;
   isOpaque?: boolean;
-};
-
-export type SanityImageHotspot = {
-  _type: 'sanity.imageHotspot';
-  x: number;
-  y: number;
-  height: number;
-  width: number;
-};
-
-export type SanityImageCrop = {
-  _type: 'sanity.imageCrop';
-  top: number;
-  bottom: number;
-  left: number;
-  right: number;
 };
 
 export type SanityFileAsset = {
@@ -164,16 +309,24 @@ export type Geopoint = {
 };
 
 export type AllSanitySchemaTypes =
-  | WhatsappChat
+  | RichTextSection
+  | BlockContent
+  | Video
+  | TextWithIllustration
+  | SanityImageCrop
+  | SanityImageHotspot
+  | Gallery
+  | Hero
+  | Promotion
+  | Page
   | Slug
+  | WhatsappChat
   | ExternalResource
   | Group
   | SanityImagePaletteSwatch
   | SanityImagePalette
   | SanityImageDimensions
   | SanityImageMetadata
-  | SanityImageHotspot
-  | SanityImageCrop
   | SanityFileAsset
   | SanityAssetSourceData
   | SanityImageAsset
@@ -224,6 +377,80 @@ export type W_CHAT_QUERYResult = {
   name: string | null;
   slug: Slug | null;
 } | null;
+// Variable: PAGES_QUERY
+// Query: *[_type == "page" && defined(slug.current)][0...12]{  _id, name, slug}
+export type PAGES_QUERYResult = Array<{
+  _id: string;
+  name: null;
+  slug: Slug;
+}>;
+// Variable: PAGE_QUERY
+// Query: *[_type == "page" && slug.current == $slug][0]{  _type,   _createdAt,   _updatedAt,   _rev,  _id,   name,   slug,   title,  pageBuilder[]{    _key,    _type,    _type == "hero" => {      heading,      tagline,      image    },    _type == "video" => {      videoLabel,      url,    },    _type == "richTextSection" => {      title,      content,    },    _type == "gallery" => {      images[]{        _key,        ...,      },    },  }}
+export type PAGE_QUERYResult = {
+  _type: 'page';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  _id: string;
+  name: null;
+  slug: Slug;
+  title: string | null;
+  pageBuilder: Array<
+    | {
+        _key: string;
+        _type: 'gallery';
+        images: Array<{
+          _key: string;
+          asset?: {
+            _ref: string;
+            _type: 'reference';
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+          };
+          media?: unknown;
+          hotspot?: SanityImageHotspot;
+          crop?: SanityImageCrop;
+          alt?: string;
+          _type: 'image';
+        }>;
+      }
+    | {
+        _key: string;
+        _type: 'hero';
+        heading: string | null;
+        tagline: string | null;
+        image: {
+          asset?: {
+            _ref: string;
+            _type: 'reference';
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+          };
+          media?: unknown;
+          hotspot?: SanityImageHotspot;
+          crop?: SanityImageCrop;
+          alt?: string;
+          _type: 'image';
+        } | null;
+      }
+    | {
+        _key: string;
+        _type: 'reference';
+      }
+    | {
+        _key: string;
+        _type: 'richTextSection';
+        title: string | null;
+        content: BlockContent | null;
+      }
+    | {
+        _key: string;
+        _type: 'video';
+        videoLabel: string | null;
+        url: string | null;
+      }
+  >;
+} | null;
 
 // Query TypeMap
 import '@sanity/client';
@@ -235,5 +462,7 @@ declare module '@sanity/client' {
     '*[_type == "external-resource" && slug.current == $slug][0]{\n  _id, name, slug, url\n}': EXT_RESOURCE_QUERYResult;
     '*[_type == "whatsapp-chat" && defined(slug.current)][0...12]{\n  _id, name, slug\n}': W_CHATS_QUERYResult;
     '*[_type == "whatsapp-chat" && slug.current == $slug][0]{\n  _id, name, slug\n}': W_CHAT_QUERYResult;
+    '*[_type == "page" && defined(slug.current)][0...12]{\n  _id, name, slug\n}': PAGES_QUERYResult;
+    '*[_type == "page" && slug.current == $slug][0]{\n  _type, \n  _createdAt, \n  _updatedAt, \n  _rev,\n  _id, \n  name, \n  slug, \n  title,\n  pageBuilder[]{\n    _key,\n    _type,\n    _type == "hero" => {\n      heading,\n      tagline,\n      image\n    },\n    _type == "video" => {\n      videoLabel,\n      url,\n    },\n    _type == "richTextSection" => {\n      title,\n      content,\n    },\n    _type == "gallery" => {\n      images[]{\n        _key,\n        ...,\n      },\n    },\n  }\n}': PAGE_QUERYResult;
   }
 }

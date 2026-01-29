@@ -1,5 +1,9 @@
+import DisableDraftModeLink from '@/components/links/DisableDraftModeLink';
+import { SanityLive } from '@/sanity/lib/live';
 import cn from '@/utils/cn';
 import type { Metadata } from 'next';
+import { VisualEditing } from 'next-sanity/visual-editing';
+import { draftMode } from 'next/headers';
 import { ReactNode } from 'react';
 import { ToastContainer } from 'react-toastify';
 import './globals.css';
@@ -9,7 +13,7 @@ export const metadata: Metadata = {
   description: 'Because. Just because.',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: ReactNode;
@@ -25,11 +29,19 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className="overscroll-none scroll-smooth"
+      data-scroll-behavior="smooth"
+      className="overscroll-none"
     >
       <body className={body}>
         {children}
         <ToastContainer />
+        <SanityLive />
+        {(await draftMode()).isEnabled && (
+          <>
+            <DisableDraftModeLink />
+            <VisualEditing />
+          </>
+        )}
       </body>
     </html>
   );

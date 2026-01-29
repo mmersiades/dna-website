@@ -21,6 +21,7 @@ export const env = createEnv({
       'fatal',
     ]),
     HUMANTIX_API_KEY: z.string(),
+    SANITY_API_READ_TOKEN: z.string(),
   },
   /*
    * Environment variables available on the client (and server).

@@ -70,6 +70,20 @@ The project uses Husky and `lint-staged`. On every commit:
 - Use **Tailwind CSS** for most styling needs.
 - **Styled Components** are available for complex or dynamic styling that is hard to achieve with Tailwind alone.
 
+#### Git Commits
+
+Follow these conventions for commit messages:
+
+- **Capitalise** the first letter.
+- Start with a **verb in the third-person plural** form (ending in 's').
+- The verb should describe what the commit **does** to the code.
+
+**Examples:**
+- `Adds rudimentary GroupIntentForm`
+- `Improves Header component for mobile`
+- `Sends mailing list subscription functionality`
+- `Initializes next.js, tailwind and sanity`
+
 ---
 
 ### ✅ Best Practices
