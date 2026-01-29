@@ -9,7 +9,32 @@ Before you can work on this project, ensure you have the following installed on 
 - **Node.js**: Version 18.18.0 or later.
 - **pnpm**: The recommended package manager for this project.
 
+You'll also need:
+
+- DNA's Vercel account (hobby) email address
+- Access to DNA's Protonmail account
+
+## Getting started
+
+- `pnpm i -g vercel`: Install Vercel CLI 
+- `vercel login`: Log into VERCEL CLI
+  - Use DNA's Protonmail email address
+  - No password required, just the email address
+- `vercel link`: link your local code with the Vercel project. Choose these options:
+  - Set up “~/workspace/neonkingkong/dna/dna-website”? yes
+  - Which scope should contain your project? Degrowth Network Australia's projects
+  - Found project “degrowth-network-australias-projects/dna-website”. Link to it? yes
+  - Would you like to pull environment variables now? yes
+
+After running these, you should have:
+- a `.vercel` folder in your project directory (gitignored). This folder contains configuration files for Vercel.
+- an `.env.local` file in your project directory (gitignored). This file contains environment variables for local development.
+
 ## Deploy on Vercel
+
+This app is set up to be deployed to Vercel from a developer's local computer.
+
+If you've followed the steps in Getting Started, you should be ready to deploy.
 
 ```bash
 # Deploy to Vercel's preview environment
@@ -19,7 +44,7 @@ vercel
 vercel --prod
 ```
 
-The website is configured to deploy to Neon King Kong's Vercel account temporarily.
+The website is configured to deploy to DNA's Vercel account.
 
 ## API Routes
 
