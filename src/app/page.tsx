@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <div
       className={
-        'bg-background dark:bg-tertiary-950 flex items-center justify-between gap-4 p-4'
+        'bg-tertiary-50 dark:bg-tertiary-950 flex items-center justify-between gap-4 p-4'
       }
     >
       <NavbarLink

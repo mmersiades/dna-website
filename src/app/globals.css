@@ -22,7 +22,7 @@
     --primary-800: oklch(0.323 0.044 148.92);
     --primary-900: oklch(0.23 0.031 149.73);
     --primary-950: oklch(0.174 0.022 149.93);
-    --primary-foreground: oklch(1.00 0 0);
+    --primary-foreground: oklch(0.14 0 0);
     --secondary-50: oklch(0.957 0.009 45);
     --secondary-100: oklch(0.924 0.015 48.6);
     --secondary-200: oklch(0.838 0.037 53.65);
@@ -290,4 +290,46 @@ body {
 .text-8xl,
 .text-9xl {
     font-family: var(--font-display), sans-serif;
+}
+
+/* 6. Improve media defaults */
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+/* 7. Inherit fonts for form controls */
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+/* 8. Avoid text overflows */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    overflow-wrap: break-word;
+}
+
+/* 9. Improve line wrapping */
+p {
+    text-wrap: pretty;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    text-wrap: balance;
 }
