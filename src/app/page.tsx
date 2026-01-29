@@ -2,7 +2,11 @@ import NavbarLink from '@/components/links/NavbarLink';
 
 export default function Home() {
   return (
-    <div className={'flex items-center justify-between gap-4 p-4'}>
+    <div
+      className={
+        'bg-background dark:bg-tertiary-950 flex items-center justify-between gap-4 p-4'
+      }
+    >
       <NavbarLink
         label={'Home'}
         path={'about'}

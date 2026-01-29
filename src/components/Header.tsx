@@ -38,7 +38,7 @@ const Header: FC = () => {
     menuList,
   } = {
     container:
-      'bg-gray-100 dark:bg-gray-700 fixed top-0 w-screen z-20 shadow-md',
+      'bg-tertiary dark:bg-tertiary-900 fixed top-0 w-screen z-20 shadow-md',
     mobileContainer: cn([
       'w-full',
       'h-(--header-height)',
@@ -50,7 +50,6 @@ const Header: FC = () => {
       'container',
       'ml-auto mr-auto',
       'h-(--header-height)',
-      'bg-gray-100 dark:bg-gray-700',
       'hidden md:flex flex-row items-center gap-4 xl:gap-6 2xl:gap-8 justify-start',
       'p-2',
     ]),
@@ -58,7 +57,7 @@ const Header: FC = () => {
       'size-full',
       'border border-black',
       'transition transition-discrete',
-      'bg-gray-50 dark:bg-gray-900',
+      'bg-gray-50 dark:bg-secondary-900',
       'opacity-0',
       'transform-(--transform-move-to-bottom)',
       'starting:open:opacity-0 open:opacity-100',
@@ -69,7 +68,7 @@ const Header: FC = () => {
       'h-(--header-height)',
       'dark:text-white font-bold text-lg italic',
       'flex flex-row items-center justify-start gap-4',
-      'bg-gray-100 dark:bg-gray-800',
+      'bg-gray-100 dark:bg-secondary-800',
       'pr-2 pl-8',
     ]),
     menuList: cn(['flex flex-col gap-8 items-start', 'p-8']),

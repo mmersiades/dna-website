@@ -40,7 +40,7 @@ const links: PropsWithChildren<LinkProps>[] = [
 
 const Footer: FC = () => {
   const { container, innerContainer } = {
-    container: cn(['bg-gray-100 dark:bg-gray-700', 'w-screen h-200']),
+    container: cn(['bg-tertiary-100 dark:bg-tertiary-800', 'w-screen h-200']),
     innerContainer: cn(['mr-auto ml-auto', 'container', 'p-4']),
   };
   return (

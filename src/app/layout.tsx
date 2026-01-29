@@ -3,6 +3,8 @@ import { SanityLive } from '@/sanity/lib/live';
 import cn from '@/utils/cn';
 import type { Metadata } from 'next';
 import { VisualEditing } from 'next-sanity/visual-editing';
+import { ThemeProvider } from 'next-themes';
+import { Atma } from 'next/font/google';
 import { draftMode } from 'next/headers';
 import { ReactNode } from 'react';
 import { ToastContainer } from 'react-toastify';
@@ -13,14 +15,21 @@ export const metadata: Metadata = {
   description: 'Because. Just because.',
 };
 
+const atma = Atma({
+  variable: '--atma-sans',
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+});
+
 export default async function RootLayout({
   children,
 }: Readonly<{
   children: ReactNode;
 }>) {
-  const { body } = {
+  const { body, html } = {
+    html: cn(['overscroll-none', atma.className]),
     body: cn([
-      'bg-gray-050 dark:bg-gray-950 antialiased',
+      'antialiased',
       'select-none',
       'focus-visible:outline-2 focus-visible:outline-black',
     ]),
@@ -28,20 +37,23 @@ export default async function RootLayout({
 
   return (
     <html
+      suppressHydrationWarning
       lang="en"
       data-scroll-behavior="smooth"
-      className="overscroll-none"
+      className={html}
     >
       <body className={body}>
-        {children}
-        <ToastContainer />
-        <SanityLive />
-        {(await draftMode()).isEnabled && (
-          <>
-            <DisableDraftModeLink />
-            <VisualEditing />
-          </>
-        )}
+        <ThemeProvider>
+          {children}
+          <ToastContainer />
+          <SanityLive />
+          {(await draftMode()).isEnabled && (
+            <>
+              <DisableDraftModeLink />
+              <VisualEditing />
+            </>
+          )}
+        </ThemeProvider>
       </body>
     </html>
   );

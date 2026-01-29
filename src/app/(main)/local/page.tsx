@@ -23,8 +23,8 @@ export default async function LocalGroupsPage() {
           );
         })}
       </div>
-      <h6>Can&#39;t see a group in your area?</h6>
-      <p>
+      <h6 className={'text-lg'}>Can&#39;t see a group in your area?</h6>
+      <p className={'text-md'}>
         Let us know where you are and we&#39;ll help a group get established in
         your area.
       </p>
