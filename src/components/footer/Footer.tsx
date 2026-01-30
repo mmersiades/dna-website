@@ -1,6 +1,9 @@
 import Sitemap from '@/components/footer/Sitemap';
+import Socials from '@/components/footer/Socials';
 import MailingListForm from '@/components/forms/MailingListForm';
+import { link } from '@/components/styles';
 import cn from '@/utils/cn';
+import Link from 'next/link';
 import { FC } from 'react';
 
 const Footer: FC = () => {
@@ -18,14 +21,23 @@ const Footer: FC = () => {
         <div id={'contact'}>
           <p>Contact details go here</p>
         </div>
-        <div id={'socials'}>
-          <p>Socials go here</p>
-        </div>
         <MailingListForm
           id={'subscribe'}
           subscribeTo={'dna'}
         />
+        <Socials id={'socials'} />
         <Sitemap />
+        <p>
+          Website by{' '}
+          <Link
+            href={'https://www.neonkingkong.com'}
+            target={'_blank'}
+            className={link}
+          >
+            Neon King Kong
+          </Link>{' '}
+          {`© ${new Date().getFullYear()}`}
+        </p>
       </div>
     </div>
   );

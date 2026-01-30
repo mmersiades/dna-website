@@ -1,3 +1,4 @@
+import styles from '@/components/footer/styles';
 import Link, { LinkProps } from 'next/link';
 import { FC, PropsWithChildren } from 'react';
 
@@ -37,10 +38,9 @@ const links: PropsWithChildren<LinkProps>[] = [
 ];
 
 const Sitemap: FC = () => {
-  const { container, title, divider, linkContainer } = {
-    container: 'my-8',
-    title: 'text-lg font-bold',
-    divider: 'text-tertiary-700 mt-2 mb-4',
+  const { container, title, divider } = styles;
+
+  const { linkContainer } = {
     linkContainer: 'flex flex-wrap items-center justify-between gap-6',
   };
 

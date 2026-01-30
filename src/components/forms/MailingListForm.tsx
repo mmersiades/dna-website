@@ -1,5 +1,6 @@
 'use client';
 import { EmailAlias, SendEmailBody } from '@/app/api/send-email/route';
+import styles from '@/components/footer/styles';
 import cn from '@/utils/cn';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FC } from 'react';
@@ -53,10 +54,10 @@ const MailingListForm: FC<Props> = ({ subscribeTo, id }) => {
     }
   };
 
-  const { container, title, divider, input, submit, label, col, row, error } = {
+  const { title, divider } = styles;
+
+  const { container, input, submit, label, col, row, error } = {
     container: 'mt-8 mb-2',
-    title: 'text-lg font-bold',
-    divider: 'text-tertiary-700 mt-2 mb-4',
     input: cn([
       'border-1 border-tertiary-500 rounded-lg',
       'focus:outline-primary focus:outline-1 focus:border-primary',

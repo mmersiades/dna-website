@@ -33,3 +33,14 @@ export const iconButton = {
     'transition duration-250',
   ]),
 };
+
+export const link = cn([
+  'font-bold',
+  'decoration-transparent',
+  'text-secondary-400 dark:text-secondary',
+  'hover:text-secondary hover:dark:text-secondary-200 hover:underline',
+  'hover:decoration-secondary hover:dark:decoration-secondary-200',
+  'transition duration-200',
+  'transition-[color,text-decoration-color] duration-250',
+  'visited:text-secondary-600 visited:dark:text-secondary-500',
+]);
