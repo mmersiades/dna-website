@@ -1,0 +1,65 @@
+.cta-container {
+    --size: min(calc(100vh - (var(--header-height))), 100vw);
+    position: relative;
+    aspect-ratio: 1 / 1;
+    height: var(--size);
+    width: var(--size);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cta-position {
+    --size: 30%;
+    --radius: 110%;
+    --step: 60deg;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+
+    transform:
+            translate(-50%, -50%) /* Moves to dead center */
+            rotate(calc(var(--i) * var(--step))) /* Rotate orientation */
+            translate(var(--radius)) /* Move outwards from center along orientation */
+            rotate(calc(var(--i) * var(--step) * -1)); /* Restore original orientation */
+}
+
+@supports (width: calc(1px * sibling-index())) {
+    .cta-position {
+        --i: sibling-index();
+        --count: sibling-count()
+    }
+}
+
+@supports not (width: calc(1px * sibling-index())) {
+    /* Fallback: fixed indices for 6 circles */
+    .cta-position:nth-child(1) {
+        --i: 1;
+    }
+
+    .cta-position:nth-child(2) {
+        --i: 2;
+    }
+
+    .cta-position:nth-child(3) {
+        --i: 3;
+    }
+
+    .cta-position:nth-child(4) {
+        --i: 4;
+    }
+
+    .cta-position:nth-child(5) {
+        --i: 5;
+    }
+
+    .cta-position:nth-child(6) {
+        --i: 6;
+    }
+
+    .dot {
+        --count: 6;
+    }
+}

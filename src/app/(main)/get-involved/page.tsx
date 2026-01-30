@@ -1,6 +1,7 @@
 import cn from '@/utils/cn';
 import Link, { LinkProps } from 'next/link';
 import { PropsWithChildren } from 'react';
+import './styles.css';
 
 const links: PropsWithChildren<LinkProps>[] = [
   {
@@ -30,44 +31,27 @@ const links: PropsWithChildren<LinkProps>[] = [
 ];
 
 export default function GetInvolvedPage() {
-  const { cta, grid } = {
+  const { cta } = {
     cta: cn([
       'flex items-center justify-center',
-      'min-h-12 w-full',
-      'p-8',
-      'bg-gray-50 dark:bg-gray-950',
+      'bg-radial from-primary to-transparent',
       'text-center',
-      'border-2 rounded-md',
-      'font-bold text-xl',
-      //
-    ]),
-    grid: cn([
-      'grid',
-      'grid-cols-1 sm:grid-cols-2',
-      'w-full h-fit',
-      'auto-rows-fr',
-      'gap-4',
+      'rounded-md',
+      'font-bold text-base sm:text-xl',
     ]),
   };
 
   return (
-    <div className={'container mr-auto ml-auto'}>
-      <p className={'text-center font-bold'}>Get Involved</p>
-      <div className={grid}>
-        {links.map((link, index) => (
-          <div
-            key={link.href.toString() + index}
-            className={'col-span-1'}
-          >
-            <Link
-              className={cta}
-              href={link.href}
-            >
-              {link.children}
-            </Link>
-          </div>
-        ))}
-      </div>
+    <div className={'cta-container'}>
+      {links.map((link, index) => (
+        <Link
+          key={link.href.toString() + index}
+          className={cn(cta, 'cta-position')}
+          href={link.href}
+        >
+          <span>{link.children}</span>
+        </Link>
+      ))}
     </div>
   );
 }
