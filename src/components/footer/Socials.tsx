@@ -6,34 +6,37 @@ import { FC } from 'react';
 interface IconProps {
   icon: string;
   url: string;
-  label: string;
+  networkName: string;
+  name: string;
 }
 
 const socialIcons: IconProps[] = [
   {
     icon: 'icon-[lucide--facebook]',
-    url: 'https://www.google.com',
-    label: 'Facebook',
+    url: 'https://www.facebook.com/degrowthnetworkaustralia',
+    networkName: 'Facebook',
+    name: 'Degrowth Network Australia',
   },
   {
     icon: 'icon-[lucide--instagram]',
-    url: 'https://www.google.com',
-    label: 'Instagram',
-  },
-  {
-    icon: 'icon-[lucide--youtube]',
-    url: 'https://www.google.com',
-    label: 'Youtube',
+    url: 'https://www.instagram.com/degrowthnetworkaustralia',
+    networkName: 'Instagram',
+    name: 'DNA (@degrowthnetworkaustralia)',
   },
 ];
 
-const SocialIcon: FC<IconProps> = ({ url, icon: iconName, label }) => {
+const SocialIcon: FC<IconProps> = ({
+  url,
+  icon: iconName,
+  networkName,
+  name,
+}) => {
   const { icon, container } = {
     container: cn([
-      'flex flex-col items-center',
+      'flex items-center flex-wrap gap-4 md:gap-8',
       'border-1 border-tertiary-700 rounded-lg',
       'hover:border-secondary',
-      'p-2 lg:p-4',
+      'p-4 md:p-8',
       'transition-color duration-250',
       'relative',
       'after:absolute after:inset-0 after:opacity-0 after:rounded-lg',
@@ -42,7 +45,7 @@ const SocialIcon: FC<IconProps> = ({ url, icon: iconName, label }) => {
       'after:transition-opacity after:duration-250',
     ]),
     icon: cn([
-      'size-16 lg:size-24 z-10',
+      'size-12 lg:size-16 z-10',
       'bg-radial from-secondary-200 to-secondary-400',
     ]),
   };
@@ -53,7 +56,10 @@ const SocialIcon: FC<IconProps> = ({ url, icon: iconName, label }) => {
       target={'_blank'}
     >
       <span className={cn([icon, iconName])}></span>
-      <p className={'font-display z-10'}>{label}</p>
+      <div className={'flex flex-col'}>
+        <p className={'font-display z-10'}>{networkName}</p>
+        <p className={'font-display z-10'}>{name}</p>
+      </div>
     </Link>
   );
 };
