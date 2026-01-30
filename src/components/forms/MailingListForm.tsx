@@ -34,7 +34,6 @@ const MailingListForm: FC<Props> = ({ subscribeTo, id }) => {
   });
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    console.log(data);
     const body: SendEmailBody = {
       from: data.email,
       to: [subscribeTo],
@@ -54,31 +53,13 @@ const MailingListForm: FC<Props> = ({ subscribeTo, id }) => {
     }
   };
 
-  const { title, divider } = styles;
+  const { title, divider, submitButton, input } = styles;
 
-  const { container, input, submit, label, col, row, error } = {
+  const { container, label, col, row, error } = {
     container: 'mt-8 mb-2',
-    input: cn([
-      'border-1 border-tertiary-500 rounded-lg',
-      'focus:outline-primary focus:outline-1 focus:border-primary',
-      'px-2',
-      'text-lg font-bold',
-      'h-full',
-    ]),
-    submit: cn([
-      'border-2 border-primary rounded-lg',
-      'p-2',
-      'text-lg font-bold',
-      'relative',
-      'after:content-[""] after:absolute after:rounded-md after:inset-0 after:opacity-50',
-      'after:bg-radial after:from-primary after:to-transparent',
-      'hover:after:opacity-75',
-      isSubmitting ? 'cursor-wait opacity-50' : 'cursor-pointer',
-      'after:transition-opacity after:duration-250',
-    ]),
     label: 'indent-2 text-sm font-medium',
     col: 'flex flex-col gap-1',
-    row: 'flex flex-row gap-4',
+    row: 'flex flex-row gap-2 md:gap-4 flex-wrap items-center',
     error: 'text-red-300 h-6 indent-2 text-sm',
   };
 
@@ -100,9 +81,9 @@ const MailingListForm: FC<Props> = ({ subscribeTo, id }) => {
                   Email
                 </label>
                 <div className={row}>
-                  <div className={col}>
+                  <div className={cn(col, 'flex-1')}>
                     <input
-                      className={input}
+                      className={cn(input, 'h-10')}
                       type="email"
                       id={id}
                       required
@@ -111,7 +92,13 @@ const MailingListForm: FC<Props> = ({ subscribeTo, id }) => {
                   </div>
                   <button
                     type="submit"
-                    className={submit}
+                    className={cn([
+                      submitButton,
+                      isSubmitting
+                        ? 'cursor-wait opacity-50'
+                        : 'cursor-pointer',
+                      'w-full sm:w-fit',
+                    ])}
                   >
                     Subscribe
                   </button>

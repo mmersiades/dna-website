@@ -4,19 +4,22 @@ import { NextRequest } from 'next/server';
 import nodemailer from 'nodemailer';
 
 const SUBSCRIBE_EMAIL_DNA = env.SUBSCRIBE_EMAIL_DNA;
+const MAILER_EMAIL = env.MAILER_EMAIL;
+const CONTACT_EMAIL = env.CONTACT_EMAIL;
 const SMTP_USERNAME = env.SMTP_USERNAME;
 const SMTP_PASSWORD = env.SMTP_PASSWORD;
 const SMTP_SERVER = env.SMTP_SERVER;
 const SMTP_PORT = env.SMTP_PORT;
 
-export type EmailAlias = 'dna';
+export type EmailAlias = 'dna-mailing' | 'mailer' | 'dna-contact';
 
 export interface SendEmailBody {
-  from: string;
+  from: string | EmailAlias;
   to: EmailAlias[];
   subject?: string;
   text?: string;
   html?: string;
+  replyTo?: string;
 }
 
 const transporter = nodemailer.createTransport({
@@ -31,19 +34,23 @@ const transporter = nodemailer.createTransport({
 
 export async function POST(req: NextRequest) {
   const {
-    from,
+    from: fromAlias,
     to: aliases,
     subject = '',
     text = '',
     html = '',
+    replyTo,
   } = (await req.json()) as SendEmailBody;
 
   const to = [];
 
   for (const a of aliases) {
     switch (a) {
-      case 'dna':
+      case 'dna-mailing':
         to.push(SUBSCRIBE_EMAIL_DNA);
+        break;
+      case 'dna-contact':
+        to.push(CONTACT_EMAIL);
         break;
       default:
         return new Response(null, {
@@ -51,6 +58,19 @@ export async function POST(req: NextRequest) {
           statusText: 'Invalid email alias',
         });
     }
+  }
+
+  let from;
+
+  switch (fromAlias) {
+    case 'dna':
+      from = SUBSCRIBE_EMAIL_DNA;
+      break;
+    case 'mailer':
+      from = MAILER_EMAIL;
+      break;
+    default:
+      from = fromAlias;
   }
 
   await transporter.verify();
@@ -62,6 +82,7 @@ export async function POST(req: NextRequest) {
       subject,
       text,
       html,
+      replyTo,
     });
     logger.info('Message sent: %s', info.messageId);
     return new Response(null, {

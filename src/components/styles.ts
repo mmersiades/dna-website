@@ -13,12 +13,6 @@ export const textBlockStyles = {
   relativeAnchor: 'relative max-w-4xl ml-auto mr-auto h-fit',
 };
 
-export const anchor = cn([
-  'text-tertiary-800 dark:text-tertiary-300',
-  'hover:text-tertiary-700 hover:dark:text-tertiary-100',
-  'transition duration-200',
-]);
-
 export const iconButton = {
   icon: cn([
     'size-full',
@@ -34,7 +28,7 @@ export const iconButton = {
   ]),
 };
 
-export const link = cn([
+export const anchor = cn([
   'font-bold',
   'decoration-transparent',
   'text-secondary-400 dark:text-secondary',

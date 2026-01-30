@@ -1,7 +1,8 @@
 import Sitemap from '@/components/footer/Sitemap';
 import Socials from '@/components/footer/Socials';
+import ContactForm from '@/components/forms/ContactForm';
 import MailingListForm from '@/components/forms/MailingListForm';
-import { link } from '@/components/styles';
+import { anchor } from '@/components/styles';
 import cn from '@/utils/cn';
 import Link from 'next/link';
 import { FC } from 'react';
@@ -10,7 +11,7 @@ const Footer: FC = () => {
   const { container, innerContainer } = {
     container: cn([
       'bg-tertiary-800 dark:bg-tertiary-800',
-      'w-screen h-200',
+      'w-screen',
       'text-background dark:text-foreground',
     ]),
     innerContainer: cn(['mr-auto ml-auto', 'container', 'p-4']),
@@ -18,12 +19,10 @@ const Footer: FC = () => {
   return (
     <div className={container}>
       <div className={innerContainer}>
-        <div id={'contact'}>
-          <p>Contact details go here</p>
-        </div>
+        <ContactForm id={'contact'} />
         <MailingListForm
           id={'subscribe'}
-          subscribeTo={'dna'}
+          subscribeTo={'dna-mailing'}
         />
         <Socials id={'socials'} />
         <Sitemap />
@@ -32,7 +31,7 @@ const Footer: FC = () => {
           <Link
             href={'https://www.neonkingkong.com'}
             target={'_blank'}
-            className={link}
+            className={anchor}
           >
             Neon King Kong
           </Link>{' '}

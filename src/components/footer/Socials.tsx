@@ -32,16 +32,18 @@ const SocialIcon: FC<IconProps> = ({ url, icon: iconName, label }) => {
     container: cn([
       'flex flex-col items-center',
       'border-1 border-tertiary-700 rounded-lg',
+      'hover:border-secondary',
       'p-2 lg:p-4',
-    ]),
-    icon: cn([
-      'size-16 lg:size-24',
+      'transition-color duration-250',
       'relative',
-      'bg-radial from-secondary-200 to-secondary-400',
-      'after:absolute after:inset-0 after:opacity-0',
-      'after:bg-radial after:from-secondary-100 after:to-secondary',
+      'after:absolute after:inset-0 after:opacity-0 after:rounded-lg',
+      'after:bg-radial after:from-secondary/25 after:to-transparent',
       'hover:after:opacity-100',
       'after:transition-opacity after:duration-250',
+    ]),
+    icon: cn([
+      'size-16 lg:size-24 z-10',
+      'bg-radial from-secondary-200 to-secondary-400',
     ]),
   };
   return (
@@ -51,7 +53,7 @@ const SocialIcon: FC<IconProps> = ({ url, icon: iconName, label }) => {
       target={'_blank'}
     >
       <span className={cn([icon, iconName])}></span>
-      <p className={'font-display'}>{label}</p>
+      <p className={'font-display z-10'}>{label}</p>
     </Link>
   );
 };

@@ -12,6 +12,8 @@ export const env = createEnv({
     SMTP_SERVER: z.string().min(1),
     SMTP_PORT: z.string().min(1).max(5),
     SUBSCRIBE_EMAIL_DNA: z.email(),
+    MAILER_EMAIL: z.email(),
+    CONTACT_EMAIL: z.email(),
     PINO_LOG_LEVEL: z.enum([
       'trace',
       'debug',
