@@ -38,7 +38,7 @@ const Header: FC = () => {
     menuList,
   } = {
     container:
-      'bg-tertiary-300 dark:bg-tertiary-900 fixed top-0 w-screen z-20 shadow-md',
+      'bg-tertiary-200 dark:bg-tertiary-900 fixed top-0 w-screen z-20 shadow-md',
     mobileContainer: cn([
       'w-full',
       'h-(--header-height)',

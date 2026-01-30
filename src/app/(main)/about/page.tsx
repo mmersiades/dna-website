@@ -10,7 +10,6 @@ export default async function AboutPage() {
 
   return (
     <div className={'container mr-auto ml-auto'}>
-      <p className={'text-center font-bold'}>About</p>
       {page && <PageBuilder {...page} />}
     </div>
   );

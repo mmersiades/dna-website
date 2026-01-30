@@ -31,7 +31,7 @@ export default async function RootLayout({
     body: cn([
       'antialiased',
       'select-none',
-      'focus-visible:outline-2 focus-visible:outline-black',
+      'focus-visible:outline-1 focus-visible:outline-black',
     ]),
   };
 

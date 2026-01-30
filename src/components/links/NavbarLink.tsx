@@ -19,7 +19,7 @@ const NavbarLink: FC<NavbarLinkProps> = ({ label, path, mobile = false }) => {
       'text-xl sm:text-2xl md:text-lg lg:text-lg xl:text-xl',
       'font-bold',
       'relative',
-      'after:absolute after:-bottom-2 after:left-0 after:h-px after:w-0 after:bg-secondary-200 after:opacity-0',
+      'after:absolute after:-bottom-2 after:left-0 after:h-px after:w-0 after:bg-secondary-100 dark:after:bg-secondary-200 after:opacity-0',
       'after:transition-all after:duration-250 after:delay-50 after:ease-in-out',
       'px-1',
       active
