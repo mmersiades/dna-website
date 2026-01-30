@@ -54,7 +54,7 @@ export const humantixEventSchema = z.object({
   currency: z.string(),
   name: z.string(),
   description: z.string(),
-  sharingDescription: z.string(),
+  sharingDescription: z.string().optional(),
   slug: z.string(),
   url: z.string(),
   tagIds: z.array(z.string()),
@@ -91,7 +91,7 @@ export const humantixEventSchema = z.object({
       customRefundPolicy: z.string().optional(),
     }),
   }),
-  publishedAt: z.string(),
+  publishedAt: z.string().optional(),
   additionalQuestions: z.array(
     z.object({
       _id: z.string(),

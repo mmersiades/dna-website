@@ -18,7 +18,7 @@ export default async function EventsPage() {
               target={'_blank'}
             >
               <h6>{e.name}</h6>
-              <p>{e.sharingDescription}</p>
+              {e.sharingDescription && <p>{e.sharingDescription}</p>}
             </a>
           );
         })}
