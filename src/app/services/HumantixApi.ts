@@ -47,6 +47,37 @@ export type HumantixPackagedTicket = z.infer<
   typeof humantixPackagedTicketSchema
 >;
 
+export const humantixEventDateSchema = z.object({
+  _id: z.string(),
+  startDate: z.string(),
+  endDate: z.string(),
+  scheduleId: z.string().optional(),
+  disabled: z.boolean(),
+  deleted: z.boolean(),
+});
+
+export type HumantixEventDate = z.infer<typeof humantixEventDateSchema>;
+
+export const humantixEventDatesSchema = z.array(humantixEventDateSchema);
+
+export type HumantixEventDates = z.infer<typeof humantixEventDatesSchema>;
+
+export const humantixEventLocationSchema = z.object({
+  type: z.string(),
+  venueName: z.string(),
+  address: z.string(),
+  latLng: z.tuple([z.number(), z.number()]),
+  instructions: z.string().optional(),
+  placeId: z.string(),
+  onlineUrl: z.string().optional(),
+  mapUrl: z.string().optional(),
+  city: z.string(),
+  region: z.string(),
+  country: z.string(),
+});
+
+export type HumantixEventLocation = z.infer<typeof humantixEventLocationSchema>;
+
 export const humantixEventSchema = z.object({
   _id: z.string(),
   userId: z.string(),
@@ -120,29 +151,8 @@ export const humantixEventSchema = z.object({
       url: z.string(),
     })
     .optional(),
-  eventLocation: z.object({
-    type: z.string(),
-    venueName: z.string(),
-    address: z.string(),
-    latLng: z.tuple([z.number(), z.number()]),
-    instructions: z.string().optional(),
-    placeId: z.string(),
-    onlineUrl: z.string().optional(),
-    mapUrl: z.string().optional(),
-    city: z.string(),
-    region: z.string(),
-    country: z.string(),
-  }),
-  dates: z.array(
-    z.object({
-      _id: z.string(),
-      startDate: z.string(),
-      endDate: z.string(),
-      scheduleId: z.string().optional(),
-      disabled: z.boolean(),
-      deleted: z.boolean(),
-    }),
-  ),
+  eventLocation: humantixEventLocationSchema,
+  dates: humantixEventDatesSchema,
   packagedTickets: z.array(humantixPackagedTicketSchema),
   accessibility: z
     .object({
@@ -201,9 +211,45 @@ class HumantixApi {
     'x-api-key': this.apiKey,
   };
 
+  readonly futureEvents: HumantixEvent[] = [];
+  readonly pastEvents: HumantixEvent[] = [];
+
+  private pastPagination: HumantixPaginatedEventResponse | null = null;
+
   constructor() {}
 
-  public fetchEvents = async ({
+  public fetchFutureEvents = async (): Promise<
+    HumantixPaginatedEventResponse & { status: number }
+  > => {
+    const config: RequestInit = {
+      method: 'GET',
+      headers: this.authHeader,
+    };
+
+    const response = await fetch(
+      `${this.baseApiUrl}/v1/events?page=1&pageSize=5&inFutureOnly=true`,
+      config,
+    );
+    if (response.status !== 200) {
+      return {
+        status: response.status,
+        ...humantixPaginatedEventResponseSchema.parse({
+          total: 0,
+          page: 0,
+          pageSize: 0,
+          events: [],
+        }),
+      };
+    }
+
+    const json = await response.json();
+    return {
+      ...humantixPaginatedEventResponseSchema.parse(json),
+      status: response.status,
+    };
+  };
+
+  public fetchPastEvents = async ({
     futureOnly = false,
     page = 1,
     pageSize = 10,
