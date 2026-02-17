@@ -202,14 +202,59 @@ export type ExternalResource = {
   url?: string;
 };
 
+export type GroupActivity = {
+  _type: 'groupActivity';
+  activityLabel: string;
+  activityUrl?: string;
+};
+
+export type GroupLink = {
+  _type: 'groupLink';
+  label: string;
+  category:
+    | 'facebook'
+    | 'whatsapp'
+    | 'instagram'
+    | 'mailing-list'
+    | 'matrix'
+    | 'substack';
+  url: string;
+};
+
 export type Group = {
   _id: string;
   _type: 'group';
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  name?: string;
-  slug?: Slug;
+  fullName: string;
+  slug: Slug;
+  shortName?: string;
+  website?: string;
+  blurb: string;
+  groupPhoto?: {
+    asset?: {
+      _ref: string;
+      _type: 'reference';
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: 'image';
+  };
+  contactEmail?: string;
+  links?: Array<
+    {
+      _key: string;
+    } & GroupLink
+  >;
+  activities?: Array<
+    {
+      _key: string;
+    } & GroupActivity
+  >;
 };
 
 export type SanityImagePaletteSwatch = {
@@ -322,6 +367,8 @@ export type AllSanitySchemaTypes =
   | Slug
   | WhatsappChat
   | ExternalResource
+  | GroupActivity
+  | GroupLink
   | Group
   | SanityImagePaletteSwatch
   | SanityImagePalette
@@ -337,15 +384,15 @@ export declare const internalGroqTypeReferenceTo: unique symbol;
 // Query: *[_type == "group" && defined(slug.current)][0...12]{  _id, name, slug}
 export type GROUPS_QUERYResult = Array<{
   _id: string;
-  name: string | null;
+  name: null;
   slug: Slug;
 }>;
 // Variable: GROUP_QUERY
 // Query: *[_type == "group" && slug.current == $slug][0]{  _id, name, slug}
 export type GROUP_QUERYResult = {
   _id: string;
-  name: string | null;
-  slug: Slug | null;
+  name: null;
+  slug: Slug;
 } | null;
 // Variable: EXT_RESOURCES_QUERY
 // Query: *[_type == "external-resource" && defined(slug.current)][0...12]{  _id, name, slug, url}

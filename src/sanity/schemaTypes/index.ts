@@ -1,4 +1,6 @@
 import { externalResourceType } from '@/sanity/schemaTypes/contentModels/externalResourceType';
+import { groupActivityType } from '@/sanity/schemaTypes/contentModels/groupActivityType';
+import { groupLinkType } from '@/sanity/schemaTypes/contentModels/groupLinkType';
 import { groupType } from '@/sanity/schemaTypes/contentModels/groupType';
 import { whatsAppChatType } from '@/sanity/schemaTypes/contentModels/whatsAppChatType';
 import { blockContentType } from '@/sanity/schemaTypes/pageBuilder/blockContentType';
@@ -15,6 +17,8 @@ export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
     // Content models
     groupType,
+    groupLinkType,
+    groupActivityType,
     externalResourceType,
     whatsAppChatType,
     // Page builder
