@@ -76,7 +76,7 @@ const ContactForm: FC<Props> = ({ id }) => {
     col: 'flex flex-col gap-1',
     row: 'flex flex-row gap-4',
     error: 'text-red-300 h-6 indent-2 text-sm',
-    grid: cn(['grid gap-2 md:gap-4 lg-gap-8', 'grid-cols-1 sm:grid-cols-12']),
+    grid: cn(['grid gap-2 xl:gap-4', 'grid-cols-1 sm:grid-cols-12']),
     mobileSubmit: 'block sm:hidden',
     desktopSubmit: 'hidden sm:block',
   };

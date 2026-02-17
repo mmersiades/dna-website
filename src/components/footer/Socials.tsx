@@ -65,10 +65,10 @@ const SocialIcon: FC<IconProps> = ({
 };
 
 const Socials: FC<{ id: string }> = ({ id }) => {
-  const { container, title, divider } = styles;
+  const { title, divider } = styles;
 
   return (
-    <div className={container}>
+    <div>
       <h4
         id={id}
         className={title}
@@ -76,7 +76,7 @@ const Socials: FC<{ id: string }> = ({ id }) => {
         Socials
       </h4>
       <hr className={divider} />
-      <div className={'flex flex-wrap justify-around gap-8 lg:gap-16'}>
+      <div className={'flex flex-wrap justify-start gap-4 md:gap-8 lg:gap-16'}>
         {socialIcons.map((prop) => (
           <SocialIcon
             key={prop.icon}

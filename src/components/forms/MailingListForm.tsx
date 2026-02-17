@@ -59,7 +59,7 @@ const MailingListForm: FC<Props> = ({ subscribeTo, id }) => {
     container: 'mt-8 mb-2',
     label: 'indent-2 text-sm font-medium',
     col: 'flex flex-col gap-1',
-    row: 'flex flex-row gap-2 md:gap-4 flex-wrap items-center',
+    row: 'flex flex-row gap-2 xl:gap-4 flex-wrap items-center',
     error: 'text-red-300 h-6 indent-2 text-sm',
   };
 
