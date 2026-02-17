@@ -242,6 +242,9 @@ export type Group = {
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
+    altText: string;
+    caption?: string;
+    attribution?: string;
     _type: 'image';
   };
   contactEmail?: string;

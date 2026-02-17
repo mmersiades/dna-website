@@ -58,11 +58,32 @@ export const groupType = defineType({
       title: 'Group Photo',
       name: 'groupPhoto',
       type: 'image',
-      description: 'A photo of the group or image representing the group',
+      description:
+        'A photo of the group or image representing the group. Must have permission of photographer and people in the photo before uploading.',
       options: {
         hotspot: true,
         accept: '.jpg,.png,.jpeg,.webp',
       },
+      fields: [
+        defineField({
+          name: 'altText',
+          type: 'string',
+          title: 'Alternative text',
+          description:
+            'Alternative text for the group photo. Should describe the content of the photo for accessibility.',
+          validation: (rule) => rule.required(),
+        }),
+        defineField({
+          name: 'caption',
+          type: 'string',
+          title: 'Caption',
+        }),
+        defineField({
+          name: 'attribution',
+          type: 'string',
+          title: 'Attribution',
+        }),
+      ],
     }),
     defineField({
       title: 'Contact email',
