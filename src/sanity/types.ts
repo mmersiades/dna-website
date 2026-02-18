@@ -384,11 +384,40 @@ export type AllSanitySchemaTypes =
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/sanity/lib/queries.ts
 // Variable: GROUPS_QUERY
-// Query: *[_type == "group" && defined(slug.current)][0...12]{  _id, name, slug}
+// Query: *[_type == "group" && defined(slug.current)][0...12]{  _id,   fullName,   slug,  shortName,   website,   blurb,  groupPhoto,  contactEmail,  links[],  activities[]}
 export type GROUPS_QUERYResult = Array<{
   _id: string;
-  name: null;
+  fullName: string;
   slug: Slug;
+  shortName: string | null;
+  website: string | null;
+  blurb: string;
+  groupPhoto: {
+    asset?: {
+      _ref: string;
+      _type: 'reference';
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    altText: string;
+    caption?: string;
+    attribution?: string;
+    _type: 'image';
+  } | null;
+  contactEmail: string | null;
+  links: Array<
+    {
+      _key: string;
+    } & GroupLink
+  > | null;
+  activities: Array<
+    {
+      _key: string;
+    } & GroupActivity
+  > | null;
 }>;
 // Variable: GROUP_QUERY
 // Query: *[_type == "group" && slug.current == $slug][0]{  _id, name, slug}
@@ -506,7 +535,7 @@ export type PAGE_QUERYResult = {
 import '@sanity/client';
 declare module '@sanity/client' {
   interface SanityQueries {
-    '*[_type == "group" && defined(slug.current)][0...12]{\n  _id, name, slug\n}': GROUPS_QUERYResult;
+    '*[_type == "group" && defined(slug.current)][0...12]{\n  _id, \n  fullName, \n  slug,\n  shortName, \n  website, \n  blurb,\n  groupPhoto,\n  contactEmail,\n  links[],\n  activities[]\n}': GROUPS_QUERYResult;
     '*[_type == "group" && slug.current == $slug][0]{\n  _id, name, slug\n}': GROUP_QUERYResult;
     '*[_type == "external-resource" && defined(slug.current)][0...12]{\n  _id, name, slug, url\n}': EXT_RESOURCES_QUERYResult;
     '*[_type == "external-resource" && slug.current == $slug][0]{\n  _id, name, slug, url\n}': EXT_RESOURCE_QUERYResult;

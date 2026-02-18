@@ -2,7 +2,16 @@ import { defineQuery } from 'next-sanity';
 
 export const GROUPS_QUERY =
   defineQuery(`*[_type == "group" && defined(slug.current)][0...12]{
-  _id, name, slug
+  _id, 
+  fullName, 
+  slug,
+  shortName, 
+  website, 
+  blurb,
+  groupPhoto,
+  contactEmail,
+  links[],
+  activities[]
 }`);
 
 export const GROUP_QUERY =
