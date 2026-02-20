@@ -4,7 +4,7 @@ import {
   HumantixEventDates,
   HumantixEventLocation,
 } from '@/app/services/HumantixApi';
-import styles from '@/components/humantixEvents/styles';
+import { pageStyles } from '@/components/styles';
 import cn from '@/utils/cn';
 import dayjs from 'dayjs';
 import Image from 'next/image';
@@ -82,22 +82,16 @@ interface Props {
 }
 
 const FutureEventsList: FC<Props> = ({ events }) => {
-  const { title, divider, listContainer } = styles;
+  const { pageTitle, pageDivider, sectionContainer } = pageStyles;
 
   const { grid } = {
-    grid: cn([
-      'grid grid-cols-12 gap-4 md:gap-8',
-      '',
-      '',
-      '',
-      '',
-      //...
-    ]),
+    grid: cn('grid grid-cols-12 gap-4 md:gap-8 p-2'),
   };
+
   return (
-    <div className={listContainer}>
-      <h4 className={title}>Upcoming Events</h4>
-      <hr className={divider} />
+    <section className={sectionContainer}>
+      <h4 className={pageTitle}>Upcoming Events</h4>
+      <hr className={pageDivider} />
       <div className={grid}>
         {events.map((e) => (
           <EventCard
@@ -106,7 +100,7 @@ const FutureEventsList: FC<Props> = ({ events }) => {
           />
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 

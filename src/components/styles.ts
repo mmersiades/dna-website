@@ -14,21 +14,21 @@ export const textBlockStyles = {
 };
 
 export const iconButton = {
-  icon: cn([
+  icon: cn(
     'size-full',
     'block',
     'font-foreground font-bold dark:text-shadow-contrast',
-  ]),
-  button: cn([
+  ),
+  button: cn(
     'p-2',
     'bg-transparent',
     `hover:bg-muted dark:hover:shadow-contrast`,
     'cursor-pointer',
     'transition duration-250',
-  ]),
+  ),
 };
 
-export const anchor = cn([
+export const anchor = cn(
   'font-bold',
   'decoration-transparent',
   'text-secondary-400 dark:text-secondary',
@@ -37,4 +37,11 @@ export const anchor = cn([
   'transition duration-200',
   'transition-[color,text-decoration-color] duration-250',
   'visited:text-secondary-600 visited:dark:text-secondary-500',
-]);
+);
+
+export const pageStyles = {
+  pageContainer: 'container mr-auto ml-auto',
+  pageTitle: 'text-3xl sm:text-4xl lg:text-5xl font-bold px-2',
+  pageDivider: 'text-tertiary-500/50 dark:text-tertiary/50 mt-2 mb-4 mx-2',
+  sectionContainer: 'my-8',
+};

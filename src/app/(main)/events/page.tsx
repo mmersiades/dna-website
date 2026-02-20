@@ -1,11 +1,11 @@
-import styles from '@/app/(main)/styles';
 import humantixApi from '@/app/services/HumantixApi';
 import FutureEventsList from '@/components/humantixEvents/FutureEventsList';
+import { pageStyles } from '@/components/styles';
 
 export default async function EventsPage() {
   const { events, status } = await humantixApi.fetchFutureEvents();
 
-  const { pageContainer } = styles;
+  const { pageContainer } = pageStyles;
 
   if (status !== 200) {
     return (

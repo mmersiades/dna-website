@@ -1,6 +1,7 @@
-import GroupActivity from '@/components/local/GroupActivity';
-import GroupLink from '@/components/local/GroupLink';
+import GroupActivityDisplay from '@/components/local/GroupActivityDisplay';
+import GroupContactsDisplay from '@/components/local/GroupContactsDisplay';
 import GroupPhoto from '@/components/local/GroupPhoto';
+import styles from '@/components/local/styles';
 import { urlFor } from '@/sanity/lib/image';
 import { GROUPS_QUERYResult } from '@/sanity/types';
 import cn from '@/utils/cn';
@@ -11,50 +12,58 @@ interface Props {
 }
 
 const GroupCard: FC<Props> = ({ group }) => {
-  const { container } = {
+  const { container, header, content } = {
     container: cn(
       'bg-card/50',
       'border border-border rounded-md',
+      'w-full',
+      '',
+      '',
+    ),
+    header: cn([
+      'rounded-t-md',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      // ..
+    ]),
+    content: cn([
       'p-4',
       '',
       '',
       '',
-    ),
+      '',
+      '',
+      '',
+      '',
+      //..
+    ]),
   };
+  const { cardHeading } = styles;
   return (
     <div className={container}>
-      <p>{group.fullName}</p>
-      <p>{group.blurb}</p>
-      {group.website && (
-        <p>
-          Website:{' '}
-          <a
-            href={group.website}
-            target="_blank"
-          >
-            {group.website}
-          </a>
-        </p>
-      )}
-      {group.groupPhoto && (
-        <GroupPhoto
-          {...group.groupPhoto}
-          src={urlFor(group.groupPhoto).url()}
+      <div className={header}>
+        {group.groupPhoto && (
+          <GroupPhoto
+            {...group.groupPhoto}
+            src={urlFor(group.groupPhoto).url()}
+          />
+        )}
+        <h4 className={cn(cardHeading, 'pt-2')}>{group.fullName}</h4>
+      </div>
+      <div className={content}>
+        <p>{group.blurb}</p>
+        <GroupActivityDisplay activities={group.activities} />
+        <GroupContactsDisplay
+          email={group.contactEmail}
+          website={group.website}
+          links={group.links}
         />
-      )}
-      {group.contactEmail && <p>{`Email: ${group.contactEmail}`}</p>}
-      {group.links?.map((link) => (
-        <GroupLink
-          key={link._key}
-          {...link}
-        />
-      ))}
-      {group.activities?.map((a) => (
-        <GroupActivity
-          key={a._key}
-          {...a}
-        />
-      ))}
+      </div>
     </div>
   );
 };

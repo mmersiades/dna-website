@@ -5,11 +5,11 @@ import { FC, PropsWithChildren } from 'react';
 
 const CtaLink: FC<PropsWithChildren<LinkProps>> = ({ children, ...props }) => {
   const { link } = {
-    link: cn([
+    link: cn(
       'text-2xl font-bold text-primary-foreground',
       'bg-primary-200 dark:bg-primary',
       'bg-radial from-primary-200 to-primary-400/75 dark:from-primary dark:to-primary-500/50',
-      'border-2 border-primary-800 rounded-lg',
+      'border-2 border-primary-800 rounded-lg dark:border-0',
       'p-2',
       'relative',
       'before:content-[""] before:absolute before:rounded-lg before:opacity-0 before:inset-0',
@@ -17,7 +17,7 @@ const CtaLink: FC<PropsWithChildren<LinkProps>> = ({ children, ...props }) => {
       'dark:before:from-primary-200 dark:before:to-primary',
       'hover:before:opacity-100',
       'before:transition-opacity duration-250',
-    ]),
+    ),
   };
 
   return (

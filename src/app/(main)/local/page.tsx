@@ -1,5 +1,6 @@
 import GroupIntentForm from '@/components/forms/GroupIntentForm';
-import GroupCard from '@/components/local/GroupCard';
+import LocalGroupList from '@/components/local/LocalGroupList';
+import { pageStyles } from '@/components/styles';
 import { sanityFetch } from '@/sanity/lib/live';
 import { GROUPS_QUERY } from '@/sanity/lib/queries';
 
@@ -8,17 +9,11 @@ export default async function LocalGroupsPage() {
     query: GROUPS_QUERY,
   });
 
+  const { pageContainer } = pageStyles;
+
   return (
-    <div className={'container mr-auto ml-auto'}>
-      <p className={'text-center font-bold'}>Local Groups</p>
-      <div className="flex flex-col gap-2">
-        {groups.map((g) => (
-          <GroupCard
-            key={g._id}
-            group={g}
-          />
-        ))}
-      </div>
+    <div className={pageContainer}>
+      <LocalGroupList groups={groups} />
       <h6 className={'text-lg'}>Can&#39;t see a group in your area?</h6>
       <p className={'text-md'}>
         Let us know where you are and we&#39;ll help a group get established in

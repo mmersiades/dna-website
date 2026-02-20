@@ -1,0 +1,28 @@
+import GroupCard from '@/components/local/GroupCard';
+import { pageStyles } from '@/components/styles';
+import { GROUPS_QUERYResult } from '@/sanity/types';
+import { FC } from 'react';
+
+interface Props {
+  groups: GROUPS_QUERYResult;
+}
+
+const LocalGroupList: FC<Props> = ({ groups }) => {
+  const { pageTitle, pageDivider, sectionContainer } = pageStyles;
+  return (
+    <section className={sectionContainer}>
+      <h4 className={pageTitle}>Local Groups</h4>
+      <hr className={pageDivider} />
+      <div className="grid gap-2 p-2 md:grid-cols-2 md:p-4">
+        {groups.map((g) => (
+          <GroupCard
+            key={g._id}
+            group={g}
+          />
+        ))}
+      </div>
+    </section>
+  );
+};
+
+export default LocalGroupList;
