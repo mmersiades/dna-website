@@ -1,6 +1,7 @@
 'use client';
 import GroupLink from '@/components/local/GroupLink';
 import styles from '@/components/local/styles';
+import { cardStyles } from '@/components/styles';
 import { GroupLink as GroupLinkProps } from '@/sanity/types';
 import cn from '@/utils/cn';
 import {
@@ -135,7 +136,7 @@ interface Props {
 const GroupContactsDisplay: FC<Props> = ({ email, website, links }) => {
   if (!email && !website && !links) return null;
 
-  const { cardSubHeading, cardListContainer } = styles;
+  const { cardSubHeading, cardListContainer } = cardStyles;
 
   return (
     <>

@@ -45,3 +45,9 @@ export const pageStyles = {
   pageDivider: 'text-tertiary-500/50 dark:text-tertiary/50 mt-2 mb-4 mx-2',
   sectionContainer: 'my-8',
 };
+
+export const cardStyles = {
+  cardHeading: 'text-center text-xl lg:text-2xl font-bold',
+  cardSubHeading: 'font-display py-2 font-bold lg:text-lg',
+  cardListContainer: 'flex flex-wrap gap-2',
+};

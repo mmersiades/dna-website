@@ -18,9 +18,7 @@ const styles = {
     'bg-radial from-secondary-200 to-secondary-400',
   ),
   linkLabel: 'font-display z-10',
-  cardHeading: 'text-center text-xl lg:text-2xl font-bold',
-  cardSubHeading: 'font-display py-2 font-bold lg:text-lg',
-  cardListContainer: 'flex flex-wrap gap-2',
+
   title: 'text-lg font-bold',
   divider: 'text-tertiary-500/50 dark:text-tertiary/50  mt-2 mb-4',
 };

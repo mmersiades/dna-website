@@ -1,4 +1,4 @@
-import styles from '@/components/local/styles';
+import { cardStyles } from '@/components/styles';
 import { GroupActivity as GroupActivityProps } from '@/sanity/types';
 import { FC } from 'react';
 import GroupActivity from './GroupActivity';
@@ -11,7 +11,7 @@ const GroupActivityDisplay: FC<Props> = ({ activities }) => {
   if (!activities) return null;
   if (activities.length === 0) return null;
 
-  const { cardSubHeading, cardListContainer } = styles;
+  const { cardSubHeading, cardListContainer } = cardStyles;
 
   return (
     <>

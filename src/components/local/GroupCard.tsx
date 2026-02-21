@@ -1,7 +1,7 @@
 import GroupActivityDisplay from '@/components/local/GroupActivityDisplay';
 import GroupContactsDisplay from '@/components/local/GroupContactsDisplay';
 import GroupPhoto from '@/components/local/GroupPhoto';
-import styles from '@/components/local/styles';
+import { cardStyles } from '@/components/styles';
 import { urlFor } from '@/sanity/lib/image';
 import { GROUPS_QUERYResult } from '@/sanity/types';
 import cn from '@/utils/cn';
@@ -12,41 +12,16 @@ interface Props {
 }
 
 const GroupCard: FC<Props> = ({ group }) => {
-  const { container, header, content } = {
-    container: cn(
-      'bg-card/50',
-      'border border-border rounded-md',
-      'w-full',
-      '',
-      '',
-    ),
-    header: cn([
-      'rounded-t-md',
-      '',
-      '',
-      '',
-      '',
-      '',
-      '',
-      '',
-      // ..
-    ]),
-    content: cn([
-      'p-4',
-      '',
-      '',
-      '',
-      '',
-      '',
-      '',
-      '',
-      //..
-    ]),
+  const { container, content } = {
+    container: cn('bg-card/50', 'border border-border rounded-md', 'w-full'),
+    content: 'p-4',
   };
-  const { cardHeading } = styles;
+
+  const { cardHeading } = cardStyles;
+
   return (
     <div className={container}>
-      <div className={header}>
+      <div>
         {group.groupPhoto && (
           <GroupPhoto
             {...group.groupPhoto}
