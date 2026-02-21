@@ -38,7 +38,6 @@ const ContactForm: FC<Props> = ({ id }) => {
   });
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    console.log(data);
     const body: SendEmailBody = {
       from: 'mailer',
       to: ['dna-contact'],

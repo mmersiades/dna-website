@@ -4,7 +4,7 @@ import indigenousRegions from '@/constants/indigenousRegions';
 import regions from '@/constants/regions';
 import cn from '@/utils/cn';
 import { FC } from 'react';
-import { Controller, SubmitHandler, useForm, useWatch } from 'react-hook-form';
+import { Controller, useForm, useWatch } from 'react-hook-form';
 
 type InputsWithState = {
   state: string;
@@ -26,9 +26,7 @@ const GroupInterestTable: FC = () => {
     subregion: '',
     country: '',
   };
-  const { control, handleSubmit } = useForm<Inputs>({ defaultValues });
-
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+  const { control } = useForm<Inputs>({ defaultValues });
 
   const stateValue = useWatch({ name: 'state', control });
   const regionValue = useWatch({ name: 'subregion', control });
@@ -55,10 +53,7 @@ const GroupInterestTable: FC = () => {
         other people nearby you who are interested in connecting with you and/or
         starting a group.
       </p>
-      <form
-        className={formContainer}
-        onSubmit={handleSubmit(onSubmit)}
-      >
+      <form className={formContainer}>
         <Controller
           control={control}
           name="state"

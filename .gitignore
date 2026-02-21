@@ -41,3 +41,4 @@ next-env.d.ts
 .env*.local
 .env.production
 .env.preview
+/dna-website-488104-82b81bbce81e.json
