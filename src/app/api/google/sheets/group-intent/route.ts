@@ -1,3 +1,4 @@
+import sheetsApi from '@/app/services/SheetsApi';
 import { env } from '@/env';
 import { google } from 'googleapis';
 import { NextResponse } from 'next/server';
@@ -48,4 +49,22 @@ export async function POST(request: Request) {
       { status: 500 },
     );
   }
+}
+
+export async function GET(request: Request) {
+  const url = new URL(request.url);
+  if (!sheetsApi.initialised) {
+    await sheetsApi.getSheetData(
+      env.GOOGLE_SHEETS_GROUP_INTENT_SHEET_ID,
+      'Sheet1',
+    );
+  }
+
+  const data = sheetsApi.getTableRows({
+    state: url.searchParams.get('state'),
+    region: url.searchParams.get('region'),
+    country: url.searchParams.get('country'),
+  });
+
+  return NextResponse.json({ success: true, data });
 }

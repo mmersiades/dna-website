@@ -43,7 +43,7 @@ export const pageStyles = {
   pageContainer: 'container mr-auto ml-auto',
   pageTitle: 'text-3xl sm:text-4xl lg:text-5xl font-bold px-2',
   pageDivider: 'text-tertiary-500/50 dark:text-tertiary/50 mt-2 mb-4 mx-2',
-  sectionContainer: 'my-8',
+  sectionContainer: 'my-8 px-2',
 };
 
 export const cardStyles = {

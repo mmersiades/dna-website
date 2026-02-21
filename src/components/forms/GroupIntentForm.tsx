@@ -58,6 +58,7 @@ const GroupInterestForm: FC<Props> = ({ state, country, subregion }) => {
       toast.success(
         'Thanks. Your interest in joining a group has been registered',
       );
+
       reset();
 
       // Send email to notify DNA admins
@@ -68,7 +69,7 @@ const GroupInterestForm: FC<Props> = ({ state, country, subregion }) => {
         text: `${data.email} | ${data.state} | ${data.subregion} | ${data.country}`,
       };
 
-      await fetch('/api/send-email', {
+      void fetch('/api/send-email', {
         method: 'POST',
         body: JSON.stringify(emailBody),
       });
