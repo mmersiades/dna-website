@@ -13,7 +13,7 @@ const LocalGroupList: FC<Props> = ({ groups }) => {
     <section className={sectionContainer}>
       <h4 className={pageTitle}>Local Groups</h4>
       <hr className={pageDivider} />
-      <div className="grid gap-2 p-2 md:grid-cols-2 md:p-4">
+      <div className="grid gap-2 p-2 md:grid-cols-2">
         {groups.map((g) => (
           <GroupCard
             key={g._id}

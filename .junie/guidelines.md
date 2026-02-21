@@ -79,7 +79,7 @@ Follow these conventions for commit messages:
 - The verb should describe what the commit **does** to the code.
 
 **Examples:**
-- `Adds rudimentary GroupIntentForm`
+- `Adds rudimentary GroupInterestTable`
 - `Improves Header component for mobile`
 - `Sends mailing list subscription functionality`
 - `Initializes next.js, tailwind and sanity`
