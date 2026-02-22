@@ -9,7 +9,7 @@
         --height-content: calc(100vh - var(--height-header-sm));
         --footer-height: 5rem;
         --border-width-quote-container: 5px;
-        --width-quote-container: 50vw;
+        --width-opening-quote-container: 50vw;
         --font-size-header: 2.5rem;
         --font-size-header-jumbo: 4rem;
         --font-size-its: 3rem;
@@ -115,16 +115,16 @@
         height: 33vh;
     }
 
-    .quote-container,
     .opening-quote-container {
-        width: var(--width-quote-container);
+        width: var(--width-opening-quote-container);
         border: var(--border-width-quote-container) solid var(--color-border);
         background-color: oklch(from var(--color-border) calc(l + 0.4) c h);
         font-size: var(--font-size-quote);
 
         position: fixed;
-        top: var(--top-quote-container);
-        left: 50%;
+        left: 50vw;
+        top: 50vh;
+        transform: translate(-50%, -50%);
 
         opacity: 0;
 
@@ -140,7 +140,7 @@
     }
 
     .citation-container {
-        width: var(--width-quote-container);
+        width: var(--width-opening-quote-container);
         position: fixed;
         left: 50%;
         bottom: 0;
@@ -198,7 +198,7 @@
 
     @media (max-width: 800px) {
         :root {
-            --width-quote-container: 75vw;
+            --width-opening-quote-container: 75vw;
             --footer-height: 4rem;
             --font-size-header: 2.5rem;
             --font-size-header-jumbo: 3rem;
@@ -210,7 +210,7 @@
 
     @media (max-width: 576px) {
         :root {
-            --width-quote-container: 75vw;
+            --width-opening-quote-container: 75vw;
             --footer-height: 3rem;
             --font-size-header: 1.5rem;
             --font-size-header-jumbo: 2rem;
@@ -222,7 +222,7 @@
 
     @media (max-width: 375px) {
         :root {
-            --width-quote-container: 80vw;
+            --width-opening-quote-container: 80vw;
             --footer-height: 3.5rem;
             --font-size-header: 1rem;
             --font-size-header-jumbo: 1.5rem;
@@ -291,80 +291,12 @@
             animation-timeline: scroll(root block);
         }
 
-        @keyframes slide-right-out {
-            0% {
-                transform: translateX(
-                        calc(-100vw - (var(--width-quote-container) / 2))
-                );
-                opacity: 0;
-            }
-            25% {
-                transform: translateX(
-                        calc(
-                                0vw - var(--border-width-quote-container) -
-                                (var(--width-quote-container) / 2)
-                        )
-                );
-                opacity: 1;
-            }
-            75% {
-                transform: translateX(
-                        calc(
-                                0vw - var(--border-width-quote-container) -
-                                (var(--width-quote-container) / 2)
-                        )
-                );
-                opacity: 1;
-            }
-            100% {
-                transform: translateX(100vw);
-                opacity: 0;
-            }
-        }
-
         .opening-quote-container {
             animation-name: slide-right-out;
             animation-timeline: scroll(root block);
             animation-range: 25vh 125vh;
             animation-duration: auto;
             animation-fill-mode: both;
-        }
-
-        .quote-container {
-            animation-name: slide-right-out;
-            animation-timeline: scroll(root block);
-            animation-duration: auto;
-            animation-fill-mode: both;
-        }
-
-        .quote-section .first {
-            animation-name: slide-right-out;
-            animation-range: var(--animation-range-1);
-        }
-
-        .quote-section .second {
-            animation-name: slide-right-out;
-            animation-range: var(--animation-range-2);
-        }
-
-        .quote-section .third {
-            animation-name: slide-right-out;
-            animation-range: var(--animation-range-3);
-        }
-
-        .quote-section .fourth {
-            animation-name: slide-right-out;
-            animation-range: var(--animation-range-4);
-        }
-
-        .quote-section .fifth {
-            animation-name: slide-right-out;
-            animation-range: var(--animation-range-5);
-        }
-
-        .quote-section .sixth {
-            animation-name: slide-right-out;
-            animation-range: var(--animation-range-6);
         }
 
         @keyframes slide-up {
@@ -562,8 +494,7 @@
         }
 
         /* Style quote containers for normal flow */
-        .opening-quote-container,
-        .quote-container {
+        .opening-quote-container {
             position: relative;
             top: auto;
             left: auto;
@@ -571,7 +502,7 @@
             margin: 0 auto;
             transform: none;
             display: block;
-            width: var(--width-quote-container);
+            width: var(--width-opening-quote-container);
         }
 
         /* Style "It's" section for normal flow */
@@ -588,7 +519,7 @@
         /* Style citation containers for normal flow */
         .citation-container {
             position: relative;
-            width: var(--width-quote-container);
+            width: var(--width-opening-quote-container);
             left: auto;
             bottom: auto;
             margin: 1rem auto;
