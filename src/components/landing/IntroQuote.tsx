@@ -2,28 +2,19 @@ import { CSSProperties, FC } from 'react';
 import './styles.css';
 
 interface Props {
-  statement: string;
   quote: string;
   author: string;
   index: number; // 1-based
 }
 
-const Quote: FC<Props> = ({ quote, author, index, statement }) => {
+const IntroQuote: FC<Props> = ({ quote, author, index }) => {
   return (
     <section
       className={'quote-section'}
       style={{ '--i': index } as CSSProperties}
     >
-      <div className={'subheader-container'}>
-        <div className={'subheader-a-container'}>
-          <h3 className={'subheader-a'}>Degrowth is </h3>
-        </div>
-        <div className={'subheader-b-container'}>
-          <h3 className={'subheader-b'}>{statement}</h3>
-        </div>
-      </div>
       <div className="quote-spacer"></div>
-      <div className={'quote-container'}>
+      <div className={'intro-quote-container'}>
         <blockquote>{quote}</blockquote>
         <p>
           <em>
@@ -36,4 +27,4 @@ const Quote: FC<Props> = ({ quote, author, index, statement }) => {
   );
 };
 
-export default Quote;
+export default IntroQuote;

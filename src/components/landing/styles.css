@@ -2,10 +2,92 @@
 
 @layer presentation {
     :root {
+        /*---- Header ------*/
+        --height-header: 6rem;
+        --font-size-header: 2.5rem;
+        --font-size-header-jumbo: 4rem;
+
+        /*---- Footer ------*/
+        --footer-height: 5rem;
+
+        /*---- Quotes ------*/
+        --border-width-quote-container: 5px;
         --font-size-quote: 2rem;
         --width-quote-container: 65vw;
+        --subheader-indent: 15vw;
+        --subheader-font-size: 2.5rem;
+        --quote-padding: calc(var(--spacing) * 1);
     }
 
+    /*---- Header ------*/
+    .heading {
+        font-family: var(--font-display), serif;
+        font-weight: 900;
+    }
+
+    .header {
+        width: max-content;
+        height: var(--height-header);
+        position: fixed;
+        top: 0;
+        left: 0;
+        pointer-events: none; /* Allow clicking through to content if needed */
+        z-index: 20;
+        padding: calc(var(--spacing) * 4);
+        display: flex;
+        align-items: center;
+    }
+
+    .cta-container {
+        position: fixed;
+        top: 0;
+        right: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: calc(var(--spacing) * 4);
+        height: var(--height-header);
+    }
+
+    .header-spacer {
+        height: 100vh;
+    }
+
+    /*---- Footer ------*/
+    .home-container {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        height: var(--footer-height);
+        width: var(--footer-height);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--color-primary);
+        padding: calc(var(--spacing) * 4);
+    }
+
+    .home-icon {
+        height: calc(var(--footer-height)/2);
+        width: calc(var(--footer-height)/2);
+    }
+
+    .footer,
+    .progress {
+        position: fixed;
+        bottom: 0;
+        left: var(--footer-height);
+        right: 0;
+        height: var(--footer-height);
+        background-color: oklch(from var(--color-primary) l c h / 0.5);
+    }
+
+    .progress {
+        background: oklch(from var(--color-primary) l c h / 0.5);
+        transform-origin: 0 50%;
+    }
+
+    /*------ Quotes -------*/
     .quote-section {
         position: relative;
         height: 100vh;
@@ -15,11 +97,13 @@
         height: 33vh;
     }
 
-    .quote-container {
+    .quote-container, .intro-quote-container {
         width: var(--width-quote-container);
         border: var(--border-width-quote-container) solid var(--color-border);
         background-color: oklch(from var(--color-border) calc(l + 0.4) c h);
         font-size: var(--font-size-quote);
+
+        padding: var(--quote-padding);
 
         position: fixed;
         left: 50vw;
@@ -30,48 +114,179 @@
 
         will-change: transform, opacity;
 
+        blockquote {
+            margin-block-start: 1.5rem;
+            margin-block-end: 1.5rem;
+            margin-inline-start: 1.5rem;
+            margin-inline-end: 1.5rem;
+        }
+
         p {
             text-align: end;
-            margin-block-start: 1em;
-            margin-block-end: 1em;
-            margin-inline-start: 40px;
-            margin-inline-end: 40px;
+            margin-block-start: 1.5rem;
+            margin-block-end: 1.5rem;
+            margin-inline-start: 1.5rem;
+            margin-inline-end: 1.5rem;
         }
+    }
+
+    .intro-quote-container {
+        border: var(--border-width-quote-container) solid oklch(from var(--color-primary) calc(l - 0.15) c h);
+        background-color: var(--color-primary);
+        color: var(--color-background);
+    }
+
+    .subheader-container {
+        position: fixed;
+        left: var(--subheader-indent);
+        top: 15vh;
+        display: flex;
+    }
+
+    .subheader-a, .subheader-b {
+        white-space: pre;
+        font-family: var(--font-display), serif;
+        font-weight: 700;
+        font-size: var(--subheader-font-size);
+    }
+
+    .subheader-b {
+        color: var(--color-secondary)
     }
 
     @media (max-width: 800px) {
         :root {
+            /*---- Header ------*/
+            --font-size-header: 2.5rem;
+            --font-size-header-jumbo: 3rem;
+
+            /*---- Footer ------*/
+            --footer-height: 4rem;
+
+            /*---- Quotes ------*/
             --width-quote-container: 80vw;
             --font-size-quote: 1.5rem;
+            --subheader-indent: 10vw;
+            --subheader-font-size: 2rem;
+        }
+
+        .quote-container, .intro-quote-container {
+            blockquote {
+                margin-block-start: 1rem;
+                margin-block-end: 1rem;
+                margin-inline-start: 1rem;
+                margin-inline-end: 1rem;
+            }
         }
     }
 
     @media (max-width: 576px) {
         :root {
+            /*---- Header ------*/
+            --font-size-header: 1.5rem;
+            --font-size-header-jumbo: 2rem;
+
+            /*---- Footer ------*/
+            --footer-height: 3rem;
+
+            /*---- Quotes ------*/
             --width-quote-container: 85vw;
             --font-size-quote: 1.5rem;
+            --subheader-indent: 5vw;
+            --subheader-font-size: 1.5rem;
+        }
+
+        .quote-container {
+            blockquote {
+                margin-block-start: 0.5rem;
+                margin-block-end: 0.5rem;
+                margin-inline-start: 0.5rem;
+                margin-inline-end: 0.5rem;
+            }
         }
     }
 
     @media (max-width: 375px) {
         :root {
+            /*---- Header ------*/
+            --font-size-header: 1rem;
+            --font-size-header-jumbo: 1.5rem;
+
+            /*---- Footer ------*/
+            --footer-height: 3.5rem;
+
+            /*---- Quotes ------*/
             --width-quote-container: 95vw;
             --font-size-quote: 1.2rem;
+            --subheader-indent: 5vw;
+            --subheader-font-size: 1.25rem;
         }
 
-        blockquote {
-            margin-block-start: 0.5em;
-            margin-block-end: 0.5em;
-            margin-inline-start: 20px;
-            margin-inline-end: 20px;
+        .quote-container {
+            blockquote {
+                margin-block-start: 0.5em;
+                margin-block-end: 0.5em;
+                margin-inline-start: 0.5rem;
+                margin-inline-end: 0.5rem;
+            }
         }
     }
 }
 
 @layer scroll-timeline {
     @supports (animation-timeline: scroll()) {
+        /*Hide fallback elements*/
+        .fallback-header,
+        .fallback-cta-container,
+        .fallback-header-spacer,
+        .fallback-home-container,
+        .fallback-footer {
+            display: none;
+        }
 
-        @keyframes slide-right-out {
+        /*---- Header ------*/
+        @keyframes move-header {
+            0% {
+                font-size: var(--font-size-header-jumbo);
+                left: 50vw;
+                top: calc(50vh - var(--footer-height));
+                transform: translate(-50%, -50%);
+            }
+            100% {
+                font-size: var(--font-size-header);
+                left: 0;
+                top: 0;
+                transform: translateX(0) translateY(0);
+            }
+        }
+
+        .header {
+            animation-timeline: scroll(root block);
+            animation-range: 0 50vh;
+            animation-duration: auto;
+            animation-fill-mode: both;
+            animation-name: move-header;
+        }
+
+        /*---- Footer ------*/
+        @keyframes grow-progress {
+            from {
+                transform: scaleX(0);
+            }
+            to {
+                transform: scaleX(1);
+            }
+        }
+
+        .progress {
+            animation-name: grow-progress;
+            animation-duration: auto;
+            animation-timing-function: linear;
+            animation-timeline: scroll(root block);
+        }
+
+        /*---- Quotes ------*/
+        @keyframes centered-slide-left-right {
             0% {
                 transform: translate(calc(-100vw - 50%), -50%);
                 opacity: 0;
@@ -90,8 +305,64 @@
             }
         }
 
-        .quote-container {
-            animation-name: slide-right-out;
+        @keyframes slide-left-right {
+            0% {
+                transform: translateX(calc(-100vw - 50%));
+                opacity: 0;
+            }
+            25% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            75% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(calc(100vw - 50%));
+                opacity: 0;
+            }
+        }
+
+        @keyframes slide-right-left {
+            0% {
+                transform: translateX(calc(100vw - 50%));
+                opacity: 0;
+            }
+            25% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            75% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(calc(-100vw - 50%));
+                opacity: 0;
+            }
+        }
+
+        .subheader-a-container {
+            animation-name: slide-left-right;
+            animation-timeline: scroll(root block);
+            animation-duration: auto;
+            animation-fill-mode: both;
+            animation-range-start: calc(var(--i) * 100vh + 25vh);
+            animation-range-end: calc(var(--i) * 100vh + 125vh);
+        }
+
+        .subheader-b-container {
+            animation-name: slide-right-left;
+            animation-timeline: scroll(root block);
+            animation-duration: auto;
+            animation-fill-mode: both;
+            animation-range-start: calc(var(--i) * 100vh + 25vh);
+            animation-range-end: calc(var(--i) * 100vh + 125vh);
+        }
+
+        .quote-container, .intro-quote-container {
+            animation-name: centered-slide-left-right;
             animation-timeline: scroll(root block);
             animation-duration: auto;
             animation-fill-mode: both;
@@ -100,7 +371,7 @@
         }
 
         .quote-section {
-            animation-name: slide-right-out;
+            animation-name: centered-slide-left-right;
             animation-range-start: calc(var(--i) * 100vh + 25vh);
             animation-range-end: calc(var(--i) * 100vh + 125vh);
         }
@@ -110,18 +381,70 @@
 @layer fallback {
     /* This will only apply when scroll-driven animations are NOT supported */
     @supports not (animation-timeline: scroll()) {
+        /* Hide scroll-timeline elements */
+        .header,
+        .cta-container,
+        .header-spacer,
+        .footer,
+        .progress,
+        .quote-spacer,
+        .subheader-container {
+            display: none;
+        }
 
+        /*---- Header ------*/
+        .fallback-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 20;
+            padding: calc(var(--spacing) * 4);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: var(--font-size-header);
+        }
+
+        .fallback-header-spacer {
+            height: var(--height-header);
+            padding-bottom: 5rem;
+        }
+
+        .fallback-cta-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: calc(var(--spacing) * 4);
+        }
+
+        /*---- Footer ------*/
+        .fallback-home-container {
+            height: var(--footer-height);
+            width: var(--footer-height);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .fallback-footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: var(--footer-height);
+            background: var(--color-primary);
+            display: flex;
+        }
+
+        /*------ Quotes -------*/
         .quote-section {
             position: relative;
             height: auto;
             margin-bottom: 4rem;
         }
 
-        .quote-spacer {
-            display: none;
-        }
-
-        .quote-container {
+        .quote-container, .intro-quote-container {
             position: relative;
             top: auto;
             left: auto;
@@ -130,6 +453,14 @@
             transform: none;
             display: block;
             width: var(--width-quote-container);
+        }
+
+        .intro-quote-container {
+            margin-top: 4rem;
+        }
+
+        .quote-section:last-child {
+            margin-bottom: 8rem;
         }
     }
 }

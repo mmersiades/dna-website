@@ -2,93 +2,20 @@
 
 @layer presentation {
     :root {
-        --font-body: "Atma", system-ui;
-        --color-background: oklch(from #b4c5e4 calc(l + 0.15) c h);
         --color-text: #240115;
-        --height-header-sm: 5rem;
-        --height-content: calc(100vh - var(--height-header-sm));
         --footer-height: 5rem;
-        --border-width-quote-container: 5px;
-        --width-opening-quote-container: 50vw;
-        --font-size-header: 2.5rem;
-        --font-size-header-jumbo: 4rem;
+        --height-header: 6rem;
+
+
         --font-size-its: 3rem;
         --font-size-quote: 2rem;
         --padding-left: 4rem;
-        --top-quote-container: calc(
-                var(--height-header-sm) + clamp(8rem, 5vw, 20rem)
-        );
         --animation-range-1: 125vh 225vh;
         --animation-range-2: 225vh 325vh;
         --animation-range-3: 325vh 425vh;
         --animation-range-4: 425vh 525vh;
         --animation-range-5: 525vh 625vh;
         --animation-range-6: 625vh 725vh;
-    }
-
-    .heading {
-        font-family: var(--font-display), serif;
-        font-weight: 900;
-    }
-
-    .header {
-        width: max-content;
-        height: var(--height-header-sm);
-        position: fixed;
-        top: 0;
-        left: 0;
-        pointer-events: none; /* Allow clicking through to content if needed */
-        z-index: 20;
-        padding: calc(var(--spacing) * 4);
-        display: flex;
-        align-items: center;
-    }
-
-    .header-spacer {
-        height: 100vh;
-    }
-
-    .home-container {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        height: var(--footer-height);
-        width: var(--footer-height);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: var(--color-primary);
-        padding: calc(var(--spacing) * 4);
-    }
-
-    .home-icon {
-        height: calc(var(--footer-height)/2);
-        width: calc(var(--footer-height)/2);
-    }
-
-    .cta-container {
-        position: fixed;
-        top: 0;
-        right: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: calc(var(--spacing) * 4);
-    }
-
-    .footer,
-    .progress {
-        position: fixed;
-        bottom: 0;
-        left: var(--footer-height);
-        right: 0;
-        height: var(--footer-height);
-        background-color: oklch(from var(--color-primary) l c h / 0.5);
-    }
-
-    .progress {
-        background: oklch(from var(--color-primary) l c h / 0.5);
-        transform-origin: 0 50%;
     }
 
     .citation {
@@ -106,39 +33,6 @@
         content: " ↗";
     }
 
-    .quote-section {
-        position: relative;
-        height: 100vh;
-    }
-
-    .quote-spacer {
-        height: 33vh;
-    }
-
-    .opening-quote-container {
-        width: var(--width-opening-quote-container);
-        border: var(--border-width-quote-container) solid var(--color-border);
-        background-color: oklch(from var(--color-border) calc(l + 0.4) c h);
-        font-size: var(--font-size-quote);
-
-        position: fixed;
-        left: 50vw;
-        top: 50vh;
-        transform: translate(-50%, -50%);
-
-        opacity: 0;
-
-        will-change: transform, opacity;
-
-        p {
-            text-align: end;
-            margin-block-start: 1em;
-            margin-block-end: 1em;
-            margin-inline-start: 40px;
-            margin-inline-end: 40px;
-        }
-    }
-
     .citation-container {
         width: var(--width-opening-quote-container);
         position: fixed;
@@ -149,12 +43,6 @@
         display: flex;
         align-items: center;
         justify-content: center;
-    }
-
-    .opening-quote-container {
-        border: var(--border-width-quote-container) solid oklch(from var(--color-primary) calc(l - 0.15) c h);
-        background-color: var(--color-primary);
-        color: var(--color-background);
     }
 
     .its-section {
@@ -170,7 +58,7 @@
         padding-left: var(--padding-left);
 
         position: fixed;
-        top: var(--height-header-sm);
+        top: var(--height-header);
         left: 0;
 
         will-change: transform, opacity;
@@ -184,7 +72,7 @@
         margin-left: calc(var(--padding-left) + (var(--font-size-its) * 1.75));
 
         position: fixed;
-        top: var(--height-header-sm);
+        top: var(--height-header);
         left: 0;
 
         h3 {
@@ -200,8 +88,7 @@
         :root {
             --width-opening-quote-container: 75vw;
             --footer-height: 4rem;
-            --font-size-header: 2.5rem;
-            --font-size-header-jumbo: 3rem;
+
             --font-size-its: 2rem;
             --font-size-quote: 1.5rem;
             --padding-left: 1rem;
@@ -212,8 +99,7 @@
         :root {
             --width-opening-quote-container: 75vw;
             --footer-height: 3rem;
-            --font-size-header: 1.5rem;
-            --font-size-header-jumbo: 2rem;
+
             --font-size-its: 2rem;
             --font-size-quote: 1.5rem;
             --padding-left: 1rem;
@@ -224,8 +110,7 @@
         :root {
             --width-opening-quote-container: 80vw;
             --footer-height: 3.5rem;
-            --font-size-header: 1rem;
-            --font-size-header-jumbo: 1.5rem;
+
             --font-size-its: 1.5rem;
             --font-size-quote: 1.2rem;
             --padding-left: 1rem;
@@ -243,61 +128,34 @@
 @layer scroll-timeline {
     @supports (animation-timeline: scroll()) {
         /*Hide fallback elements*/
-        .fallback-its-container,
-        .fallback-header-spacer,
-        .fallback-home-container,
-        .fallback-footer,
-        .fallback-header,
-        .fallback-cta-container {
+        .fallback-its-container {
             display: none;
         }
 
-        @keyframes move-header {
+
+
+
+
+        @keyframes slide-right-out {
             0% {
-                font-size: var(--font-size-header-jumbo);
-                left: 50vw;
-                top: calc(50vh - var(--footer-height));
+                transform: translate(calc(-100vw - 50%), -50%);
+                opacity: 0;
+            }
+            25% {
                 transform: translate(-50%, -50%);
+                opacity: 1;
+            }
+            75% {
+                transform: translate(-50%, -50%);
+                opacity: 1;
             }
             100% {
-                font-size: var(--font-size-header);
-                left: 0;
-                top: 0;
-                transform: translateX(0) translateY(0);
+                transform: translate(calc(100vw - 50%), -50%);
+                opacity: 0;
             }
         }
 
-        .header {
-            animation-timeline: scroll(root block);
-            animation-range: 0 50vh;
-            animation-duration: auto;
-            animation-fill-mode: both;
-            animation-name: move-header;
-        }
 
-        @keyframes grow-progress {
-            from {
-                transform: scaleX(0);
-            }
-            to {
-                transform: scaleX(1);
-            }
-        }
-
-        .progress {
-            animation-name: grow-progress;
-            animation-duration: auto;
-            animation-timing-function: linear;
-            animation-timeline: scroll(root block);
-        }
-
-        .opening-quote-container {
-            animation-name: slide-right-out;
-            animation-timeline: scroll(root block);
-            animation-range: 25vh 125vh;
-            animation-duration: auto;
-            animation-fill-mode: both;
-        }
 
         @keyframes slide-up {
             0% {
@@ -430,56 +288,7 @@
     /* This will only apply when scroll-driven animations are NOT supported */
     @supports not (animation-timeline: scroll()) {
 
-        /* Hide scroll-timeline elements*/
-        .header, .footer, .progress, .cta-container {
-            display: none;
-        }
-
-        .fallback-home-container {
-            height: var(--footer-height);
-            width: var(--footer-height);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .fallback-footer {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: var(--footer-height);
-            background: var(--color-primary);
-            display: flex;
-        }
-
-        .fallback-header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 20;
-            padding: calc(var(--spacing) * 4);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            font-size: var(--font-size-header);
-        }
-
-        .fallback-cta-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: calc(var(--spacing) * 4);
-        }
-
-        .fallback-header-spacer {
-            height: var(--height-header-sm);
-            padding-bottom: 5rem;
-        }
-
         /* Make sections flow normally */
-        .quote-section,
         .its-section {
             position: relative;
             height: auto;
@@ -487,22 +296,8 @@
         }
 
         /* Remove spacers that were used for animation timing */
-        .quote-spacer,
-        .its-spacer,
-        .header-spacer {
+        .its-spacer {
             display: none;
-        }
-
-        /* Style quote containers for normal flow */
-        .opening-quote-container {
-            position: relative;
-            top: auto;
-            left: auto;
-            opacity: 1;
-            margin: 0 auto;
-            transform: none;
-            display: block;
-            width: var(--width-opening-quote-container);
         }
 
         /* Style "It's" section for normal flow */
