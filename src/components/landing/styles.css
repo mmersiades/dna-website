@@ -8,7 +8,8 @@
         --font-size-header-jumbo: 4rem;
 
         /*---- Footer ------*/
-        --footer-height: 5rem;
+        --height-footer: 5rem;
+        --size-home-icon: 5rem;
 
         /*---- Quotes ------*/
         --border-width-quote-container: 5px;
@@ -58,32 +59,33 @@
         position: fixed;
         bottom: 0;
         left: 0;
-        height: var(--footer-height);
-        width: var(--footer-height);
+        height: var(--height-footer);
+        width: var(--size-home-icon);
         display: flex;
         align-items: center;
         justify-content: center;
-        background-color: var(--color-primary);
+        background-color: var(--color-tertiary);
         padding: calc(var(--spacing) * 4);
     }
 
     .home-icon {
-        height: calc(var(--footer-height)/2);
-        width: calc(var(--footer-height)/2);
+        height: calc(var(--size-home-icon) - var(--spacing));
+        width: calc(var(--size-home-icon)- var(--spacing));
+        color: var(--color-white);
     }
 
     .footer,
     .progress {
         position: fixed;
         bottom: 0;
-        left: var(--footer-height);
+        left: var(--size-home-icon);
         right: 0;
-        height: var(--footer-height);
-        background-color: oklch(from var(--color-primary) l c h / 0.5);
+        height: var(--height-footer);
+        background-color: var(--color-tertiary-800);
     }
 
     .progress {
-        background: oklch(from var(--color-primary) l c h / 0.5);
+        background-color: var(--color-tertiary);
         transform-origin: 0 50%;
     }
 
@@ -151,7 +153,39 @@
     }
 
     .subheader-b {
-        color: var(--color-secondary)
+        color: var(--color-secondary-500)
+    }
+
+    @media (prefers-color-scheme: dark) {
+        .subheader-b {
+            color: var(--color-secondary-300)
+        }
+    }
+
+    /*---- Citation ------*/
+    .citation-container {
+        position: fixed;
+        bottom: 0;
+        left: var(--size-home-icon);
+        right: 0;
+        height: var(--height-footer);
+        background-color: transparent;
+        will-change: transform;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+    }
+
+    .citation {
+        text-align: center;
+        font-size: clamp(0.6rem, 5vh, 1rem);
+        color: var(--color-white);
+        text-decoration: none;
+
+        &a:hover {
+            color: var(--color-secondary-200)
+        }
     }
 
     @media (max-width: 800px) {
@@ -161,7 +195,8 @@
             --font-size-header-jumbo: 3rem;
 
             /*---- Footer ------*/
-            --footer-height: 4rem;
+            --height-footer: 5rem;
+            --size-home-icon: 5rem;
 
             /*---- Quotes ------*/
             --width-quote-container: 80vw;
@@ -187,7 +222,8 @@
             --font-size-header-jumbo: 2rem;
 
             /*---- Footer ------*/
-            --footer-height: 3rem;
+            --height-footer: 6rem;
+            --size-home-icon: 4rem;
 
             /*---- Quotes ------*/
             --width-quote-container: 85vw;
@@ -213,7 +249,8 @@
             --font-size-header-jumbo: 1.5rem;
 
             /*---- Footer ------*/
-            --footer-height: 3.5rem;
+            --height-footer: 6rem;
+            --size-home-icon: 4rem;
 
             /*---- Quotes ------*/
             --width-quote-container: 95vw;
@@ -249,7 +286,7 @@
             0% {
                 font-size: var(--font-size-header-jumbo);
                 left: 50vw;
-                top: calc(50vh - var(--footer-height));
+                top: calc(50vh - var(--height-footer));
                 transform: translate(-50%, -50%);
             }
             100% {
@@ -375,6 +412,22 @@
             animation-range-start: calc(var(--i) * 100vh + 25vh);
             animation-range-end: calc(var(--i) * 100vh + 125vh);
         }
+
+        /*---- Citation ------*/
+        .citation-container {
+            animation-name: slide-right-left;
+            animation-timeline: scroll(root block);
+            animation-duration: auto;
+            animation-fill-mode: both;
+            animation-range-start: calc(var(--i) * 100vh + 25vh);
+            animation-range-end: calc(var(--i) * 100vh + 125vh);
+        }
+
+        .citation-section {
+            animation-name: slide-right-left;
+            animation-range-start: calc(var(--i) * 100vh + 25vh);
+            animation-range-end: calc(var(--i) * 100vh + 125vh);
+        }
     }
 }
 
@@ -388,7 +441,8 @@
         .footer,
         .progress,
         .quote-spacer,
-        .subheader-container {
+        .subheader-container,
+        .citation-section {
             display: none;
         }
 
@@ -420,8 +474,8 @@
 
         /*---- Footer ------*/
         .fallback-home-container {
-            height: var(--footer-height);
-            width: var(--footer-height);
+            height: var(--height-footer);
+            width: var(--height-footer);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -432,8 +486,8 @@
             bottom: 0;
             left: 0;
             right: 0;
-            height: var(--footer-height);
-            background: var(--color-primary);
+            height: var(--height-footer);
+            background: var(--color-tertiary);
             display: flex;
         }
 
@@ -462,5 +516,7 @@
         .quote-section:last-child {
             margin-bottom: 8rem;
         }
+
+        /*---- Citation ------*/
     }
 }
