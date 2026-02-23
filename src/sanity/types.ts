@@ -180,6 +180,20 @@ export type Slug = {
   source?: string;
 };
 
+export type DegrowthDefinition = {
+  _id: string;
+  _type: 'degrowth-definition';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  statement: string;
+  quote: string;
+  author: string;
+  identifier?: string;
+  citationText?: string;
+  citationUrl?: string;
+};
+
 export type WhatsappChat = {
   _id: string;
   _type: 'whatsapp-chat';
@@ -368,6 +382,7 @@ export type AllSanitySchemaTypes =
   | Promotion
   | Page
   | Slug
+  | DegrowthDefinition
   | WhatsappChat
   | ExternalResource
   | GroupActivity
@@ -426,6 +441,17 @@ export type GROUP_QUERYResult = {
   name: null;
   slug: Slug;
 } | null;
+// Variable: DEGROWTH_DEFINITIONS_QUERY
+// Query: *[_type == "degrowth-definition"]{  _id,   statement,   quote,  author,   identifier,   citationText,  citationUrl,}
+export type DEGROWTH_DEFINITIONS_QUERYResult = Array<{
+  _id: string;
+  statement: string;
+  quote: string;
+  author: string;
+  identifier: string | null;
+  citationText: string | null;
+  citationUrl: string | null;
+}>;
 // Variable: EXT_RESOURCES_QUERY
 // Query: *[_type == "external-resource" && defined(slug.current)][0...12]{  _id, name, slug, url}
 export type EXT_RESOURCES_QUERYResult = Array<{
@@ -537,6 +563,7 @@ declare module '@sanity/client' {
   interface SanityQueries {
     '*[_type == "group" && defined(slug.current)][0...12]{\n  _id, \n  fullName, \n  slug,\n  shortName, \n  website, \n  blurb,\n  groupPhoto,\n  contactEmail,\n  links[],\n  activities[]\n}': GROUPS_QUERYResult;
     '*[_type == "group" && slug.current == $slug][0]{\n  _id, name, slug\n}': GROUP_QUERYResult;
+    '*[_type == "degrowth-definition"]{\n  _id, \n  statement, \n  quote,\n  author, \n  identifier, \n  citationText,\n  citationUrl,\n}': DEGROWTH_DEFINITIONS_QUERYResult;
     '*[_type == "external-resource" && defined(slug.current)][0...12]{\n  _id, name, slug, url\n}': EXT_RESOURCES_QUERYResult;
     '*[_type == "external-resource" && slug.current == $slug][0]{\n  _id, name, slug, url\n}': EXT_RESOURCE_QUERYResult;
     '*[_type == "whatsapp-chat" && defined(slug.current)][0...12]{\n  _id, name, slug\n}': W_CHATS_QUERYResult;

@@ -6,9 +6,10 @@ export interface QuoteProps {
   statement: string;
   quote: string;
   author: string;
-  citationText: string;
-  citationUrl?: string;
   index: number; // 1-based
+  citationText: string | null;
+  citationUrl: string | null;
+  identifier: string | null;
 }
 
 const Quote: FC<QuoteProps> = ({
@@ -18,7 +19,14 @@ const Quote: FC<QuoteProps> = ({
   statement,
   citationText,
   citationUrl,
+  identifier,
 }) => {
+  let label = ` - ${author}`;
+
+  if (identifier) {
+    label = label + `, ${identifier}`;
+  }
+
   return (
     <section
       className={'quote-section'}
@@ -40,17 +48,19 @@ const Quote: FC<QuoteProps> = ({
         <blockquote>{quote}</blockquote>
         <p>
           <em>
-            <small>{` - ${author}`}</small>
+            <small>{label}</small>
           </em>
         </p>
       </div>
       <div className="quote-spacer"></div>
 
       {/*Citation*/}
-      <Citation
-        citationUrl={citationUrl}
-        citationText={citationText}
-      />
+      {
+        <Citation
+          citationUrl={citationUrl}
+          citationText={citationText}
+        />
+      }
     </section>
   );
 };

@@ -19,6 +19,17 @@ export const GROUP_QUERY =
   _id, name, slug
 }`);
 
+export const DEGROWTH_DEFINITIONS_QUERY =
+  defineQuery(`*[_type == "degrowth-definition"]{
+  _id, 
+  statement, 
+  quote,
+  author, 
+  identifier, 
+  citationText,
+  citationUrl,
+}`);
+
 export const EXT_RESOURCES_QUERY =
   defineQuery(`*[_type == "external-resource" && defined(slug.current)][0...12]{
   _id, name, slug, url

@@ -7,6 +7,8 @@ type Props = Pick<QuoteProps, 'citationText' | 'citationUrl'>;
 
 // Assumes a --i CSS variable will be set in a parent component
 const Citation: FC<Props> = ({ citationText, citationUrl }) => {
+  if (!citationText) return null;
+
   if (citationUrl) {
     return (
       <div className="citation-section">

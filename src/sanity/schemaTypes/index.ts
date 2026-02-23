@@ -1,3 +1,4 @@
+import { degrowthDefinitionType } from '@/sanity/schemaTypes/contentModels/degrowthDefinitionType';
 import { externalResourceType } from '@/sanity/schemaTypes/contentModels/externalResourceType';
 import { groupActivityType } from '@/sanity/schemaTypes/contentModels/groupActivityType';
 import { groupLinkType } from '@/sanity/schemaTypes/contentModels/groupLinkType';
@@ -21,6 +22,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     groupActivityType,
     externalResourceType,
     whatsAppChatType,
+    degrowthDefinitionType,
     // Page builder
     pageType,
     callToActionType,
