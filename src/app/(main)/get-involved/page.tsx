@@ -43,6 +43,9 @@ export default function GetInvolvedPage() {
 
   return (
     <div className={'cta-container'}>
+      <div className={'header-container'}>
+        <h4 className={'heading'}>Degrowth Network Australia</h4>
+      </div>
       {links.map((link, index) => (
         <Link
           key={link.href.toString() + index}

@@ -6,6 +6,28 @@
     width: var(--size);
     margin-left: auto;
     margin-right: auto;
+    overflow: hidden;
+}
+
+.header-container {
+    --size: 35%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: var(--size);
+    width: var(--size);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .heading {
+        font-family: var(--font-display), serif;
+        text-align: center;
+        font-weight: bold;
+        font-size: 5vw;
+    }
 }
 
 .cta-position {

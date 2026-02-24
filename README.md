@@ -1,3 +1,22 @@
+# TODOs
+- [ ] Add a variety of animation directions to LandingPage
+- [ ] Implement domain name
+- [ ] Add Recaptcha or similar
+- [ ] Style toasts
+- [ ] A11y audit
+- [ ] SEO
+- [ ] Some sort of carousel for GroupCards
+- [ ] Crowdsource Degrowth definitions
+- [ ] Remove all WhatsApp stuff
+- [ ] Find out if there's another way to join a learning circle
+- [ ] Add illustrations and finalise styling
+- [ ] Better form validation
+- [ ] Storybook tests
+- [ ] Cypress tests
+- [ ] Finalise about page
+- [ ] Add external resources and style them
+- [ ] Add sizes prop to Images
+
 # DNA Website
 
 A web application for Degrowth Network Australia, built with Next.js and Sanity CMS.
