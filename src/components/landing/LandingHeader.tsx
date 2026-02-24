@@ -6,7 +6,7 @@ const LandingHeader: FC = () => {
   return (
     <>
       {/*Header*/}
-      <div className={'cta-container'}>
+      <div className={'landing-cta-container'}>
         <CtaLink href={'/get-involved'}>Get Involved</CtaLink>
       </div>
       <header className="header">

@@ -39,7 +39,7 @@
         align-items: center;
     }
 
-    .cta-container {
+    .landing-cta-container {
         position: fixed;
         top: 0;
         right: 0;
@@ -437,7 +437,7 @@
     @supports not (animation-timeline: scroll()) {
         /* Hide scroll-timeline elements */
         .header,
-        .cta-container,
+        .landing-cta-container,
         .header-spacer,
         .footer,
         .progress,
