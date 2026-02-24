@@ -1,5 +1,6 @@
 'use client';
 import { SendEmailBody } from '@/app/api/send-email/route';
+import FooterSubmitButton from '@/components/buttons/FooterSubmitButton';
 import styles from '@/components/footer/styles';
 import cn from '@/utils/cn';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -31,7 +32,7 @@ const ContactForm: FC<Props> = ({ id }) => {
     control,
     handleSubmit,
     reset,
-    formState: { isSubmitting },
+    formState: { isSubmitting, isValid },
   } = useForm<Inputs>({
     defaultValues,
     resolver: zodResolver(schema),
@@ -58,7 +59,7 @@ const ContactForm: FC<Props> = ({ id }) => {
     }
   };
 
-  const { title, divider, input, submitButton } = styles;
+  const { title, divider, input } = styles;
 
   const {
     container,
@@ -75,8 +76,8 @@ const ContactForm: FC<Props> = ({ id }) => {
     col: 'flex flex-col gap-1',
     row: 'flex flex-row gap-4',
     error: 'text-red-300 h-6 indent-2 text-sm',
-    grid: cn(['grid gap-2 xl:gap-4', 'grid-cols-1 sm:grid-cols-12']),
-    mobileSubmit: 'block sm:hidden',
+    grid: cn(['grid gap-2 xl:gap-4', 'grid-cols-12']),
+    mobileSubmit: 'block sm:hidden col-span-12',
     desktopSubmit: 'hidden sm:block',
   };
 
@@ -145,16 +146,13 @@ const ContactForm: FC<Props> = ({ id }) => {
             }}
           />
           <div className={cn([col, 'sm:col-span-2', 'pt-5', desktopSubmit])}>
-            <button
+            <FooterSubmitButton
               type="submit"
-              className={cn([
-                submitButton,
-                isSubmitting ? 'cursor-wait opacity-50' : 'cursor-pointer',
-                'w-full',
-              ])}
+              submitting={isSubmitting}
+              disabled={!isValid}
             >
               Send
-            </button>
+            </FooterSubmitButton>
           </div>
           <Controller
             control={control}
@@ -185,17 +183,15 @@ const ContactForm: FC<Props> = ({ id }) => {
             }}
           />
 
-          <button
-            type="submit"
-            className={cn([
-              submitButton,
-              isSubmitting ? 'cursor-wait opacity-50' : 'cursor-pointer',
-              mobileSubmit,
-              'col-span-12',
-            ])}
-          >
-            Send
-          </button>
+          <div className={mobileSubmit}>
+            <FooterSubmitButton
+              type="submit"
+              submitting={isSubmitting}
+              disabled={!isValid}
+            >
+              Send
+            </FooterSubmitButton>
+          </div>
         </div>
       </form>
     </div>

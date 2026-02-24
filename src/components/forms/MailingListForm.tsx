@@ -1,5 +1,6 @@
 'use client';
 import { EmailAlias, SendEmailBody } from '@/app/api/send-email/route';
+import FooterSubmitButton from '@/components/buttons/FooterSubmitButton';
 import styles from '@/components/footer/styles';
 import cn from '@/utils/cn';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -27,7 +28,7 @@ const MailingListForm: FC<Props> = ({ subscribeTo, id }) => {
     control,
     handleSubmit,
     reset,
-    formState: { isSubmitting },
+    formState: { isSubmitting, isValid },
   } = useForm<Inputs>({
     defaultValues,
     resolver: zodResolver(schema),
@@ -53,14 +54,15 @@ const MailingListForm: FC<Props> = ({ subscribeTo, id }) => {
     }
   };
 
-  const { title, divider, submitButton, input } = styles;
+  const { title, divider, input } = styles;
 
-  const { container, label, col, row, error } = {
+  const { container, label, col, row, error, submitContainer } = {
     container: 'mt-8 mb-2',
     label: 'indent-2 text-sm font-medium',
     col: 'flex flex-col gap-1',
     row: 'flex flex-row gap-2 xl:gap-4 flex-wrap items-center',
     error: 'text-red-300 h-6 indent-2 text-sm',
+    submitContainer: 'w-full sm:w-fit',
   };
 
   return (
@@ -90,18 +92,15 @@ const MailingListForm: FC<Props> = ({ subscribeTo, id }) => {
                       {...field}
                     />
                   </div>
-                  <button
-                    type="submit"
-                    className={cn([
-                      submitButton,
-                      isSubmitting
-                        ? 'cursor-wait opacity-50'
-                        : 'cursor-pointer',
-                      'w-full sm:w-fit',
-                    ])}
-                  >
-                    Subscribe
-                  </button>
+                  <div className={submitContainer}>
+                    <FooterSubmitButton
+                      type="submit"
+                      submitting={isSubmitting}
+                      disabled={!isValid}
+                    >
+                      Subscribe
+                    </FooterSubmitButton>
+                  </div>
                 </div>
 
                 <span className={error}>

@@ -10,12 +10,12 @@
 - [ ] Remove all WhatsApp stuff
 - [ ] Find out if there's another way to join a learning circle
 - [ ] Add illustrations and finalise styling
-- [ ] Better form validation
 - [ ] Storybook tests
 - [ ] Cypress tests
 - [ ] Finalise about page
 - [ ] Add external resources and style them
 - [ ] Add sizes prop to Images
+- [ ] Get mailing list subscription working
 
 # DNA Website
 
