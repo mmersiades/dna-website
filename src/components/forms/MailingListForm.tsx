@@ -2,6 +2,7 @@
 import { EmailAlias, SendEmailBody } from '@/app/api/send-email/route';
 import FooterSubmitButton from '@/components/buttons/FooterSubmitButton';
 import styles from '@/components/footer/styles';
+import Toast from '@/components/Toast';
 import cn from '@/utils/cn';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FC } from 'react';
@@ -44,13 +45,30 @@ const MailingListForm: FC<Props> = ({ subscribeTo, id }) => {
       method: 'POST',
       body: JSON.stringify(body),
     });
+
     if (response.status === 204) {
-      toast.success(
-        'Thank you for subscribing! Check your email for the confirmation step.',
+      toast(
+        <Toast
+          title={'Thank you for subscribing!'}
+          message={'Check your email for the confirmation step.'}
+        />,
+        {
+          ariaLabel: 'Mailing list subscription success',
+          type: 'success',
+        },
       );
       reset();
     } else {
-      toast.error('Failed to subscribe. Please try again later.');
+      toast(
+        <Toast
+          title={'Failed to subscribe.'}
+          message={'Please try again later.'}
+        />,
+        {
+          ariaLabel: 'Mailing list subscription failure',
+          type: 'error',
+        },
+      );
     }
   };
 

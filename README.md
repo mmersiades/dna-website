@@ -2,7 +2,6 @@
 - [ ] Add a variety of animation directions to LandingPage
 - [ ] Implement domain name
 - [ ] Add Recaptcha or similar
-- [ ] Style toasts
 - [ ] A11y audit
 - [ ] SEO
 - [ ] Some sort of carousel for GroupCards

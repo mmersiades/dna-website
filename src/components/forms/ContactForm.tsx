@@ -2,6 +2,7 @@
 import { SendEmailBody } from '@/app/api/send-email/route';
 import FooterSubmitButton from '@/components/buttons/FooterSubmitButton';
 import styles from '@/components/footer/styles';
+import Toast from '@/components/Toast';
 import cn from '@/utils/cn';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FC } from 'react';
@@ -52,10 +53,28 @@ const ContactForm: FC<Props> = ({ id }) => {
       body: JSON.stringify(body),
     });
     if (response.status === 204) {
-      toast.success("Message sent. Thank you. We'll reply via email soon");
+      toast(
+        <Toast
+          title={'Message sent.'}
+          message={"Thank you. We'll reply via email soon"}
+        />,
+        {
+          ariaLabel: "Message sent. Thank you. We'll reply via email soon",
+          type: 'success',
+        },
+      );
       reset();
     } else {
-      toast.error('Failed to send. Please try again later.');
+      toast(
+        <Toast
+          title={'Failed to send.'}
+          message={'Please try again later.'}
+        />,
+        {
+          ariaLabel: 'Failed to send. Please try again later.',
+          type: 'error',
+        },
+      );
     }
   };
 

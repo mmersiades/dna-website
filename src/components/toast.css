@@ -1,0 +1,73 @@
+:root {
+    --toastify-color-light: var(--color-tertiary-100);
+    --toastify-color-info: var(--color-gray-600);
+    --toastify-color-success: var(--color-green-600);
+    --toastify-color-warning: var(--color-orange-600);
+    --toastify-color-error: var(--color-red-600);
+    --toastify-toast-padding: calc(var(--spacing) * 4);
+    --toastify-toast-width: 24rem;
+    --toastify-toast-offset: 1rem;
+    --toastify-toast-bd-radius: var(--radius);
+    --toastify-text-color-light: var(--color-foreground);
+    --toastify-color-progress-light: linear-gradient(to right, var(--color-tertiary-400), var(--color-tertiary-800));
+}
+
+.Toastify__close-button--light {
+    padding: calc(var(--toastify-toast-padding) / 2);
+    color: var(--color-foreground);
+    opacity: .5;
+}
+
+.Toastify__toast-theme--light {
+    border-width: 1px;
+    border-style: solid;
+}
+
+.Toastify__toast--success {
+    border-color: oklch(from var(--toastify-color-success) l c h / 25%);
+}
+
+.Toastify__toast--info {
+    border-color: oklch(from var(--toastify-color-info) l c h / 25%);
+}
+
+.Toastify__toast--warning {
+    border-color: oklch(from var(--toastify-color-warning) l c h / 25%);
+}
+
+.Toastify__toast--error {
+    border-color: oklch(from var(--toastify-color-error) l c h / 25%);
+}
+
+.Toastify__toast--default {
+    border-color: oklch(from var(--color-tertiary) l c h / 75%);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --toastify-color-light: var(--color-tertiary-900);
+        --toastify-color-info: var(--color-gray-400);
+        --toastify-color-success: var(--color-green-400);
+        --toastify-color-warning: var(--color-orange-400);
+        --toastify-color-error: var(--color-red-400);
+        --toastify-color-progress-light: linear-gradient(to right, var(--color-tertiary-900), var(--color-tertiary-500));
+    }
+}
+
+@media (max-width: 800px) {
+    :root {
+        --toastify-toast-padding: calc(var(--spacing) * 3);
+    }
+}
+
+@media (max-width: 576px) {
+    :root {
+        --toastify-toast-padding: calc(var(--spacing) * 2);
+    }
+}
+
+@media (max-width: 375px) {
+    :root {
+        --toastify-toast-padding: calc(var(--spacing) * 1);
+    }
+}

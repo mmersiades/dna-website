@@ -2,6 +2,7 @@
 import { WriteGroupIntentRowBody } from '@/app/api/google/sheets/group-intent/route';
 import { SendEmailBody } from '@/app/api/send-email/route';
 import SubmitButton from '@/components/buttons/SubmitButton';
+import Toast from '@/components/Toast';
 import cn from '@/utils/cn';
 import { zodResolver } from '@hookform/resolvers/zod';
 import dayjs from 'dayjs';
@@ -55,8 +56,16 @@ const GroupInterestForm: FC<Props> = ({ state, country, subregion }) => {
     });
 
     if (response.ok) {
-      toast.success(
-        'Thanks. Your interest in joining a group has been registered',
+      toast(
+        <Toast
+          title={'Thanks!'}
+          message={'Your interest in joining a group has been registered'}
+        />,
+        {
+          ariaLabel:
+            'Thanks! Your interest in joining a group has been registered',
+          type: 'success',
+        },
       );
 
       reset();
@@ -74,7 +83,16 @@ const GroupInterestForm: FC<Props> = ({ state, country, subregion }) => {
         body: JSON.stringify(emailBody),
       });
     } else {
-      toast.error('Failed to register interest. Please try again later.');
+      toast(
+        <Toast
+          title={'Failed to register interest.'}
+          message={'Please try again later.'}
+        />,
+        {
+          ariaLabel: 'Failed to register interest. Please try again later.',
+          type: 'error',
+        },
+      );
     }
   };
 
