@@ -211,9 +211,11 @@ export type ExternalResource = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  name?: string;
-  slug?: Slug;
-  url?: string;
+  title: string;
+  description: string;
+  url: string;
+  image?: string;
+  logo?: string;
 };
 
 export type GroupActivity = {
@@ -434,13 +436,6 @@ export type GROUPS_QUERYResult = Array<{
     } & GroupActivity
   > | null;
 }>;
-// Variable: GROUP_QUERY
-// Query: *[_type == "group" && slug.current == $slug][0]{  _id, name, slug}
-export type GROUP_QUERYResult = {
-  _id: string;
-  name: null;
-  slug: Slug;
-} | null;
 // Variable: DEGROWTH_DEFINITIONS_QUERY
 // Query: *[_type == "degrowth-definition"]{  _id,   statement,   quote,  author,   identifier,   citationText,  citationUrl,}
 export type DEGROWTH_DEFINITIONS_QUERYResult = Array<{
@@ -453,40 +448,20 @@ export type DEGROWTH_DEFINITIONS_QUERYResult = Array<{
   citationUrl: string | null;
 }>;
 // Variable: EXT_RESOURCES_QUERY
-// Query: *[_type == "external-resource" && defined(slug.current)][0...12]{  _id, name, slug, url}
+// Query: *[_type == "external-resource"]{  _id,  title,  description,  url,  image,  logo}
 export type EXT_RESOURCES_QUERYResult = Array<{
   _id: string;
-  name: string | null;
-  slug: Slug;
-  url: string | null;
+  title: string;
+  description: string;
+  url: string;
+  image: string | null;
+  logo: string | null;
 }>;
-// Variable: EXT_RESOURCE_QUERY
-// Query: *[_type == "external-resource" && slug.current == $slug][0]{  _id, name, slug, url}
-export type EXT_RESOURCE_QUERYResult = {
-  _id: string;
-  name: string | null;
-  slug: Slug | null;
-  url: string | null;
-} | null;
 // Variable: W_CHATS_QUERY
 // Query: *[_type == "whatsapp-chat" && defined(slug.current)][0...12]{  _id, name, slug}
 export type W_CHATS_QUERYResult = Array<{
   _id: string;
   name: string | null;
-  slug: Slug;
-}>;
-// Variable: W_CHAT_QUERY
-// Query: *[_type == "whatsapp-chat" && slug.current == $slug][0]{  _id, name, slug}
-export type W_CHAT_QUERYResult = {
-  _id: string;
-  name: string | null;
-  slug: Slug | null;
-} | null;
-// Variable: PAGES_QUERY
-// Query: *[_type == "page" && defined(slug.current)][0...12]{  _id, name, slug}
-export type PAGES_QUERYResult = Array<{
-  _id: string;
-  name: null;
   slug: Slug;
 }>;
 // Variable: PAGE_QUERY
@@ -562,13 +537,9 @@ import '@sanity/client';
 declare module '@sanity/client' {
   interface SanityQueries {
     '*[_type == "group" && defined(slug.current)][0...12]{\n  _id, \n  fullName, \n  slug,\n  shortName, \n  website, \n  blurb,\n  groupPhoto,\n  contactEmail,\n  links[],\n  activities[]\n}': GROUPS_QUERYResult;
-    '*[_type == "group" && slug.current == $slug][0]{\n  _id, name, slug\n}': GROUP_QUERYResult;
     '*[_type == "degrowth-definition"]{\n  _id, \n  statement, \n  quote,\n  author, \n  identifier, \n  citationText,\n  citationUrl,\n}': DEGROWTH_DEFINITIONS_QUERYResult;
-    '*[_type == "external-resource" && defined(slug.current)][0...12]{\n  _id, name, slug, url\n}': EXT_RESOURCES_QUERYResult;
-    '*[_type == "external-resource" && slug.current == $slug][0]{\n  _id, name, slug, url\n}': EXT_RESOURCE_QUERYResult;
+    '*[_type == "external-resource"]{\n  _id,\n  title,\n  description,\n  url,\n  image,\n  logo\n}': EXT_RESOURCES_QUERYResult;
     '*[_type == "whatsapp-chat" && defined(slug.current)][0...12]{\n  _id, name, slug\n}': W_CHATS_QUERYResult;
-    '*[_type == "whatsapp-chat" && slug.current == $slug][0]{\n  _id, name, slug\n}': W_CHAT_QUERYResult;
-    '*[_type == "page" && defined(slug.current)][0...12]{\n  _id, name, slug\n}': PAGES_QUERYResult;
     '*[_type == "page" && slug.current == $slug][0]{\n  _type, \n  _createdAt, \n  _updatedAt, \n  _rev,\n  _id, \n  name, \n  slug, \n  title,\n  pageBuilder[]{\n    _key,\n    _type,\n    _type == "hero" => {\n      heading,\n      tagline,\n      image\n    },\n    _type == "video" => {\n      videoLabel,\n      url,\n    },\n    _type == "richTextSection" => {\n      title,\n      content,\n    },\n    _type == "gallery" => {\n      images[]{\n        _key,\n        ...,\n      },\n    },\n  }\n}': PAGE_QUERYResult;
   }
 }

@@ -14,11 +14,6 @@ export const GROUPS_QUERY =
   activities[]
 }`);
 
-export const GROUP_QUERY =
-  defineQuery(`*[_type == "group" && slug.current == $slug][0]{
-  _id, name, slug
-}`);
-
 export const DEGROWTH_DEFINITIONS_QUERY =
   defineQuery(`*[_type == "degrowth-definition"]{
   _id, 
@@ -30,28 +25,17 @@ export const DEGROWTH_DEFINITIONS_QUERY =
   citationUrl,
 }`);
 
-export const EXT_RESOURCES_QUERY =
-  defineQuery(`*[_type == "external-resource" && defined(slug.current)][0...12]{
-  _id, name, slug, url
-}`);
-
-export const EXT_RESOURCE_QUERY =
-  defineQuery(`*[_type == "external-resource" && slug.current == $slug][0]{
-  _id, name, slug, url
+export const EXT_RESOURCES_QUERY = defineQuery(`*[_type == "external-resource"]{
+  _id,
+  title,
+  description,
+  url,
+  image,
+  logo
 }`);
 
 export const W_CHATS_QUERY =
   defineQuery(`*[_type == "whatsapp-chat" && defined(slug.current)][0...12]{
-  _id, name, slug
-}`);
-
-export const W_CHAT_QUERY =
-  defineQuery(`*[_type == "whatsapp-chat" && slug.current == $slug][0]{
-  _id, name, slug
-}`);
-
-export const PAGES_QUERY =
-  defineQuery(`*[_type == "page" && defined(slug.current)][0...12]{
   _id, name, slug
 }`);
 
