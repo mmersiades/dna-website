@@ -1,10 +1,11 @@
+'use client';
 import IconButton from '@/components/buttons/IconButton';
 import BreakPoint from '@/components/dev/BreakPoint';
 import CtaLink from '@/components/links/CtaLink';
 import NavbarLink, { NavbarLinkProps } from '@/components/links/NavbarLink';
 import SkipLink from '@/components/links/SkipLink';
 import cn from '@/utils/cn';
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 const links: NavbarLinkProps[] = [
   {
@@ -30,6 +31,18 @@ const links: NavbarLinkProps[] = [
 ];
 
 const Header: FC = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    const menu = document.getElementById('nav-menu');
+    const handleToggle = (event: { newState: string }) => {
+      setIsOpen(event.newState === 'open');
+    };
+
+    menu?.addEventListener('toggle', handleToggle);
+    return () => menu?.removeEventListener('toggle', handleToggle);
+  }, []);
+
   const {
     container,
     desktopContainer,
@@ -80,10 +93,12 @@ const Header: FC = () => {
       <SkipLink />
       <nav
         className={mobileContainer}
-        aria-label="Main Navigation"
+        aria-label="Main Navigation (Mobile)"
       >
         <IconButton
           popoverTarget="nav-menu"
+          aria-expanded={isOpen}
+          aria-controls="nav-menu"
           iconName={'icon-[lucide--menu]'}
           srName={'Open Navigation Menu'}
           size={'size-12'}
@@ -96,7 +111,7 @@ const Header: FC = () => {
       </nav>
       <nav
         className={desktopContainer}
-        aria-label={'Main Navigation'}
+        aria-label={'Main Navigation (Desktop)'}
       >
         {links.map((linkProps) => {
           return (
@@ -120,6 +135,8 @@ const Header: FC = () => {
           <IconButton
             popoverTarget="nav-menu"
             popoverTargetAction={'hide'}
+            aria-expanded={isOpen}
+            aria-controls="nav-menu"
             iconName={'icon-[lucide--x]'}
             srName={'Close Navigation Menu'}
             aria-label={'Close Navigation Menu'}
