@@ -1,6 +1,7 @@
 import { env } from '@/env';
 import logger from '@/utils/pino';
-import { NextRequest } from 'next/server';
+import { checkBotId } from 'botid/server';
+import { NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 
 const SUBSCRIBE_EMAIL_DNA = env.SUBSCRIBE_EMAIL_DNA;
@@ -33,6 +34,12 @@ const transporter = nodemailer.createTransport({
 });
 
 export async function POST(req: NextRequest) {
+  const verification = await checkBotId();
+
+  if (verification.isBot) {
+    return NextResponse.json({ error: 'Access denied' }, { status: 403 });
+  }
+
   const {
     from: fromAlias,
     to: aliases,

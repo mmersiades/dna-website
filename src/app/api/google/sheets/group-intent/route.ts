@@ -1,5 +1,6 @@
 import sheetsApi from '@/app/services/SheetsApi';
 import { env } from '@/env';
+import { checkBotId } from 'botid/server';
 import { google } from 'googleapis';
 import { NextResponse } from 'next/server';
 
@@ -13,6 +14,12 @@ export interface WriteGroupIntentRowBody {
 }
 
 export async function POST(request: Request) {
+  const verification = await checkBotId();
+
+  if (verification.isBot) {
+    return NextResponse.json({ error: 'Access denied' }, { status: 403 });
+  }
+
   try {
     const body = await request.json();
     const row = [
