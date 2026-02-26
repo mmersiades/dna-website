@@ -33,6 +33,7 @@ const PageRichText: FC<{ value: BlockContent }> = ({ value }) => {
               alt={value.alt || 'Image'}
               fill
               className="rounded-lg object-cover"
+              sizes={'(max-width: 768px) 100vw, 33vw'}
             />
           </div>
         );

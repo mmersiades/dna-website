@@ -1,15 +1,17 @@
 'use client';
 import { EXT_RESOURCES_QUERYResult } from '@/sanity/types';
 import cn from '@/utils/cn';
+import generatePhotoSizes from '@/utils/generatePhotoSizes';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FC } from 'react';
 
 interface Props {
   resource: EXT_RESOURCES_QUERYResult[0];
+  index: number; // 0-based
 }
 
-const ExternalResourceCard: FC<Props> = ({ resource }) => {
+const ExternalResourceCard: FC<Props> = ({ resource, index }) => {
   const { container, content, h4, imageContainer, image } = {
     container: cn(
       'h-fit w-full',
@@ -41,6 +43,15 @@ const ExternalResourceCard: FC<Props> = ({ resource }) => {
             loader={({ src, width, quality }) =>
               `${src}?w=${width}&q=${quality || 75}`
             }
+            sizes={generatePhotoSizes({
+              mobile: 225,
+              sm: 225,
+              md: 310,
+              lg: 175, // Smaller because two columns
+              xl: 225,
+              xxl: 310,
+            })}
+            loading={index < 8 ? 'eager' : 'lazy'}
           />
         </div>
       )}

@@ -20,10 +20,11 @@ const FutureEventsList: FC<Props> = ({ events }) => {
       <h4 className={pageTitle}>Upcoming Events</h4>
       <hr className={pageDivider} />
       <div className={grid}>
-        {events.map((e) => (
+        {events.map((e, i) => (
           <EventCard
             key={e._id}
             event={e}
+            index={i}
           />
         ))}
       </div>

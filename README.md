@@ -12,7 +12,6 @@
 - [ ] Storybook tests
 - [ ] Cypress tests
 - [ ] Finalise about page
-- [ ] Add sizes prop to Images
 - [ ] Get mailing list subscription working
 - [ ] Make Navbar more fancy
 - [ ] Open graph tags https://orcascan.com/tools/open-graph-validator

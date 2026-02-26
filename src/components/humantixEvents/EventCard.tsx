@@ -6,6 +6,7 @@ import {
 } from '@/app/services/HumantixApi';
 import { cardStyles } from '@/components/styles';
 import cn from '@/utils/cn';
+import generatePhotoSizes from '@/utils/generatePhotoSizes';
 import dayjs from 'dayjs';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -57,9 +58,10 @@ const EventLocation: FC<{ loc: HumantixEventLocation }> = ({ loc }) => {
 
 interface Props {
   event: HumantixEvent;
+  index: number; // 0-based
 }
 
-const EventCard: FC<Props> = ({ event }) => {
+const EventCard: FC<Props> = ({ event, index }) => {
   const { container, content } = {
     container: cn(
       'h-full w-full',
@@ -88,6 +90,15 @@ const EventCard: FC<Props> = ({ event }) => {
               alt={event.name}
               fill
               className={'rounded-t-md'}
+              sizes={generatePhotoSizes({
+                mobile: 600,
+                sm: 600,
+                md: 475, // Smaller because two columns
+                lg: 400, // Smaller because three columns
+                xl: 400,
+                xxl: 475,
+              })}
+              loading={index < 6 ? 'eager' : 'lazy'}
             />
           </div>
         )}

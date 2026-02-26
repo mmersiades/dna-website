@@ -9,9 +9,10 @@ import { FC } from 'react';
 
 interface Props {
   group: GROUPS_QUERYResult[number];
+  index: number; // 0-based
 }
 
-const GroupCard: FC<Props> = ({ group }) => {
+const GroupCard: FC<Props> = ({ group, index }) => {
   const { container, content } = {
     container: cn('bg-card/50', 'border border-border rounded-md', 'w-full'),
     content: 'p-4',
@@ -26,6 +27,7 @@ const GroupCard: FC<Props> = ({ group }) => {
           <GroupPhoto
             {...group.groupPhoto}
             src={urlFor(group.groupPhoto).url()}
+            index={index}
           />
         )}
         <h4 className={cn(cardHeading, 'pt-2')}>{group.fullName}</h4>

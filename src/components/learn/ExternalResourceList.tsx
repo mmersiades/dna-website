@@ -20,13 +20,16 @@ export default async function ExternalResourceList() {
       <h4 className={pageTitle}>Useful Degrowth Resources</h4>
       <hr className={pageDivider} />
       <div className={grid}>
-        {extResources.map((er) => {
+        {extResources.map((er, index) => {
           return (
             <div
               key={er._id}
               className={cell}
             >
-              <ExternalResourceCard resource={er} />
+              <ExternalResourceCard
+                resource={er}
+                index={index}
+              />
             </div>
           );
         })}

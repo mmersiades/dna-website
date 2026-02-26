@@ -15,10 +15,11 @@ export default async function LocalGroupList() {
       <h4 className={pageTitle}>Local Groups</h4>
       <hr className={pageDivider} />
       <div className="grid gap-2 p-2 md:grid-cols-2">
-        {groups.map((g) => (
+        {groups.map((g, i) => (
           <GroupCard
             key={g._id}
             group={g}
+            index={i}
           />
         ))}
       </div>
