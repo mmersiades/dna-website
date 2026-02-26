@@ -68,14 +68,14 @@ const GroupInterestTable: FC<Props> = ({ initialTableData }) => {
     });
   };
 
-  const { formContainer, label, input, table, tableHead, tableRow } = {
+  const { formContainer, label, input, table, tableHead } = {
     formContainer: cn(
       'flex flex-row gap-2 justify-start flex-wrap py-2 md:py-4',
     ),
     label: 'indent-2 text-sm font-medium',
     input: cn(
       'border-1 border-tertiary-500 rounded-lg',
-      'focus:outline-primary focus:outline-1 focus:border-primary',
+      'focus:outline-primary focus:outline-1 focus:border-primary focus:outline-offset-0',
       'px-2',
       'text-lg font-bold',
       'h-full',
@@ -89,7 +89,6 @@ const GroupInterestTable: FC<Props> = ({ initialTableData }) => {
       'p-2 md:p-4',
     ),
     tableHead: 'font-display text-2xl',
-    tableRow: 'bg-card/50',
   };
 
   const tdStyle = (row: TableRow) =>
@@ -211,7 +210,7 @@ const GroupInterestTable: FC<Props> = ({ initialTableData }) => {
       </form>
       <table className={table}>
         <thead className={tableHead}>
-          <tr className={tableRow}>
+          <tr>
             <th>Area</th>
             <th>People wanting group</th>
           </tr>

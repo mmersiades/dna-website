@@ -6,7 +6,7 @@ const styles = {
   divider: 'text-tertiary-700 mt-2 mb-4',
   input: cn(
     'border-1 border-tertiary-500 rounded-lg',
-    'focus:outline-primary focus:outline-1 focus:border-primary',
+    'focus:outline-primary focus:outline-1 focus:border-primary focus:outline-offset-0',
     'px-2',
     'text-lg font-bold',
     'h-full',

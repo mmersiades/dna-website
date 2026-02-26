@@ -104,9 +104,10 @@ const MailingListForm: FC<Props> = ({ subscribeTo, id }) => {
                   <div className={cn(col, 'flex-1')}>
                     <input
                       className={cn(input, 'h-10')}
-                      type="email"
+                      type="email-to-subscribe"
                       id={id}
                       required
+                      aria-required="true"
                       {...field}
                     />
                   </div>
@@ -121,7 +122,10 @@ const MailingListForm: FC<Props> = ({ subscribeTo, id }) => {
                   </div>
                 </div>
 
-                <span className={error}>
+                <span
+                  className={error}
+                  aria-describedby={'email-to-subscribe'}
+                >
                   {errors.email ? errors.email.message : ''}
                 </span>
               </div>

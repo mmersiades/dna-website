@@ -124,11 +124,15 @@ const ContactForm: FC<Props> = ({ id }) => {
                       type="text"
                       id={id}
                       required
+                      aria-required="true"
                       {...field}
                     />
                   </div>
 
-                  <span className={error}>
+                  <span
+                    className={error}
+                    aria-describedby={id}
+                  >
                     {errors.name ? errors.name.message : ''}
                   </span>
                 </div>
@@ -153,11 +157,15 @@ const ContactForm: FC<Props> = ({ id }) => {
                       type="email"
                       id={'email'}
                       required
+                      aria-required="true"
                       {...field}
                     />
                   </div>
 
-                  <span className={error}>
+                  <span
+                    className={error}
+                    aria-describedby={'email'}
+                  >
                     {errors.email ? errors.email.message : ''}
                   </span>
                 </div>
@@ -190,11 +198,15 @@ const ContactForm: FC<Props> = ({ id }) => {
                       className={cn(input, 'w-full py-2 font-sans')}
                       id={'message'}
                       required
+                      aria-required="true"
                       {...field}
                     />
                   </div>
 
-                  <span className={error}>
+                  <span
+                    className={error}
+                    aria-describedby={'message'}
+                  >
                     {errors.message ? errors.message.message : ''}
                   </span>
                 </div>

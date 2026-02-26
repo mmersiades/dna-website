@@ -116,7 +116,7 @@ const GroupInterestForm: FC<Props> = ({ state, country, subregion }) => {
     label: 'indent-2 text-sm font-medium',
     input: cn(
       'border-1 border-tertiary-500 rounded-lg',
-      'focus:outline-primary focus:outline-1 focus:border-primary',
+      'focus:outline-primary focus:outline-1 focus:border-primary focus:outline-offset-0',
       'px-2',
       'text-lg font-bold',
       'h-full',
@@ -135,7 +135,7 @@ const GroupInterestForm: FC<Props> = ({ state, country, subregion }) => {
         <Controller
           control={control}
           name="name"
-          render={({ field, formState: { errors } }) => (
+          render={({ field }) => (
             <div className={'flex flex-col'}>
               <label
                 htmlFor={'name'}
@@ -146,9 +146,10 @@ const GroupInterestForm: FC<Props> = ({ state, country, subregion }) => {
               <input
                 {...field}
                 className={cn(input, 'h-10 w-full')}
+                aria-required="true"
+                required
                 type={'text'}
               />
-              {errors.email && <span>This field is required</span>}
             </div>
           )}
         />
@@ -156,7 +157,7 @@ const GroupInterestForm: FC<Props> = ({ state, country, subregion }) => {
         <Controller
           control={control}
           name="email"
-          render={({ field, formState: { errors } }) => (
+          render={({ field }) => (
             <div className={'flex flex-col'}>
               <label
                 htmlFor={'email'}
@@ -166,9 +167,10 @@ const GroupInterestForm: FC<Props> = ({ state, country, subregion }) => {
               </label>
               <input
                 className={cn(input, 'h-10 w-full')}
+                aria-required="true"
+                required
                 {...field}
               />
-              {errors.email && <span>This field is required</span>}
             </div>
           )}
         />
