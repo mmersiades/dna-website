@@ -2,6 +2,7 @@ import IconButton from '@/components/buttons/IconButton';
 import BreakPoint from '@/components/dev/BreakPoint';
 import CtaLink from '@/components/links/CtaLink';
 import NavbarLink, { NavbarLinkProps } from '@/components/links/NavbarLink';
+import SkipLink from '@/components/links/SkipLink';
 import cn from '@/utils/cn';
 import { FC } from 'react';
 
@@ -76,6 +77,7 @@ const Header: FC = () => {
 
   return (
     <div className={container}>
+      <SkipLink />
       <nav
         className={mobileContainer}
         aria-label="Main Navigation"
@@ -92,7 +94,6 @@ const Header: FC = () => {
           <CtaLink href={'/get-involved'}>Get Involved</CtaLink>
         </div>
       </nav>
-
       <nav
         className={desktopContainer}
         aria-label={'Main Navigation'}

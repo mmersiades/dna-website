@@ -84,14 +84,14 @@ const EmailButton: FC<{ email: string }> = ({ email }) => {
 
   return (
     <>
-      <div
+      <button
         ref={refs.setReference}
         className={cn([linkContainer, container])}
         onClick={handleCopy}
       >
         <span className={cn([linkIcon, 'icon-[lucide--mail]'])}></span>
         <p className={linkLabel}>Email</p>
-      </div>
+      </button>
       {isMounted && (
         <div
           // eslint-disable-next-line react-hooks/refs

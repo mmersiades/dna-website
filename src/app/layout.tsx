@@ -27,12 +27,8 @@ export default async function RootLayout({
   children: ReactNode;
 }>) {
   const { body, html } = {
-    html: cn(['overscroll-none', atma.className]),
-    body: cn([
-      'antialiased',
-      'select-none',
-      'focus-visible:outline-1 focus-visible:outline-black',
-    ]),
+    html: cn('overscroll-none', atma.className),
+    body: cn('antialiased'),
   };
 
   return (

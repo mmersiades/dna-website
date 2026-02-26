@@ -15,7 +15,13 @@ export default async function MainLayout({
   return (
     <>
       <Header />
-      <main className={main}>{children}</main>
+      <main
+        id={'main-content'}
+        className={main}
+        tabIndex={-1}
+      >
+        {children}
+      </main>
       <Footer />
     </>
   );

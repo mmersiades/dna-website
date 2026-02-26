@@ -325,3 +325,16 @@ h5,
 h6 {
     text-wrap: balance;
 }
+
+@layer base {
+    :focus-visible {
+        outline: 3px dashed var(--color-secondary-400);
+        outline-offset: 2px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :focus-visible {
+            outline: 3px dashed var(--color-secondary);
+        }
+    }
+}

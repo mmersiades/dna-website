@@ -415,8 +415,31 @@
         }
 
         /*---- Citation ------*/
+        @keyframes hidden-slide-right-left {
+            0% {
+                visibility: hidden;
+                transform: translateX(calc(100vw - 50%));
+                opacity: 0;
+            }
+            25% {
+                visibility: visible;
+                transform: translateX(0);
+                opacity: 1;
+            }
+            75% {
+                visibility: visible;
+                transform: translateX(0);
+                opacity: 1;
+            }
+            100% {
+                visibility: hidden;
+                transform: translateX(calc(-100vw - 50%));
+                opacity: 0;
+            }
+        }
+
         .citation-container {
-            animation-name: slide-right-left;
+            animation-name: hidden-slide-right-left;
             animation-timeline: scroll(root block);
             animation-duration: auto;
             animation-fill-mode: both;

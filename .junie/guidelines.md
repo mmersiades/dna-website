@@ -68,7 +68,6 @@ The project uses Husky and `lint-staged`. On every commit:
 #### Styling
 
 - Use **Tailwind CSS** for most styling needs.
-- **Styled Components** are available for complex or dynamic styling that is hard to achieve with Tailwind alone.
 
 #### Git Commits
 

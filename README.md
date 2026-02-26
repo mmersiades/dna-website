@@ -1,7 +1,6 @@
 # TODOs
 - [ ] Add a variety of animation directions to LandingPage
 - [ ] Implement domain name
-- [ ] Add Recaptcha or similar
 - [ ] A11y audit
 - [ ] SEO
 - [ ] Some sort of carousel for GroupCards
@@ -15,6 +14,7 @@
 - [ ] Get mailing list subscription working
 - [ ] Make Navbar more fancy
 - [ ] Open graph tags https://orcascan.com/tools/open-graph-validator
+- [ ] Switch SMTP2GO account (requires domain name)
 
 # DNA Website
 
