@@ -1,4 +1,5 @@
 import DisableDraftModeLink from '@/components/links/DisableDraftModeLink';
+import SkipLink from '@/components/links/SkipLink';
 import copy from '@/constants/copy';
 import { SanityLive } from '@/sanity/lib/live';
 import cn from '@/utils/cn';
@@ -80,6 +81,7 @@ export default async function RootLayout({
     >
       <body className={body}>
         <ThemeProvider>
+          <SkipLink />
           {children}
           <ToastContainer />
           <SanityLive />

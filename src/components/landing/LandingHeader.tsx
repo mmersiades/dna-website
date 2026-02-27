@@ -6,7 +6,10 @@ const LandingHeader: FC = () => {
   return (
     <>
       {/*Header*/}
-      <div className={'landing-cta-container'}>
+      <div
+        id={'main-content'}
+        className={'landing-cta-container'}
+      >
         <CtaLink href={'/get-involved'}>Get Involved</CtaLink>
       </div>
       <header className="header">
@@ -16,7 +19,10 @@ const LandingHeader: FC = () => {
       {/*Fallback header*/}
       <header className="fallback-header">
         <h1 className={'heading'}>What is Degrowth?</h1>
-        <div className={'fallback-cta-container'}>
+        <div
+          id={'main-content'}
+          className={'fallback-cta-container'}
+        >
           <CtaLink href={'/get-involved'}>Get Involved</CtaLink>
         </div>
       </header>
