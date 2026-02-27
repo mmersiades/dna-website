@@ -1,12 +1,18 @@
 import PageBuilder from '@/components/pageBuilder/PageBuilder';
-import { sanityFetch } from '@/sanity/lib/live';
-import { PAGE_QUERY } from '@/sanity/lib/queries';
+import { getPage } from '@/lib/actions';
+import generateDNAMetadata from '@/utils/generateDNAMetadata';
+import { Metadata } from 'next';
+
+export async function generateMetadata(): Promise<Metadata> {
+  const page = await getPage('about');
+
+  return generateDNAMetadata(page);
+}
 
 export default async function AboutPage() {
-  const { data: page } = await sanityFetch({
-    query: PAGE_QUERY,
-    params: { slug: 'about' },
-  });
+  const page = await getPage('about');
+
+  // TODO: redirect to not found page
 
   return (
     <div className={'container mr-auto ml-auto'}>

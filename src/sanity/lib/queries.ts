@@ -49,6 +49,12 @@ export const PAGE_QUERY =
   name, 
   slug, 
   title,
+  "seo": {
+    "title": coalesce(seo.title, title, ""),
+    "description": coalesce(seo.description,  ""),
+    "image": seo.image,
+    "noIndex": seo.noIndex == true
+  },
   pageBuilder[]{
     _key,
     _type,

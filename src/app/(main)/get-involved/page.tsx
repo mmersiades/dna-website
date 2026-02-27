@@ -1,7 +1,16 @@
+import { getPage } from '@/lib/actions';
 import cn from '@/utils/cn';
+import generateDNAMetadata from '@/utils/generateDNAMetadata';
+import { Metadata } from 'next';
 import Link, { LinkProps } from 'next/link';
 import { PropsWithChildren } from 'react';
 import './styles.css';
+
+export async function generateMetadata(): Promise<Metadata> {
+  const page = await getPage('get-involved');
+
+  return generateDNAMetadata(page);
+}
 
 const links: PropsWithChildren<LinkProps>[] = [
   {

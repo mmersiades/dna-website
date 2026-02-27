@@ -3,6 +3,7 @@ import { externalResourceType } from '@/sanity/schemaTypes/contentModels/externa
 import { groupActivityType } from '@/sanity/schemaTypes/contentModels/groupActivityType';
 import { groupLinkType } from '@/sanity/schemaTypes/contentModels/groupLinkType';
 import { groupType } from '@/sanity/schemaTypes/contentModels/groupType';
+import { seoType } from '@/sanity/schemaTypes/contentModels/seoType';
 import { whatsAppChatType } from '@/sanity/schemaTypes/contentModels/whatsAppChatType';
 import { blockContentType } from '@/sanity/schemaTypes/pageBuilder/blockContentType';
 import { callToActionType } from '@/sanity/schemaTypes/pageBuilder/callToActionType';
@@ -23,6 +24,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     externalResourceType,
     whatsAppChatType,
     degrowthDefinitionType,
+    seoType,
     // Page builder
     pageType,
     callToActionType,
