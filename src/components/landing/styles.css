@@ -3,8 +3,8 @@
 @layer presentation {
     :root {
         /*---- Header ------*/
-        --height-header: 6rem;
-        --font-size-header: 2.5rem;
+        --height-header: 5rem;
+        --font-size-header: min(4.5vw, 2.5rem);
         --font-size-header-jumbo: 4rem;
 
         /*---- Footer ------*/
@@ -13,11 +13,75 @@
 
         /*---- Quotes ------*/
         --border-width-quote-container: 5px;
-        --font-size-quote: 2rem;
+        --font-size-quote: min(3vh, 3vw);
         --width-quote-container: 65vw;
         --subheader-indent: 15vw;
-        --subheader-font-size: 2.5rem;
+        --subheader-font-size: min(5vw, 2.5rem);
         --quote-padding: calc(var(--spacing) * 1);
+    }
+
+    @media (max-width: 800px) {
+        :root {
+            /*---- Header ------*/
+            --font-size-header-jumbo: 3rem;
+
+            /*---- Footer ------*/
+            --height-footer: 5rem;
+            --size-home-icon: 5rem;
+
+            /*---- Quotes ------*/
+            --font-size-quote: min(4vh, 4vw);
+            --width-quote-container: 80vw;
+            --subheader-indent: 10vw;
+        }
+    }
+
+    @media (max-width: 576px) {
+        :root {
+            /*---- Header ------*/
+            --font-size-header-jumbo: 2rem;
+
+            /*---- Footer ------*/
+            --height-footer: 6rem;
+            --size-home-icon: 4rem;
+
+            /*---- Quotes ------*/
+            --font-size-quote: min(4vh, 4vw);
+            --width-quote-container: 85vw;
+            --subheader-indent: 5vw;
+        }
+    }
+
+    @media (max-width: 475px) {
+        :root {
+            /*---- Header ------*/
+            --font-size-header-jumbo: 2rem;
+
+            /*---- Footer ------*/
+            --height-footer: 6rem;
+            --size-home-icon: 4rem;
+
+            /*---- Quotes ------*/
+            --font-size-quote: min(4vh, 4vw);
+            --width-quote-container: 85vw;
+            --subheader-indent: 4vw;
+        }
+    }
+
+    @media (max-width: 375px) {
+        :root {
+            /*---- Header ------*/
+            --font-size-header-jumbo: 1.5rem;
+
+            /*---- Footer ------*/
+            --height-footer: 6rem;
+            --size-home-icon: 4rem;
+
+            /*---- Quotes ------*/
+            --font-size-quote: min(4vh, 4vw);
+            --width-quote-container: 95vw;
+            --subheader-indent: 3vw;
+        }
     }
 
     /*---- Header ------*/
@@ -117,19 +181,17 @@
 
         will-change: transform, opacity;
 
-        blockquote {
-            margin-block-start: 1.5rem;
-            margin-block-end: 1.5rem;
-            margin-inline-start: 1.5rem;
-            margin-inline-end: 1.5rem;
+        blockquote, p {
+            margin-block-start: min(1vh, 1vw);
+            margin-block-end: min(1vh, 1vw);
+            margin-inline-start: min(1vh, 1vw);
+            margin-inline-end: min(1vh, 1vw);
+
+            line-height: calc(var(--font-size-quote) + 1vh);
         }
 
         p {
             text-align: end;
-            margin-block-start: 1.5rem;
-            margin-block-end: 1.5rem;
-            margin-inline-start: 1.5rem;
-            margin-inline-end: 1.5rem;
         }
     }
 
@@ -142,7 +204,7 @@
     .subheader-container {
         position: fixed;
         left: var(--subheader-indent);
-        top: 15vh;
+        top: calc(var(--height-header) + 5vh);
         display: flex;
     }
 
@@ -150,7 +212,7 @@
         white-space: pre;
         font-family: var(--font-display), serif;
         font-weight: 700;
-        font-size: var(--subheader-font-size);
+        font-size: min(5vh, var(--subheader-font-size));
     }
 
     .subheader-b {
@@ -180,93 +242,12 @@
 
     .citation {
         text-align: center;
-        font-size: clamp(0.6rem, 5vh, 1rem);
+        font-size: min(4vw, 1rem);
         color: var(--color-white);
         text-decoration: none;
 
         &a:hover {
             color: var(--color-secondary-200)
-        }
-    }
-
-    @media (max-width: 800px) {
-        :root {
-            /*---- Header ------*/
-            --font-size-header: 2.5rem;
-            --font-size-header-jumbo: 3rem;
-
-            /*---- Footer ------*/
-            --height-footer: 5rem;
-            --size-home-icon: 5rem;
-
-            /*---- Quotes ------*/
-            --width-quote-container: 80vw;
-            --font-size-quote: 1.5rem;
-            --subheader-indent: 10vw;
-            --subheader-font-size: 2rem;
-        }
-
-        .quote-container, .intro-quote-container {
-            blockquote {
-                margin-block-start: 1rem;
-                margin-block-end: 1rem;
-                margin-inline-start: 1rem;
-                margin-inline-end: 1rem;
-            }
-        }
-    }
-
-    @media (max-width: 576px) {
-        :root {
-            /*---- Header ------*/
-            --font-size-header: 1.5rem;
-            --font-size-header-jumbo: 2rem;
-
-            /*---- Footer ------*/
-            --height-footer: 6rem;
-            --size-home-icon: 4rem;
-
-            /*---- Quotes ------*/
-            --width-quote-container: 85vw;
-            --font-size-quote: 1.5rem;
-            --subheader-indent: 5vw;
-            --subheader-font-size: 1.5rem;
-        }
-
-        .quote-container {
-            blockquote {
-                margin-block-start: 0.5rem;
-                margin-block-end: 0.5rem;
-                margin-inline-start: 0.5rem;
-                margin-inline-end: 0.5rem;
-            }
-        }
-    }
-
-    @media (max-width: 375px) {
-        :root {
-            /*---- Header ------*/
-            --font-size-header: 1rem;
-            --font-size-header-jumbo: 1.5rem;
-
-            /*---- Footer ------*/
-            --height-footer: 6rem;
-            --size-home-icon: 4rem;
-
-            /*---- Quotes ------*/
-            --width-quote-container: 95vw;
-            --font-size-quote: 1.2rem;
-            --subheader-indent: 5vw;
-            --subheader-font-size: 1.25rem;
-        }
-
-        .quote-container {
-            blockquote {
-                margin-block-start: 0.5em;
-                margin-block-end: 0.5em;
-                margin-inline-start: 0.5rem;
-                margin-inline-end: 0.5rem;
-            }
         }
     }
 }

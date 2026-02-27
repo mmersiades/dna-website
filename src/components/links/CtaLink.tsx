@@ -3,10 +3,19 @@ import cn from '@/utils/cn';
 import Link, { LinkProps } from 'next/link';
 import { FC, PropsWithChildren } from 'react';
 
-const CtaLink: FC<PropsWithChildren<LinkProps>> = ({ children, ...props }) => {
+type Props = LinkProps & {
+  responsive?: boolean;
+};
+
+const CtaLink: FC<PropsWithChildren<Props>> = ({
+  children,
+  responsive = false,
+  ...props
+}) => {
   const { link } = {
     link: cn(
       'text-2xl font-bold text-primary-foreground',
+      responsive && '[font-size:min(4vw,2rem)]',
       'bg-primary-200 dark:bg-primary',
       'bg-radial from-primary-200 to-primary-400/75 dark:from-primary dark:to-primary-500/50',
       'border-2 border-primary-800 rounded-lg dark:border-0',

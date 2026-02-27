@@ -10,7 +10,12 @@ const LandingHeader: FC = () => {
         id={'main-content'}
         className={'landing-cta-container'}
       >
-        <CtaLink href={'/get-involved'}>Get Involved</CtaLink>
+        <CtaLink
+          href={'/get-involved'}
+          responsive
+        >
+          Get Involved
+        </CtaLink>
       </div>
       <header className="header">
         <h1 className={'heading'}>What is Degrowth?</h1>
@@ -23,7 +28,12 @@ const LandingHeader: FC = () => {
           id={'main-content'}
           className={'fallback-cta-container'}
         >
-          <CtaLink href={'/get-involved'}>Get Involved</CtaLink>
+          <CtaLink
+            href={'/get-involved'}
+            responsive
+          >
+            Get Involved
+          </CtaLink>
         </div>
       </header>
     </>
