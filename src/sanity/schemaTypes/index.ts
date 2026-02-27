@@ -4,7 +4,6 @@ import { groupActivityType } from '@/sanity/schemaTypes/contentModels/groupActiv
 import { groupLinkType } from '@/sanity/schemaTypes/contentModels/groupLinkType';
 import { groupType } from '@/sanity/schemaTypes/contentModels/groupType';
 import { seoType } from '@/sanity/schemaTypes/contentModels/seoType';
-import { whatsAppChatType } from '@/sanity/schemaTypes/contentModels/whatsAppChatType';
 import { blockContentType } from '@/sanity/schemaTypes/pageBuilder/blockContentType';
 import { callToActionType } from '@/sanity/schemaTypes/pageBuilder/callToActionType';
 import { heroType } from '@/sanity/schemaTypes/pageBuilder/heroType';
@@ -22,7 +21,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     groupLinkType,
     groupActivityType,
     externalResourceType,
-    whatsAppChatType,
     degrowthDefinitionType,
     seoType,
     // Page builder

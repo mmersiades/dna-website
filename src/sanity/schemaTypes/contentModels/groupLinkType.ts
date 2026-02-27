@@ -16,14 +16,7 @@ export const groupLinkType = defineType({
       name: 'category',
       type: 'string',
       options: {
-        list: [
-          'facebook',
-          'whatsapp',
-          'instagram',
-          'mailing-list',
-          'matrix',
-          'substack',
-        ],
+        list: ['facebook', 'instagram', 'mailing-list', 'matrix', 'substack'],
       },
       validation: (rule) => rule.required(),
     }),

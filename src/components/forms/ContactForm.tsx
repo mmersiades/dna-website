@@ -108,6 +108,38 @@ const ContactForm: FC<Props> = ({ id }) => {
         <div className={grid}>
           <Controller
             control={control}
+            name="message"
+            render={({ field, formState: { errors } }) => {
+              return (
+                <div className={cn([col, 'col-span-12'])}>
+                  <label
+                    htmlFor={'message'}
+                    className={label}
+                  >
+                    Message
+                  </label>
+                  <div className={row}>
+                    <textarea
+                      className={cn(input, 'w-full py-2 font-sans')}
+                      id={'message'}
+                      required
+                      aria-required="true"
+                      {...field}
+                    />
+                  </div>
+
+                  <span
+                    className={error}
+                    aria-describedby={'message'}
+                  >
+                    {errors.message ? errors.message.message : ''}
+                  </span>
+                </div>
+              );
+            }}
+          />
+          <Controller
+            control={control}
             name="name"
             render={({ field, formState: { errors } }) => {
               return (
@@ -181,38 +213,6 @@ const ContactForm: FC<Props> = ({ id }) => {
               Send
             </FooterSubmitButton>
           </div>
-          <Controller
-            control={control}
-            name="message"
-            render={({ field, formState: { errors } }) => {
-              return (
-                <div className={cn([col, 'col-span-12'])}>
-                  <label
-                    htmlFor={'message'}
-                    className={label}
-                  >
-                    Message
-                  </label>
-                  <div className={row}>
-                    <textarea
-                      className={cn(input, 'w-full py-2 font-sans')}
-                      id={'message'}
-                      required
-                      aria-required="true"
-                      {...field}
-                    />
-                  </div>
-
-                  <span
-                    className={error}
-                    aria-describedby={'message'}
-                  >
-                    {errors.message ? errors.message.message : ''}
-                  </span>
-                </div>
-              );
-            }}
-          />
 
           <div className={mobileSubmit}>
             <FooterSubmitButton

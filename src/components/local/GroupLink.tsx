@@ -18,8 +18,6 @@ const GroupLink: FC<Props> = ({ label, url, category }) => {
     case 'mailing-list':
       iconName = 'icon-[lucide--inbox]';
       break;
-    case 'whatsapp':
-    // Deliberately falls through
     case 'substack':
     // Deliberately falls through
     case 'matrix':

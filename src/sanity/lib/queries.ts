@@ -34,11 +34,6 @@ export const EXT_RESOURCES_QUERY = defineQuery(`*[_type == "external-resource"]{
   logo
 }`);
 
-export const W_CHATS_QUERY =
-  defineQuery(`*[_type == "whatsapp-chat" && defined(slug.current)][0...12]{
-  _id, name, slug
-}`);
-
 export const PAGE_QUERY =
   defineQuery(`*[_type == "page" && slug.current == $slug][0]{
   _type, 

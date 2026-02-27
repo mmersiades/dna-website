@@ -21,19 +21,20 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 10;
 
     .heading {
         font-family: var(--font-display), serif;
         text-align: center;
         font-weight: bold;
-        font-size: 4.5vw;
+        font-size: clamp(20px, 4.5vw, 75px);
     }
 }
 
 .cta-position {
     --size: 30%;
     --radius: 110%;
-    --step: 60deg;
+    --step: 72deg;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -43,9 +44,9 @@
 
     transform:
             translate(-50%, -50%) /* Moves to dead center */
-            rotate(calc(var(--i) * var(--step))) /* Rotate orientation */
+            rotate(calc(var(--i) * var(--step) + 19deg)) /* Rotate orientation */
             translate(var(--radius)) /* Move outwards from center along orientation */
-            rotate(calc(var(--i) * var(--step) * -1)); /* Restore original orientation */
+            rotate(calc((var(--i) * var(--step) + 19deg) * -1 )); /* Restore original orientation */
 }
 
 @supports (width: calc(1px * sibling-index())) {

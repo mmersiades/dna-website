@@ -28,10 +28,6 @@ const links: PropsWithChildren<LinkProps>[] = [
     href: '/get-involved',
   },
   {
-    children: 'WhatsApp Chats',
-    href: '/get-involved/whatsapp',
-  },
-  {
     children: 'Admin',
     href: '/studio',
   },

@@ -214,17 +214,6 @@ export type DegrowthDefinition = {
   citationUrl?: string;
 };
 
-export type WhatsappChat = {
-  _id: string;
-  _type: 'whatsapp-chat';
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  name?: string;
-  slug?: Slug;
-  url?: string;
-};
-
 export type ExternalResource = {
   _id: string;
   _type: 'external-resource';
@@ -246,13 +235,7 @@ export type GroupActivity = {
 export type GroupLink = {
   _type: 'groupLink';
   label: string;
-  category:
-    | 'facebook'
-    | 'whatsapp'
-    | 'instagram'
-    | 'mailing-list'
-    | 'matrix'
-    | 'substack';
+  category: 'facebook' | 'instagram' | 'mailing-list' | 'matrix' | 'substack';
   url: string;
 };
 
@@ -405,7 +388,6 @@ export type AllSanitySchemaTypes =
   | Seo
   | Slug
   | DegrowthDefinition
-  | WhatsappChat
   | ExternalResource
   | GroupActivity
   | GroupLink
@@ -476,13 +458,6 @@ export type EXT_RESOURCES_QUERYResult = Array<{
   url: string;
   image: string | null;
   logo: null;
-}>;
-// Variable: W_CHATS_QUERY
-// Query: *[_type == "whatsapp-chat" && defined(slug.current)][0...12]{  _id, name, slug}
-export type W_CHATS_QUERYResult = Array<{
-  _id: string;
-  name: string | null;
-  slug: Slug;
 }>;
 // Variable: PAGE_QUERY
 // Query: *[_type == "page" && slug.current == $slug][0]{  _type,   _createdAt,   _updatedAt,   _rev,  _id,   name,   slug,   title,  "seo": {    "title": coalesce(seo.title, title, ""),    "description": coalesce(seo.description,  ""),    "image": seo.image,    "noIndex": seo.noIndex == true  },  pageBuilder[]{    _key,    _type,    _type == "hero" => {      heading,      tagline,      image    },    _type == "video" => {      videoLabel,      url,    },    _type == "richTextSection" => {      title,      content,    },    _type == "gallery" => {      images[]{        _key,        ...,      },    },  }}
@@ -576,7 +551,6 @@ declare module '@sanity/client' {
     '*[_type == "group" && defined(slug.current)][0...12]{\n  _id, \n  fullName, \n  slug,\n  shortName, \n  website, \n  blurb,\n  groupPhoto,\n  contactEmail,\n  links[],\n  activities[]\n}': GROUPS_QUERYResult;
     '*[_type == "degrowth-definition"]{\n  _id, \n  statement, \n  quote,\n  author, \n  identifier, \n  citationText,\n  citationUrl,\n}': DEGROWTH_DEFINITIONS_QUERYResult;
     '*[_type == "external-resource"]{\n  _id,\n  title,\n  description,\n  url,\n  image,\n  logo\n}': EXT_RESOURCES_QUERYResult;
-    '*[_type == "whatsapp-chat" && defined(slug.current)][0...12]{\n  _id, name, slug\n}': W_CHATS_QUERYResult;
     '*[_type == "page" && slug.current == $slug][0]{\n  _type, \n  _createdAt, \n  _updatedAt, \n  _rev,\n  _id, \n  name, \n  slug, \n  title,\n  "seo": {\n    "title": coalesce(seo.title, title, ""),\n    "description": coalesce(seo.description,  ""),\n    "image": seo.image,\n    "noIndex": seo.noIndex == true\n  },\n  pageBuilder[]{\n    _key,\n    _type,\n    _type == "hero" => {\n      heading,\n      tagline,\n      image\n    },\n    _type == "video" => {\n      videoLabel,\n      url,\n    },\n    _type == "richTextSection" => {\n      title,\n      content,\n    },\n    _type == "gallery" => {\n      images[]{\n        _key,\n        ...,\n      },\n    },\n  }\n}': PAGE_QUERYResult;
   }
 }

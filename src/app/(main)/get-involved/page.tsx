@@ -21,6 +21,7 @@ const links: PropsWithChildren<LinkProps>[] = [
     href: '/local',
     children: 'Join a local Degrowth group',
   },
+  // TODO: Find a replacement
   {
     href: '/get-involved/whatsapp',
     children: 'Join a learning circle',
@@ -32,10 +33,6 @@ const links: PropsWithChildren<LinkProps>[] = [
   {
     href: '/events',
     children: 'Come to a DNA event',
-  },
-  {
-    href: '/get-involved/whatsapp',
-    children: 'Join a WhatsApp group',
   },
 ];
 
