@@ -1,21 +1,3 @@
-# TODOs
-- [ ] Add a variety of animation directions to LandingPage
-- [ ] Implement domain name
-- [ ] A11y audit
-- [ ] SEO
-- [ ] Some sort of carousel for GroupCards
-- [ ] Crowdsource Degrowth definitions
-- [ ] Remove all WhatsApp stuff
-- [ ] Find out if there's another way to join a learning circle
-- [ ] Add illustrations and finalise styling
-- [ ] Storybook tests
-- [ ] Cypress tests
-- [ ] Finalise about page
-- [ ] Get mailing list subscription working
-- [ ] Make Navbar more fancy
-- [ ] Open graph tags https://orcascan.com/tools/open-graph-validator
-- [ ] Switch SMTP2GO account (requires domain name)
-
 # DNA Website
 
 A web application for Degrowth Network Australia, built with Next.js and Sanity CMS.
@@ -95,6 +77,57 @@ type SendEmailBody = {
 - **204 No Content**: Email sent successfully.
 - **400 Bad Request**: Invalid email alias provided.
 - **500 Internal Server Error**: Failed to send email.
+
+### Google Sheets Group Intent
+
+#### Write Group Intent
+
+`POST /api/google/sheets/group-intent`
+
+Appends a new row of user intent data to a Google Sheet.
+
+##### Request Body
+
+```ts
+type WriteGroupIntentRowBody = {
+  name: string;
+  email: string;
+  state: string;
+  subregion: string;
+  country: string;
+  date: string;
+};
+```
+
+##### Responses
+
+- **200 OK**: Row appended successfully.
+- **403 Forbidden**: Access denied (bot detected).
+- **500 Internal Server Error**: Failed to write to sheet.
+
+#### Get Group Intent
+
+`GET /api/google/sheets/group-intent`
+
+Retrieves aggregated group intent data from Google Sheets based on location parameters.
+
+##### Query Parameters
+
+- `state` (optional): The state to filter by.
+- `region` (optional): The subregion to filter by.
+- `country` (optional): The country to filter by.
+
+##### Responses
+
+- **200 OK**: Returns an array of `TableRow` objects.
+
+```ts
+type TableRow = {
+  label: string;
+  count: number;
+  bold: boolean;
+};
+```
 
 ## Commands
 
