@@ -152,4 +152,7 @@ pnpm prettier:write
 
 # Checks the codebase for formatting issues
 pnpm prettier:check
+
+# Pulls environment variables from Vercel > updates env.local
+vercel env pull
 ```
