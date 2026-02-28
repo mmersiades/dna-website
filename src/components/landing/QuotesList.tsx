@@ -12,6 +12,18 @@ export default async function QuotesList() {
     .sort(() => Math.random() - 0.5)
     .slice(0, 15);
 
+  // const test: DEGROWTH_DEFINITIONS_QUERYResult[0] = {
+  //   _id: 'qwerty',
+  //   citationText:
+  //     'Test test test test test Test test test test test Test test test test test Test test test test test Test test test test test Test test test test test!',
+  //   citationUrl: 'https://www.google.com',
+  //   identifier: 'Test test test test test test!',
+  //   quote:
+  //     'test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test!',
+  //   statement: 'test test test test test!',
+  //   author: 'Test Test Test Test Test Test Test Test Test Test!',
+  // };
+
   return (
     <>
       {shuffledQuotes.map((quote, index) => (
