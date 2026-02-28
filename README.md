@@ -16,19 +16,21 @@ You'll also need:
 
 ## Getting started
 
-- `pnpm i -g vercel`: Install Vercel CLI 
+- `pnpm i -g vercel`: Install Vercel CLI
 - `vercel login`: Log into VERCEL CLI
-  - Use DNA's Protonmail email address
-  - No password required, just the email address
+    - Use DNA's Protonmail email address
+    - No password required, just the email address
 - `vercel link`: link your local code with the Vercel project. Choose these options:
-  - Set up “~/workspace/neonkingkong/dna/dna-website”? yes
-  - Which scope should contain your project? Degrowth Network Australia's projects
-  - Found project “degrowth-network-australias-projects/dna-website”. Link to it? yes
-  - Would you like to pull environment variables now? yes
+    - Set up “~/workspace/neonkingkong/dna/dna-website”? yes
+    - Which scope should contain your project? Degrowth Network Australia's projects
+    - Found project “degrowth-network-australias-projects/dna-website”. Link to it? yes
+    - Would you like to pull environment variables now? yes
 
 After running these, you should have:
+
 - a `.vercel` folder in your project directory (gitignored). This folder contains configuration files for Vercel.
-- an `.env.local` file in your project directory (gitignored). This file contains environment variables for local development.
+- an `.env.local` file in your project directory (gitignored). This file contains environment variables for local
+  development.
 
 ## Deploy on Vercel
 
@@ -45,6 +47,23 @@ vercel --prod
 ```
 
 The website is configured to deploy to DNA's Vercel account.
+
+## Content Management
+
+The website's content is managed through [Sanity CMS](https://www.sanity.io/). This allows content editors to update the
+website without needing to touch the code.
+
+### Sanity Studio
+
+The Sanity Studio is embedded directly into the website and can be accessed at [/studio](/studio).
+
+To log in to the Sanity Studio or the Sanity manage dashboard, use Degrowth Network Australia's Sanity account:
+
+- **Email**: `degrowthnetwork@proton.me`
+
+### Documentation
+
+For more information on how to use Sanity, refer to the [official Sanity documentation](https://www.sanity.io/docs).
 
 ## API Routes
 
@@ -90,12 +109,12 @@ Appends a new row of user intent data to a Google Sheet.
 
 ```ts
 type WriteGroupIntentRowBody = {
-  name: string;
-  email: string;
-  state: string;
-  subregion: string;
-  country: string;
-  date: string;
+    name: string;
+    email: string;
+    state: string;
+    subregion: string;
+    country: string;
+    date: string;
 };
 ```
 
@@ -123,9 +142,9 @@ Retrieves aggregated group intent data from Google Sheets based on location para
 
 ```ts
 type TableRow = {
-  label: string;
-  count: number;
-  bold: boolean;
+    label: string;
+    count: number;
+    bold: boolean;
 };
 ```
 
