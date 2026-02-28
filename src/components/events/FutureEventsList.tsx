@@ -1,5 +1,5 @@
 import { HumantixEvent } from '@/app/services/HumantixApi';
-import EventCard from '@/components/humantixEvents/EventCard';
+import EventCard from '@/components/events/EventCard';
 import { pageStyles } from '@/components/styles';
 import cn from '@/utils/cn';
 import { FC } from 'react';

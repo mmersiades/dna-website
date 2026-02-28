@@ -7,9 +7,11 @@ const styles = {
   input: cn(
     'border-1 border-tertiary-500 rounded-lg',
     'focus:outline-primary focus:outline-1 focus:border-primary focus:outline-offset-0',
+    'hover:border-primary',
     'px-2',
     'text-lg font-bold',
     'h-full',
+    'transition-color duration-250',
   ),
 };
 

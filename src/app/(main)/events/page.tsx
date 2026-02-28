@@ -1,5 +1,5 @@
 import humantixApi from '@/app/services/HumantixApi';
-import FutureEventsList from '@/components/humantixEvents/FutureEventsList';
+import FutureEventsList from '@/components/events/FutureEventsList';
 import { pageStyles } from '@/components/styles';
 import { getPage } from '@/lib/actions';
 import generateDNAMetadata from '@/utils/generateDNAMetadata';
