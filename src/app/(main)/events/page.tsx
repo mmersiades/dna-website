@@ -1,6 +1,7 @@
 import humantixApi from '@/app/services/HumantixApi';
 import FutureEventsList from '@/components/events/FutureEventsList';
 import { pageStyles } from '@/components/styles';
+import copy from '@/constants/copy';
 import { getPage } from '@/lib/actions';
 import generateDNAMetadata from '@/utils/generateDNAMetadata';
 import { Metadata } from 'next';
@@ -19,7 +20,7 @@ export default async function EventsPage() {
   if (status !== 200) {
     return (
       <div className={pageContainer}>
-        <p className={'text-center font-bold'}>Error fetching events</p>
+        <p className={'text-center font-bold'}>{copy.events.error}</p>
       </div>
     );
   }

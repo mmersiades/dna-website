@@ -55,7 +55,7 @@ website without needing to touch the code.
 
 ### Sanity Studio
 
-The Sanity Studio is embedded directly into the website and can be accessed at [/studio](/studio).
+The Sanity Studio is embedded directly into the website and can be accessed at `/studio`.
 
 To log in to the Sanity Studio or the Sanity manage dashboard, use Degrowth Network Australia's Sanity account:
 

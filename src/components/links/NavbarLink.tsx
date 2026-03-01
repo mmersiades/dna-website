@@ -1,12 +1,13 @@
 'use client';
 import cn from '@/utils/cn';
+import { Route } from 'next';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { FC } from 'react';
 
 export interface NavbarLinkProps {
   label: string;
-  path: string;
+  path: Route;
   mobile?: boolean;
 }
 

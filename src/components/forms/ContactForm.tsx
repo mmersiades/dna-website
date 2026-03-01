@@ -3,6 +3,8 @@ import { SendEmailBody } from '@/app/api/send-email/route';
 import FooterSubmitButton from '@/components/buttons/FooterSubmitButton';
 import styles from '@/components/footer/styles';
 import Toast from '@/components/Toast';
+import copy from '@/constants/copy';
+import { paths } from '@/constants/paths';
 import cn from '@/utils/cn';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FC } from 'react';
@@ -23,6 +25,7 @@ interface Props {
 }
 
 const ContactForm: FC<Props> = ({ id }) => {
+  const { title: contactTitle, success, failure } = copy.footer.contact;
   const defaultValues: Inputs = {
     email: '',
     name: '',
@@ -48,18 +51,18 @@ const ContactForm: FC<Props> = ({ id }) => {
       text: data.message,
     };
 
-    const response = await fetch('/api/send-email', {
+    const response = await fetch(paths.api.sendEmail, {
       method: 'POST',
       body: JSON.stringify(body),
     });
     if (response.status === 204) {
       toast(
         <Toast
-          title={'Message sent.'}
-          message={"Thank you. We'll reply via email soon"}
+          title={success.title}
+          message={success.message}
         />,
         {
-          ariaLabel: "Message sent. Thank you. We'll reply via email soon",
+          ariaLabel: `${success.title} ${success.message}`,
           type: 'success',
         },
       );
@@ -67,11 +70,11 @@ const ContactForm: FC<Props> = ({ id }) => {
     } else {
       toast(
         <Toast
-          title={'Failed to send.'}
-          message={'Please try again later.'}
+          title={failure.title}
+          message={failure.message}
         />,
         {
-          ariaLabel: 'Failed to send. Please try again later.',
+          ariaLabel: `${failure.title} ${failure.message}`,
           type: 'error',
         },
       );
@@ -102,7 +105,7 @@ const ContactForm: FC<Props> = ({ id }) => {
 
   return (
     <div className={container}>
-      <h4 className={title}>Contact</h4>
+      <h4 className={title}>{contactTitle}</h4>
       <hr className={divider} />
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={grid}>

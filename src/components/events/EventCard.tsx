@@ -5,9 +5,11 @@ import {
   HumantixEventLocation,
 } from '@/app/services/HumantixApi';
 import { cardStyles } from '@/components/styles';
+import copy from '@/constants/copy';
 import cn from '@/utils/cn';
 import generatePhotoSizes from '@/utils/generatePhotoSizes';
 import dayjs from 'dayjs';
+import { Route } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FC } from 'react';
@@ -30,7 +32,7 @@ const EventDates: FC<{ dates: HumantixEventDates }> = ({ dates }) => {
 
   return (
     <div>
-      <h6 className={cardSubHeading}>Date</h6>
+      <h6 className={cardSubHeading}>{copy.events.card.date}</h6>
       {dates.map((date) => (
         <EventDate
           key={date._id}
@@ -47,12 +49,13 @@ const EventLocation: FC<{ loc: HumantixEventLocation }> = ({ loc }) => {
   if (loc.type === 'address') {
     return (
       <>
-        <h6 className={cardSubHeading}>Location</h6>
+        <h6 className={cardSubHeading}>{copy.events.card.location}</h6>
         <p>{`${loc.venueName}, ${loc.city}, ${loc.region}`}</p>
       </>
     );
   } else {
-    return <p>TODO</p>;
+    // TODO
+    return <p>{'TODO'}</p>;
   }
 };
 
@@ -78,7 +81,7 @@ const EventCard: FC<Props> = ({ event, index }) => {
 
   return (
     <Link
-      href={event.url}
+      href={event.url as Route}
       target={'_blank'}
       className={container}
     >

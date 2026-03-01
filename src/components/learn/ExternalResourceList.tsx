@@ -1,9 +1,11 @@
 import ExternalResourceCard from '@/components/learn/ExternalResourceCard';
 import { pageStyles } from '@/components/styles';
+import copy from '@/constants/copy';
 import { sanityFetch } from '@/sanity/lib/live';
 import { EXT_RESOURCES_QUERY } from '@/sanity/lib/queries';
 
 export default async function ExternalResourceList() {
+  const { title: learnTitle } = copy.learn;
   const { data: extResources } = await sanityFetch({
     query: EXT_RESOURCES_QUERY,
   });
@@ -17,7 +19,7 @@ export default async function ExternalResourceList() {
 
   return (
     <section className={sectionContainer}>
-      <h4 className={pageTitle}>Useful Degrowth Resources</h4>
+      <h4 className={pageTitle}>{learnTitle}</h4>
       <hr className={pageDivider} />
       <div className={grid}>
         {extResources.map((er, index) => {

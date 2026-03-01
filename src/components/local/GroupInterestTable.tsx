@@ -1,7 +1,9 @@
 'use client';
 import { TableRow } from '@/app/services/SheetsApi';
 import GroupIntentForm from '@/components/forms/GroupIntentForm';
+import copy from '@/constants/copy';
 import indigenousRegions from '@/constants/indigenousRegions';
+import { paths } from '@/constants/paths';
 import regions from '@/constants/regions';
 import cn from '@/utils/cn';
 import { FC, useState } from 'react';
@@ -45,7 +47,7 @@ const GroupInterestTable: FC<Props> = ({ initialTableData }) => {
     if (country.length > 0) params.append('country', country);
 
     const response = await fetch(
-      `/api/google/sheets/group-intent?${params.toString()}`,
+      `${paths.api.google.sheets.groupIntent}?${params.toString()}`,
     );
     const json = await response.json();
     setTableData(json.data);
@@ -96,11 +98,7 @@ const GroupInterestTable: FC<Props> = ({ initialTableData }) => {
 
   return (
     <div className={'p-2'}>
-      <p className={'text-md'}>
-        Even if there is no local Degrowth group in your area, there may be
-        other people nearby you who are interested in connecting with you and/or
-        starting a group.
-      </p>
+      <p className={'text-md'}>{copy.local.interest.title}</p>
       <form className={formContainer}>
         <Controller
           control={control}
@@ -111,7 +109,7 @@ const GroupInterestTable: FC<Props> = ({ initialTableData }) => {
                 htmlFor={'state'}
                 className={label}
               >
-                State
+                {copy.local.interest.state}
               </label>
               <select
                 id={'state'}
@@ -119,7 +117,7 @@ const GroupInterestTable: FC<Props> = ({ initialTableData }) => {
                 onChange={(e) => handleFieldChange('state', e.target.value)}
                 className={cn(input, 'h-10 w-full')}
               >
-                <option value={''}>Select...</option>
+                <option value={''}>{copy.local.interest.select}</option>
                 {Object.keys(regions).map((state) => {
                   return (
                     <option
@@ -144,7 +142,7 @@ const GroupInterestTable: FC<Props> = ({ initialTableData }) => {
                 htmlFor={'subregion'}
                 className={label}
               >
-                Region
+                {copy.local.interest.region}
               </label>
               <select
                 id={'subregion'}
@@ -154,10 +152,12 @@ const GroupInterestTable: FC<Props> = ({ initialTableData }) => {
                 disabled={!stateValue || stateValue === ''}
               >
                 {!stateValue ? (
-                  <option value={''}>Select state first...</option>
+                  <option value={''}>
+                    {copy.local.interest.selectStateFirst}
+                  </option>
                 ) : (
                   <>
-                    <option value={''}>Select...</option>
+                    <option value={''}>{copy.local.interest.select}</option>
                     {regions[stateValue].map((region) => {
                       return (
                         <option
@@ -184,7 +184,7 @@ const GroupInterestTable: FC<Props> = ({ initialTableData }) => {
                 htmlFor={'country'}
                 className={label}
               >
-                Country
+                {copy.local.interest.country}
               </label>
               <select
                 id={'country'}
@@ -192,7 +192,7 @@ const GroupInterestTable: FC<Props> = ({ initialTableData }) => {
                 {...field}
                 onChange={(e) => handleFieldChange('country', e.target.value)}
               >
-                <option value={''}>Select...</option>
+                <option value={''}>{copy.local.interest.select}</option>
                 {indigenousRegions.map((c) => {
                   return (
                     <option
@@ -211,8 +211,8 @@ const GroupInterestTable: FC<Props> = ({ initialTableData }) => {
       <table className={table}>
         <thead className={tableHead}>
           <tr>
-            <th>Area</th>
-            <th>People wanting group</th>
+            <th>{copy.local.interest.table.area}</th>
+            <th>{copy.local.interest.table.people}</th>
           </tr>
         </thead>
 

@@ -3,33 +3,17 @@ import IconButton from '@/components/buttons/IconButton';
 import BreakPoint from '@/components/dev/BreakPoint';
 import CtaLink from '@/components/links/CtaLink';
 import NavbarLink, { NavbarLinkProps } from '@/components/links/NavbarLink';
+import copy from '@/constants/copy';
 import cn from '@/utils/cn';
 import { FC, useEffect, useState } from 'react';
 
-const links: NavbarLinkProps[] = [
-  {
-    label: 'About',
-    path: '/about',
-  },
-  {
-    label: 'Local Groups',
-    path: '/local',
-  },
-  {
-    label: 'Events',
-    path: '/events',
-  },
-  {
-    label: 'Learn More',
-    path: '/learn',
-  },
-  {
-    label: 'Contact',
-    path: '#contact',
-  },
-];
-
 const Header: FC = () => {
+  const {
+    links,
+    cta,
+    navLabels,
+    menu: { title: menuTitle, open: openMenuLabel, close: closeMenuLabel },
+  } = copy.header;
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
@@ -91,37 +75,37 @@ const Header: FC = () => {
     <div className={container}>
       <nav
         className={mobileContainer}
-        aria-label="Main Navigation (Mobile)"
+        aria-label={navLabels.mobile}
       >
         <IconButton
           popoverTarget="nav-menu"
           aria-expanded={isOpen}
           aria-controls="nav-menu"
           iconName={'icon-[lucide--menu]'}
-          srName={'Open Navigation Menu'}
+          srName={openMenuLabel}
           size={'size-12'}
-          aria-label={'Open Navigation Menu'}
+          aria-label={openMenuLabel}
         />
         <BreakPoint />
         <div className={'ml-auto'}>
-          <CtaLink href={'/get-involved'}>Get Involved</CtaLink>
+          <CtaLink href={cta.href}>{cta.children}</CtaLink>
         </div>
       </nav>
       <nav
         className={desktopContainer}
-        aria-label={'Main Navigation (Desktop)'}
+        aria-label={navLabels.desktop}
       >
         {links.map((linkProps) => {
           return (
             <NavbarLink
               key={linkProps.path}
-              {...linkProps}
+              {...(linkProps as NavbarLinkProps)}
             />
           );
         })}
         <BreakPoint />
         <div className={'ml-auto'}>
-          <CtaLink href={'/get-involved'}>Get Involved</CtaLink>
+          <CtaLink href={cta.href}>{cta.children}</CtaLink>
         </div>
       </nav>
       <menu
@@ -136,24 +120,24 @@ const Header: FC = () => {
             aria-expanded={isOpen}
             aria-controls="nav-menu"
             iconName={'icon-[lucide--x]'}
-            srName={'Close Navigation Menu'}
-            aria-label={'Close Navigation Menu'}
+            srName={closeMenuLabel}
+            aria-label={closeMenuLabel}
             size={'size-12'}
           />
-          <p>Site Navigation</p>
+          <p>{menuTitle}</p>
         </div>
         <div className={menuList}>
           {links.map((linkProps) => {
             return (
               <NavbarLink
                 key={linkProps.path}
-                {...linkProps}
+                {...(linkProps as NavbarLinkProps)}
                 mobile
               />
             );
           })}
           <div className={'absolute right-0 bottom-0 p-8'}>
-            <CtaLink href={'/get-involved'}>Get Involved</CtaLink>
+            <CtaLink href={cta.href}>{cta.children}</CtaLink>
           </div>
         </div>
       </menu>

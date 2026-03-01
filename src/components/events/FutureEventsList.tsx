@@ -1,6 +1,7 @@
 import { HumantixEvent } from '@/app/services/HumantixApi';
 import EventCard from '@/components/events/EventCard';
 import { pageStyles } from '@/components/styles';
+import copy from '@/constants/copy';
 import cn from '@/utils/cn';
 import { FC } from 'react';
 
@@ -17,7 +18,7 @@ const FutureEventsList: FC<Props> = ({ events }) => {
 
   return (
     <section className={sectionContainer}>
-      <h4 className={pageTitle}>Upcoming Events</h4>
+      <h4 className={pageTitle}>{copy.events.upcoming}</h4>
       <hr className={pageDivider} />
       <div className={grid}>
         {events.map((e, i) => (

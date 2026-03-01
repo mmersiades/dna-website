@@ -1,39 +1,10 @@
 import styles from '@/components/footer/styles';
-import Link, { LinkProps } from 'next/link';
-import { FC, PropsWithChildren } from 'react';
-
-const links: PropsWithChildren<LinkProps>[] = [
-  {
-    children: 'Landing',
-    href: '/',
-  },
-  {
-    children: 'About',
-    href: '/about',
-  },
-  {
-    children: 'Local Groups',
-    href: '/local',
-  },
-  {
-    children: 'Events',
-    href: '/events',
-  },
-  {
-    children: 'Learn More',
-    href: '/learn',
-  },
-  {
-    children: 'Get Involved',
-    href: '/get-involved',
-  },
-  {
-    children: 'Admin',
-    href: '/studio',
-  },
-];
+import copy from '@/constants/copy';
+import Link from 'next/link';
+import { FC } from 'react';
 
 const Sitemap: FC = () => {
+  const { title: sitemapTitle, links } = copy.footer.sitemap;
   const { container, title, divider } = styles;
 
   const { linkContainer } = {
@@ -42,7 +13,7 @@ const Sitemap: FC = () => {
 
   return (
     <div className={container}>
-      <h4 className={title}>Sitemap</h4>
+      <h4 className={title}>{sitemapTitle}</h4>
       <hr className={divider} />
       <div className={linkContainer}>
         {links.map((link) => (

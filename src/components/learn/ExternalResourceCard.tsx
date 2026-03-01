@@ -2,6 +2,7 @@
 import { EXT_RESOURCES_QUERYResult } from '@/sanity/types';
 import cn from '@/utils/cn';
 import generatePhotoSizes from '@/utils/generatePhotoSizes';
+import { Route } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FC } from 'react';
@@ -29,7 +30,7 @@ const ExternalResourceCard: FC<Props> = ({ resource, index }) => {
 
   return (
     <Link
-      href={resource.url}
+      href={resource.url as Route}
       target={'_blank'}
       className={container}
     >

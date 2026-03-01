@@ -3,6 +3,8 @@ import { EmailAlias, SendEmailBody } from '@/app/api/send-email/route';
 import FooterSubmitButton from '@/components/buttons/FooterSubmitButton';
 import styles from '@/components/footer/styles';
 import Toast from '@/components/Toast';
+import copy from '@/constants/copy';
+import { paths } from '@/constants/paths';
 import cn from '@/utils/cn';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FC } from 'react';
@@ -22,6 +24,13 @@ interface Props {
 }
 
 const MailingListForm: FC<Props> = ({ subscribeTo, id }) => {
+  const {
+    title: mailingListTitle,
+    label: mailingListLabel,
+    button: mailingListButton,
+    success,
+    failure,
+  } = copy.footer.mailingList;
   const defaultValues: Inputs = {
     email: '',
   };
@@ -41,7 +50,7 @@ const MailingListForm: FC<Props> = ({ subscribeTo, id }) => {
       to: [subscribeTo],
     };
 
-    const response = await fetch('/api/send-email', {
+    const response = await fetch(paths.api.sendEmail, {
       method: 'POST',
       body: JSON.stringify(body),
     });
@@ -49,11 +58,11 @@ const MailingListForm: FC<Props> = ({ subscribeTo, id }) => {
     if (response.status === 204) {
       toast(
         <Toast
-          title={'Thank you for subscribing!'}
-          message={'Check your email for the confirmation step.'}
+          title={success.title}
+          message={success.message}
         />,
         {
-          ariaLabel: 'Mailing list subscription success',
+          ariaLabel: `${success.title} ${success.message}`,
           type: 'success',
         },
       );
@@ -61,11 +70,11 @@ const MailingListForm: FC<Props> = ({ subscribeTo, id }) => {
     } else {
       toast(
         <Toast
-          title={'Failed to subscribe.'}
-          message={'Please try again later.'}
+          title={failure.title}
+          message={failure.message}
         />,
         {
-          ariaLabel: 'Mailing list subscription failure',
+          ariaLabel: `${failure.title} ${failure.message}`,
           type: 'error',
         },
       );
@@ -85,7 +94,7 @@ const MailingListForm: FC<Props> = ({ subscribeTo, id }) => {
 
   return (
     <div className={container}>
-      <h4 className={title}>Mailing List</h4>
+      <h4 className={title}>{mailingListTitle}</h4>
       <hr className={divider} />
       <form onSubmit={handleSubmit(onSubmit)}>
         <Controller
@@ -98,7 +107,7 @@ const MailingListForm: FC<Props> = ({ subscribeTo, id }) => {
                   htmlFor={id}
                   className={label}
                 >
-                  Email
+                  {mailingListLabel}
                 </label>
                 <div className={row}>
                   <div className={cn(col, 'flex-1')}>
@@ -117,7 +126,7 @@ const MailingListForm: FC<Props> = ({ subscribeTo, id }) => {
                       submitting={isSubmitting}
                       disabled={!isValid}
                     >
-                      Subscribe
+                      {mailingListButton}
                     </FooterSubmitButton>
                   </div>
                 </div>

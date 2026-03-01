@@ -1,9 +1,10 @@
 'use client';
 import cn from '@/utils/cn';
+import { Route } from 'next';
 import Link, { LinkProps } from 'next/link';
 import { FC, PropsWithChildren } from 'react';
 
-type Props = LinkProps & {
+type Props = LinkProps<Route> & {
   responsive?: boolean;
 };
 

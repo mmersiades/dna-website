@@ -3,11 +3,17 @@ import Socials from '@/components/footer/Socials';
 import ContactForm from '@/components/forms/ContactForm';
 import MailingListForm from '@/components/forms/MailingListForm';
 import { anchor } from '@/components/styles';
+import copy from '@/constants/copy';
 import cn from '@/utils/cn';
 import Link from 'next/link';
 import { FC } from 'react';
 
 const Footer: FC = () => {
+  const {
+    websiteBy,
+    developer: { name: developerName, url: developerUrl },
+  } = copy.footer;
+
   const { container, innerContainer, grid } = {
     container: cn([
       'bg-tertiary-800 dark:bg-tertiary-800',
@@ -44,13 +50,13 @@ const Footer: FC = () => {
         </div>
         <Sitemap />
         <p>
-          Website by{' '}
+          {websiteBy}{' '}
           <Link
-            href={'https://www.neonkingkong.com'}
+            href={developerUrl}
             target={'_blank'}
             className={anchor}
           >
-            Neon King Kong
+            {developerName}
           </Link>{' '}
           {`© ${new Date().getFullYear()}`}
         </p>
