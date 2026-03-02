@@ -244,6 +244,11 @@ const copy = {
       close: 'Close Navigation Menu',
     },
   },
+  error: {
+    title: "Uh-oh. Something's gone terribly wrong.",
+    home: 'Go to Home',
+    reload: 'Reload Page',
+  },
 };
 
 export default copy;
