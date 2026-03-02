@@ -8,6 +8,7 @@ import { Suspense } from 'react';
 
 export default function Landing() {
   const { introQuote } = copy.landing;
+
   return (
     <>
       <LandingHeader />
