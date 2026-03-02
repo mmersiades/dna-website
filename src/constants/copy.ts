@@ -249,6 +249,10 @@ const copy = {
     home: 'Go to Home',
     reload: 'Reload Page',
   },
+  notFound: {
+    title: "Oops. Looks like that page doesn't exist.",
+    home: 'Return Home',
+  },
 };
 
 export default copy;
