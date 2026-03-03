@@ -1,15 +1,15 @@
-import GroupCard from '@/components/local/GroupCard';
+import OnlineGroupCard from '@/components/online/OnlineGroupCard';
 import { pageStyles } from '@/components/styles';
 import copy from '@/constants/copy';
-import { sanityFetch } from '@/sanity/lib/live';
-import { GROUPS_QUERY } from '@/sanity/lib/queries';
+import { ONLINE_GROUPS_QUERYResult } from '@/sanity/types';
+import { FC } from 'react';
 
-export default async function LocalGroupList() {
-  const { title } = copy.local;
-  const { data: groups } = await sanityFetch({
-    query: GROUPS_QUERY,
-  });
+interface Props {
+  groups: ONLINE_GROUPS_QUERYResult[0][];
+}
 
+const OnlineGroupsList: FC<Props> = ({ groups }) => {
+  const { title } = copy.online;
   const { pageTitle, pageDivider, sectionContainer } = pageStyles;
 
   return (
@@ -18,7 +18,7 @@ export default async function LocalGroupList() {
       <hr className={pageDivider} />
       <div className="grid gap-2 p-2 md:grid-cols-2">
         {groups.map((g, i) => (
-          <GroupCard
+          <OnlineGroupCard
             key={g._id}
             group={g}
             index={i}
@@ -27,4 +27,6 @@ export default async function LocalGroupList() {
       </div>
     </section>
   );
-}
+};
+
+export default OnlineGroupsList;

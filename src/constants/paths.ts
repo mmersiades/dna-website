@@ -4,6 +4,7 @@ export const paths = {
   home: '/' as Route,
   about: '/about' as Route,
   local: '/local' as Route,
+  online: '/online' as Route,
   events: '/events',
   learn: '/learn' as Route,
   getInvolved: '/get-involved' as Route,

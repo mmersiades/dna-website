@@ -89,6 +89,7 @@ const copy = {
     },
   },
   local: {
+    title: 'Local Degrowth Groups',
     interest: {
       title:
         'Even if there is no local Degrowth group in your area, there may be other people nearby you who are interested in connecting with you and/or starting a group.',
@@ -127,6 +128,10 @@ const copy = {
     degrowthTitle: 'More about Degrowth',
     usefulTitle: 'Useful Resources',
     alliesTitle: 'Allied Organisations and Movements',
+  },
+  online: {
+    title: 'Online DNA Groups',
+    groupUrl: 'Find out more',
   },
   footer: {
     contact: {
@@ -186,6 +191,10 @@ const copy = {
           href: paths.local,
         },
         {
+          children: 'Online Groups',
+          href: paths.online,
+        },
+        {
           children: 'Events',
           href: paths.events,
         },
@@ -218,6 +227,10 @@ const copy = {
       {
         label: 'Local Groups',
         path: paths.local,
+      },
+      {
+        label: 'Online Groups',
+        path: paths.online,
       },
       {
         label: 'Events',
