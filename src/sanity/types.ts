@@ -221,6 +221,7 @@ export type ExternalResource = {
   _updatedAt: string;
   _rev: string;
   title: string;
+  category: 'degrowth' | 'useful' | 'allied';
   description: string;
   url: string;
   image?: string;
@@ -450,10 +451,11 @@ export type DEGROWTH_DEFINITIONS_QUERYResult = Array<{
   citationUrl: string | null;
 }>;
 // Variable: EXT_RESOURCES_QUERY
-// Query: *[_type == "external-resource"]{  _id,  title,  description,  url,  image,  logo}
+// Query: *[_type == "external-resource"]{  _id,  title,  category,  description,  url,  image,  logo}
 export type EXT_RESOURCES_QUERYResult = Array<{
   _id: string;
   title: string;
+  category: 'allied' | 'degrowth' | 'useful';
   description: string;
   url: string;
   image: string | null;
@@ -550,7 +552,7 @@ declare module '@sanity/client' {
   interface SanityQueries {
     '*[_type == "group" && defined(slug.current)][0...12]{\n  _id, \n  fullName, \n  slug,\n  shortName, \n  website, \n  blurb,\n  groupPhoto,\n  contactEmail,\n  links[],\n  activities[]\n}': GROUPS_QUERYResult;
     '*[_type == "degrowth-definition"]{\n  _id, \n  statement, \n  quote,\n  author, \n  identifier, \n  citationText,\n  citationUrl,\n}': DEGROWTH_DEFINITIONS_QUERYResult;
-    '*[_type == "external-resource"]{\n  _id,\n  title,\n  description,\n  url,\n  image,\n  logo\n}': EXT_RESOURCES_QUERYResult;
+    '*[_type == "external-resource"]{\n  _id,\n  title,\n  category,\n  description,\n  url,\n  image,\n  logo\n}': EXT_RESOURCES_QUERYResult;
     '*[_type == "page" && slug.current == $slug][0]{\n  _type, \n  _createdAt, \n  _updatedAt, \n  _rev,\n  _id, \n  name, \n  slug, \n  title,\n  "seo": {\n    "title": coalesce(seo.title, title, ""),\n    "description": coalesce(seo.description,  ""),\n    "image": seo.image,\n    "noIndex": seo.noIndex == true\n  },\n  pageBuilder[]{\n    _key,\n    _type,\n    _type == "hero" => {\n      heading,\n      tagline,\n      image\n    },\n    _type == "video" => {\n      videoLabel,\n      url,\n    },\n    _type == "richTextSection" => {\n      title,\n      content,\n    },\n    _type == "gallery" => {\n      images[]{\n        _key,\n        ...,\n      },\n    },\n  }\n}': PAGE_QUERYResult;
   }
 }

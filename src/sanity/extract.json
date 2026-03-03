@@ -1205,6 +1205,27 @@
         },
         "optional": false
       },
+      "category": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "union",
+          "of": [
+            {
+              "type": "string",
+              "value": "degrowth"
+            },
+            {
+              "type": "string",
+              "value": "useful"
+            },
+            {
+              "type": "string",
+              "value": "allied"
+            }
+          ]
+        },
+        "optional": false
+      },
       "description": {
         "type": "objectAttribute",
         "value": {

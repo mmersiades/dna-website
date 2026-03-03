@@ -28,6 +28,7 @@ export const DEGROWTH_DEFINITIONS_QUERY =
 export const EXT_RESOURCES_QUERY = defineQuery(`*[_type == "external-resource"]{
   _id,
   title,
+  category,
   description,
   url,
   image,

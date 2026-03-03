@@ -124,7 +124,9 @@ const copy = {
     },
   },
   learn: {
-    title: 'Useful Degrowth Resources',
+    degrowthTitle: 'More about Degrowth',
+    usefulTitle: 'Useful Resources',
+    alliesTitle: 'Allied Organisations and Movements',
   },
   footer: {
     contact: {
