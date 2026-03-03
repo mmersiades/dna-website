@@ -133,12 +133,8 @@ export type Hero = {
   };
 };
 
-export type Promotion = {
-  _id: string;
-  _type: 'promotion';
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
+export type CallToAction = {
+  _type: 'callToAction';
   title?: string;
   link?: string;
 };
@@ -164,13 +160,9 @@ export type Page = {
     | ({
         _key: string;
       } & Video)
-    | {
-        _ref: string;
-        _type: 'reference';
-        _weak?: boolean;
+    | ({
         _key: string;
-        [internalGroqTypeReferenceTo]?: 'promotion';
-      }
+      } & CallToAction)
   >;
   seo?: Seo;
 };
@@ -384,7 +376,7 @@ export type AllSanitySchemaTypes =
   | SanityImageHotspot
   | Gallery
   | Hero
-  | Promotion
+  | CallToAction
   | Page
   | Seo
   | Slug
@@ -492,6 +484,10 @@ export type PAGE_QUERYResult = {
   pageBuilder: Array<
     | {
         _key: string;
+        _type: 'callToAction';
+      }
+    | {
+        _key: string;
         _type: 'gallery';
         images: Array<{
           _key: string;
@@ -526,10 +522,6 @@ export type PAGE_QUERYResult = {
           alt?: string;
           _type: 'image';
         } | null;
-      }
-    | {
-        _key: string;
-        _type: 'reference';
       }
     | {
         _key: string;

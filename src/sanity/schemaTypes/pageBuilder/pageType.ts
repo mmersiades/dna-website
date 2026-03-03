@@ -35,8 +35,7 @@ export const pageType = defineType({
         }),
         defineArrayMember({
           name: 'callToAction',
-          type: 'reference',
-          to: [{ type: 'promotion' }],
+          type: 'callToAction',
         }),
       ],
       options: {
