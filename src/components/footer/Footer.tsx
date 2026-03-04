@@ -31,6 +31,7 @@ const Footer: FC = () => {
       'lg:grid-cols-2',
     ]),
   };
+
   return (
     <div className={container}>
       <div className={innerContainer}>

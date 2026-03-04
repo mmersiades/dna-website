@@ -1,0 +1,75 @@
+:root {
+    --border-color: var(--secondary-400);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --border-color: var(--secondary);
+    }
+}
+
+.nav-wrap {
+    margin: 0 auto;
+    position: relative;
+}
+
+.nav-wrap:has(.nav-link:hover) .bubble.hover {
+    border-width: 2px;
+    border-color: var(--border-color);
+    border-radius: var(--radius);
+    border-style: var(--tw-border-style);
+    opacity: 1;
+    transition: top 0.2s, right 0.2s, bottom 0.2s, left 0.2s, opacity 0.1s;
+}
+
+.nav-link {
+    z-index: 10;
+    position: relative;
+    display: inline-block;
+    padding: 1rem;
+    text-decoration: none;
+
+    &:before {
+        content: "";
+        display: block;
+        position: absolute;
+        inset: 0;
+        opacity: 0.2;
+    }
+
+    &.active {
+        anchor-name: --active;
+    }
+
+    &:hover:before {
+        anchor-name: --nav;
+
+    }
+}
+
+.bubble {
+    top: anchor(top);
+    right: anchor(right);
+    bottom: anchor(bottom);
+    left: anchor(left);
+    position: absolute;
+    transition: top 0.2s, right 0.2s, bottom 0.2s, left 0.2s;
+
+    &.active {
+        color: var(--background);
+        position-anchor: --active;
+        z-index: 2;
+        border-width: 2px;
+        border-color: var(--border-color);
+        border-radius: var(--radius);
+        border-style: var(--tw-border-style);
+    }
+
+    &.hover {
+        z-index: 1;
+        position-anchor: --nav;
+        opacity: 0;
+        border-color: transparent;
+        border-width: 0;
+    }
+}

@@ -1,6 +1,7 @@
 'use client';
 import IconButton from '@/components/buttons/IconButton';
 import BreakPoint from '@/components/dev/BreakPoint';
+import DesktopNavMenu from '@/components/header/DesktopNavMenu';
 import CtaLink from '@/components/links/CtaLink';
 import NavbarLink, { NavbarLinkProps } from '@/components/links/NavbarLink';
 import copy from '@/constants/copy';
@@ -54,7 +55,7 @@ const Header: FC = () => {
       'size-full',
       'border border-black',
       'transition transition-discrete',
-      'bg-gray-50 dark:bg-secondary-900',
+      'bg-tertiary-50 dark:bg-secondary-900',
       'opacity-0',
       'transform-(--transform-move-to-bottom)',
       'starting:open:opacity-0 open:opacity-100',
@@ -65,7 +66,7 @@ const Header: FC = () => {
       'h-(--header-height)',
       'dark:text-white font-bold text-lg italic',
       'flex flex-row items-center justify-start gap-4',
-      'bg-gray-100 dark:bg-secondary-800',
+      'bg-tertiary-200 dark:bg-secondary-800',
       'pr-2 pl-8',
     ]),
     menuList: cn(['flex flex-col gap-8 items-start', 'p-8']),
@@ -91,23 +92,26 @@ const Header: FC = () => {
           <CtaLink href={cta.href}>{cta.children}</CtaLink>
         </div>
       </nav>
-      <nav
-        className={desktopContainer}
-        aria-label={navLabels.desktop}
-      >
-        {links.map((linkProps) => {
-          return (
-            <NavbarLink
-              key={linkProps.path}
-              {...(linkProps as NavbarLinkProps)}
-            />
-          );
-        })}
-        <BreakPoint />
-        <div className={'ml-auto'}>
-          <CtaLink href={cta.href}>{cta.children}</CtaLink>
-        </div>
-      </nav>
+      <div className={desktopContainer}>
+        <DesktopNavMenu />
+      </div>
+      {/*<nav*/}
+      {/*  className={desktopContainer}*/}
+      {/*  aria-label={navLabels.desktop}*/}
+      {/*>*/}
+      {/*  {links.map((linkProps) => {*/}
+      {/*    return (*/}
+      {/*      <NavbarLink*/}
+      {/*        key={linkProps.path}*/}
+      {/*        {...(linkProps as NavbarLinkProps)}*/}
+      {/*      />*/}
+      {/*    );*/}
+      {/*  })}*/}
+      {/*  <BreakPoint />*/}
+      {/*  <div className={'ml-auto'}>*/}
+      {/*    <CtaLink href={cta.href}>{cta.children}</CtaLink>*/}
+      {/*  </div>*/}
+      {/*</nav>*/}
       <menu
         className={menuContainer}
         popover={''}
