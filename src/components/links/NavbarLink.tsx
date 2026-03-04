@@ -16,17 +16,13 @@ const NavbarLink: FC<NavbarLinkProps> = ({ label, path, mobile = false }) => {
   const active = pathname === path;
 
   const { link } = {
-    link: cn([
+    link: cn(
+      'nav-link',
+      active && 'active',
       'text-xl sm:text-2xl md:text-lg lg:text-lg xl:text-xl',
       'font-bold',
-      'relative',
-      'after:absolute after:-bottom-2 after:left-0 after:h-px after:w-0 after:bg-secondary-100 dark:after:bg-secondary-200 after:opacity-0',
-      'after:transition-all after:duration-250 after:delay-50 after:ease-in-out',
-      'px-1',
-      active
-        ? 'after:w-full after:opacity-100'
-        : 'hover:after:w-full hover:after:opacity-75',
-    ]),
+      'text-center',
+    ),
   };
 
   return (

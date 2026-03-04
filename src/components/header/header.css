@@ -22,6 +22,10 @@
     transition: top 0.2s, right 0.2s, bottom 0.2s, left 0.2s, opacity 0.1s;
 }
 
+.nav-wrap:has(.nav-link.active) .bubble.active {
+    border-width: 2px;
+}
+
 .nav-link {
     z-index: 10;
     position: relative;
@@ -59,7 +63,7 @@
         color: var(--background);
         position-anchor: --active;
         z-index: 2;
-        border-width: 2px;
+        border-width: 0;
         border-color: var(--border-color);
         border-radius: var(--radius);
         border-style: var(--tw-border-style);

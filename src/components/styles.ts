@@ -1,18 +1,5 @@
 import cn from '@/utils/cn';
 
-export const textBlockStyles = {
-  container: cn([
-    'p-4',
-    'flow-root',
-    'bg-secondary-200 dark:bg-secondary-800',
-    'relative',
-    'z-2',
-  ]),
-  text: 'text-md sm:text-xl',
-  buttonContainer: cn(['flex', 'mt-2', 'justify-end']),
-  relativeAnchor: 'relative max-w-4xl ml-auto mr-auto h-fit',
-};
-
 export const iconButton = {
   icon: cn(
     'size-full',
@@ -22,7 +9,7 @@ export const iconButton = {
   button: cn(
     'p-2',
     'bg-transparent',
-    `hover:bg-muted dark:hover:shadow-contrast`,
+    `hover:text-secondary dark:hover:text-secondary`,
     'cursor-pointer',
     'transition duration-250',
   ),

@@ -1,4 +1,3 @@
-import BreakPoint from '@/components/dev/BreakPoint';
 import CtaLink from '@/components/links/CtaLink';
 import NavbarLink from '@/components/links/NavbarLink';
 import copy from '@/constants/copy';
@@ -6,17 +5,16 @@ import cn from '@/utils/cn';
 import { FC } from 'react';
 import './header.css';
 
-const DesktopNavMenu: FC = () => {
+const MobileNavMenu: FC = () => {
   const { links, cta, navLabels } = copy.header;
 
   const { container, nav, activeBubble, hoverBubble, ctaContainer } = {
-    container: 'nav-wrap container',
-    nav: cn('flex flex-row items-center'),
+    container: cn('nav-wrap', 'h-[calc(100vh-var(--header-height))]'),
+    nav: cn('flex flex-col items-start', 'p-2'),
     activeBubble: cn(
       'bubble',
       'active',
-      'bg-radial from-secondary-100 to-secondary-400',
-      'dark:from-secondary/50 dark:to-secondary/25',
+      'bg-radial from-secondary-100 to-secondary-400 dark:from-secondary/50 dark:to-secondary/25',
     ),
     hoverBubble: cn(
       'bubble',
@@ -24,7 +22,7 @@ const DesktopNavMenu: FC = () => {
       'bg-transparent',
       'bg-radial dark:from-secondary/25 dark:to-transparent',
     ),
-    ctaContainer: 'ml-auto',
+    ctaContainer: 'absolute right-0 bottom-0 p-8',
   };
 
   return (
@@ -33,7 +31,7 @@ const DesktopNavMenu: FC = () => {
       <div className={hoverBubble}></div>
       <nav
         className={nav}
-        aria-label={navLabels.desktop}
+        aria-label={navLabels.mobile}
       >
         {links.map((linkProps) => {
           return (
@@ -41,10 +39,10 @@ const DesktopNavMenu: FC = () => {
               key={linkProps.path}
               path={linkProps.path}
               label={linkProps.label}
+              mobile
             />
           );
         })}
-        <BreakPoint />
         <div className={ctaContainer}>
           <CtaLink href={cta.href}>{cta.children}</CtaLink>
         </div>
@@ -53,4 +51,4 @@ const DesktopNavMenu: FC = () => {
   );
 };
 
-export default DesktopNavMenu;
+export default MobileNavMenu;

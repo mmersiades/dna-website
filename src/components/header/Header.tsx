@@ -2,15 +2,14 @@
 import IconButton from '@/components/buttons/IconButton';
 import BreakPoint from '@/components/dev/BreakPoint';
 import DesktopNavMenu from '@/components/header/DesktopNavMenu';
+import MobileNavMenu from '@/components/header/MobileNavMenu';
 import CtaLink from '@/components/links/CtaLink';
-import NavbarLink, { NavbarLinkProps } from '@/components/links/NavbarLink';
 import copy from '@/constants/copy';
 import cn from '@/utils/cn';
 import { FC, useEffect, useState } from 'react';
 
 const Header: FC = () => {
   const {
-    links,
     cta,
     navLabels,
     menu: { title: menuTitle, open: openMenuLabel, close: closeMenuLabel },
@@ -33,7 +32,6 @@ const Header: FC = () => {
     mobileContainer,
     menuContainer,
     menuHeader,
-    menuList,
   } = {
     container:
       'bg-tertiary-200 dark:bg-tertiary-900 fixed top-0 w-screen z-20 shadow-md',
@@ -53,9 +51,8 @@ const Header: FC = () => {
     ]),
     menuContainer: cn([
       'size-full',
-      'border border-black',
       'transition transition-discrete',
-      'bg-tertiary-50 dark:bg-secondary-900',
+      'bg-tertiary-50 dark:bg-tertiary-800',
       'opacity-0',
       'transform-(--transform-move-to-bottom)',
       'starting:open:opacity-0 open:opacity-100',
@@ -66,10 +63,9 @@ const Header: FC = () => {
       'h-(--header-height)',
       'dark:text-white font-bold text-lg italic',
       'flex flex-row items-center justify-start gap-4',
-      'bg-tertiary-200 dark:bg-secondary-800',
-      'pr-2 pl-8',
+      'bg-tertiary-200 dark:bg-tertiary-900',
+      'px-2',
     ]),
-    menuList: cn(['flex flex-col gap-8 items-start', 'p-8']),
   };
 
   return (
@@ -95,23 +91,6 @@ const Header: FC = () => {
       <div className={desktopContainer}>
         <DesktopNavMenu />
       </div>
-      {/*<nav*/}
-      {/*  className={desktopContainer}*/}
-      {/*  aria-label={navLabels.desktop}*/}
-      {/*>*/}
-      {/*  {links.map((linkProps) => {*/}
-      {/*    return (*/}
-      {/*      <NavbarLink*/}
-      {/*        key={linkProps.path}*/}
-      {/*        {...(linkProps as NavbarLinkProps)}*/}
-      {/*      />*/}
-      {/*    );*/}
-      {/*  })}*/}
-      {/*  <BreakPoint />*/}
-      {/*  <div className={'ml-auto'}>*/}
-      {/*    <CtaLink href={cta.href}>{cta.children}</CtaLink>*/}
-      {/*  </div>*/}
-      {/*</nav>*/}
       <menu
         className={menuContainer}
         popover={''}
@@ -130,20 +109,7 @@ const Header: FC = () => {
           />
           <p>{menuTitle}</p>
         </div>
-        <div className={menuList}>
-          {links.map((linkProps) => {
-            return (
-              <NavbarLink
-                key={linkProps.path}
-                {...(linkProps as NavbarLinkProps)}
-                mobile
-              />
-            );
-          })}
-          <div className={'absolute right-0 bottom-0 p-8'}>
-            <CtaLink href={cta.href}>{cta.children}</CtaLink>
-          </div>
-        </div>
+        <MobileNavMenu />
       </menu>
     </div>
   );

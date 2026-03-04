@@ -90,7 +90,7 @@ const GroupInterestTable: FC<Props> = ({ initialTableData }) => {
       'overflow-hidden',
       'p-2 md:p-4',
     ),
-    tableHead: 'font-display text-2xl',
+    tableHead: 'font-display text-xl md:text-2xl',
   };
 
   const tdStyle = (row: TableRow) =>

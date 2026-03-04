@@ -16,13 +16,17 @@ export default async function LocalGroupList() {
     <section className={sectionContainer}>
       <h4 className={pageTitle}>{title}</h4>
       <hr className={pageDivider} />
-      <div className="grid gap-2 p-2 md:grid-cols-2">
+      <div className="grid grid-cols-1 gap-2 p-2 md:grid-cols-2">
         {groups.map((g, i) => (
-          <GroupCard
+          <div
             key={g._id}
-            group={g}
-            index={i}
-          />
+            className={'col-span-1'}
+          >
+            <GroupCard
+              group={g}
+              index={i}
+            />
+          </div>
         ))}
       </div>
     </section>
