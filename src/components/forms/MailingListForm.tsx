@@ -1,5 +1,5 @@
 'use client';
-import { EmailAlias, SendEmailBody } from '@/app/api/send-email/route';
+import { SendEmailBody } from '@/app/api/send-email/route';
 import FooterSubmitButton from '@/components/buttons/FooterSubmitButton';
 import styles from '@/components/footer/styles';
 import copy from '@/constants/copy';
@@ -17,11 +17,10 @@ const schema = z.object({
 type Inputs = z.infer<typeof schema>;
 
 interface Props {
-  subscribeTo: EmailAlias;
   id?: string;
 }
 
-const MailingListForm: FC<Props> = ({ subscribeTo, id }) => {
+const MailingListForm: FC<Props> = ({ id }) => {
   const {
     title: mailingListTitle,
     label: mailingListLabel,
@@ -44,8 +43,10 @@ const MailingListForm: FC<Props> = ({ subscribeTo, id }) => {
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const body: SendEmailBody = {
-      from: data.email,
-      to: [subscribeTo],
+      from: 'mailer',
+      to: ['dna-contact'],
+      subject: `DNA mailing list subscription request`,
+      text: `Email: ${data.email}`,
     };
 
     void sendEmailOnSubmit({

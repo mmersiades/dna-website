@@ -164,8 +164,9 @@ const copy = {
       label: 'Email',
       button: 'Subscribe',
       success: {
-        title: 'Thank you for subscribing!',
-        message: 'Check your email for the confirmation step.',
+        title: 'Thank you for subscription request!',
+        message:
+          "Once we've completed your subscription, you'll get a confirmation email.",
       },
       failure: {
         title: 'Failed to subscribe.',

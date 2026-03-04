@@ -39,10 +39,7 @@ const Footer: FC = () => {
             <ContactForm id={'contact'} />
           </div>
           <div className={'col-span-full lg:col-span-1'}>
-            <MailingListForm
-              id={'subscribe'}
-              subscribeTo={'dna-mailing'}
-            />
+            <MailingListForm id={'subscribe'} />
           </div>
           <div className={'col-span-full'}>
             <Socials id={'socials'} />
