@@ -15,7 +15,7 @@ const CtaLink: FC<PropsWithChildren<Props>> = ({
 }) => {
   const { link } = {
     link: cn(
-      'text-2xl font-bold text-primary-foreground',
+      'text-2xl font-bold text-primary-foreground text-nowrap',
       responsive && '[font-size:min(4vw,2rem)]',
       'bg-primary-200 dark:bg-primary',
       'bg-radial from-primary-200 to-primary-400/75 dark:from-primary dark:to-primary-500/50',

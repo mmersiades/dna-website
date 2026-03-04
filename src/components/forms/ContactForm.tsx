@@ -2,14 +2,12 @@
 import { SendEmailBody } from '@/app/api/send-email/route';
 import FooterSubmitButton from '@/components/buttons/FooterSubmitButton';
 import styles from '@/components/footer/styles';
-import Toast from '@/components/Toast';
 import copy from '@/constants/copy';
-import { paths } from '@/constants/paths';
 import cn from '@/utils/cn';
+import sendEmailOnSubmit from '@/utils/sendEmailOnSubmit';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FC } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import { toast } from 'react-toastify';
 import * as z from 'zod';
 
 const schema = z.object({
@@ -51,34 +49,14 @@ const ContactForm: FC<Props> = ({ id }) => {
       text: data.message,
     };
 
-    const response = await fetch(paths.api.sendEmail, {
-      method: 'POST',
-      body: JSON.stringify(body),
+    void sendEmailOnSubmit({
+      body,
+      successTitle: success.title,
+      successSubtitle: success.message,
+      failureTitle: failure.title,
+      failureSubtitle: failure.message,
+      successCallback: reset,
     });
-    if (response.status === 204) {
-      toast(
-        <Toast
-          title={success.title}
-          message={success.message}
-        />,
-        {
-          ariaLabel: `${success.title} ${success.message}`,
-          type: 'success',
-        },
-      );
-      reset();
-    } else {
-      toast(
-        <Toast
-          title={failure.title}
-          message={failure.message}
-        />,
-        {
-          ariaLabel: `${failure.title} ${failure.message}`,
-          type: 'error',
-        },
-      );
-    }
   };
 
   const { title, divider, input } = styles;

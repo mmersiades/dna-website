@@ -132,6 +132,20 @@ const copy = {
   online: {
     title: 'Online DNA Groups',
     groupUrl: 'Find out more',
+    form: {
+      instructions: {
+        a: 'Get the details for the next ',
+        b: ' meeting.',
+      },
+      success: {
+        title: 'Thanks!',
+        subtitle: "We'll contact you soon with the meeting details",
+      },
+      failure: {
+        title: 'Failed to send message',
+        subtitle: 'Please try again later or contact degrowthnetwork@proton.me',
+      },
+    },
   },
   footer: {
     contact: {
@@ -142,7 +156,7 @@ const copy = {
       },
       failure: {
         title: 'Failed to send.',
-        message: 'Please try again later.',
+        message: 'Please try again later or contact degrowthnetwork@proton.me',
       },
     },
     mailingList: {
@@ -155,7 +169,7 @@ const copy = {
       },
       failure: {
         title: 'Failed to subscribe.',
-        message: 'Please try again later.',
+        message: 'Please try again later or contact degrowthnetwork@proton.me',
       },
     },
     socials: {

@@ -7,8 +7,9 @@ const Sitemap: FC = () => {
   const { title: sitemapTitle, links } = copy.footer.sitemap;
   const { container, title, divider } = styles;
 
-  const { linkContainer } = {
+  const { linkContainer, a } = {
     linkContainer: 'flex flex-wrap items-center justify-between gap-6',
+    a: 'hover:text-secondary transition-color duration-250',
   };
 
   return (
@@ -20,6 +21,7 @@ const Sitemap: FC = () => {
           <Link
             key={link.href.toString()}
             href={link.href}
+            className={a}
           >
             {link.children}
           </Link>
