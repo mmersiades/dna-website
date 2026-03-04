@@ -1,8 +1,18 @@
-// This file configures the initialization of Sentry on the client.
-// The added config here will be used whenever a users loads a page in their browser.
-// https://docs.sentry.io/platforms/javascript/guides/nextjs/
-
 import * as Sentry from '@sentry/nextjs';
+import { initBotId } from 'botid/client/core';
+
+initBotId({
+  protect: [
+    {
+      path: '/api/send-email',
+      method: 'POST',
+    },
+    {
+      path: '/api/google/sheets/group-intent',
+      method: 'POST',
+    },
+  ],
+});
 
 Sentry.init({
   dsn: 'https://181eec45eb9131c4a97690325043fba6@o4510968063983616.ingest.de.sentry.io/4510968097538128',
