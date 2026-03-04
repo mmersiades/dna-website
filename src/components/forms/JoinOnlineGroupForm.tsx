@@ -83,7 +83,7 @@ export const JoinOnlineGroupForm: FC<Props> = ({ selectedGroup }) => {
     submitContainer,
   } = {
     container: cn('text-background dark:text-foreground', 'max-w-200'),
-    h6: 'font-display font-bold py-2 whitespace-pre-wrap',
+    h6: 'font-display font-bold py-2 whitespace-pre-wrap text-lg ',
     highlight: 'font-bold text-primary',
     formContainer: cn('flex flex-row items-end gap-2 flex-wrap'),
     label: 'indent-2 text-sm font-medium',

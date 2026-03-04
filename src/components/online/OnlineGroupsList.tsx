@@ -30,7 +30,7 @@ const OnlineGroupsList: FC<Props> = ({ groups }) => {
       'transition-all transition-discrete duration-250',
     ),
     formInnerContainer: cn('container ml-auto mr-auto'),
-    formInnerInnerContainer: cn('mx-4 pb-4', 'border-b border-tertiary-700'),
+    formInnerInnerContainer: cn('mx-4 py-4', 'border-b border-tertiary-700'),
   };
 
   const onSelectGroup = (group: ONLINE_GROUPS_QUERYResult[0]) => {
