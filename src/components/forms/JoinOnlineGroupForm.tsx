@@ -22,9 +22,13 @@ type Inputs = z.infer<typeof schema>;
 
 interface Props {
   selectedGroup: ONLINE_GROUPS_QUERYResult[0];
+  onSubmit: () => void;
 }
 
-export const JoinOnlineGroupForm: FC<Props> = ({ selectedGroup }) => {
+export const JoinOnlineGroupForm: FC<Props> = ({
+  selectedGroup,
+  onSubmit: submitCallback,
+}) => {
   const { instructions, success, failure } = copy.online.form;
 
   const nameInputRef = useRef<HTMLInputElement | null>(null);
@@ -64,6 +68,8 @@ export const JoinOnlineGroupForm: FC<Props> = ({ selectedGroup }) => {
       failureSubtitle: failure.subtitle,
       successCallback: reset,
     });
+
+    submitCallback();
   };
 
   useEffect(() => {
@@ -89,7 +95,7 @@ export const JoinOnlineGroupForm: FC<Props> = ({ selectedGroup }) => {
     label: 'indent-2 text-sm font-medium',
     col: 'flex flex-col gap-1 flex-1',
     error: 'text-red-300 h-6 indent-2 text-sm',
-    submitContainer: 'w-full sm:w-fit pb-7',
+    submitContainer: 'w-full sm:w-fit pb-7 pt-4',
   };
 
   return (

@@ -14,8 +14,12 @@ initBotId({
   ],
 });
 
+const dev = process.env.NODE_ENV === 'development';
+
 Sentry.init({
-  dsn: 'https://181eec45eb9131c4a97690325043fba6@o4510968063983616.ingest.de.sentry.io/4510968097538128',
+  dsn: dev
+    ? undefined
+    : 'https://181eec45eb9131c4a97690325043fba6@o4510968063983616.ingest.de.sentry.io/4510968097538128',
 
   // Add optional integrations for additional features
   integrations: [Sentry.replayIntegration()],

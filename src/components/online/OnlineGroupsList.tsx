@@ -1,5 +1,6 @@
 'use client';
-import JoinOnlineGroupForm from '@/components/forms/JoinOnlineGroupForm';
+import DesktopJoinForm from '@/components/online/DesktopJoinForm';
+import MobileJoinForm from '@/components/online/MobileJoinForm';
 import OnlineGroupCard from '@/components/online/OnlineGroupCard';
 import { pageStyles } from '@/components/styles';
 import copy from '@/constants/copy';
@@ -19,20 +20,6 @@ const OnlineGroupsList: FC<Props> = ({ groups }) => {
 
   const { pageTitle, pageDivider, sectionContainer } = pageStyles;
 
-  const { formContainer, formInnerContainer, formInnerInnerContainer } = {
-    formContainer: cn(
-      'absolute bottom-0 left-1/2 -translate-x-1/2 w-[calc(100vw+10px)]',
-      'min-h-(--header-height)',
-      'bg-tertiary-800 dark:bg-tertiary-800',
-      selectedGroup ? 'opacity-100 visible' : 'opacity-0 hidden',
-      'starting:opacity-0 starting:translate-y-4 starting:scale-y-500',
-      'scale-y-100',
-      'transition-all transition-discrete duration-250',
-    ),
-    formInnerContainer: cn('container ml-auto mr-auto'),
-    formInnerInnerContainer: cn('mx-4 py-4', 'border-b border-tertiary-700'),
-  };
-
   const onSelectGroup = (group: ONLINE_GROUPS_QUERYResult[0]) => {
     setSelectedGroup((prev) => {
       if (prev === null) {
@@ -45,24 +32,34 @@ const OnlineGroupsList: FC<Props> = ({ groups }) => {
     });
   };
 
+  const clearSelectedGroup = () => {
+    setSelectedGroup(null);
+  };
+
+  const { desktopForm } = {
+    desktopForm: 'hidden md:block',
+  };
+
   return (
     <>
-      <div className={formContainer}>
-        <div className={formInnerContainer}>
-          <div className={formInnerInnerContainer}>
-            {selectedGroup && (
-              <JoinOnlineGroupForm selectedGroup={selectedGroup} />
-            )}
-          </div>
-        </div>
+      <div className={desktopForm}>
+        <DesktopJoinForm
+          selectedGroup={selectedGroup}
+          onSubmit={clearSelectedGroup}
+        />
       </div>
+      <MobileJoinForm
+        selectedGroup={selectedGroup}
+        onClose={clearSelectedGroup}
+        onSubmit={clearSelectedGroup}
+      />
       <section className={cn(sectionContainer, 'mt-0 pt-8')}>
         <h4 className={pageTitle}>{title}</h4>
         <hr className={pageDivider} />
         <div className="grid gap-2 p-2 md:grid-cols-2">
           {groups.map((g, i) => (
             <OnlineGroupCard
-              key={g._id}
+              key={g._id + i}
               group={g}
               index={i}
               onSelectGroup={onSelectGroup}

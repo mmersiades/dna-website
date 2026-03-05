@@ -9,7 +9,7 @@ export const iconButton = {
   button: cn(
     'p-2',
     'bg-transparent',
-    `hover:text-secondary dark:hover:text-secondary`,
+    `hover:text-secondary-600 dark:hover:text-secondary`,
     'cursor-pointer',
     'transition duration-250',
   ),

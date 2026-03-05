@@ -8,5 +8,14 @@ export default async function OnlineGroupsListViewModel() {
     stega: false,
   });
 
-  return <OnlineGroupsList groups={onlineGroups} />;
+  const temp = [
+    ...onlineGroups,
+    ...onlineGroups,
+    ...onlineGroups,
+    ...onlineGroups,
+    ...onlineGroups,
+    ...onlineGroups,
+  ];
+
+  return <OnlineGroupsList groups={temp} />;
 }
