@@ -67,6 +67,7 @@ const MobileFullScreenModal: FC<PropsWithChildren<Props>> = ({
         size={'size-12'}
         aria-label={'Close dialog'}
         onClick={onClose}
+        onDark
       />
       <div className={content}>{children}</div>
     </dialog>
