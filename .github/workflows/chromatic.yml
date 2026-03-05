@@ -22,12 +22,6 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: LS
-        run: ls
-
-      - name: PWD
-        run: pwd
-
       - name: Run Chromatic
         uses: chromaui/action@latest
         with:
