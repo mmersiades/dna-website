@@ -95,7 +95,7 @@ const MailingListForm: FC<Props> = ({ id }) => {
                 <div className={row}>
                   <div className={cn(col, 'flex-1')}>
                     <input
-                      data-testid={mailingList.input}
+                      data-testid={mailingList.emailInput}
                       className={cn(input, 'h-10')}
                       type="email-to-subscribe"
                       id={id}
@@ -106,7 +106,7 @@ const MailingListForm: FC<Props> = ({ id }) => {
                   </div>
                   <div className={submitContainer}>
                     <FooterSubmitButton
-                      data-testid={mailingList.submit}
+                      data-testid={mailingList.submitButton}
                       type="submit"
                       submitting={isSubmitting}
                       disabled={!isValid}

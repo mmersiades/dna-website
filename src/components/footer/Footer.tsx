@@ -1,9 +1,9 @@
+import ContactForm from '@/components/footer/ContactForm';
 import Credits from '@/components/footer/Credits';
 import MailingListForm from '@/components/footer/MailingListForm';
 import Sitemap from '@/components/footer/Sitemap';
 import Socials from '@/components/footer/Socials';
 import styles from '@/components/footer/styles';
-import ContactForm from '@/components/forms/ContactForm';
 import { FC } from 'react';
 
 const Footer: FC = () => {

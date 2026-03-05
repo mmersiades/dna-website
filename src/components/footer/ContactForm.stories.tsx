@@ -1,18 +1,18 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 
-import MailingListForm from '@/components/footer/MailingListForm';
+import ContactForm from '@/components/footer/ContactForm';
 import testIds from '@/constants/testIds';
 import { within } from 'storybook/test';
 import centeredDecorator from '../../../.storybook/centeredDecorator';
 import footerDecorator from '../../../.storybook/footerDecorator';
 
 const meta = {
-  component: MailingListForm,
+  component: ContactForm,
   globals: {
     viewport: { value: 'desktop', isRotated: false },
   },
   decorators: [centeredDecorator, footerDecorator],
-} satisfies Meta<typeof MailingListForm>;
+} satisfies Meta<typeof ContactForm>;
 
 export default meta;
 
@@ -20,7 +20,7 @@ type Story = StoryObj<typeof meta>;
 
 const args = { id: 'id' };
 
-const { mailingList } = testIds.footer;
+const { contact } = testIds.footer;
 
 // noinspection JSUnusedGlobalSymbols
 export const DesktopLandscape: Story = {
@@ -123,8 +123,13 @@ export const EntersEmail: Story = {
   play: async ({ canvasElement, userEvent }) => {
     const canvas = within(canvasElement);
     await userEvent.type(
-      canvas.getByTestId(mailingList.emailInput),
-      'test@example.com',
+      canvas.getByTestId(contact.messageInput),
+      'Hello. I need some help.',
+    );
+    await userEvent.type(canvas.getByTestId(contact.nameInput), 'Sarah Snook');
+    await userEvent.type(
+      canvas.getByTestId(contact.emailInput),
+      's_snook@gmail.com',
     );
   },
 };

@@ -1,8 +1,14 @@
 const testIds = {
   footer: {
     mailingList: {
-      input: 'footer__mailing-list__input',
-      submit: 'footer__mailing-list__submit',
+      emailInput: 'footer__mailing-list__email-input',
+      submitButton: 'footer__mailing-list__submit-button',
+    },
+    contact: {
+      emailInput: 'footer__contact__email-input',
+      submitButton: 'footer__contact__submit-button',
+      messageInput: 'footer__contact__message-input',
+      nameInput: 'footer__contact__name-input',
     },
   },
 };

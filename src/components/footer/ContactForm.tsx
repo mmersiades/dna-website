@@ -3,6 +3,7 @@ import { SendEmailBody } from '@/app/api/send-email/route';
 import FooterSubmitButton from '@/components/buttons/FooterSubmitButton';
 import styles from '@/components/footer/styles';
 import copy from '@/constants/copy';
+import testIds from '@/constants/testIds';
 import cn from '@/utils/cn';
 import sendEmailOnSubmit from '@/utils/sendEmailOnSubmit';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -24,6 +25,9 @@ interface Props {
 
 const ContactForm: FC<Props> = ({ id }) => {
   const { title: contactTitle, success, failure } = copy.footer.contact;
+
+  const { contact } = testIds.footer;
+
   const defaultValues: Inputs = {
     email: '',
     name: '',
@@ -101,6 +105,7 @@ const ContactForm: FC<Props> = ({ id }) => {
                   </label>
                   <div className={row}>
                     <textarea
+                      data-testid={contact.messageInput}
                       className={cn(input, 'w-full py-2 font-sans')}
                       id={'message'}
                       required
@@ -133,6 +138,7 @@ const ContactForm: FC<Props> = ({ id }) => {
                   </label>
                   <div className={row}>
                     <input
+                      data-testid={contact.nameInput}
                       className={cn(input, 'h-10 w-full')}
                       type="text"
                       id={id}
@@ -166,6 +172,7 @@ const ContactForm: FC<Props> = ({ id }) => {
                   </label>
                   <div className={row}>
                     <input
+                      data-testid={contact.emailInput}
                       className={cn(input, 'h-10 w-full')}
                       type="email"
                       id={'email'}
@@ -187,6 +194,7 @@ const ContactForm: FC<Props> = ({ id }) => {
           />
           <div className={cn([col, 'sm:col-span-2', 'pt-5', desktopSubmit])}>
             <FooterSubmitButton
+              data-testid={contact.submitButton}
               type="submit"
               submitting={isSubmitting}
               disabled={!isValid}
@@ -197,6 +205,7 @@ const ContactForm: FC<Props> = ({ id }) => {
 
           <div className={mobileSubmit}>
             <FooterSubmitButton
+              data-testid={contact.submitButton}
               type="submit"
               submitting={isSubmitting}
               disabled={!isValid}
