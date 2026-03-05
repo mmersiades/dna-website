@@ -6,15 +6,13 @@ import { ThemeProvider } from 'next-themes';
 import { StoryFn } from 'storybook/internal/csf';
 
 const footerDecorator = (Story: StoryFn<ReactRenderer>) => {
-  const { footerContainer, innerContainer, grid } = styles;
+  const { footerContainer, innerContainer } = styles;
   return (
     <ThemeProvider>
       <div className={cn(footerContainer, 'dark:text-background')}>
         <div className={innerContainer}>
-          <div className={grid}>
-            {/* @ts-expect-error missing properties*/}
-            <Story />
-          </div>
+          {/* @ts-expect-error missing properties*/}
+          <Story />
         </div>
       </div>
     </ThemeProvider>

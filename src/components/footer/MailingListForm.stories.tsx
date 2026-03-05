@@ -1,22 +1,26 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 
+import MailingListForm from '@/components/footer/MailingListForm';
+import testIds from '@/constants/testIds';
+import { within } from 'storybook/test';
 import centeredDecorator from '../../../.storybook/centeredDecorator';
 import footerDecorator from '../../../.storybook/footerDecorator';
-import Socials from './Socials';
 
 const meta = {
-  component: Socials,
+  component: MailingListForm,
   globals: {
     viewport: { value: 'desktop', isRotated: false },
   },
   decorators: [centeredDecorator, footerDecorator],
-} satisfies Meta<typeof Socials>;
+} satisfies Meta<typeof MailingListForm>;
 
 export default meta;
 
 type Story = StoryObj<typeof meta>;
 
 const args = { id: 'id' };
+
+const { mailingList } = testIds.footer;
 
 // noinspection JSUnusedGlobalSymbols
 export const DesktopLandscape: Story = {
@@ -37,6 +41,17 @@ export const TabletLandscape: Story = {
     viewport: { value: 'tablet', isRotated: true },
   },
   args,
+};
+
+// noinspection JSUnusedGlobalSymbols
+export const TabletLandscapeFocus: Story = {
+  globals: {
+    viewport: { value: 'tablet', isRotated: true },
+  },
+  args,
+  parameters: {
+    pseudo: { focus: true },
+  },
 };
 
 // noinspection JSUnusedGlobalSymbols
@@ -100,4 +115,16 @@ export const LargeMobilePortraitDark: Story = {
     theme: 'dark',
   },
   args,
+};
+
+// noinspection JSUnusedGlobalSymbols
+export const EntersEmail: Story = {
+  args,
+  play: async ({ canvasElement, userEvent }) => {
+    const canvas = within(canvasElement);
+    await userEvent.type(
+      canvas.getByTestId(mailingList.input),
+      'test@example.com',
+    );
+  },
 };

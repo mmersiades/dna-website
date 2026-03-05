@@ -3,6 +3,7 @@ import { SendEmailBody } from '@/app/api/send-email/route';
 import FooterSubmitButton from '@/components/buttons/FooterSubmitButton';
 import styles from '@/components/footer/styles';
 import copy from '@/constants/copy';
+import testIds from '@/constants/testIds';
 import cn from '@/utils/cn';
 import sendEmailOnSubmit from '@/utils/sendEmailOnSubmit';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -28,9 +29,13 @@ const MailingListForm: FC<Props> = ({ id }) => {
     success,
     failure,
   } = copy.footer.mailingList;
+
+  const { mailingList } = testIds.footer;
+
   const defaultValues: Inputs = {
     email: '',
   };
+
   const {
     control,
     handleSubmit,
@@ -90,6 +95,7 @@ const MailingListForm: FC<Props> = ({ id }) => {
                 <div className={row}>
                   <div className={cn(col, 'flex-1')}>
                     <input
+                      data-testid={mailingList.input}
                       className={cn(input, 'h-10')}
                       type="email-to-subscribe"
                       id={id}
@@ -100,6 +106,7 @@ const MailingListForm: FC<Props> = ({ id }) => {
                   </div>
                   <div className={submitContainer}>
                     <FooterSubmitButton
+                      data-testid={mailingList.submit}
                       type="submit"
                       submitting={isSubmitting}
                       disabled={!isValid}

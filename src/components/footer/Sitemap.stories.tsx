@@ -18,10 +18,12 @@ type Story = StoryObj<typeof meta>;
 
 const args = {};
 
+// noinspection JSUnusedGlobalSymbols
 export const DesktopLandscape: Story = {
   args,
 };
 
+// noinspection JSUnusedGlobalSymbols
 export const DesktopLandscapeHover: Story = {
   args,
   parameters: {
@@ -29,6 +31,7 @@ export const DesktopLandscapeHover: Story = {
   },
 };
 
+// noinspection JSUnusedGlobalSymbols
 export const TabletLandscape: Story = {
   globals: {
     viewport: { value: 'tablet', isRotated: true },
@@ -36,6 +39,7 @@ export const TabletLandscape: Story = {
   args,
 };
 
+// noinspection JSUnusedGlobalSymbols
 export const TabletPortrait: Story = {
   globals: {
     viewport: { value: 'tablet', isRotated: false },
@@ -43,6 +47,7 @@ export const TabletPortrait: Story = {
   args,
 };
 
+// noinspection JSUnusedGlobalSymbols
 export const LargeMobilePortrait: Story = {
   globals: {
     viewport: { value: 'mobile2', isRotated: false },
@@ -50,6 +55,7 @@ export const LargeMobilePortrait: Story = {
   args,
 };
 
+// noinspection JSUnusedGlobalSymbols
 export const DesktopLandscapeDark: Story = {
   globals: {
     theme: 'dark',
@@ -57,6 +63,7 @@ export const DesktopLandscapeDark: Story = {
   args,
 };
 
+// noinspection JSUnusedGlobalSymbols
 export const TabletLandscapeDark: Story = {
   globals: {
     viewport: { value: 'tablet', isRotated: true },
@@ -65,6 +72,7 @@ export const TabletLandscapeDark: Story = {
   args,
 };
 
+// noinspection JSUnusedGlobalSymbols
 export const TabletLandscapeDarkHover: Story = {
   globals: {
     viewport: { value: 'tablet', isRotated: true },
@@ -76,6 +84,7 @@ export const TabletLandscapeDarkHover: Story = {
   },
 };
 
+// noinspection JSUnusedGlobalSymbols
 export const TabletPortraitDark: Story = {
   globals: {
     viewport: { value: 'tablet', isRotated: false },
@@ -84,6 +93,7 @@ export const TabletPortraitDark: Story = {
   args,
 };
 
+// noinspection JSUnusedGlobalSymbols
 export const LargeMobilePortraitDark: Story = {
   globals: {
     viewport: { value: 'mobile2', isRotated: false },
