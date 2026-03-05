@@ -14,7 +14,9 @@
     "prettier:check": "npx prettier . --check",
     "prepare": "husky",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "test-storybook": "vitest --project=storybook",
+    "chromatic": "npx chromatic"
   },
   "dependencies": {
     "@floating-ui/react": "^0.27.18",
@@ -64,6 +66,7 @@
     "@vitest/browser-playwright": "^4.0.18",
     "@vitest/coverage-v8": "^4.0.18",
     "babel-plugin-react-compiler": "1.0.0",
+    "chromatic": "^15.2.0",
     "eslint": "^9",
     "eslint-config-next": "16.1.4",
     "eslint-plugin-storybook": "^10.2.15",

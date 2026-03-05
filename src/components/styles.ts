@@ -18,7 +18,7 @@ export const iconButton = {
 export const anchor = cn(
   'font-bold',
   'decoration-transparent',
-  'text-secondary-400 dark:text-secondary',
+  'text-secondary-300 dark:text-secondary',
   'hover:text-secondary hover:dark:text-secondary-200 hover:underline',
   'hover:decoration-secondary hover:dark:decoration-secondary-200',
   'transition duration-200',
