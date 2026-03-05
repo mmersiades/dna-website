@@ -42,3 +42,6 @@ next-env.d.ts
 .env.production
 .env.preview
 /dna-website-488104-82b81bbce81e.json
+
+*storybook.log
+storybook-static

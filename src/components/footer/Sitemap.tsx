@@ -9,7 +9,7 @@ const Sitemap: FC = () => {
 
   const { linkContainer, a } = {
     linkContainer: 'flex flex-wrap items-center justify-between gap-6',
-    a: 'hover:text-secondary transition-color duration-250',
+    a: 'hover:text-secondary transition-color duration-250 font-sans',
   };
 
   return (
