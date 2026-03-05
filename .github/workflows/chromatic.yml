@@ -18,12 +18,15 @@ jobs:
 
       - uses: pnpm/action-setup@v4
         name: Install pnpm
-        
+
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build Storybook
-        run: pnpm build-storybook
+      - name: LS
+        run: ls
+
+      - name: PWD
+        run: pwd
 
       - name: Run Chromatic
         uses: chromaui/action@latest
