@@ -108,7 +108,9 @@ const EventCard: FC<Props> = ({ event, index }) => {
         <h4 className={cn(cardHeading, 'pt-2')}>{event.name}</h4>
       </div>
       <div className={content}>
-        {event.sharingDescription && <p>{event.sharingDescription}</p>}
+        {(event.sharingDescription || event.description) && (
+          <p>{event.sharingDescription ?? event.description}</p>
+        )}
         <EventDates dates={event.dates} />
         <EventLocation loc={event.eventLocation} />
       </div>

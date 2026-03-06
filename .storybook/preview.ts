@@ -2,6 +2,7 @@ import { withThemeByDataAttribute } from '@storybook/addon-themes';
 import { Preview, ReactRenderer } from '@storybook/nextjs-vite';
 import '../src/app/globals.css';
 import bodyDecorator from './bodyDecorator';
+import './styles.css';
 
 const preview: Preview = {
   decorators: [

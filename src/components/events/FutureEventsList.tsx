@@ -15,6 +15,7 @@ const FutureEventsList: FC<Props> = ({ events }) => {
   const { grid } = {
     grid: cn('grid grid-cols-12 gap-4 md:gap-8 p-2'),
   };
+  console.log('events', events);
 
   return (
     <section className={sectionContainer}>

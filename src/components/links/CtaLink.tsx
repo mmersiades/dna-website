@@ -32,6 +32,7 @@ const CtaLink: FC<PropsWithChildren<Props>> = ({
 
   return (
     <Link
+      id={'cta-link'}
       className={link}
       {...props}
       onClick={() => document.getElementById('nav-menu')?.hidePopover()}

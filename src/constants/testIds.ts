@@ -11,6 +11,9 @@ const testIds = {
       nameInput: 'footer__contact__name-input',
     },
   },
+  header: {
+    link: (nav: string, label: string) => `header__${nav}__${label}-link`,
+  },
 };
 
 export default testIds;

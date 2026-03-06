@@ -1,4 +1,5 @@
 'use client';
+import testIds from '@/constants/testIds';
 import cn from '@/utils/cn';
 import { Route } from 'next';
 import Link from 'next/link';
@@ -25,8 +26,13 @@ const NavbarLink: FC<NavbarLinkProps> = ({ label, path, mobile = false }) => {
     ),
   };
 
+  const navId = mobile ? 'mobile-nav' : 'desktop-nav';
+  const id = `${navId}-${label.toLowerCase().replace(/\s+/g, '-')}`;
+
   return (
     <Link
+      id={id}
+      data-testid={testIds.header.link(navId, label.toLowerCase())}
       className={link}
       href={path}
       onClick={

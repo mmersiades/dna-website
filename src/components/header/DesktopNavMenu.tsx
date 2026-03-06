@@ -15,7 +15,7 @@ const DesktopNavMenu: FC = () => {
     activeBubble: cn(
       'bubble',
       'active',
-      'bg-radial from-secondary-100 to-secondary-400',
+      'bg-radial from-tertiary-100 to-transparent',
       'dark:from-secondary/50 dark:to-secondary/25',
     ),
     hoverBubble: cn(

@@ -3,6 +3,7 @@ import IconButton from '@/components/buttons/IconButton';
 import BreakPoint from '@/components/dev/BreakPoint';
 import DesktopNavMenu from '@/components/header/DesktopNavMenu';
 import MobileNavMenu from '@/components/header/MobileNavMenu';
+import headerStyles from '@/components/header/styles';
 import CtaLink from '@/components/links/CtaLink';
 import copy from '@/constants/copy';
 import cn from '@/utils/cn';
@@ -14,6 +15,7 @@ const Header: FC = () => {
     navLabels,
     menu: { title: menuTitle, open: openMenuLabel, close: closeMenuLabel },
   } = copy.header;
+
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
@@ -26,30 +28,17 @@ const Header: FC = () => {
     return () => menu?.removeEventListener('toggle', handleToggle);
   }, []);
 
-  const {
-    container,
-    desktopContainer,
-    mobileContainer,
-    menuContainer,
-    menuHeader,
-  } = {
-    container:
-      'bg-tertiary-200 dark:bg-tertiary-900 fixed top-0 w-screen z-20 shadow-md',
-    mobileContainer: cn([
+  const { container, desktopContainer } = headerStyles;
+
+  const { mobileContainer, menuContainer, menuHeader } = {
+    mobileContainer: cn(
       'w-full',
       'h-(--header-height)',
       'flex flex-row items-center gap-4 justify-between',
       'md:hidden',
       'p-2',
-    ]),
-    desktopContainer: cn([
-      'container',
-      'ml-auto mr-auto',
-      'h-(--header-height)',
-      'hidden md:flex flex-row items-center gap-4 xl:gap-6 2xl:gap-8 justify-start',
-      'p-2',
-    ]),
-    menuContainer: cn([
+    ),
+    menuContainer: cn(
       'size-full',
       'transition transition-discrete',
       'bg-tertiary-50 dark:bg-tertiary-800',
@@ -57,15 +46,15 @@ const Header: FC = () => {
       'transform-(--transform-move-to-bottom)',
       'starting:open:opacity-0 open:opacity-100',
       'starting:open:transform-(--transform-move-to-bottom) open:transform-(--transform-remove-translate-y)',
-    ]),
-    menuHeader: cn([
+    ),
+    menuHeader: cn(
       'w-full',
       'h-(--header-height)',
       'dark:text-white font-bold text-lg italic',
       'flex flex-row items-center justify-start gap-4',
       'bg-tertiary-200 dark:bg-tertiary-900',
       'px-2',
-    ]),
+    ),
   };
 
   return (

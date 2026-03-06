@@ -4,15 +4,11 @@ export const iconButton = {
   icon: cn(
     'size-full',
     'block',
-    'font-foreground font-bold dark:text-shadow-contrast',
+    'text-foreground font-bold dark:text-foreground',
+    'hover:text-secondary-500 dark:hover:text-secondary',
+    'transition-color duration-250',
   ),
-  button: cn(
-    'p-2',
-    'bg-transparent',
-    `hover:text-secondary-600 dark:hover:text-secondary`,
-    'cursor-pointer',
-    'transition duration-250',
-  ),
+  button: cn('p-2', 'bg-transparent', 'cursor-pointer'),
 };
 
 export const anchor = cn(
