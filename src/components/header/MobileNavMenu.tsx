@@ -14,7 +14,8 @@ const MobileNavMenu: FC = () => {
     activeBubble: cn(
       'bubble',
       'active',
-      'bg-radial from-secondary-100 to-secondary-400 dark:from-secondary/50 dark:to-secondary/25',
+      'bg-radial from-white to-transparent',
+      'dark:from-secondary/50 dark:to-secondary/25',
     ),
     hoverBubble: cn(
       'bubble',

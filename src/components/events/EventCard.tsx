@@ -8,6 +8,7 @@ import { cardStyles } from '@/components/styles';
 import copy from '@/constants/copy';
 import cn from '@/utils/cn';
 import generatePhotoSizes from '@/utils/generatePhotoSizes';
+import parseHtml from '@/utils/parseHtml';
 import dayjs from 'dayjs';
 import { Route } from 'next';
 import Image from 'next/image';
@@ -59,6 +60,21 @@ const EventLocation: FC<{ loc: HumantixEventLocation }> = ({ loc }) => {
   }
 };
 
+const EventDescription: FC<{
+  description?: string;
+  sharingDescription?: string;
+}> = ({ description, sharingDescription }) => {
+  if (description && description.length < 1000) {
+    return parseHtml({ html: description });
+  }
+
+  if (sharingDescription) {
+    return <p>{sharingDescription}</p>;
+  }
+
+  return null;
+};
+
 interface Props {
   event: HumantixEvent;
   index: number; // 0-based
@@ -108,9 +124,10 @@ const EventCard: FC<Props> = ({ event, index }) => {
         <h4 className={cn(cardHeading, 'pt-2')}>{event.name}</h4>
       </div>
       <div className={content}>
-        {(event.sharingDescription || event.description) && (
-          <p>{event.sharingDescription ?? event.description}</p>
-        )}
+        <EventDescription
+          description={event.description}
+          sharingDescription={event.sharingDescription}
+        />
         <EventDates dates={event.dates} />
         <EventLocation loc={event.eventLocation} />
       </div>

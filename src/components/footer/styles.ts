@@ -28,6 +28,16 @@ const styles = {
     // lg, xl, 2xl
     'lg:grid-cols-2',
   ),
+  anchor: cn(
+    'font-bold',
+    'decoration-transparent',
+    'text-secondary-300 dark:text-secondary',
+    'hover:text-secondary hover:dark:text-secondary-200 hover:underline',
+    'hover:decoration-secondary hover:dark:decoration-secondary-200',
+    'transition duration-200',
+    'transition-[color,text-decoration-color] duration-250',
+    'visited:text-secondary-500 visited:dark:text-secondary-400',
+  ),
 };
 
 export default styles;

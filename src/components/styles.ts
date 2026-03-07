@@ -11,22 +11,21 @@ export const iconButton = {
   button: cn('p-2', 'bg-transparent', 'cursor-pointer'),
 };
 
-export const anchor = cn(
-  'font-bold',
-  'decoration-transparent',
-  'text-secondary-300 dark:text-secondary',
-  'hover:text-secondary hover:dark:text-secondary-200 hover:underline',
-  'hover:decoration-secondary hover:dark:decoration-secondary-200',
-  'transition duration-200',
-  'transition-[color,text-decoration-color] duration-250',
-  'visited:text-secondary-600 visited:dark:text-secondary-500',
-);
-
 export const pageStyles = {
   pageContainer: 'container mr-auto ml-auto',
   pageTitle: 'text-3xl sm:text-4xl lg:text-5xl font-bold px-2',
   pageDivider: 'text-tertiary-500/50 dark:text-tertiary/50 mt-2 mb-4 mx-2',
   sectionContainer: 'my-8 px-2',
+  anchor: cn(
+    'font-bold',
+    'decoration-transparent',
+    'text-secondary-600 dark:text-secondary',
+    'hover:text-secondary hover:dark:text-secondary-200 hover:underline',
+    'hover:decoration-secondary hover:dark:decoration-secondary-200',
+    'transition duration-200',
+    'transition-[color,text-decoration-color] duration-250',
+    'visited:text-secondary-500 visited:dark:text-secondary-400',
+  ),
 };
 
 export const cardStyles = {
