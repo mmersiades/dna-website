@@ -13,6 +13,8 @@ const testIds = {
   },
   header: {
     link: (nav: string, label: string) => `header__${nav}__${label}-link`,
+    openMenuButton: 'header__menu__open-button',
+    closeMenuButton: 'header__menu__close-button',
   },
 };
 

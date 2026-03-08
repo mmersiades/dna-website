@@ -48,6 +48,14 @@ export const TabletPortrait: Story = {
 };
 
 // noinspection JSUnusedGlobalSymbols
+export const SmallMobilePortrait: Story = {
+  globals: {
+    viewport: { value: 'mobile1', isRotated: false },
+  },
+  args,
+};
+
+// noinspection JSUnusedGlobalSymbols
 export const LargeMobilePortrait: Story = {
   globals: {
     viewport: { value: 'mobile2', isRotated: false },
@@ -88,6 +96,15 @@ export const TabletLandscapeDarkHover: Story = {
 export const TabletPortraitDark: Story = {
   globals: {
     viewport: { value: 'tablet', isRotated: false },
+    theme: 'dark',
+  },
+  args,
+};
+
+// noinspection JSUnusedGlobalSymbols
+export const SmallMobilePortraitDark: Story = {
+  globals: {
+    viewport: { value: 'mobile1', isRotated: false },
     theme: 'dark',
   },
   args,

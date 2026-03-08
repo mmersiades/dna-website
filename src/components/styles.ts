@@ -4,7 +4,7 @@ export const iconButton = {
   icon: cn(
     'size-full',
     'block',
-    'text-foreground font-bold dark:text-foreground',
+    'text-black font-bold dark:text-white',
     'hover:text-secondary-500 dark:hover:text-secondary',
     'transition-color duration-250',
   ),

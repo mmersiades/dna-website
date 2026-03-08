@@ -8,7 +8,6 @@ import { cardStyles } from '@/components/styles';
 import copy from '@/constants/copy';
 import cn from '@/utils/cn';
 import generatePhotoSizes from '@/utils/generatePhotoSizes';
-import parseHtml from '@/utils/parseHtml';
 import dayjs from 'dayjs';
 import { Route } from 'next';
 import Image from 'next/image';
@@ -63,14 +62,14 @@ const EventLocation: FC<{ loc: HumantixEventLocation }> = ({ loc }) => {
 const EventDescription: FC<{
   description?: string;
   sharingDescription?: string;
-}> = ({ description, sharingDescription }) => {
-  if (description && description.length < 1000) {
-    return parseHtml({ html: description });
-  }
-
+}> = ({ sharingDescription }) => {
   if (sharingDescription) {
     return <p>{sharingDescription}</p>;
   }
+
+  // After creating parseHTML(), I decided not to try and include
+  // description (an HTML string) because it's too long and the
+  // possibility of bad HTML coming from the Humantix event creator
 
   return null;
 };

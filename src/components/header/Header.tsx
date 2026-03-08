@@ -6,6 +6,7 @@ import MobileNavMenu from '@/components/header/MobileNavMenu';
 import headerStyles from '@/components/header/styles';
 import CtaLink from '@/components/links/CtaLink';
 import copy from '@/constants/copy';
+import testIds from '@/constants/testIds';
 import cn from '@/utils/cn';
 import { FC, useEffect, useState } from 'react';
 
@@ -15,6 +16,8 @@ const Header: FC = () => {
     navLabels,
     menu: { title: menuTitle, open: openMenuLabel, close: closeMenuLabel },
   } = copy.header;
+
+  const { openMenuButton, closeMenuButton } = testIds.header;
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -64,6 +67,7 @@ const Header: FC = () => {
         aria-label={navLabels.mobile}
       >
         <IconButton
+          data-testid={openMenuButton}
           popoverTarget="nav-menu"
           aria-expanded={isOpen}
           aria-controls="nav-menu"
@@ -87,6 +91,7 @@ const Header: FC = () => {
       >
         <div className={menuHeader}>
           <IconButton
+            data-testid={closeMenuButton}
             popoverTarget="nav-menu"
             popoverTargetAction={'hide'}
             aria-expanded={isOpen}

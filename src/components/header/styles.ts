@@ -7,6 +7,7 @@ const headerStyles = {
     'w-screen',
     'z-20',
     'shadow-md',
+    'text-black dark:text-white',
   ),
   desktopContainer: cn(
     'container',

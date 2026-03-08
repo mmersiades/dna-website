@@ -9,7 +9,11 @@ const MobileNavMenu: FC = () => {
   const { links, cta, navLabels } = copy.header;
 
   const { container, nav, activeBubble, hoverBubble, ctaContainer } = {
-    container: cn('nav-wrap', 'h-[calc(100vh-var(--header-height))]'),
+    container: cn(
+      'nav-wrap',
+      'h-[calc(100vh-var(--header-height))]',
+      'text-black dark:text-white',
+    ),
     nav: cn('flex flex-col items-start', 'p-2'),
     activeBubble: cn(
       'bubble',
