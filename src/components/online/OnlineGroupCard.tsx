@@ -79,6 +79,9 @@ const OnlineGroupCard: FC<Props> = ({
               className={linkContainer}
               href={group.url as Route}
               target={'_blank'}
+              onClick={(e) => {
+                e.stopPropagation();
+              }}
             >
               <p className={linkLabel}>{groupUrl}</p>
             </Link>

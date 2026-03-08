@@ -88,6 +88,21 @@ const copy = {
       location: 'Location',
     },
   },
+  participantsAgreement: {
+    form: {
+      agreement: {
+        label:
+          "I agree to respect the DNA participants's agreement as written above",
+      },
+      name: {
+        label: 'Name',
+      },
+      email: {
+        label: 'Email',
+      },
+      submit: 'Submit',
+    },
+  },
   local: {
     title: 'Local Degrowth Groups',
     interest: {
