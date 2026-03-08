@@ -14,6 +14,7 @@ export const richTextContentType = defineType({
     defineField({
       name: 'content',
       type: 'blockContent',
+      validation: (Rule) => Rule.required(),
     }),
   ],
   preview: {

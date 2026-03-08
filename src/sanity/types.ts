@@ -16,7 +16,7 @@
 export type RichTextSection = {
   _type: 'richTextSection';
   title?: string;
-  content?: BlockContent;
+  content: BlockContent;
 };
 
 export type BlockContent = Array<
@@ -190,6 +190,17 @@ export type Slug = {
   _type: 'slug';
   current: string;
   source?: string;
+};
+
+export type ParticipantAgreement = {
+  _id: string;
+  _type: 'participantAgreement';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  version: number;
+  title: string;
+  content: BlockContent;
 };
 
 export type OnlineGroup = {
@@ -411,6 +422,7 @@ export type AllSanitySchemaTypes =
   | Seo
   | Page
   | Slug
+  | ParticipantAgreement
   | OnlineGroup
   | DegrowthDefinition
   | ExternalResource
@@ -513,6 +525,17 @@ export type ONLINE_GROUPS_QUERYResult = Array<{
     _type: 'image';
   } | null;
 }>;
+// Variable: PARTICIPANTS_AGREEMENT_QUERY
+// Query: *[_type == "participantAgreement"][0]{  _id,  _createdAt,  _updatedAt,  _rev,  version,  title,  content}
+export type PARTICIPANTS_AGREEMENT_QUERYResult = {
+  _id: string;
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  version: number;
+  title: string;
+  content: BlockContent;
+} | null;
 // Variable: PAGE_QUERY
 // Query: *[_type == "page" && slug.current == $slug][0]{  _type,   _createdAt,   _updatedAt,   _rev,  _id,   name,   slug,   title,  "seo": {    "title": coalesce(seo.title, title, ""),    "description": coalesce(seo.description,  ""),    "image": seo.image,    "noIndex": seo.noIndex == true  },  pageBuilder[]{    _key,    _type,    _type == "hero" => {      heading,      tagline,      image    },    _type == "video" => {      videoLabel,      url,    },    _type == "richTextSection" => {      title,      content,    },    _type == "gallery" => {      images[]{        _key,        ...,      },    },  }}
 export type PAGE_QUERYResult = {
@@ -587,7 +610,7 @@ export type PAGE_QUERYResult = {
         _key: string;
         _type: 'richTextSection';
         title: string | null;
-        content: BlockContent | null;
+        content: BlockContent;
       }
     | {
         _key: string;
@@ -606,6 +629,7 @@ declare module '@sanity/client' {
     '*[_type == "degrowth-definition"]{\n  _id, \n  statement, \n  quote,\n  author, \n  identifier, \n  citationText,\n  citationUrl,\n}': DEGROWTH_DEFINITIONS_QUERYResult;
     '*[_type == "external-resource"]{\n  _id,\n  title,\n  category,\n  description,\n  url,\n  image,\n  logo\n}': EXT_RESOURCES_QUERYResult;
     '*[_type == "online-group"]{\n  _id,\n  title,\n  category,\n  meetingFrequency,\n  description,\n  url,\n  image\n}': ONLINE_GROUPS_QUERYResult;
+    '*[_type == "participantAgreement"][0]{\n  _id,\n  _createdAt,\n  _updatedAt,\n  _rev,\n  version,\n  title,\n  content\n}': PARTICIPANTS_AGREEMENT_QUERYResult;
     '*[_type == "page" && slug.current == $slug][0]{\n  _type, \n  _createdAt, \n  _updatedAt, \n  _rev,\n  _id, \n  name, \n  slug, \n  title,\n  "seo": {\n    "title": coalesce(seo.title, title, ""),\n    "description": coalesce(seo.description,  ""),\n    "image": seo.image,\n    "noIndex": seo.noIndex == true\n  },\n  pageBuilder[]{\n    _key,\n    _type,\n    _type == "hero" => {\n      heading,\n      tagline,\n      image\n    },\n    _type == "video" => {\n      videoLabel,\n      url,\n    },\n    _type == "richTextSection" => {\n      title,\n      content,\n    },\n    _type == "gallery" => {\n      images[]{\n        _key,\n        ...,\n      },\n    },\n  }\n}': PAGE_QUERYResult;
   }
 }

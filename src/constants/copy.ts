@@ -218,6 +218,10 @@ const copy = {
           href: paths.learn,
         },
         {
+          children: "Participants' Agreement",
+          href: paths.participantsAgreement,
+        },
+        {
           children: 'Get Involved',
           href: paths.getInvolved,
         },

@@ -12,6 +12,7 @@ export const paths = {
   socials: '#socials' as Route,
   subscribe: '#subscribe' as Route,
   studio: '/studio' as Route,
+  participantsAgreement: '/participants-agreement' as Route,
   api: {
     sendEmail: '/api/send-email',
     google: {

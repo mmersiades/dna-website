@@ -4,6 +4,7 @@ import { groupActivityType } from '@/sanity/schemaTypes/contentModels/groupActiv
 import { groupLinkType } from '@/sanity/schemaTypes/contentModels/groupLinkType';
 import { groupType } from '@/sanity/schemaTypes/contentModels/groupType';
 import { onlineGroupType } from '@/sanity/schemaTypes/contentModels/onlineGroupType';
+import { participantAgreementType } from '@/sanity/schemaTypes/contentModels/participantAgreementType';
 import { seoType } from '@/sanity/schemaTypes/contentModels/seoType';
 import { blockContentType } from '@/sanity/schemaTypes/pageBuilder/blockContentType';
 import { callToActionType } from '@/sanity/schemaTypes/pageBuilder/callToActionType';
@@ -24,6 +25,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     externalResourceType,
     degrowthDefinitionType,
     onlineGroupType,
+    participantAgreementType,
     // Page builder
     pageType,
     seoType,

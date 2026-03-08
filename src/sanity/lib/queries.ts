@@ -45,6 +45,17 @@ export const ONLINE_GROUPS_QUERY = defineQuery(`*[_type == "online-group"]{
   image
 }`);
 
+export const PARTICIPANTS_AGREEMENT_QUERY =
+  defineQuery(`*[_type == "participantAgreement"][0]{
+  _id,
+  _createdAt,
+  _updatedAt,
+  _rev,
+  version,
+  title,
+  content
+}`);
+
 export const PAGE_QUERY =
   defineQuery(`*[_type == "page" && slug.current == $slug][0]{
   _type, 
