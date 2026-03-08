@@ -18,6 +18,7 @@ export const paths = {
     google: {
       sheets: {
         groupIntent: '/api/google/sheets/group-intent',
+        participantsAgreement: '/api/google/sheets/participants-agreements',
       },
     },
   },

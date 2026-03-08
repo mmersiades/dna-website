@@ -4,12 +4,10 @@ import { checkBotId } from 'botid/server';
 import { google } from 'googleapis';
 import { NextResponse } from 'next/server';
 
-export interface WriteGroupIntentRowBody {
+export interface WriteParticipantsAgreementRowBody {
   name: string;
   email: string;
-  state: string;
-  subregion: string;
-  country: string;
+  agreementVersion: number;
   date: string;
 }
 
@@ -22,14 +20,7 @@ export async function POST(request: Request) {
 
   try {
     const body = await request.json();
-    const row = [
-      body.date,
-      body.name,
-      body.email,
-      body.state,
-      body.subregion,
-      body.country,
-    ];
+    const row = [body.date, body.name, body.email, body.agreementVersion];
 
     const auth = new google.auth.JWT({
       email: env.GOOGLE_SHEETS_CLIENT_EMAIL,
@@ -40,7 +31,7 @@ export async function POST(request: Request) {
     const sheets = google.sheets({ version: 'v4', auth });
 
     await sheets.spreadsheets.values.append({
-      spreadsheetId: env.GOOGLE_SHEETS_GROUP_INTENT_SHEET_ID,
+      spreadsheetId: env.GOOGLE_SHEETS_PARTICIPANTS_AGREEMENT_SHEET_ID,
       range: 'Sheet1!A1',
       valueInputOption: 'USER_ENTERED',
       requestBody: {
@@ -60,18 +51,16 @@ export async function POST(request: Request) {
 
 export async function GET(request: Request) {
   const url = new URL(request.url);
-  if (!sheetsApi.groupIntentInitialised) {
+  if (!sheetsApi.participantAgreementInitialised) {
     const data = await sheetsApi.getSheetData(
-      env.GOOGLE_SHEETS_GROUP_INTENT_SHEET_ID,
+      env.GOOGLE_SHEETS_PARTICIPANTS_AGREEMENT_SHEET_ID,
       'Sheet1',
     );
-    sheetsApi.setGroupIntentData(data);
+    sheetsApi.setParticipantAgreementData(data);
   }
 
-  const data = sheetsApi.getTableRows({
-    state: url.searchParams.get('state'),
-    region: url.searchParams.get('region'),
-    country: url.searchParams.get('country'),
+  const data = sheetsApi.filterParticipantAgreements({
+    email: url.searchParams.get('email'),
   });
 
   return NextResponse.json({ success: true, data });

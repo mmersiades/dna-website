@@ -27,6 +27,7 @@ export const env = createEnv({
     GOOGLE_SHEETS_CLIENT_EMAIL: z.email(),
     GOOGLE_SHEETS_PRIVATE_KEY: z.string().min(1),
     GOOGLE_SHEETS_GROUP_INTENT_SHEET_ID: z.string().min(1),
+    GOOGLE_SHEETS_PARTICIPANTS_AGREEMENT_SHEET_ID: z.string().min(1),
   },
   /*
    * Environment variables available on the client (and server).

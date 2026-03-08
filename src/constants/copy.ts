@@ -101,6 +101,19 @@ const copy = {
         label: 'Email',
       },
       submit: 'Submit',
+      success: {
+        title: 'Thanks!',
+        message: 'Your agreement has been registered',
+      },
+      failure: {
+        title: 'Failed to register agreement.',
+        message: 'Please try again later.',
+      },
+      existing: {
+        title: 'Already registered!',
+        message: (email: string, version: number) =>
+          `${email} has already registered their agreement with version ${version}`,
+      },
     },
   },
   local: {

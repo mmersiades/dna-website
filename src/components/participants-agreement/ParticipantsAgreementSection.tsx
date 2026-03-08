@@ -1,5 +1,5 @@
 import PageRichText from '@/components/pageBuilder/PageRichText';
-import ParticipantsAgreementForm from '@/components/participants-agreement/ParticipantsAgreementForm';
+import ParticipantsAgreementFormViewModel from '@/components/participants-agreement/ParticipantsAgreementFormViewModel';
 import { pageStyles } from '@/components/styles';
 import { PARTICIPANTS_AGREEMENT_QUERYResult } from '@/sanity/types';
 import cn from '@/utils/cn';
@@ -34,7 +34,7 @@ const ParticipantsAgreementSection: FC<Props> = ({ data }) => {
       <hr className={pageDivider} />
       <PageRichText value={data.content} />
       <hr className={pageDivider} />
-      <ParticipantsAgreementForm agreementVersion={data.version} />
+      <ParticipantsAgreementFormViewModel agreementVersion={data.version} />
     </section>
   );
 };

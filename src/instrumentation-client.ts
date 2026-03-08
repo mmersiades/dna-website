@@ -11,6 +11,10 @@ initBotId({
       path: '/api/google/sheets/group-intent',
       method: 'POST',
     },
+    {
+      path: '/api/google/sheets/participants-agreements',
+      method: 'POST',
+    },
   ],
 });
 

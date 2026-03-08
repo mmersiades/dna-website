@@ -77,7 +77,7 @@ const GroupInterestForm: FC<Props> = ({ state, country, subregion }) => {
         from: 'mailer',
         to: ['dna-contact'],
         subject: `Group Intent Form Submission from ${data.name}`,
-        text: `${data.email} | ${data.state} | ${data.subregion} | ${data.country}`,
+        text: `${data.name} | ${data.email} | ${data.state} | ${data.subregion} | ${data.country}`,
       };
 
       void fetch(paths.api.sendEmail, {

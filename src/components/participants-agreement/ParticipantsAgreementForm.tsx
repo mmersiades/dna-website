@@ -1,10 +1,17 @@
 'use client';
+import { WriteParticipantsAgreementRowBody } from '@/app/api/google/sheets/participants-agreements/route';
+import { SendEmailBody } from '@/app/api/send-email/route';
+import { ParticipantAgreementRow } from '@/app/services/SheetsApi';
 import SubmitButton from '@/components/buttons/SubmitButton';
+import Toast from '@/components/Toast';
 import copy from '@/constants/copy';
+import { paths } from '@/constants/paths';
 import cn from '@/utils/cn';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { FC } from 'react';
+import dayjs from 'dayjs';
+import { FC, useState } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 import * as z from 'zod';
 
 const schema = z.object({
@@ -23,6 +30,7 @@ interface Props {
 }
 
 const ParticipantsAgreementForm: FC<Props> = ({ agreementVersion }) => {
+  const [loading, setLoading] = useState(false);
   const defaultValues = {
     name: '',
     email: '',
@@ -35,17 +43,114 @@ const ParticipantsAgreementForm: FC<Props> = ({ agreementVersion }) => {
     handleSubmit,
     reset,
     formState: { isSubmitting, isValid },
-    setValue,
   } = useForm<Inputs>({ defaultValues, resolver: zodResolver(schema) });
 
+  const fetchSheetData = async ({
+    email,
+  }: {
+    email: string;
+  }): Promise<ParticipantAgreementRow[]> => {
+    const params = new URLSearchParams();
+    if (email.length > 0) params.append('email', email);
+
+    const response = await fetch(
+      `${paths.api.google.sheets.participantsAgreement}?${params.toString()}`,
+    );
+
+    if (!response.ok) {
+      return [];
+    }
+
+    const result = (await response.json()) as {
+      success: boolean;
+      data: ParticipantAgreementRow[];
+    };
+    return result.data;
+  };
+
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    console.log('data', data);
-    // check for existing agreement
-    // post to Google sheet
-    // Toast for outcome
-    // new agreement
-    // updated agreement
-    // Not updated because not needed
+    setLoading(true);
+    const { success, failure, existing } = copy.participantsAgreement.form;
+
+    // Check for existing agreement
+    const existingAgreements = await fetchSheetData({
+      email: data.email,
+    });
+
+    const matchingAgreements = existingAgreements.filter(
+      (agreement) => agreement.agreementVersion === data.agreementVersion,
+    );
+
+    if (matchingAgreements.length > 0) {
+      const message = existing.message(data.email, data.agreementVersion);
+      setLoading(false);
+      toast(
+        <Toast
+          title={existing.title}
+          message={message}
+        />,
+        {
+          ariaLabel: `${existing.title} ${message}`,
+          type: 'info',
+        },
+      );
+      return;
+    }
+
+    // Post to participants-agreements Google Sheet
+    const body: WriteParticipantsAgreementRowBody = {
+      ...data,
+      date: dayjs().format('YYYY-MM-DD'),
+    };
+
+    const response = await fetch(
+      paths.api.google.sheets.participantsAgreement,
+      {
+        method: 'POST',
+        body: JSON.stringify(body),
+      },
+    );
+
+    if (response.ok) {
+      toast(
+        <Toast
+          title={success.title}
+          message={success.message}
+        />,
+        {
+          ariaLabel: `${success.title} ${success.message}`,
+          type: 'success',
+        },
+      );
+      setLoading(false);
+
+      reset();
+
+      // Send email to notify DNA admins
+      const emailBody: SendEmailBody = {
+        from: 'mailer',
+        to: ['dna-contact'],
+        subject: `Participation Agreement Submission from ${data.name}`,
+        text: `${data.name} | ${data.email} | Version: ${data.agreementVersion}`,
+      };
+
+      void fetch(paths.api.sendEmail, {
+        method: 'POST',
+        body: JSON.stringify(emailBody),
+      });
+    } else {
+      setLoading(false);
+      toast(
+        <Toast
+          title={failure.title}
+          message={failure.message}
+        />,
+        {
+          ariaLabel: `${failure.title} ${failure.message}`,
+          type: 'error',
+        },
+      );
+    }
   };
 
   const { form } = copy.participantsAgreement;
@@ -79,9 +184,6 @@ const ParticipantsAgreementForm: FC<Props> = ({ agreementVersion }) => {
       'h-10 w-10',
       'shrink-0',
       'cursor-pointer',
-      '',
-      '',
-      // ...
     ),
     checkboxIcon: cn(
       'icon-[lucide--check]',
@@ -91,21 +193,13 @@ const ParticipantsAgreementForm: FC<Props> = ({ agreementVersion }) => {
       'm-2',
       'h-6 w-6',
       'text-black',
-      //....
     ),
     checkboxContainer: cn(
       'flex flex-row items-center gap-2',
       'col-span-12 sm:col-span-10',
-      '',
-      '',
     ),
     inputContainer: cn('flex flex-col', 'col-span-12 sm:col-span-6', '', ''),
-    submitContainer: cn(
-      'flex justify-end',
-      'col-span-12 sm:col-span-2 ',
-      // 'sm:pt-4',
-      '',
-    ),
+    submitContainer: cn('flex justify-end', 'col-span-12 sm:col-span-2 '),
   };
 
   return (
@@ -184,7 +278,7 @@ const ParticipantsAgreementForm: FC<Props> = ({ agreementVersion }) => {
           <SubmitButton
             type="submit"
             submitting={isSubmitting}
-            disabled={!isValid}
+            disabled={!isValid || loading}
           >
             {form.submit}
           </SubmitButton>
