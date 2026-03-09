@@ -18,6 +18,7 @@ type TWLucideIcon =
   | 'icon-[lucide--x]'
   | 'icon-[lucide--chevron-left]'
   | 'icon-[lucide--chevron-right]'
+  | 'icon-[lucide--download]'
   | 'icon-[lucide--link]';
 
 interface IconButtonProps extends DetailedHTMLProps<

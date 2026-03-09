@@ -118,14 +118,16 @@ const copy = {
   },
   qrCodes: {
     title: 'QR Codes',
+    pdfTitle: 'Degrowth Network Australia',
     instructions: 'Select page to link to',
+    download: 'Download QR Code',
     links: [
       {
         label: "Participants' Agreement",
         path: paths.participantsAgreement,
       },
       {
-        label: 'Landing',
+        label: 'Landing Page',
         path: paths.home,
       },
       {
@@ -133,19 +135,19 @@ const copy = {
         path: paths.getInvolved,
       },
       {
-        label: 'Local Groups',
+        label: 'Local Groups Page',
         path: paths.local,
       },
       {
-        label: 'Events',
+        label: 'Events Page',
         path: paths.events,
       },
       {
-        label: 'Online Groups',
+        label: 'Online Groups Page',
         path: paths.online,
       },
       {
-        label: 'About',
+        label: 'About Page',
         path: paths.about,
       },
       {
