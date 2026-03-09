@@ -37,6 +37,7 @@ export const env = createEnv({
   client: {
     NEXT_PUBLIC_SANITY_PROJECT_ID: z.string().min(8),
     NEXT_PUBLIC_SANITY_DATASET: z.string(),
+    NEXT_PUBLIC_SENTRY_DSN: z.string().optional(), // Omit to disable Sentry in local dev
   },
   /*
    * Due to how Next.js bundles environment variables on Edge and Client,
@@ -48,5 +49,6 @@ export const env = createEnv({
   experimental__runtimeEnv: {
     NEXT_PUBLIC_SANITY_PROJECT_ID: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
     NEXT_PUBLIC_SANITY_DATASET: process.env.NEXT_PUBLIC_SANITY_DATASET,
+    NEXT_PUBLIC_SENTRY_DSN: process.env.NEXT_PUBLIC_SENTRY_DSN,
   },
 });

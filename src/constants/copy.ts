@@ -116,6 +116,44 @@ const copy = {
       },
     },
   },
+  qrCodes: {
+    title: 'QR Codes',
+    instructions: 'Select page to link to',
+    links: [
+      {
+        label: "Participants' Agreement",
+        path: paths.participantsAgreement,
+      },
+      {
+        label: 'Landing',
+        path: paths.home,
+      },
+      {
+        label: 'Get Involved',
+        path: paths.getInvolved,
+      },
+      {
+        label: 'Local Groups',
+        path: paths.local,
+      },
+      {
+        label: 'Events',
+        path: paths.events,
+      },
+      {
+        label: 'Online Groups',
+        path: paths.online,
+      },
+      {
+        label: 'About',
+        path: paths.about,
+      },
+      {
+        label: 'Learn More',
+        path: paths.learn,
+      },
+    ],
+  },
   local: {
     title: 'Local Degrowth Groups',
     interest: {
@@ -248,6 +286,10 @@ const copy = {
         {
           children: "Participants' Agreement",
           href: paths.participantsAgreement,
+        },
+        {
+          children: 'QR Codes',
+          href: paths.qrCodes,
         },
         {
           children: 'Get Involved',

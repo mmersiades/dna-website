@@ -13,6 +13,7 @@ export const paths = {
   subscribe: '#subscribe' as Route,
   studio: '/studio' as Route,
   participantsAgreement: '/participants-agreement' as Route,
+  qrCodes: '/qr-codes' as Route,
   api: {
     sendEmail: '/api/send-email',
     google: {
