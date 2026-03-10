@@ -27,7 +27,7 @@
         font-family: var(--font-display), serif;
         text-align: center;
         font-weight: bold;
-        font-size: clamp(20px, 4.5vw, 75px);
+        font-size: min(clamp(20px, 4.5vw, 75px), clamp(20px, 4.5vh, 75px));
     }
 }
 
