@@ -1,5 +1,5 @@
+import EventCard from '@/app/(main)/events/EventCard';
 import { HumantixEvent } from '@/app/services/HumantixApi';
-import EventCard from '@/components/events/EventCard';
 import { pageStyles } from '@/components/styles';
 import copy from '@/constants/copy';
 import cn from '@/utils/cn';

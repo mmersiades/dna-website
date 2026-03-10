@@ -15,7 +15,7 @@ import Link from 'next/link';
 import { FC } from 'react';
 
 const EventDate: FC<{ date: HumantixEventDate }> = ({ date }) => {
-  const readableDate = dayjs(date.startDate).format('MMMM D, YYYY');
+  const readableDate = dayjs(date.startDate).format('ddd, MMMM D, YYYY');
   const start = dayjs(date.startDate).format('HH:mm');
   const end = dayjs(date.endDate).format('HH:mm');
 

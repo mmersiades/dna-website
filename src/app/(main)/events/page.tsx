@@ -1,5 +1,5 @@
+import FutureEventsList from '@/app/(main)/events/FutureEventsList';
 import humantixApi from '@/app/services/HumantixApi';
-import FutureEventsList from '@/components/events/FutureEventsList';
 import { pageStyles } from '@/components/styles';
 import copy from '@/constants/copy';
 import { getPage } from '@/lib/actions';
