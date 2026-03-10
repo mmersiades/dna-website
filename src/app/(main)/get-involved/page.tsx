@@ -17,10 +17,15 @@ export default function GetInvolvedPage() {
   const { cta } = {
     cta: cn([
       'flex items-center justify-center',
-      'bg-radial from-primary to-transparent',
+      'bg-radial from-primary/75 to-transparent',
       'text-center',
       'rounded-md',
-      'font-bold text-base sm:text-xl',
+      'font-bold sm:text-xl lg:text-2xl',
+      'p-2 md:p-4 lg:p-6 xl:p-8',
+      'font-display',
+      'ring-2 ring-primary/50',
+      'hover:ring-primary',
+      'transition-color duration-250',
     ]),
   };
 

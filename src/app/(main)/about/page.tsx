@@ -19,6 +19,13 @@ export default async function AboutPage() {
   const { pageContainer } = pageStyles;
 
   return (
-    <div className={pageContainer}>{page && <PageBuilder {...page} />}</div>
+    <div className={pageContainer}>
+      {page && (
+        <PageBuilder
+          {...page}
+          title={page.title ?? 'About Degrowth Network Australia'}
+        />
+      )}
+    </div>
   );
 }

@@ -67,8 +67,8 @@ const copy = {
         children: 'Join a local Degrowth group',
       },
       {
-        href: paths.learn,
-        children: 'Join a learning circle',
+        href: paths.online,
+        children: 'Join an online group',
       },
       {
         href: paths.socials,
