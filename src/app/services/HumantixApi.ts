@@ -63,7 +63,7 @@ export const humantixEventDatesSchema = z.array(humantixEventDateSchema);
 export type HumantixEventDates = z.infer<typeof humantixEventDatesSchema>;
 
 export const humantixEventLocationSchema = z.object({
-  type: z.string(),
+  type: z.enum(['address', 'online', 'custom', 'toBeAnnounced']),
   venueName: z.string().optional(),
   address: z.string().optional(),
   latLng: z.tuple([z.number().optional(), z.number().optional()]),

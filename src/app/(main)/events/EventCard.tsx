@@ -45,18 +45,30 @@ const EventDates: FC<{ dates: HumantixEventDates }> = ({ dates }) => {
 
 const EventLocation: FC<{ loc: HumantixEventLocation }> = ({ loc }) => {
   const { cardSubHeading } = cardStyles;
-
-  if (loc.type === 'address') {
-    return (
-      <>
-        <h6 className={cardSubHeading}>{copy.events.card.location}</h6>
-        <p>{`${loc.venueName}, ${loc.city}, ${loc.region}`}</p>
-      </>
-    );
-  } else {
-    // TODO
-    return <p>{'TODO'}</p>;
+  let location = '';
+  switch (loc.type) {
+    case 'address':
+      location = `${loc.venueName}, ${loc.city}, ${loc.region}`;
+      break;
+    case 'online':
+      console.log('loc', loc);
+      location = loc.instructions ?? 'Online';
+      break;
+    case 'custom':
+      // TODO:
+      location = 'Custom location';
+      break;
+    case 'toBeAnnounced':
+      location = 'To be announced';
+      break;
   }
+
+  return (
+    <>
+      <h6 className={cardSubHeading}>{copy.events.card.location}</h6>
+      <p>{location}</p>
+    </>
+  );
 };
 
 const EventDescription: FC<{
