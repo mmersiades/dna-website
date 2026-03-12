@@ -1,9 +1,10 @@
 'use client';
 import cn from '@/utils/cn';
+import { Route } from 'next';
 import Link, { LinkProps } from 'next/link';
 import { FC, PropsWithChildren } from 'react';
 
-type Props = LinkProps & {
+type Props = LinkProps<Route> & {
   responsive?: boolean;
 };
 
@@ -14,7 +15,7 @@ const CtaLink: FC<PropsWithChildren<Props>> = ({
 }) => {
   const { link } = {
     link: cn(
-      'text-2xl font-bold text-primary-foreground',
+      'text-2xl font-bold text-primary-foreground text-nowrap',
       responsive && '[font-size:min(4vw,2rem)]',
       'bg-primary-200 dark:bg-primary',
       'bg-radial from-primary-200 to-primary-400/75 dark:from-primary dark:to-primary-500/50',
@@ -31,6 +32,7 @@ const CtaLink: FC<PropsWithChildren<Props>> = ({
 
   return (
     <Link
+      id={'cta-link'}
       className={link}
       {...props}
       onClick={() => document.getElementById('nav-menu')?.hidePopover()}

@@ -18,6 +18,7 @@ type TWLucideIcon =
   | 'icon-[lucide--x]'
   | 'icon-[lucide--chevron-left]'
   | 'icon-[lucide--chevron-right]'
+  | 'icon-[lucide--download]'
   | 'icon-[lucide--link]';
 
 interface IconButtonProps extends DetailedHTMLProps<
@@ -28,6 +29,7 @@ interface IconButtonProps extends DetailedHTMLProps<
   srName: string;
   round?: boolean;
   size?: TWSize;
+  onDark?: boolean;
 }
 
 const IconButton: FC<IconButtonProps> = ({
@@ -35,6 +37,7 @@ const IconButton: FC<IconButtonProps> = ({
   srName,
   round = false,
   size = 'size-6',
+  onDark = false,
   ...props
 }) => {
   const { icon, button } = iconButton;
@@ -42,7 +45,12 @@ const IconButton: FC<IconButtonProps> = ({
   return (
     <button
       role={'button'}
-      className={cn([button, size, round && 'rounded-full'])}
+      className={cn([
+        button,
+        size,
+        round && 'rounded-full',
+        onDark && 'hover:text-secondary text-white',
+      ])}
       {...props}
     >
       <span className={cn([icon, iconName])}></span>

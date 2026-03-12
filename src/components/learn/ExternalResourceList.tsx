@@ -1,13 +1,14 @@
 import ExternalResourceCard from '@/components/learn/ExternalResourceCard';
 import { pageStyles } from '@/components/styles';
-import { sanityFetch } from '@/sanity/lib/live';
-import { EXT_RESOURCES_QUERY } from '@/sanity/lib/queries';
+import { EXT_RESOURCES_QUERYResult } from '@/sanity/types';
+import { FC } from 'react';
 
-export default async function ExternalResourceList() {
-  const { data: extResources } = await sanityFetch({
-    query: EXT_RESOURCES_QUERY,
-  });
+interface Props {
+  title: string;
+  list: EXT_RESOURCES_QUERYResult[0][];
+}
 
+const ExternalResourceList: FC<Props> = ({ list, title }) => {
   const { pageTitle, pageDivider, sectionContainer } = pageStyles;
 
   const { grid, cell } = {
@@ -17,23 +18,23 @@ export default async function ExternalResourceList() {
 
   return (
     <section className={sectionContainer}>
-      <h4 className={pageTitle}>Useful Degrowth Resources</h4>
+      <h4 className={pageTitle}>{title}</h4>
       <hr className={pageDivider} />
       <div className={grid}>
-        {extResources.map((er, index) => {
-          return (
-            <div
-              key={er._id}
-              className={cell}
-            >
-              <ExternalResourceCard
-                resource={er}
-                index={index}
-              />
-            </div>
-          );
-        })}
+        {list.map((er, index) => (
+          <div
+            key={er._id}
+            className={cell}
+          >
+            <ExternalResourceCard
+              resource={er}
+              index={index}
+            />
+          </div>
+        ))}
       </div>
     </section>
   );
-}
+};
+
+export default ExternalResourceList;

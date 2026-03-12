@@ -16,7 +16,7 @@
         --font-size-quote: min(3vh, 3vw);
         --width-quote-container: 65vw;
         --subheader-indent: 15vw;
-        --subheader-font-size: min(5vw, 2.5rem);
+        --subheader-font-size: clamp(1rem, 4.5vw, 3.5rem);
         --quote-padding: calc(var(--spacing) * 1);
     }
 

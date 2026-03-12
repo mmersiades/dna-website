@@ -1,4 +1,5 @@
 import Citation from '@/components/landing/Citation';
+import copy from '@/constants/copy';
 import { CSSProperties, FC } from 'react';
 import './styles.css';
 
@@ -21,6 +22,7 @@ const Quote: FC<QuoteProps> = ({
   citationUrl,
   identifier,
 }) => {
+  const { quotePrefix } = copy.landing;
   let label = ` - ${author}`;
 
   if (identifier) {
@@ -35,7 +37,7 @@ const Quote: FC<QuoteProps> = ({
       {/*Subheader*/}
       <div className={'subheader-container'}>
         <div className={'subheader-a-container'}>
-          <h3 className={'subheader-a'}>Degrowth is </h3>
+          <h3 className={'subheader-a'}>{quotePrefix}</h3>
         </div>
         <div className={'subheader-b-container'}>
           <h3 className={'subheader-b'}>{statement}</h3>

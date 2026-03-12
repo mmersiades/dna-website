@@ -69,7 +69,7 @@ export default async function RootLayout({
 }>) {
   const { body, html } = {
     html: cn('overscroll-none', atma.className),
-    body: cn('antialiased'),
+    body: cn('antialiased', 'overflow-x-hidden'),
   };
 
   return (

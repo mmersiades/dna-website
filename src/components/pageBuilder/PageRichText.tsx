@@ -12,6 +12,7 @@ const PageRichText: FC<{ value: BlockContent }> = ({ value }) => {
       'prose',
       'md:prose-lg lg:prose-xl xl:prose-2xl',
       'dark:prose-invert',
+      'prose-p:text-justify',
       'prose-headings:font-display',
       'prose-a:font-bold ',
       'prose-a:text-secondary-400 prose-a:decoration-transparent',

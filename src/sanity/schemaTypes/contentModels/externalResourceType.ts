@@ -19,6 +19,19 @@ export const externalResourceType = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'category',
+      title: 'Category',
+      type: 'string', // Type must be string
+      options: {
+        list: [
+          { title: 'Learning Degrowth', value: 'degrowth' },
+          { title: 'Useful Resource', value: 'useful' },
+          { title: 'Allied Org/Movement', value: 'allied' },
+        ],
+      },
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
       name: 'description',
       type: 'text',
       validation: (rule) => rule.required(),

@@ -1,16 +1,21 @@
 import PageGallery from '@/components/pageBuilder/PageGallery';
 import PageRichText from '@/components/pageBuilder/PageRichText';
 import PageVideo from '@/components/pageBuilder/PageVideo';
+import { pageStyles } from '@/components/styles';
 import { PAGE_QUERYResult } from '@/sanity/types';
 import { FC } from 'react';
 
 type PageBuilderProps = NonNullable<PAGE_QUERYResult>;
 
-const PageBuilder: FC<PageBuilderProps> = ({ pageBuilder }) => {
+const PageBuilder: FC<PageBuilderProps> = ({ pageBuilder, title }) => {
   if (!pageBuilder) return null;
-  // TODO: add title
+
+  const { pageTitle, pageDivider, sectionContainer } = pageStyles;
+
   return (
-    <div className={'container mr-auto ml-auto'}>
+    <section className={sectionContainer}>
+      <h4 className={pageTitle}>{title}</h4>
+      <hr className={pageDivider} />
       {pageBuilder.map((content, index) => {
         switch (content._type) {
           case 'hero':
@@ -44,7 +49,7 @@ const PageBuilder: FC<PageBuilderProps> = ({ pageBuilder }) => {
             return null;
         }
       })}
-    </div>
+    </section>
   );
 
   // TODO: add last updated

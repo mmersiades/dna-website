@@ -2,12 +2,13 @@
 import { SendEmailBody } from '@/app/api/send-email/route';
 import FooterSubmitButton from '@/components/buttons/FooterSubmitButton';
 import styles from '@/components/footer/styles';
-import Toast from '@/components/Toast';
+import copy from '@/constants/copy';
+import testIds from '@/constants/testIds';
 import cn from '@/utils/cn';
+import sendEmailOnSubmit from '@/utils/sendEmailOnSubmit';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FC } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import { toast } from 'react-toastify';
 import * as z from 'zod';
 
 const schema = z.object({
@@ -23,6 +24,10 @@ interface Props {
 }
 
 const ContactForm: FC<Props> = ({ id }) => {
+  const { title: contactTitle, success, failure } = copy.footer.contact;
+
+  const { contact } = testIds.footer;
+
   const defaultValues: Inputs = {
     email: '',
     name: '',
@@ -48,34 +53,14 @@ const ContactForm: FC<Props> = ({ id }) => {
       text: data.message,
     };
 
-    const response = await fetch('/api/send-email', {
-      method: 'POST',
-      body: JSON.stringify(body),
+    void sendEmailOnSubmit({
+      body,
+      successTitle: success.title,
+      successSubtitle: success.message,
+      failureTitle: failure.title,
+      failureSubtitle: failure.message,
+      successCallback: reset,
     });
-    if (response.status === 204) {
-      toast(
-        <Toast
-          title={'Message sent.'}
-          message={"Thank you. We'll reply via email soon"}
-        />,
-        {
-          ariaLabel: "Message sent. Thank you. We'll reply via email soon",
-          type: 'success',
-        },
-      );
-      reset();
-    } else {
-      toast(
-        <Toast
-          title={'Failed to send.'}
-          message={'Please try again later.'}
-        />,
-        {
-          ariaLabel: 'Failed to send. Please try again later.',
-          type: 'error',
-        },
-      );
-    }
   };
 
   const { title, divider, input } = styles;
@@ -102,7 +87,7 @@ const ContactForm: FC<Props> = ({ id }) => {
 
   return (
     <div className={container}>
-      <h4 className={title}>Contact</h4>
+      <h4 className={title}>{contactTitle}</h4>
       <hr className={divider} />
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={grid}>
@@ -120,6 +105,7 @@ const ContactForm: FC<Props> = ({ id }) => {
                   </label>
                   <div className={row}>
                     <textarea
+                      data-testid={contact.messageInput}
                       className={cn(input, 'w-full py-2 font-sans')}
                       id={'message'}
                       required
@@ -152,6 +138,7 @@ const ContactForm: FC<Props> = ({ id }) => {
                   </label>
                   <div className={row}>
                     <input
+                      data-testid={contact.nameInput}
                       className={cn(input, 'h-10 w-full')}
                       type="text"
                       id={id}
@@ -185,6 +172,7 @@ const ContactForm: FC<Props> = ({ id }) => {
                   </label>
                   <div className={row}>
                     <input
+                      data-testid={contact.emailInput}
                       className={cn(input, 'h-10 w-full')}
                       type="email"
                       id={'email'}
@@ -206,6 +194,7 @@ const ContactForm: FC<Props> = ({ id }) => {
           />
           <div className={cn([col, 'sm:col-span-2', 'pt-5', desktopSubmit])}>
             <FooterSubmitButton
+              data-testid={contact.submitButton}
               type="submit"
               submitting={isSubmitting}
               disabled={!isValid}
@@ -216,6 +205,7 @@ const ContactForm: FC<Props> = ({ id }) => {
 
           <div className={mobileSubmit}>
             <FooterSubmitButton
+              data-testid={contact.submitButton}
               type="submit"
               submitting={isSubmitting}
               disabled={!isValid}

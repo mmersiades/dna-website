@@ -1,9 +1,9 @@
+import copy from '@/constants/copy';
 import { getPage } from '@/lib/actions';
 import cn from '@/utils/cn';
 import generateDNAMetadata from '@/utils/generateDNAMetadata';
 import { Metadata } from 'next';
-import Link, { LinkProps } from 'next/link';
-import { PropsWithChildren } from 'react';
+import Link from 'next/link';
 import './styles.css';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -12,45 +12,27 @@ export async function generateMetadata(): Promise<Metadata> {
   return generateDNAMetadata(page);
 }
 
-const links: PropsWithChildren<LinkProps>[] = [
-  {
-    href: '#subscribe',
-    children: 'Subscribe to our mailing list',
-  },
-  {
-    href: '/local',
-    children: 'Join a local Degrowth group',
-  },
-  // TODO: Find a replacement
-  {
-    href: '/get-involved/whatsapp',
-    children: 'Join a learning circle',
-  },
-  {
-    href: '#socials',
-    children: 'Find us on socials',
-  },
-  {
-    href: '/events',
-    children: 'Come to a DNA event',
-  },
-];
-
 export default function GetInvolvedPage() {
+  const { header, links } = copy['get-involved'];
   const { cta } = {
     cta: cn([
       'flex items-center justify-center',
-      'bg-radial from-primary to-transparent',
+      'bg-radial from-primary/75 to-transparent',
       'text-center',
       'rounded-md',
-      'font-bold text-base sm:text-xl',
+      'font-bold sm:text-xl lg:text-2xl',
+      'p-2 md:p-4 lg:p-6 xl:p-8',
+      'font-display',
+      'ring-2 ring-primary/50',
+      'hover:ring-primary',
+      'transition-color duration-250',
     ]),
   };
 
   return (
     <div className={'cta-container'}>
       <div className={'header-container'}>
-        <h4 className={'heading'}>Degrowth Network Australia</h4>
+        <h4 className={'heading'}>{header}</h4>
       </div>
       {links.map((link, index) => (
         <Link

@@ -19,7 +19,7 @@ export const degrowthDefinitionType = defineType({
       - "planned."
       - "about decisions."
       `,
-      validation: (rule) => rule.required().max(30),
+      validation: (rule) => rule.required().max(25),
     }),
     defineField({
       title: 'Definition',

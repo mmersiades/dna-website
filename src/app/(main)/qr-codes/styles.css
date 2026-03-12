@@ -1,0 +1,70 @@
+:root {
+    --gradient-from: var(--color-secondary-200);
+    --gradient-to: var(--color-white);
+
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --gradient-from: oklch(from var(--color-secondary-500) l c h / 0.25);;
+        --gradient-to: var(--color-tertiary-900);;
+    }
+}
+
+select {
+    appearance: none;
+    @supports (appearance: base-select) {
+        &,
+        &::picker(select) {
+            appearance: base-select;
+        }
+    }
+}
+
+@supports (appearance: base-select) {
+    select {
+        justify-content: center;
+        &::picker-icon {
+            margin-right: calc(var(--spacing) * 2);
+        }
+        ::checkmark {
+            content: '✔';
+        }
+    }
+    ::picker(select) {
+        border-color: var(--secondary);
+        border-width: 2px;
+        border-radius: var(--radius-md);
+
+        gap: calc(var(--spacing) * 8);
+        margin-top: calc(var(--spacing) * 2);
+        padding: calc(var(--spacing) * 4);
+
+        top: anchor(--body bottom);
+        width: anchor-size(--body width);
+        max-width: calc(var(--container-2xl) - calc(var(--spacing) * 4));
+
+        inset: 0;
+        opacity: 0;
+        transition: opacity, display, overlay, pointer-events;
+        transition-duration: 0.25s;
+        transition-timing-function: ease-in-out;
+        transition-behavior: allow-discrete;
+
+        background-image: radial-gradient(var(--gradient-from), var(--gradient-to));
+    }
+
+    select:open::picker(select) {
+        opacity: 1;
+        pointer-events: auto;
+        @starting-style {
+            opacity: 0;
+            pointer-events: none;
+        }
+    }
+}
+
+@supports not (appearance: base-select) {
+
+
+}

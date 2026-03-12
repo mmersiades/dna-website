@@ -1,9 +1,11 @@
 import GroupCard from '@/components/local/GroupCard';
 import { pageStyles } from '@/components/styles';
+import copy from '@/constants/copy';
 import { sanityFetch } from '@/sanity/lib/live';
 import { GROUPS_QUERY } from '@/sanity/lib/queries';
 
 export default async function LocalGroupList() {
+  const { title } = copy.local;
   const { data: groups } = await sanityFetch({
     query: GROUPS_QUERY,
   });
@@ -12,15 +14,19 @@ export default async function LocalGroupList() {
 
   return (
     <section className={sectionContainer}>
-      <h4 className={pageTitle}>Local Groups</h4>
+      <h4 className={pageTitle}>{title}</h4>
       <hr className={pageDivider} />
-      <div className="grid gap-2 p-2 md:grid-cols-2">
+      <div className="grid grid-cols-1 gap-2 p-2 md:grid-cols-2">
         {groups.map((g, i) => (
-          <GroupCard
+          <div
             key={g._id}
-            group={g}
-            index={i}
-          />
+            className={'col-span-1'}
+          >
+            <GroupCard
+              group={g}
+              index={i}
+            />
+          </div>
         ))}
       </div>
     </section>

@@ -1,6 +1,6 @@
 import regions from '@/constants/regions';
 import { env } from '@/env';
-import { google } from 'googleapis';
+import { google, sheets_v4 } from 'googleapis';
 
 const perth = [
   regions['WA'][2],
@@ -61,6 +61,13 @@ export interface TableRow {
   bold: boolean;
 }
 
+export interface ParticipantAgreementRow {
+  date: string;
+  name: string;
+  email: string;
+  agreementVersion: number;
+}
+
 class SheetsApi {
   private auth = new google.auth.JWT({
     email: env.GOOGLE_SHEETS_CLIENT_EMAIL,
@@ -70,20 +77,48 @@ class SheetsApi {
 
   private sheets = google.sheets({ version: 'v4', auth: this.auth });
 
-  public data: GroupIntentRow[] = [];
+  public groupIntentRows: GroupIntentRow[] = [];
+  public participantAgreementRows: ParticipantAgreementRow[] = [];
 
-  get initialised(): boolean {
-    return this.data.length > 0;
+  get groupIntentInitialised(): boolean {
+    return this.groupIntentRows.length > 0;
   }
 
-  public getSheetData = async (sheetId: string, range: string) => {
+  get participantAgreementInitialised(): boolean {
+    return this.participantAgreementRows.length > 0;
+  }
+
+  public setGroupIntentData(data: sheets_v4.Schema$ValueRange['values']) {
+    if (!data) return;
+    this.groupIntentRows = this.mapRawGroupIntentData(data);
+  }
+
+  public setParticipantAgreementData(
+    data: sheets_v4.Schema$ValueRange['values'],
+  ) {
+    if (!data) return;
+    this.participantAgreementRows = this.mapRawParticipantAgreementData(data);
+  }
+
+  public filterParticipantAgreements = (params: {
+    email: string | null;
+  }): ParticipantAgreementRow[] => {
+    if (!params.email) return [];
+
+    return this.participantAgreementRows.filter(
+      (row) => row.email === params.email,
+    );
+  };
+
+  public getSheetData = async (
+    sheetId: string,
+    range: string,
+  ): Promise<sheets_v4.Schema$ValueRange['values']> => {
     const response = await this.sheets.spreadsheets.values.get({
       spreadsheetId: sheetId,
       range,
     });
-    if (response.data.values) {
-      this.data = this.mapRawData(response.data.values);
-    }
+    return response.data.values;
   };
 
   public getTableRows = (params: {
@@ -95,7 +130,7 @@ class SheetsApi {
     if (!params.state && !params.region && !params.country) {
       const national = {
         label: 'Australia',
-        count: this.data.length,
+        count: this.groupIntentRows.length,
         bold: true,
       };
       rows.push(national);
@@ -145,7 +180,7 @@ class SheetsApi {
       }
 
       // Add selected region
-      const regionRows = this.data.filter(
+      const regionRows = this.groupIntentRows.filter(
         (row) => row.region === params.region,
       );
       const region = {
@@ -157,7 +192,9 @@ class SheetsApi {
     }
 
     if (params.state) {
-      const stateRows = this.data.filter((row) => row.state === params.state);
+      const stateRows = this.groupIntentRows.filter(
+        (row) => row.state === params.state,
+      );
       const state = {
         label: params.state,
         count: stateRows.length,
@@ -167,7 +204,7 @@ class SheetsApi {
     }
 
     if (params.country) {
-      const countryRows = this.data.filter(
+      const countryRows = this.groupIntentRows.filter(
         (row) => row.country === params.country,
       );
       const country = {
@@ -193,7 +230,9 @@ class SheetsApi {
     if (city.includes(selectedRegion)) {
       const otherRegions = city.filter((r) => r !== selectedRegion);
       for (const r of otherRegions) {
-        const regionRows = this.data.filter((row) => row.region === r);
+        const regionRows = this.groupIntentRows.filter(
+          (row) => row.region === r,
+        );
         const region = {
           label: r,
           count: regionRows.length,
@@ -204,7 +243,30 @@ class SheetsApi {
     }
   }
 
-  private mapRawData = (data: string[][]): GroupIntentRow[] => {
+  private mapRawParticipantAgreementData = (
+    data: sheets_v4.Schema$ValueRange['values'],
+  ) => {
+    if (!data) return [];
+    const rows: ParticipantAgreementRow[] = [];
+    const headerRow = data.shift();
+    const dateIndex = headerRow?.indexOf('date') ?? 0;
+    const nameIndex = headerRow?.indexOf('name') ?? 1;
+    const emailIndex = headerRow?.indexOf('email') ?? 2;
+    const versionIndex = headerRow?.indexOf('agreementVersion') ?? 3;
+
+    for (const row of data) {
+      const newRow: ParticipantAgreementRow = {
+        date: row[dateIndex],
+        name: row[nameIndex],
+        email: row[emailIndex],
+        agreementVersion: parseInt(row[versionIndex]),
+      };
+      rows.push(newRow);
+    }
+    return rows;
+  };
+
+  private mapRawGroupIntentData = (data: string[][]): GroupIntentRow[] => {
     const rows: GroupIntentRow[] = [];
     const headerRow = data.shift();
     const stateIndex = headerRow?.indexOf('state');

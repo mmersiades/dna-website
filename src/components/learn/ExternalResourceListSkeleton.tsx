@@ -1,12 +1,14 @@
 import { pageStyles } from '@/components/styles';
+import copy from '@/constants/copy';
 import { FC } from 'react';
 
 const ExternalResourceListSkeleton: FC = () => {
+  const { degrowthTitle } = copy.learn;
   const { pageTitle, pageDivider, sectionContainer } = pageStyles;
 
   return (
     <section className={sectionContainer}>
-      <h4 className={pageTitle}>Useful Degrowth Resources</h4>
+      <h4 className={pageTitle}>{degrowthTitle}</h4>
       <hr className={pageDivider} />
     </section>
   );

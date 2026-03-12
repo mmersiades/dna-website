@@ -1,29 +1,16 @@
 import styles from '@/components/footer/styles';
+import copy from '@/constants/copy';
 import cn from '@/utils/cn';
+import { Route } from 'next';
 import Link from 'next/link';
 import { FC } from 'react';
 
 interface IconProps {
   icon: string;
-  url: string;
+  url: Route;
   networkName: string;
   name: string;
 }
-
-const socialIcons: IconProps[] = [
-  {
-    icon: 'icon-[lucide--facebook]',
-    url: 'https://www.facebook.com/degrowthnetworkaustralia',
-    networkName: 'Facebook',
-    name: 'Degrowth Network Australia',
-  },
-  {
-    icon: 'icon-[lucide--instagram]',
-    url: 'https://www.instagram.com/degrowthnetworkaustralia',
-    networkName: 'Instagram',
-    name: 'DNA (@degrowthnetworkaustralia)',
-  },
-];
 
 const SocialIcon: FC<IconProps> = ({
   url,
@@ -65,6 +52,7 @@ const SocialIcon: FC<IconProps> = ({
 };
 
 const Socials: FC<{ id: string }> = ({ id }) => {
+  const { title: socialsTitle, networks } = copy.footer.socials;
   const { title, divider } = styles;
 
   return (
@@ -73,11 +61,11 @@ const Socials: FC<{ id: string }> = ({ id }) => {
         id={id}
         className={title}
       >
-        Socials
+        {socialsTitle}
       </h4>
       <hr className={divider} />
       <div className={'flex flex-wrap justify-start gap-4 md:gap-8 lg:gap-16'}>
-        {socialIcons.map((prop) => (
+        {networks.map((prop) => (
           <SocialIcon
             key={prop.icon}
             {...prop}

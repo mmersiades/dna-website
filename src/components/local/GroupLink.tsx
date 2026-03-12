@@ -1,6 +1,7 @@
 import styles from '@/components/local/styles';
 import { GroupLink as Props } from '@/sanity/types';
 import cn from '@/utils/cn';
+import { Route } from 'next';
 import Link from 'next/link';
 import { FC } from 'react';
 
@@ -29,7 +30,7 @@ const GroupLink: FC<Props> = ({ label, url, category }) => {
   return (
     <Link
       className={linkContainer}
-      href={url}
+      href={url as Route}
       target={'_blank'}
     >
       <span className={cn([linkIcon, iconName])}></span>

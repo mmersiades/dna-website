@@ -44,21 +44,20 @@ const GroupPhoto: FC<Props> = ({
         })}
         loading={index < 2 ? 'eager' : 'lazy'}
       />
-      {caption ||
-        (attribution && (
-          <div className={captionContainer}>
-            {caption && (
-              <p className={text}>
-                <small>{caption}</small>
-              </p>
-            )}
-            {attribution && (
-              <p className={text}>
-                <small>{attribution}</small>
-              </p>
-            )}
-          </div>
-        ))}
+      {(caption || attribution) && (
+        <div className={captionContainer}>
+          {caption && (
+            <p className={text}>
+              <small>{caption}</small>
+            </p>
+          )}
+          {attribution && (
+            <p className={text}>
+              <small>{attribution}</small>
+            </p>
+          )}
+        </div>
+      )}
     </div>
   );
 };

@@ -1,8 +1,10 @@
 import CtaLink from '@/components/links/CtaLink';
+import copy from '@/constants/copy';
 import { FC } from 'react';
 import './styles.css';
 
 const LandingHeader: FC = () => {
+  const { header: headerText, cta } = copy.landing;
   return (
     <>
       {/*Header*/}
@@ -11,28 +13,28 @@ const LandingHeader: FC = () => {
         className={'landing-cta-container'}
       >
         <CtaLink
-          href={'/get-involved'}
+          href={cta.href}
           responsive
         >
-          Get Involved
+          {cta.children}
         </CtaLink>
       </div>
       <header className="header">
-        <h1 className={'heading'}>What is Degrowth?</h1>
+        <h1 className={'heading'}>{headerText}</h1>
       </header>
 
       {/*Fallback header*/}
       <header className="fallback-header">
-        <h1 className={'heading'}>What is Degrowth?</h1>
+        <h1 className={'heading'}>{headerText}</h1>
         <div
           id={'main-content'}
           className={'fallback-cta-container'}
         >
           <CtaLink
-            href={'/get-involved'}
+            href={cta.href}
             responsive
           >
-            Get Involved
+            {cta.children}
           </CtaLink>
         </div>
       </header>

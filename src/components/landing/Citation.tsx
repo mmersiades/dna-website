@@ -1,4 +1,5 @@
 import { QuoteProps } from '@/components/landing/Quote';
+import { Route } from 'next';
 import Link from 'next/link';
 import { FC } from 'react';
 import './styles.css';
@@ -14,7 +15,7 @@ const Citation: FC<Props> = ({ citationText, citationUrl }) => {
       <div className="citation-section">
         <div className={'citation-container'}>
           <Link
-            href={citationUrl}
+            href={citationUrl as Route}
             target={'_blank'}
             className={'citation'}
           >

@@ -5,15 +5,17 @@ import {
   HumantixEventLocation,
 } from '@/app/services/HumantixApi';
 import { cardStyles } from '@/components/styles';
+import copy from '@/constants/copy';
 import cn from '@/utils/cn';
 import generatePhotoSizes from '@/utils/generatePhotoSizes';
 import dayjs from 'dayjs';
+import { Route } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FC } from 'react';
 
 const EventDate: FC<{ date: HumantixEventDate }> = ({ date }) => {
-  const readableDate = dayjs(date.startDate).format('MMMM D, YYYY');
+  const readableDate = dayjs(date.startDate).format('ddd, MMMM D, YYYY');
   const start = dayjs(date.startDate).format('HH:mm');
   const end = dayjs(date.endDate).format('HH:mm');
 
@@ -30,7 +32,7 @@ const EventDates: FC<{ dates: HumantixEventDates }> = ({ dates }) => {
 
   return (
     <div>
-      <h6 className={cardSubHeading}>Date</h6>
+      <h6 className={cardSubHeading}>{copy.events.card.date}</h6>
       {dates.map((date) => (
         <EventDate
           key={date._id}
@@ -43,17 +45,45 @@ const EventDates: FC<{ dates: HumantixEventDates }> = ({ dates }) => {
 
 const EventLocation: FC<{ loc: HumantixEventLocation }> = ({ loc }) => {
   const { cardSubHeading } = cardStyles;
-
-  if (loc.type === 'address') {
-    return (
-      <>
-        <h6 className={cardSubHeading}>Location</h6>
-        <p>{`${loc.venueName}, ${loc.city}, ${loc.region}`}</p>
-      </>
-    );
-  } else {
-    return <p>TODO</p>;
+  let location = '';
+  switch (loc.type) {
+    case 'address':
+      location = `${loc.venueName}, ${loc.city}, ${loc.region}`;
+      break;
+    case 'online':
+      console.log('loc', loc);
+      location = loc.instructions ?? 'Online';
+      break;
+    case 'custom':
+      // TODO:
+      location = 'Custom location';
+      break;
+    case 'toBeAnnounced':
+      location = 'To be announced';
+      break;
   }
+
+  return (
+    <>
+      <h6 className={cardSubHeading}>{copy.events.card.location}</h6>
+      <p>{location}</p>
+    </>
+  );
+};
+
+const EventDescription: FC<{
+  description?: string;
+  sharingDescription?: string;
+}> = ({ sharingDescription }) => {
+  if (sharingDescription) {
+    return <p>{sharingDescription}</p>;
+  }
+
+  // After creating parseHTML(), I decided not to try and include
+  // description (an HTML string) because it's too long and the
+  // possibility of bad HTML coming from the Humantix event creator
+
+  return null;
 };
 
 interface Props {
@@ -78,7 +108,7 @@ const EventCard: FC<Props> = ({ event, index }) => {
 
   return (
     <Link
-      href={event.url}
+      href={event.url as Route}
       target={'_blank'}
       className={container}
     >
@@ -105,7 +135,10 @@ const EventCard: FC<Props> = ({ event, index }) => {
         <h4 className={cn(cardHeading, 'pt-2')}>{event.name}</h4>
       </div>
       <div className={content}>
-        {event.sharingDescription && <p>{event.sharingDescription}</p>}
+        <EventDescription
+          description={event.description}
+          sharingDescription={event.sharingDescription}
+        />
         <EventDates dates={event.dates} />
         <EventLocation loc={event.eventLocation} />
       </div>

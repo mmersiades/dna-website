@@ -11,6 +11,7 @@ export default function robots(): MetadataRoute.Robots {
         '/studio/structure/',
         '/studio/vision/',
         '/studio/presentation/',
+        '/participants-agreement',
       ],
     },
     sitemap: `https://${copy.seo.url}/sitemap.xml`,

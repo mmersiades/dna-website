@@ -1,5 +1,6 @@
 import { GroupActivity as Props } from '@/sanity/types';
 import cn from '@/utils/cn';
+import { Route } from 'next';
 import Link from 'next/link';
 import { FC } from 'react';
 
@@ -23,7 +24,7 @@ const GroupActivity: FC<Props> = ({ activityLabel, activityUrl }) => {
     return (
       <Link
         className={container}
-        href={activityUrl}
+        href={activityUrl as Route}
         target={'_blank'}
       >
         <p className={label}>{activityLabel}</p>

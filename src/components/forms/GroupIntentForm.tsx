@@ -3,6 +3,8 @@ import { WriteGroupIntentRowBody } from '@/app/api/google/sheets/group-intent/ro
 import { SendEmailBody } from '@/app/api/send-email/route';
 import SubmitButton from '@/components/buttons/SubmitButton';
 import Toast from '@/components/Toast';
+import copy from '@/constants/copy';
+import { paths } from '@/constants/paths';
 import cn from '@/utils/cn';
 import { zodResolver } from '@hookform/resolvers/zod';
 import dayjs from 'dayjs';
@@ -45,12 +47,13 @@ const GroupInterestForm: FC<Props> = ({ state, country, subregion }) => {
   } = useForm<Inputs>({ defaultValues, resolver: zodResolver(schema) });
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    const { success, failure } = copy.local.intent;
     const body: WriteGroupIntentRowBody = {
       ...data,
       date: dayjs().format('YYYY-MM-DD'),
     };
 
-    const response = await fetch('/api/google/sheets/group-intent', {
+    const response = await fetch(paths.api.google.sheets.groupIntent, {
       method: 'POST',
       body: JSON.stringify(body),
     });
@@ -58,12 +61,11 @@ const GroupInterestForm: FC<Props> = ({ state, country, subregion }) => {
     if (response.ok) {
       toast(
         <Toast
-          title={'Thanks!'}
-          message={'Your interest in joining a group has been registered'}
+          title={success.title}
+          message={success.message}
         />,
         {
-          ariaLabel:
-            'Thanks! Your interest in joining a group has been registered',
+          ariaLabel: `${success.title} ${success.message}`,
           type: 'success',
         },
       );
@@ -75,21 +77,21 @@ const GroupInterestForm: FC<Props> = ({ state, country, subregion }) => {
         from: 'mailer',
         to: ['dna-contact'],
         subject: `Group Intent Form Submission from ${data.name}`,
-        text: `${data.email} | ${data.state} | ${data.subregion} | ${data.country}`,
+        text: `${data.name} | ${data.email} | ${data.state} | ${data.subregion} | ${data.country}`,
       };
 
-      void fetch('/api/send-email', {
+      void fetch(paths.api.sendEmail, {
         method: 'POST',
         body: JSON.stringify(emailBody),
       });
     } else {
       toast(
         <Toast
-          title={'Failed to register interest.'}
-          message={'Please try again later.'}
+          title={failure.title}
+          message={failure.message}
         />,
         {
-          ariaLabel: 'Failed to register interest. Please try again later.',
+          ariaLabel: `${failure.title} ${failure.message}`,
           type: 'error',
         },
       );
@@ -125,9 +127,7 @@ const GroupInterestForm: FC<Props> = ({ state, country, subregion }) => {
 
   return (
     <div className={container}>
-      <p className={'text-md'}>
-        Register your interest in joining a new group in your area.
-      </p>
+      <p className={'text-md'}>{copy.local.intent.title}</p>
       <form
         className={formContainer}
         onSubmit={handleSubmit(onSubmit)}
@@ -141,7 +141,7 @@ const GroupInterestForm: FC<Props> = ({ state, country, subregion }) => {
                 htmlFor={'name'}
                 className={label}
               >
-                Name
+                {copy.local.intent.name}
               </label>
               <input
                 {...field}
@@ -163,7 +163,7 @@ const GroupInterestForm: FC<Props> = ({ state, country, subregion }) => {
                 htmlFor={'email'}
                 className={label}
               >
-                Email
+                {copy.local.intent.email}
               </label>
               <input
                 className={cn(input, 'h-10 w-full')}
@@ -179,7 +179,7 @@ const GroupInterestForm: FC<Props> = ({ state, country, subregion }) => {
           submitting={isSubmitting}
           disabled={!isValid}
         >
-          Submit
+          {copy.local.intent.submit}
         </SubmitButton>
       </form>
     </div>

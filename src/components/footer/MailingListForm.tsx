@@ -1,13 +1,14 @@
 'use client';
-import { EmailAlias, SendEmailBody } from '@/app/api/send-email/route';
+import { SendEmailBody } from '@/app/api/send-email/route';
 import FooterSubmitButton from '@/components/buttons/FooterSubmitButton';
 import styles from '@/components/footer/styles';
-import Toast from '@/components/Toast';
+import copy from '@/constants/copy';
+import testIds from '@/constants/testIds';
 import cn from '@/utils/cn';
+import sendEmailOnSubmit from '@/utils/sendEmailOnSubmit';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FC } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import { toast } from 'react-toastify';
 import * as z from 'zod';
 
 const schema = z.object({
@@ -17,14 +18,24 @@ const schema = z.object({
 type Inputs = z.infer<typeof schema>;
 
 interface Props {
-  subscribeTo: EmailAlias;
   id?: string;
 }
 
-const MailingListForm: FC<Props> = ({ subscribeTo, id }) => {
+const MailingListForm: FC<Props> = ({ id }) => {
+  const {
+    title: mailingListTitle,
+    label: mailingListLabel,
+    button: mailingListButton,
+    success,
+    failure,
+  } = copy.footer.mailingList;
+
+  const { mailingList } = testIds.footer;
+
   const defaultValues: Inputs = {
     email: '',
   };
+
   const {
     control,
     handleSubmit,
@@ -37,39 +48,20 @@ const MailingListForm: FC<Props> = ({ subscribeTo, id }) => {
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const body: SendEmailBody = {
-      from: data.email,
-      to: [subscribeTo],
+      from: 'mailer',
+      to: ['dna-contact'],
+      subject: `DNA mailing list subscription request`,
+      text: `Email: ${data.email}`,
     };
 
-    const response = await fetch('/api/send-email', {
-      method: 'POST',
-      body: JSON.stringify(body),
+    void sendEmailOnSubmit({
+      body,
+      successTitle: success.title,
+      successSubtitle: success.message,
+      failureTitle: failure.title,
+      failureSubtitle: failure.message,
+      successCallback: reset,
     });
-
-    if (response.status === 204) {
-      toast(
-        <Toast
-          title={'Thank you for subscribing!'}
-          message={'Check your email for the confirmation step.'}
-        />,
-        {
-          ariaLabel: 'Mailing list subscription success',
-          type: 'success',
-        },
-      );
-      reset();
-    } else {
-      toast(
-        <Toast
-          title={'Failed to subscribe.'}
-          message={'Please try again later.'}
-        />,
-        {
-          ariaLabel: 'Mailing list subscription failure',
-          type: 'error',
-        },
-      );
-    }
   };
 
   const { title, divider, input } = styles;
@@ -85,7 +77,7 @@ const MailingListForm: FC<Props> = ({ subscribeTo, id }) => {
 
   return (
     <div className={container}>
-      <h4 className={title}>Mailing List</h4>
+      <h4 className={title}>{mailingListTitle}</h4>
       <hr className={divider} />
       <form onSubmit={handleSubmit(onSubmit)}>
         <Controller
@@ -98,11 +90,12 @@ const MailingListForm: FC<Props> = ({ subscribeTo, id }) => {
                   htmlFor={id}
                   className={label}
                 >
-                  Email
+                  {mailingListLabel}
                 </label>
                 <div className={row}>
                   <div className={cn(col, 'flex-1')}>
                     <input
+                      data-testid={mailingList.emailInput}
                       className={cn(input, 'h-10')}
                       type="email-to-subscribe"
                       id={id}
@@ -113,11 +106,12 @@ const MailingListForm: FC<Props> = ({ subscribeTo, id }) => {
                   </div>
                   <div className={submitContainer}>
                     <FooterSubmitButton
+                      data-testid={mailingList.submitButton}
                       type="submit"
                       submitting={isSubmitting}
                       disabled={!isValid}
                     >
-                      Subscribe
+                      {mailingListButton}
                     </FooterSubmitButton>
                   </div>
                 </div>

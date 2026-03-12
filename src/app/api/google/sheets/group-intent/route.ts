@@ -60,11 +60,12 @@ export async function POST(request: Request) {
 
 export async function GET(request: Request) {
   const url = new URL(request.url);
-  if (!sheetsApi.initialised) {
-    await sheetsApi.getSheetData(
+  if (!sheetsApi.groupIntentInitialised) {
+    const data = await sheetsApi.getSheetData(
       env.GOOGLE_SHEETS_GROUP_INTENT_SHEET_ID,
       'Sheet1',
     );
+    sheetsApi.setGroupIntentData(data);
   }
 
   const data = sheetsApi.getTableRows({

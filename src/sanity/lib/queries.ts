@@ -28,10 +28,32 @@ export const DEGROWTH_DEFINITIONS_QUERY =
 export const EXT_RESOURCES_QUERY = defineQuery(`*[_type == "external-resource"]{
   _id,
   title,
+  category,
   description,
   url,
   image,
   logo
+}`);
+
+export const ONLINE_GROUPS_QUERY = defineQuery(`*[_type == "online-group"]{
+  _id,
+  title,
+  category,
+  meetingFrequency,
+  description,
+  url,
+  image
+}`);
+
+export const PARTICIPANTS_AGREEMENT_QUERY =
+  defineQuery(`*[_type == "participantAgreement"][0]{
+  _id,
+  _createdAt,
+  _updatedAt,
+  _rev,
+  version,
+  title,
+  content
 }`);
 
 export const PAGE_QUERY =

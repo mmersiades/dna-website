@@ -2,6 +2,7 @@
 import GroupLink from '@/components/local/GroupLink';
 import styles from '@/components/local/styles';
 import { cardStyles } from '@/components/styles';
+import copy from '@/constants/copy';
 import { GroupLink as GroupLinkProps } from '@/sanity/types';
 import cn from '@/utils/cn';
 import {
@@ -10,6 +11,7 @@ import {
   useFloating,
   useTransitionStyles,
 } from '@floating-ui/react';
+import { Route } from 'next';
 import Link from 'next/link';
 import { FC, useState } from 'react';
 
@@ -90,7 +92,7 @@ const EmailButton: FC<{ email: string }> = ({ email }) => {
         onClick={handleCopy}
       >
         <span className={cn([linkIcon, 'icon-[lucide--mail]'])}></span>
-        <p className={linkLabel}>Email</p>
+        <p className={linkLabel}>{copy.local.contacts.email}</p>
       </button>
       {isMounted && (
         <div
@@ -104,7 +106,7 @@ const EmailButton: FC<{ email: string }> = ({ email }) => {
             style={{ ...transitionStyles }}
             className={popoverContainer}
           >
-            <p className={popoverText}>Email copied</p>
+            <p className={popoverText}>{copy.local.contacts.emailCopied}</p>
           </div>
         </div>
       )}
@@ -118,11 +120,11 @@ const WebsiteLink: FC<{ website: string }> = ({ website }) => {
   return (
     <Link
       className={linkContainer}
-      href={website}
+      href={website as Route}
       target={'_blank'}
     >
       <span className={cn([linkIcon, 'icon-[lucide--link]'])}></span>
-      <p className={linkLabel}>Website</p>
+      <p className={linkLabel}>{copy.local.contacts.website}</p>
     </Link>
   );
 };
@@ -140,7 +142,7 @@ const GroupContactsDisplay: FC<Props> = ({ email, website, links }) => {
 
   return (
     <>
-      <h6 className={cardSubHeading}>Contact</h6>
+      <h6 className={cardSubHeading}>{copy.local.contacts.title}</h6>
       <div className={cardListContainer}>
         {email && <EmailButton email={email} />}
         {website && <WebsiteLink website={website} />}

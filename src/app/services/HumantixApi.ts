@@ -63,17 +63,17 @@ export const humantixEventDatesSchema = z.array(humantixEventDateSchema);
 export type HumantixEventDates = z.infer<typeof humantixEventDatesSchema>;
 
 export const humantixEventLocationSchema = z.object({
-  type: z.string(),
-  venueName: z.string(),
-  address: z.string(),
-  latLng: z.tuple([z.number(), z.number()]),
+  type: z.enum(['address', 'online', 'custom', 'toBeAnnounced']),
+  venueName: z.string().optional(),
+  address: z.string().optional(),
+  latLng: z.tuple([z.number().optional(), z.number().optional()]),
   instructions: z.string().optional(),
-  placeId: z.string(),
+  placeId: z.string().optional(),
   onlineUrl: z.string().optional(),
   mapUrl: z.string().optional(),
-  city: z.string(),
-  region: z.string(),
-  country: z.string(),
+  city: z.string().optional(),
+  region: z.string().optional(),
+  country: z.string().optional(),
 });
 
 export type HumantixEventLocation = z.infer<typeof humantixEventLocationSchema>;
