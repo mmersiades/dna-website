@@ -114,12 +114,12 @@ const EventCard: FC<Props> = ({ event, index }) => {
     >
       <div>
         {event.bannerImage && (
-          <div className={'relative aspect-video w-full'}>
+          <div className={'relative aspect-2/1 w-full'}>
             <Image
               src={event.bannerImage.url}
               alt={event.name}
               fill
-              className={'rounded-t-md'}
+              className={'aspect-2/1 rounded-t-md'}
               sizes={generatePhotoSizes({
                 mobile: 600,
                 sm: 600,
