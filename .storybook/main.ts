@@ -15,5 +15,14 @@ const config: StorybookConfig = {
   features: {
     developmentModeForBuild: true,
   },
+  async viteFinal(config) {
+    return {
+      ...config,
+      define: {
+        ...config.define,
+        'process.env.STORYBOOK': JSON.stringify('true'),
+      },
+    };
+  },
 };
 export default config;

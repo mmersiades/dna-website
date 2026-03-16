@@ -9,7 +9,7 @@ export default async function MainLayout({
   children: ReactNode;
 }>) {
   const { main } = {
-    main: cn(['pt-(--header-height)', 'min-h-svh']),
+    main: cn('pt-(--header-height)', 'min-h-svh'),
   };
 
   return (

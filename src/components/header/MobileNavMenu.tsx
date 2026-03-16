@@ -13,6 +13,7 @@ const MobileNavMenu: FC = () => {
       'nav-wrap',
       'h-[calc(100vh-var(--header-height))]',
       'text-black dark:text-white',
+      'dark:bg-tertiary-900',
     ),
     nav: cn('flex flex-col items-start', 'p-2'),
     activeBubble: cn(

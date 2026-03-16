@@ -55,7 +55,7 @@ const Header: FC = () => {
       'h-(--header-height)',
       'dark:text-white font-bold text-lg italic',
       'flex flex-row items-center justify-start gap-4',
-      'bg-tertiary-200 dark:bg-tertiary-900',
+      'bg-tertiary-200 dark:bg-tertiary-950',
       'px-2',
     ),
   };

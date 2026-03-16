@@ -32,7 +32,7 @@ const EventDates: FC<{ dates: HumantixEventDates }> = ({ dates }) => {
 
   return (
     <div>
-      <h6 className={cardSubHeading}>{copy.events.card.date}</h6>
+      <p className={cardSubHeading}>{copy.events.card.date}</p>
       {dates.map((date) => (
         <EventDate
           key={date._id}
@@ -65,7 +65,7 @@ const EventLocation: FC<{ loc: HumantixEventLocation }> = ({ loc }) => {
 
   return (
     <>
-      <h6 className={cardSubHeading}>{copy.events.card.location}</h6>
+      <p className={cardSubHeading}>{copy.events.card.location}</p>
       <p>{location}</p>
     </>
   );

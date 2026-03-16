@@ -18,15 +18,21 @@ type Story = StoryObj<typeof meta>;
 
 const args = { id: 'id' };
 
-const { openMenuButton, closeMenuButton } = testIds.header;
+const { openMenuButton } = testIds.header;
 
 // noinspection JSUnusedGlobalSymbols
 export const DesktopLandscape: Story = {
+  globals: {
+    theme: 'light',
+  },
   args,
 };
 
 // noinspection JSUnusedGlobalSymbols
 export const DesktopLandscapePseudoLink: Story = {
+  globals: {
+    theme: 'light',
+  },
   args,
   parameters: {
     pseudo: {
@@ -38,6 +44,9 @@ export const DesktopLandscapePseudoLink: Story = {
 
 // noinspection JSUnusedGlobalSymbols
 export const DesktopLandscapeHoverCTA: Story = {
+  globals: {
+    theme: 'light',
+  },
   args,
   parameters: {
     pseudo: {
@@ -50,6 +59,7 @@ export const DesktopLandscapeHoverCTA: Story = {
 export const TabletLandscape: Story = {
   globals: {
     viewport: { value: 'tablet', isRotated: true },
+    theme: 'light',
   },
   args,
 };
@@ -58,6 +68,7 @@ export const TabletLandscape: Story = {
 export const TabletPortrait: Story = {
   globals: {
     viewport: { value: 'tablet', isRotated: false },
+    theme: 'light',
   },
   args,
 };
@@ -66,6 +77,7 @@ export const TabletPortrait: Story = {
 export const SmallMobilePortrait: Story = {
   globals: {
     viewport: { value: 'mobile1', isRotated: false },
+    theme: 'light',
   },
   args,
 };
@@ -74,6 +86,7 @@ export const SmallMobilePortrait: Story = {
 export const SmallMobilePortraitHover: Story = {
   globals: {
     viewport: { value: 'mobile1', isRotated: false },
+    theme: 'light',
   },
   args,
   parameters: {
@@ -87,6 +100,7 @@ export const SmallMobilePortraitHover: Story = {
 export const LargeMobilePortrait: Story = {
   globals: {
     viewport: { value: 'mobile2', isRotated: false },
+    theme: 'light',
   },
   args,
 };
@@ -95,6 +109,7 @@ export const LargeMobilePortrait: Story = {
 export const LargeMobilePortraitOpen: Story = {
   globals: {
     viewport: { value: 'mobile2', isRotated: false },
+    theme: 'light',
   },
   args,
   play: async ({ canvasElement, userEvent }) => {
