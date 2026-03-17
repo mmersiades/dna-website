@@ -9,25 +9,54 @@ import copy from '@/constants/copy';
 import cn from '@/utils/cn';
 import generatePhotoSizes from '@/utils/generatePhotoSizes';
 import dayjs from 'dayjs';
+import timezone from 'dayjs/plugin/timezone';
+import utc from 'dayjs/plugin/utc';
 import { Route } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FC } from 'react';
 
-const EventDate: FC<{ date: HumantixEventDate }> = ({ date }) => {
-  const readableDate = dayjs(date.startDate).format('ddd, MMMM D, YYYY');
-  const start = dayjs(date.startDate).format('HH:mm');
-  const end = dayjs(date.endDate).format('HH:mm');
+dayjs.extend(utc);
+dayjs.extend(timezone);
+
+const getTzAbbreviation = (date: Date, timeZone: string) => {
+  return new Intl.DateTimeFormat('en-AU', {
+    timeZone,
+    timeZoneName: 'short',
+  })
+    .formatToParts(date)
+    .find((part) => part.type === 'timeZoneName')?.value;
+};
+
+const EventDate: FC<{ date: HumantixEventDate; timezone: string }> = ({
+  date,
+  timezone,
+}) => {
+  const startDate = new Date(date.startDate);
+
+  const readableDate = dayjs(startDate)
+    .tz(timezone)
+    .format('ddd, MMMM D, YYYY');
+
+  const start = dayjs(startDate).tz(timezone).format('HH:mm');
+  const end = dayjs(date.endDate).tz(timezone).format('HH:mm');
+
+  const tzAbbr = getTzAbbreviation(startDate, timezone);
+
+  const time = `${start} - ${end} ${tzAbbr}`;
 
   return (
     <>
       <p>{readableDate}</p>
-      <p>{`${start} - ${end}`}</p>
+      <p>{time}</p>
     </>
   );
 };
 
-export const EventDates: FC<{ dates: HumantixEventDates }> = ({ dates }) => {
+export const EventDates: FC<{
+  dates: HumantixEventDates;
+  timezone: string;
+}> = ({ dates, timezone }) => {
   const { cardSubHeading } = cardStyles;
 
   return (
@@ -37,6 +66,7 @@ export const EventDates: FC<{ dates: HumantixEventDates }> = ({ dates }) => {
         <EventDate
           key={date._id}
           date={date}
+          timezone={timezone}
         />
       ))}
     </div>
@@ -138,7 +168,10 @@ const EventCard: FC<Props> = ({ event, index }) => {
           description={event.description}
           sharingDescription={event.sharingDescription}
         />
-        <EventDates dates={event.dates} />
+        <EventDates
+          dates={event.dates}
+          timezone={event.timezone}
+        />
         <EventLocation loc={event.eventLocation} />
       </div>
     </Link>
