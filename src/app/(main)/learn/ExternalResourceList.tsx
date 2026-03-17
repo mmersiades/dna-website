@@ -1,4 +1,4 @@
-import ExternalResourceCard from '@/components/learn/ExternalResourceCard';
+import ExternalResourceCard from '@/app/(main)/learn/ExternalResourceCard';
 import { pageStyles } from '@/components/styles';
 import { EXT_RESOURCES_QUERYResult } from '@/sanity/types';
 import { FC } from 'react';

@@ -24,7 +24,11 @@ const ExternalResourceCard: FC<Props> = ({ resource, index }) => {
     ),
     content: 'p-4',
     h4: 'font-display text-lg font-bold',
-    imageContainer: 'relative aspect-video w-full min-w-1/3',
+    imageContainer: cn(
+      'hidden sm:block',
+      'relative',
+      'aspect-video w-full max-w-1/3',
+    ),
     image: 'rounded-l-md object-cover',
   };
 

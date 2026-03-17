@@ -1,4 +1,4 @@
-import ExternalResourceList from '@/components/learn/ExternalResourceList';
+import ExternalResourceList from '@/app/(main)/learn/ExternalResourceList';
 import copy from '@/constants/copy';
 import { sanityFetch } from '@/sanity/lib/live';
 import { EXT_RESOURCES_QUERY } from '@/sanity/lib/queries';

@@ -64,7 +64,7 @@ const Header: FC = () => {
     <div className={container}>
       <nav
         className={mobileContainer}
-        aria-label={navLabels.mobile}
+        aria-label={navLabels.mobileClosed}
       >
         <IconButton
           data-testid={openMenuButton}

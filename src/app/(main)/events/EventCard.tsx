@@ -51,7 +51,6 @@ const EventLocation: FC<{ loc: HumantixEventLocation }> = ({ loc }) => {
       location = `${loc.venueName}, ${loc.city}, ${loc.region}`;
       break;
     case 'online':
-      console.log('loc', loc);
       location = loc.instructions ?? 'Online';
       break;
     case 'custom':

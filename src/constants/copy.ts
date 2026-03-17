@@ -341,7 +341,8 @@ const copy = {
       href: paths.getInvolved,
     },
     navLabels: {
-      mobile: 'Main Navigation (Mobile)',
+      mobileClosed: 'Main Navigation (Mobile) [closed]',
+      mobileOpen: 'Main Navigation (Mobile) [open]',
       desktop: 'Main Navigation (Desktop)',
     },
     menu: {

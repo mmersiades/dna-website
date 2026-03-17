@@ -37,7 +37,7 @@ const MobileNavMenu: FC = () => {
       <div className={hoverBubble}></div>
       <nav
         className={nav}
-        aria-label={navLabels.mobile}
+        aria-label={navLabels.mobileOpen}
       >
         {links.map((linkProps) => {
           return (
