@@ -223,6 +223,7 @@ class HumantixApi {
     const config: RequestInit = {
       method: 'GET',
       headers: this.authHeader,
+      next: { revalidate: 1800 },
     };
 
     const response = await fetch(
@@ -260,6 +261,7 @@ class HumantixApi {
     const config: RequestInit = {
       method: 'GET',
       headers: this.authHeader,
+      next: { revalidate: 1800 },
     };
 
     const url = `${this.baseApiUrl}/v1/events?page=${page}&pageSize=${pageSize}&inFutureOnly=false`;
