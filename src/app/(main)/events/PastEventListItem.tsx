@@ -34,7 +34,10 @@ const PastEventListItem: FC<Props> = ({ event }) => {
         />
       </div>
       <div className={'flex-1'}>
-        <EventDates dates={event.dates} />
+        <EventDates
+          dates={event.dates}
+          timezone={event.timezone}
+        />
       </div>
       <div className={'flex-1'}>
         <EventLocation loc={event.eventLocation} />
