@@ -21,10 +21,9 @@ const PastEventListItem: FC<Props> = ({ event }) => {
       'bg-muted/50',
       'rounded-lg',
       'border border-muted',
-      '',
-      // ...
     ),
   };
+
   return (
     <div className={container}>
       <div className={'flex-3'}>
@@ -34,10 +33,10 @@ const PastEventListItem: FC<Props> = ({ event }) => {
           sharingDescription={event.sharingDescription}
         />
       </div>
-      <div className={'flex-1 shrink-0'}>
+      <div className={'flex-1'}>
         <EventDates dates={event.dates} />
       </div>
-      <div className={'flex-1 shrink-0'}>
+      <div className={'flex-1'}>
         <EventLocation loc={event.eventLocation} />
       </div>
     </div>
