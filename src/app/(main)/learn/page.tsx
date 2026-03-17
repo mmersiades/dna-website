@@ -1,5 +1,5 @@
-import ExternalResourceListSkeleton from '@/components/learn/ExternalResourceListSkeleton';
-import ExternalResourceViewModel from '@/components/learn/ExternalResourceViewModel';
+import ExternalResourceListSkeleton from '@/app/(main)/learn/ExternalResourceListSkeleton';
+import ExternalResourceViewModel from '@/app/(main)/learn/ExternalResourceViewModel';
 import { pageStyles } from '@/components/styles';
 import { getPage } from '@/lib/actions';
 import generateDNAMetadata from '@/utils/generateDNAMetadata';

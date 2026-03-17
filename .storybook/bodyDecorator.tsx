@@ -18,7 +18,6 @@ const bodyDecorator = (Story: StoryFn<ReactRenderer>) => {
       atma.className,
       'antialiased',
       'overflow-x-hidden',
-      'w-screen',
     ),
   };
   return (

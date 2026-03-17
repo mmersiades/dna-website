@@ -83,6 +83,7 @@ const copy = {
   events: {
     error: 'Error fetching events',
     upcoming: 'Upcoming Events',
+    previous: 'Previous Events',
     card: {
       date: 'Date',
       location: 'Location',
@@ -341,7 +342,8 @@ const copy = {
       href: paths.getInvolved,
     },
     navLabels: {
-      mobile: 'Main Navigation (Mobile)',
+      mobileClosed: 'Main Navigation (Mobile) [closed]',
+      mobileOpen: 'Main Navigation (Mobile) [open]',
       desktop: 'Main Navigation (Desktop)',
     },
     menu: {

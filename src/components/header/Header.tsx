@@ -55,7 +55,7 @@ const Header: FC = () => {
       'h-(--header-height)',
       'dark:text-white font-bold text-lg italic',
       'flex flex-row items-center justify-start gap-4',
-      'bg-tertiary-200 dark:bg-tertiary-900',
+      'bg-tertiary-200 dark:bg-tertiary-950',
       'px-2',
     ),
   };
@@ -64,7 +64,7 @@ const Header: FC = () => {
     <div className={container}>
       <nav
         className={mobileContainer}
-        aria-label={navLabels.mobile}
+        aria-label={navLabels.mobileClosed}
       >
         <IconButton
           data-testid={openMenuButton}

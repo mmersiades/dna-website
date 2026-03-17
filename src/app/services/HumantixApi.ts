@@ -1,4 +1,5 @@
 import { env } from '@/env';
+import dayjs from 'dayjs';
 import { z } from 'zod';
 
 export const humantixTicketTypeSchema = z.object({
@@ -32,7 +33,7 @@ export const humantixPackagedTicketSchema = z.object({
   name: z.string(),
   price: z.number(),
   quantity: z.number(),
-  description: z.string(),
+  description: z.string().optional(),
   disabled: z.boolean(),
   deleted: z.boolean(),
   tickets: z.array(
@@ -117,10 +118,12 @@ export const humantixEventSchema = z.object({
     maximumPrice: z.number(),
   }),
   paymentOptions: z.object({
-    refundSettings: z.object({
-      refundPolicy: z.string().optional(),
-      customRefundPolicy: z.string().optional(),
-    }),
+    refundSettings: z
+      .object({
+        refundPolicy: z.string().optional(),
+        customRefundPolicy: z.string().optional(),
+      })
+      .optional(),
   }),
   publishedAt: z.string().optional(),
   additionalQuestions: z.array(
@@ -164,19 +167,21 @@ export const humantixEventSchema = z.object({
       hazards: z.string(),
       toiletLocation: z.string(),
       disabledParking: z.string(),
-      features: z.object({
-        access: z.boolean(),
-        wheelchairAccessibility: z.boolean(),
-        audioDescription: z.boolean(),
-        telephoneTypewriter: z.boolean(),
-        volumeControlTelephone: z.boolean(),
-        assistiveListeningSystems: z.boolean(),
-        signLanguageInterpretation: z.boolean(),
-        accessiblePrint: z.boolean(),
-        closedCaptioning: z.boolean(),
-        openedCaptioning: z.boolean(),
-        brailleSymbol: z.boolean(),
-      }),
+      features: z
+        .object({
+          access: z.boolean(),
+          wheelchairAccessibility: z.boolean(),
+          audioDescription: z.boolean(),
+          telephoneTypewriter: z.boolean(),
+          volumeControlTelephone: z.boolean(),
+          assistiveListeningSystems: z.boolean(),
+          signLanguageInterpretation: z.boolean(),
+          accessiblePrint: z.boolean(),
+          closedCaptioning: z.boolean(),
+          openedCaptioning: z.boolean(),
+          brailleSymbol: z.boolean(),
+        })
+        .optional(),
     })
     .optional(),
   affiliateCode: z
@@ -184,7 +189,7 @@ export const humantixEventSchema = z.object({
       code: z.string(),
     })
     .optional(),
-  keywords: z.array(z.string()),
+  keywords: z.array(z.string()).optional(),
   location: z.string(),
   createdAt: z.string(),
   updatedAt: z.string(),
@@ -203,18 +208,12 @@ export type HumantixPaginatedEventResponse = z.infer<
   typeof humantixPaginatedEventResponseSchema
 >;
 
-// TODO: Build pagination into the class
 class HumantixApi {
   private apiKey: string = env.HUMANTIX_API_KEY;
   private baseApiUrl: string = 'https://api.humanitix.com';
   private authHeader: Record<string, string> = {
     'x-api-key': this.apiKey,
   };
-
-  readonly futureEvents: HumantixEvent[] = [];
-  readonly pastEvents: HumantixEvent[] = [];
-
-  private pastPagination: HumantixPaginatedEventResponse | null = null;
 
   constructor() {}
 
@@ -224,6 +223,7 @@ class HumantixApi {
     const config: RequestInit = {
       method: 'GET',
       headers: this.authHeader,
+      next: { revalidate: 1800 },
     };
 
     const response = await fetch(
@@ -250,30 +250,43 @@ class HumantixApi {
   };
 
   public fetchPastEvents = async ({
-    futureOnly = false,
     page = 1,
-    pageSize = 10,
+    pageSize = 20,
     since,
   }: {
-    futureOnly?: boolean;
     pageSize?: number;
     page?: number;
     since?: string; // ISO8601
-  }): Promise<HumantixPaginatedEventResponse> => {
+  }): Promise<HumantixEvent[]> => {
     const config: RequestInit = {
       method: 'GET',
       headers: this.authHeader,
+      next: { revalidate: 1800 },
     };
 
-    const response = await fetch(
-      `${this.baseApiUrl}/v1/events?page=${page}&pageSize=${pageSize}&inFutureOnly=${futureOnly}${since ? '&since=' + since : ''}`,
-      config,
-    );
+    const url = `${this.baseApiUrl}/v1/events?page=${page}&pageSize=${pageSize}&inFutureOnly=false`;
+
+    const response = await fetch(url, config);
 
     // TODO handle 400 and 401
     // https://humanitix.stoplight.io/docs/humanitix-public-api/476881e4b5d55-get-events
     const json = await response.json();
-    return humantixPaginatedEventResponseSchema.parse(json);
+    const result = humantixPaginatedEventResponseSchema.parse(json);
+
+    const now = dayjs();
+    const specificDate = since ? dayjs(since) : null;
+
+    return result.events.filter((event) => {
+      const eventEnd = dayjs(event.endDate);
+
+      const isBeforeNow = eventEnd.isBefore(now);
+
+      const isAfterSpecificDate = specificDate
+        ? eventEnd.isAfter(specificDate)
+        : true;
+
+      return isBeforeNow && isAfterSpecificDate;
+    });
   };
 }
 

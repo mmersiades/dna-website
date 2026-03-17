@@ -13,6 +13,7 @@ const MobileNavMenu: FC = () => {
       'nav-wrap',
       'h-[calc(100vh-var(--header-height))]',
       'text-black dark:text-white',
+      'dark:bg-tertiary-900',
     ),
     nav: cn('flex flex-col items-start', 'p-2'),
     activeBubble: cn(
@@ -36,7 +37,7 @@ const MobileNavMenu: FC = () => {
       <div className={hoverBubble}></div>
       <nav
         className={nav}
-        aria-label={navLabels.mobile}
+        aria-label={navLabels.mobileOpen}
       >
         {links.map((linkProps) => {
           return (

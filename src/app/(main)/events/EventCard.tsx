@@ -27,12 +27,12 @@ const EventDate: FC<{ date: HumantixEventDate }> = ({ date }) => {
   );
 };
 
-const EventDates: FC<{ dates: HumantixEventDates }> = ({ dates }) => {
+export const EventDates: FC<{ dates: HumantixEventDates }> = ({ dates }) => {
   const { cardSubHeading } = cardStyles;
 
   return (
-    <div>
-      <h6 className={cardSubHeading}>{copy.events.card.date}</h6>
+    <div className={'flex flex-col'}>
+      <p className={cardSubHeading}>{copy.events.card.date}</p>
       {dates.map((date) => (
         <EventDate
           key={date._id}
@@ -43,7 +43,7 @@ const EventDates: FC<{ dates: HumantixEventDates }> = ({ dates }) => {
   );
 };
 
-const EventLocation: FC<{ loc: HumantixEventLocation }> = ({ loc }) => {
+export const EventLocation: FC<{ loc: HumantixEventLocation }> = ({ loc }) => {
   const { cardSubHeading } = cardStyles;
   let location = '';
   switch (loc.type) {
@@ -51,7 +51,6 @@ const EventLocation: FC<{ loc: HumantixEventLocation }> = ({ loc }) => {
       location = `${loc.venueName}, ${loc.city}, ${loc.region}`;
       break;
     case 'online':
-      console.log('loc', loc);
       location = loc.instructions ?? 'Online';
       break;
     case 'custom':
@@ -64,14 +63,14 @@ const EventLocation: FC<{ loc: HumantixEventLocation }> = ({ loc }) => {
   }
 
   return (
-    <>
-      <h6 className={cardSubHeading}>{copy.events.card.location}</h6>
+    <div className={'flex flex-col'}>
+      <p className={cardSubHeading}>{copy.events.card.location}</p>
       <p>{location}</p>
-    </>
+    </div>
   );
 };
 
-const EventDescription: FC<{
+export const EventDescription: FC<{
   description?: string;
   sharingDescription?: string;
 }> = ({ sharingDescription }) => {
@@ -114,12 +113,12 @@ const EventCard: FC<Props> = ({ event, index }) => {
     >
       <div>
         {event.bannerImage && (
-          <div className={'relative aspect-video w-full'}>
+          <div className={'relative aspect-2/1 w-full'}>
             <Image
               src={event.bannerImage.url}
               alt={event.name}
               fill
-              className={'rounded-t-md'}
+              className={'aspect-2/1 rounded-t-md'}
               sizes={generatePhotoSizes({
                 mobile: 600,
                 sm: 600,
