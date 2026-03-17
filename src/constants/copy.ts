@@ -83,6 +83,7 @@ const copy = {
   events: {
     error: 'Error fetching events',
     upcoming: 'Upcoming Events',
+    previous: 'Previous Events',
     card: {
       date: 'Date',
       location: 'Location',

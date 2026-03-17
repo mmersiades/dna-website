@@ -27,11 +27,11 @@ const EventDate: FC<{ date: HumantixEventDate }> = ({ date }) => {
   );
 };
 
-const EventDates: FC<{ dates: HumantixEventDates }> = ({ dates }) => {
+export const EventDates: FC<{ dates: HumantixEventDates }> = ({ dates }) => {
   const { cardSubHeading } = cardStyles;
 
   return (
-    <div>
+    <div className={'flex flex-col'}>
       <p className={cardSubHeading}>{copy.events.card.date}</p>
       {dates.map((date) => (
         <EventDate
@@ -43,7 +43,7 @@ const EventDates: FC<{ dates: HumantixEventDates }> = ({ dates }) => {
   );
 };
 
-const EventLocation: FC<{ loc: HumantixEventLocation }> = ({ loc }) => {
+export const EventLocation: FC<{ loc: HumantixEventLocation }> = ({ loc }) => {
   const { cardSubHeading } = cardStyles;
   let location = '';
   switch (loc.type) {
@@ -63,14 +63,14 @@ const EventLocation: FC<{ loc: HumantixEventLocation }> = ({ loc }) => {
   }
 
   return (
-    <>
+    <div className={'flex flex-col'}>
       <p className={cardSubHeading}>{copy.events.card.location}</p>
       <p>{location}</p>
-    </>
+    </div>
   );
 };
 
-const EventDescription: FC<{
+export const EventDescription: FC<{
   description?: string;
   sharingDescription?: string;
 }> = ({ sharingDescription }) => {

@@ -1,4 +1,5 @@
 import FutureEventsList from '@/app/(main)/events/FutureEventsList';
+import PastEventsListViewModel from '@/app/(main)/events/PastEventsListViewModel';
 import humantixApi from '@/app/services/HumantixApi';
 import { pageStyles } from '@/components/styles';
 import copy from '@/constants/copy';
@@ -25,11 +26,16 @@ export default async function EventsPage() {
     );
   }
 
+  const sorted = events
+    .filter((event) => event.published && event.public)
+    .sort(
+      (a, b) => new Date(a.endDate).getTime() - new Date(b.endDate).getTime(),
+    );
+
   return (
     <div className={pageContainer}>
-      <FutureEventsList
-        events={events.filter((event) => event.published && event.public)}
-      />
+      <FutureEventsList events={sorted} />
+      <PastEventsListViewModel />
     </div>
   );
 }
