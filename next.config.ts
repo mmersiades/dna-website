@@ -15,6 +15,10 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'cdn.filestackcontent.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'images.humanitix.com',
+      },
     ],
   },
   typedRoutes: true,

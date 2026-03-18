@@ -18,6 +18,7 @@ const DesktopJoinForm: FC<Props> = ({ selectedGroup, onSubmit }) => {
       'starting:opacity-0 starting:translate-y-4 starting:scale-y-500',
       'scale-y-100',
       'transition-all transition-discrete duration-250',
+      'z-1',
     ),
     formInnerContainer: cn('container ml-auto mr-auto'),
     formInnerInnerContainer: cn('mx-4 py-4', 'border-b border-tertiary-700'),

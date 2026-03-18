@@ -98,7 +98,7 @@ const ContactForm: FC<Props> = ({ id }) => {
               return (
                 <div className={cn([col, 'col-span-12'])}>
                   <label
-                    htmlFor={'message'}
+                    htmlFor={id}
                     className={label}
                   >
                     Message
@@ -107,7 +107,7 @@ const ContactForm: FC<Props> = ({ id }) => {
                     <textarea
                       data-testid={contact.messageInput}
                       className={cn(input, 'w-full py-2 font-sans')}
-                      id={'message'}
+                      id={id}
                       required
                       aria-required="true"
                       {...field}
@@ -131,7 +131,7 @@ const ContactForm: FC<Props> = ({ id }) => {
               return (
                 <div className={cn([col, 'col-span-12 sm:col-span-5'])}>
                   <label
-                    htmlFor={id}
+                    htmlFor={'name'}
                     className={label}
                   >
                     Name
@@ -141,7 +141,7 @@ const ContactForm: FC<Props> = ({ id }) => {
                       data-testid={contact.nameInput}
                       className={cn(input, 'h-10 w-full')}
                       type="text"
-                      id={id}
+                      id={'name'}
                       required
                       aria-required="true"
                       {...field}

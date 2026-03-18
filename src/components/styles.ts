@@ -29,7 +29,18 @@ export const pageStyles = {
 };
 
 export const cardStyles = {
-  cardHeading: 'text-center text-xl lg:text-2xl font-bold',
+  cardHeading: cn(
+    'text-xl lg:text-2xl',
+    'font-bold',
+    'flex flex-row items-center justify-center gap-2',
+    'px-4',
+  ),
   cardSubHeading: 'font-display py-2 font-bold lg:text-lg',
   cardListContainer: 'flex flex-wrap gap-2',
+  externalLinkIcon: cn(
+    'icon-[lucide--external-link]',
+    'size-4',
+    'group-hover:text-secondary',
+    'transition-color duration-250',
+  ),
 };

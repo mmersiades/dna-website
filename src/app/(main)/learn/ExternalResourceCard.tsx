@@ -13,7 +13,15 @@ interface Props {
 }
 
 const ExternalResourceCard: FC<Props> = ({ resource, index }) => {
-  const { container, content, h4, imageContainer, image } = {
+  const {
+    container,
+    content,
+    h4,
+    imageContainer,
+    image,
+    externalLinkIconContainer,
+    externalLinkIcon,
+  } = {
     container: cn(
       'h-fit w-full',
       'flex flex-row',
@@ -21,6 +29,8 @@ const ExternalResourceCard: FC<Props> = ({ resource, index }) => {
       'border border-border rounded-md',
       'hover:border-secondary',
       'transition-color duration-250',
+      'relative',
+      'group',
     ),
     content: 'p-4',
     h4: 'font-display text-lg font-bold',
@@ -30,6 +40,20 @@ const ExternalResourceCard: FC<Props> = ({ resource, index }) => {
       'aspect-video w-full max-w-1/3',
     ),
     image: 'rounded-l-md object-cover',
+    externalLinkIconContainer: cn(
+      'absolute top-0 right-0',
+      'z-10',
+      'size-8 sm:size-10',
+      'flex items-center justify-center',
+      'rounded-md',
+    ),
+    externalLinkIcon: cn(
+      'icon-[lucide--external-link]',
+      'size-4 sm:size-6',
+      'text-border',
+      'group-hover:text-secondary-200',
+      'transition-color duration-250',
+    ),
   };
 
   return (
@@ -38,6 +62,9 @@ const ExternalResourceCard: FC<Props> = ({ resource, index }) => {
       target={'_blank'}
       className={container}
     >
+      <div className={externalLinkIconContainer}>
+        <span className={externalLinkIcon}></span>
+      </div>
       {resource.image && (
         <div className={imageContainer}>
           <Image

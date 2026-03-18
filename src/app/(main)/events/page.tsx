@@ -28,9 +28,12 @@ export default async function EventsPage() {
 
   const sorted = events
     .filter((event) => event.published && event.public)
-    .sort(
-      (a, b) => new Date(a.endDate).getTime() - new Date(b.endDate).getTime(),
-    );
+    .sort((a, b) => {
+      if (a.endDate && b.endDate) {
+        return new Date(a.endDate).getTime() - new Date(b.endDate).getTime();
+      }
+      return 0;
+    });
 
   return (
     <div className={pageContainer}>

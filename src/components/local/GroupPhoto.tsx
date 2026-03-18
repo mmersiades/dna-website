@@ -18,7 +18,12 @@ const GroupPhoto: FC<Props> = ({
 }) => {
   const { container, image, captionContainer, text } = {
     container: cn('rounded-t-md', 'relative', 'aspect-video'),
-    image: cn('rounded-t-md', 'object-cover', 'aspect-video'),
+    image: cn(
+      'rounded-t-md',
+      'object-cover',
+      'aspect-video',
+      'dark:brightness-90',
+    ),
     captionContainer: cn(
       'absolute bottom-0 left-0 right-0',
       'bg-black/50',

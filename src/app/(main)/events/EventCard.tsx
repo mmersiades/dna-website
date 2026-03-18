@@ -133,13 +133,13 @@ const EventCard: FC<Props> = ({ event, index }) => {
     content: 'p-4',
   };
 
-  const { cardHeading } = cardStyles;
+  const { cardHeading, externalLinkIcon } = cardStyles;
 
   return (
     <Link
       href={event.url as Route}
       target={'_blank'}
-      className={container}
+      className={cn(container, 'group')}
     >
       <div>
         {event.bannerImage && (
@@ -148,7 +148,7 @@ const EventCard: FC<Props> = ({ event, index }) => {
               src={event.bannerImage.url}
               alt={event.name}
               fill
-              className={'aspect-2/1 rounded-t-md'}
+              className={'aspect-2/1 rounded-t-md dark:brightness-90'}
               sizes={generatePhotoSizes({
                 mobile: 600,
                 sm: 600,
@@ -161,18 +161,23 @@ const EventCard: FC<Props> = ({ event, index }) => {
             />
           </div>
         )}
-        <h4 className={cn(cardHeading, 'pt-2')}>{event.name}</h4>
+        <h4 className={cn(cardHeading, 'pt-2')}>
+          {event.name}
+          <span className={externalLinkIcon}></span>
+        </h4>
       </div>
       <div className={content}>
         <EventDescription
           description={event.description}
           sharingDescription={event.sharingDescription}
         />
-        <EventDates
-          dates={event.dates}
-          timezone={event.timezone}
-        />
-        <EventLocation loc={event.eventLocation} />
+        {event.dates && (
+          <EventDates
+            dates={event.dates}
+            timezone={event.timezone}
+          />
+        )}
+        {event.eventLocation && <EventLocation loc={event.eventLocation} />}
       </div>
     </Link>
   );
