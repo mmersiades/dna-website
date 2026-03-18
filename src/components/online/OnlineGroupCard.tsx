@@ -24,6 +24,8 @@ const OnlineGroupCard: FC<Props> = ({
 }) => {
   const { groupUrl } = copy.online;
   const { linkContainer, linkLabel } = styles;
+  const { cardHeading, externalLinkIcon } = cardStyles;
+
   const { container, content, anchorContainer, checkIcon } = {
     container: cn(
       'bg-card/50',
@@ -36,6 +38,7 @@ const OnlineGroupCard: FC<Props> = ({
       !selected && 'hover:border-primary',
       'transition-color duration-250',
       'text-start',
+      'group',
     ),
     content: 'p-4',
     anchorContainer: cn(
@@ -50,8 +53,6 @@ const OnlineGroupCard: FC<Props> = ({
       !selected && 'opacity-0',
     ),
   };
-
-  const { cardHeading } = cardStyles;
 
   return (
     <button
@@ -68,7 +69,12 @@ const OnlineGroupCard: FC<Props> = ({
             _type={group.image._type}
           />
         )}
-        <h4 className={cn(cardHeading, 'pt-2')}>{group.title}</h4>
+        <h4 className={cn(cardHeading, 'pt-2')}>
+          {group.title}
+          <span
+            className={cn(externalLinkIcon, 'icon-[lucide--panel-top-open]')}
+          ></span>
+        </h4>
       </div>
       <div className={content}>
         <p>{group.description}</p>

@@ -53,7 +53,13 @@ const IconButton: FC<IconButtonProps> = ({
       ])}
       {...props}
     >
-      <span className={cn([icon, iconName])}></span>
+      <span
+        className={cn([
+          icon,
+          iconName,
+          onDark && 'hover:text-secondary text-white',
+        ])}
+      ></span>
       <span className="sr-only">{srName}</span>
     </button>
   );
