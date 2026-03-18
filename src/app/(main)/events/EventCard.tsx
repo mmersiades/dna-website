@@ -171,11 +171,13 @@ const EventCard: FC<Props> = ({ event, index }) => {
           description={event.description}
           sharingDescription={event.sharingDescription}
         />
-        <EventDates
-          dates={event.dates}
-          timezone={event.timezone}
-        />
-        <EventLocation loc={event.eventLocation} />
+        {event.dates && (
+          <EventDates
+            dates={event.dates}
+            timezone={event.timezone}
+          />
+        )}
+        {event.eventLocation && <EventLocation loc={event.eventLocation} />}
       </div>
     </Link>
   );

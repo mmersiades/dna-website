@@ -1584,6 +1584,13 @@
         },
         "optional": false
       },
+      "establishmentDate": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": false
+      },
       "shortName": {
         "type": "objectAttribute",
         "value": {

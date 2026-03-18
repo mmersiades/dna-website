@@ -1,7 +1,7 @@
 import { defineQuery } from 'next-sanity';
 
 export const GROUPS_QUERY =
-  defineQuery(`*[_type == "group" && defined(slug.current)][0...12]{
+  defineQuery(`*[_type == "group" && defined(slug.current)][0...12] | order(establishmentDate asc) {
   _id, 
   fullName, 
   slug,

@@ -5,7 +5,7 @@ import { z } from 'zod';
 export const humantixTicketTypeSchema = z.object({
   _id: z.string(),
   name: z.string(),
-  price: z.number(),
+  price: z.number().optional(),
   priceRange: z
     .object({
       enabled: z.boolean(),
@@ -19,29 +19,31 @@ export const humantixTicketTypeSchema = z.object({
       options: z.array(z.object({ value: z.string() })),
     })
     .optional(),
-  quantity: z.number(),
+  quantity: z.number().int().optional(),
   description: z.string().optional(),
-  disabled: z.boolean(),
-  deleted: z.boolean(),
-  isDonation: z.boolean(),
+  disabled: z.boolean().optional(),
+  deleted: z.boolean().optional(),
+  isDonation: z.boolean().optional(),
 });
 
 export type HumantixTicketType = z.infer<typeof humantixTicketTypeSchema>;
 
 export const humantixPackagedTicketSchema = z.object({
   _id: z.string(),
-  name: z.string(),
-  price: z.number(),
-  quantity: z.number(),
+  name: z.string().optional(),
+  price: z.number().optional(),
+  quantity: z.number().int().optional(),
   description: z.string().optional(),
-  disabled: z.boolean(),
-  deleted: z.boolean(),
-  tickets: z.array(
-    z.object({
-      ticketTypeId: z.string(),
-      quantity: z.number(),
-    }),
-  ),
+  disabled: z.boolean().optional(),
+  deleted: z.boolean().optional(),
+  tickets: z
+    .array(
+      z.object({
+        ticketTypeId: z.string(),
+        quantity: z.number().int(),
+      }),
+    )
+    .optional(),
 });
 
 export type HumantixPackagedTicket = z.infer<
@@ -53,8 +55,8 @@ export const humantixEventDateSchema = z.object({
   startDate: z.string(),
   endDate: z.string(),
   scheduleId: z.string().optional(),
-  disabled: z.boolean(),
-  deleted: z.boolean(),
+  disabled: z.boolean().optional(),
+  deleted: z.boolean().optional(),
 });
 
 export type HumantixEventDate = z.infer<typeof humantixEventDateSchema>;
@@ -67,7 +69,7 @@ export const humantixEventLocationSchema = z.object({
   type: z.enum(['address', 'online', 'custom', 'toBeAnnounced']),
   venueName: z.string().optional(),
   address: z.string().optional(),
-  latLng: z.tuple([z.number().optional(), z.number().optional()]),
+  latLng: z.array(z.number()).optional(),
   instructions: z.string().optional(),
   placeId: z.string().optional(),
   onlineUrl: z.string().optional(),
@@ -83,62 +85,97 @@ export const humantixEventSchema = z.object({
   _id: z.string(),
   userId: z.string(),
   organiserId: z.string().optional(),
-  currency: z.string(),
+  currency: z.enum(['AUD', 'NZD', 'USD', 'FJD', 'CAD']),
   name: z.string(),
   description: z.string(),
   sharingDescription: z.string().optional(),
   slug: z.string(),
-  url: z.string(),
-  tagIds: z.array(z.string()),
+  url: z.string().optional(),
+  tagIds: z.array(z.string()).optional(),
   category: z.string().optional(),
-  classification: z.object({
-    category: z.string(),
-    subcategory: z.string().optional(),
-  }),
+  classification: z
+    .object({
+      type: z
+        .enum([
+          'appearanceOrSigning',
+          'attraction',
+          'campTripOrRetreat',
+          'classTrainingOrWorkshop',
+          'concertOrPerformance',
+          'conference',
+          'convention',
+          'dinnerOrGala',
+          'festivalOrFair',
+          'gameOrCompetition',
+          'meetingOrNetworkingEvent',
+          'partyOrSocialGathering',
+          'raceOrEnduranceEvent',
+          'rally',
+          'screening',
+          'seminarOrTalk',
+          'tour',
+          'tournament',
+          'tradeShowConsumerShowOrExpo',
+          'other',
+        ])
+        .optional(),
+      category: z.string(),
+      subcategory: z.string().optional(),
+    })
+    .optional(),
   artists: z
     .array(
       z.object({
         origin: z.string(),
         name: z.string(),
-        externalId: z.string(),
+        externalId: z.string().optional(),
+        spotifyId: z.string().optional(),
       }),
     )
     .optional(),
   public: z.boolean(),
   published: z.boolean(),
-  suspendSales: z.boolean(),
-  markedAsSoldOut: z.boolean(),
-  startDate: z.string(),
-  endDate: z.string(),
+  suspendSales: z.boolean().optional(),
+  markedAsSoldOut: z.boolean().optional(),
+  startDate: z.string().optional(),
+  endDate: z.string().optional(),
   timezone: z.string(),
   totalCapacity: z.number(),
-  ticketTypes: z.array(humantixTicketTypeSchema),
-  pricing: z.object({
-    minimumPrice: z.number(),
-    maximumPrice: z.number(),
-  }),
-  paymentOptions: z.object({
-    refundSettings: z
-      .object({
-        refundPolicy: z.string().optional(),
-        customRefundPolicy: z.string().optional(),
-      })
-      .optional(),
-  }),
+  ticketTypes: z.array(humantixTicketTypeSchema).optional(),
+  pricing: z
+    .object({
+      minimumPrice: z.number(),
+      maximumPrice: z.number(),
+    })
+    .optional(),
+  paymentOptions: z
+    .object({
+      refundSettings: z
+        .object({
+          refundPolicy: z.string().optional(),
+          customRefundPolicy: z.string().optional(),
+        })
+        .optional(),
+    })
+    .optional(),
   publishedAt: z.string().optional(),
-  additionalQuestions: z.array(
-    z.object({
-      _id: z.string(),
-      inputType: z.string().optional(),
-      question: z.string(),
-      required: z.boolean(),
-      description: z.string().optional(),
-      perOrder: z.boolean(),
-      disabled: z.boolean(),
-      createdAt: z.string(),
-      updatedAt: z.string(),
-    }),
-  ),
+  additionalQuestions: z
+    .array(
+      z.object({
+        _id: z.string(),
+        inputType: z
+          .enum(['text', 'number', 'email', 'url', 'date', 'file'])
+          .optional(),
+        question: z.string(),
+        required: z.boolean(),
+        description: z.string().optional(),
+        perOrder: z.boolean(),
+        disabled: z.boolean().optional(),
+        createdAt: z.string().optional(),
+        updatedAt: z.string().optional(),
+      }),
+    )
+    .optional(),
   bannerImage: z
     .object({
       url: z.string(),
@@ -154,9 +191,9 @@ export const humantixEventSchema = z.object({
       url: z.string(),
     })
     .optional(),
-  eventLocation: humantixEventLocationSchema,
-  dates: humantixEventDatesSchema,
-  packagedTickets: z.array(humantixPackagedTicketSchema),
+  eventLocation: humantixEventLocationSchema.optional(),
+  dates: humantixEventDatesSchema.optional(),
+  packagedTickets: z.array(humantixPackagedTicketSchema).optional(),
   accessibility: z
     .object({
       contactName: z.string(),
@@ -190,7 +227,18 @@ export const humantixEventSchema = z.object({
     })
     .optional(),
   keywords: z.array(z.string()).optional(),
-  location: z.string(),
+  location: z.enum([
+    'AU',
+    'NZ',
+    'US',
+    'FJ',
+    'CA',
+    'GB',
+    'SG',
+    'DE',
+    'MY',
+    'MX',
+  ]),
   createdAt: z.string(),
   updatedAt: z.string(),
 });

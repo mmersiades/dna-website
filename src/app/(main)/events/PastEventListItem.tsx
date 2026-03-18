@@ -33,15 +33,19 @@ const PastEventListItem: FC<Props> = ({ event }) => {
           sharingDescription={event.sharingDescription}
         />
       </div>
-      <div className={'flex-1'}>
-        <EventDates
-          dates={event.dates}
-          timezone={event.timezone}
-        />
-      </div>
-      <div className={'flex-1'}>
-        <EventLocation loc={event.eventLocation} />
-      </div>
+      {event.dates && (
+        <div className={'flex-1'}>
+          <EventDates
+            dates={event.dates}
+            timezone={event.timezone}
+          />
+        </div>
+      )}
+      {event.eventLocation && (
+        <div className={'flex-1'}>
+          <EventLocation loc={event.eventLocation} />
+        </div>
+      )}
     </div>
   );
 };

@@ -27,6 +27,12 @@ export const groupType = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      title: 'Establishment Date',
+      name: 'establishmentDate',
+      type: 'date',
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
       title: 'Short Name',
       name: 'shortName',
       type: 'string',
