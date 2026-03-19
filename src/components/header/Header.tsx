@@ -10,6 +10,8 @@ import testIds from '@/constants/testIds';
 import cn from '@/utils/cn';
 import { FC, useEffect, useState } from 'react';
 
+const supportsPopover = () => Object.hasOwn(HTMLElement.prototype, 'popover');
+
 const Header: FC = () => {
   const {
     cta,
@@ -21,6 +23,15 @@ const Header: FC = () => {
 
   const [isOpen, setIsOpen] = useState(false);
 
+  const handlePopoverPolyfill = async () => {
+    if (!supportsPopover()) {
+      await import('@oddbird/popover-polyfill');
+      console.info('Polyfill loaded for popover support');
+    } else {
+      console.info('Popover support detected, no polyfill needed');
+    }
+  };
+
   useEffect(() => {
     const menu = document.getElementById('nav-menu');
     const handleToggle = (event: { newState: string }) => {
@@ -29,6 +40,10 @@ const Header: FC = () => {
 
     menu?.addEventListener('toggle', handleToggle);
     return () => menu?.removeEventListener('toggle', handleToggle);
+  }, []);
+
+  useEffect(() => {
+    void handlePopoverPolyfill();
   }, []);
 
   const { container, desktopContainer } = headerStyles;
