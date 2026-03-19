@@ -37,7 +37,7 @@ const NavbarLink: FC<NavbarLinkProps> = ({ label, path, mobile = false }) => {
       href={path}
       onClick={
         mobile
-          ? () => document.getElementById('nav-menu')?.hidePopover()
+          ? () => document.getElementById('nav-menu')?.hidePopover?.()
           : undefined
       }
     >
