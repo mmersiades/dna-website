@@ -30,12 +30,19 @@ const CtaLink: FC<PropsWithChildren<Props>> = ({
     ),
   };
 
+  const handleClick = () => {
+    const menu = document.getElementById('nav-menu');
+    if (menu) {
+      menu.hidePopover?.();
+    }
+  };
+
   return (
     <Link
       id={'cta-link'}
       className={link}
       {...props}
-      onClick={() => document.getElementById('nav-menu')?.hidePopover()}
+      onClick={handleClick}
     >
       <span className="relative z-10">{children}</span>
     </Link>
