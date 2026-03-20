@@ -1,4 +1,5 @@
 import FutureEventsList from '@/app/(main)/events/FutureEventsList';
+import FutureEventsListSkeleton from '@/app/(main)/events/FutureEventsListSkeleton';
 import PastEventsListViewModel from '@/app/(main)/events/PastEventsListViewModel';
 import humantixApi from '@/app/services/HumantixApi';
 import { pageStyles } from '@/components/styles';
@@ -6,6 +7,7 @@ import copy from '@/constants/copy';
 import { getPage } from '@/lib/actions';
 import generateDNAMetadata from '@/utils/generateDNAMetadata';
 import { Metadata } from 'next';
+import { Suspense } from 'react';
 
 export async function generateMetadata(): Promise<Metadata> {
   const page = await getPage('events');
@@ -37,7 +39,9 @@ export default async function EventsPage() {
 
   return (
     <div className={pageContainer}>
-      <FutureEventsList events={sorted} />
+      <Suspense fallback={<FutureEventsListSkeleton />}>
+        <FutureEventsList events={sorted} />
+      </Suspense>
       <PastEventsListViewModel />
     </div>
   );
