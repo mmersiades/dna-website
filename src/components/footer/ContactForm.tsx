@@ -106,7 +106,11 @@ const ContactForm: FC<Props> = ({ id }) => {
                   <div className={row}>
                     <textarea
                       data-testid={contact.messageInput}
-                      className={cn(input, 'w-full py-2 font-sans')}
+                      className={cn(
+                        input,
+                        'w-full py-2 font-sans',
+                        'scroll-mt-28',
+                      )}
                       id={id}
                       required
                       aria-required="true"

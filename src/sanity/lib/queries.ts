@@ -14,7 +14,7 @@ export const GROUPS_QUERY =
   activities[]
 }`);
 
-export const DEGROWTH_DEFINITIONS_QUERY =
+export const DEGROWTH_DESCRIPTIONS_QUERY =
   defineQuery(`*[_type == "degrowth-definition"]{
   _id, 
   statement, 
