@@ -9,6 +9,7 @@ interface Props {
 
 const FutureGroupsSection: FC<Props> = ({ initialTableData }) => {
   const { pageTitle, pageDivider, sectionContainer } = pageStyles;
+
   return (
     <section className={sectionContainer}>
       <h4 className={pageTitle}>Future Groups</h4>

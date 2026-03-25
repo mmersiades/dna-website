@@ -1,9 +1,9 @@
 'use client';
+import { fetchGroupIntentTableRows } from '@/app/actions';
 import { TableRow } from '@/app/services/SheetsApi';
 import GroupIntentForm from '@/components/forms/GroupIntentForm';
 import copy from '@/constants/copy';
 import indigenousRegions from '@/constants/indigenousRegions';
-import { paths } from '@/constants/paths';
 import regions from '@/constants/regions';
 import cn from '@/utils/cn';
 import { FC, useState } from 'react';
@@ -41,16 +41,12 @@ const GroupInterestTable: FC<Props> = ({ initialTableData }) => {
     region: string;
     country: string;
   }) => {
-    const params = new URLSearchParams();
-    if (state.length > 0) params.append('state', state);
-    if (region.length > 0) params.append('region', region);
-    if (country.length > 0) params.append('country', country);
-
-    const response = await fetch(
-      `${paths.api.google.sheets.groupIntent}?${params.toString()}`,
-    );
-    const json = await response.json();
-    setTableData(json.data);
+    const tableData = await fetchGroupIntentTableRows({
+      state: state.length > 0 ? state : null,
+      region: region.length > 0 ? region : null,
+      country: country.length > 0 ? country : null,
+    });
+    setTableData(tableData);
   };
 
   const handleFieldChange = (name: keyof Inputs, value: string) => {
@@ -62,7 +58,6 @@ const GroupInterestTable: FC<Props> = ({ initialTableData }) => {
 
     const currentValues = getValues();
 
-    // Call your API logic
     void updateTableData({
       state: currentValues.state,
       region: currentValues.subregion,
@@ -231,6 +226,7 @@ const GroupInterestTable: FC<Props> = ({ initialTableData }) => {
           state={stateValue ?? ''}
           country={countryValue ?? ''}
           subregion={regionValue ?? ''}
+          onSuccess={updateTableData}
         />
       )}
     </div>

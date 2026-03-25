@@ -1,8 +1,13 @@
+'use client';
 import styles from '@/components/footer/styles';
 
 import copy from '@/constants/copy';
 import Link from 'next/link';
-import { FC } from 'react';
+import { FC, Suspense } from 'react';
+
+const Copyright = () => {
+  return <span>{`© ${new Date().getFullYear()}`}</span>;
+};
 
 const Credits: FC = () => {
   const {
@@ -26,7 +31,9 @@ const Credits: FC = () => {
       >
         {developerName}
       </Link>{' '}
-      {`© ${new Date().getFullYear()}`}
+      <Suspense fallback={<span>2026</span>}>
+        <Copyright />
+      </Suspense>
     </p>
   );
 };

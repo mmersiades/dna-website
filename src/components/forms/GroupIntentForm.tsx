@@ -1,4 +1,5 @@
 'use client';
+import { updateCacheTag } from '@/app/actions';
 import { WriteGroupIntentRowBody } from '@/app/api/google/sheets/group-intent/route';
 import { SendEmailBody } from '@/app/api/send-email/route';
 import SubmitButton from '@/components/buttons/SubmitButton';
@@ -27,9 +28,19 @@ interface Props {
   state: string;
   subregion: string;
   country: string;
+  onSuccess: (args: {
+    state: string;
+    region: string;
+    country: string;
+  }) => Promise<void>;
 }
 
-const GroupInterestForm: FC<Props> = ({ state, country, subregion }) => {
+const GroupInterestForm: FC<Props> = ({
+  state,
+  country,
+  subregion,
+  onSuccess,
+}) => {
   const defaultValues = {
     name: '',
     email: '',
@@ -59,6 +70,12 @@ const GroupInterestForm: FC<Props> = ({ state, country, subregion }) => {
     });
 
     if (response.ok) {
+      await updateCacheTag('group-intent');
+      await onSuccess({
+        state: data.state,
+        region: data.subregion,
+        country: data.country,
+      });
       toast(
         <Toast
           title={success.title}

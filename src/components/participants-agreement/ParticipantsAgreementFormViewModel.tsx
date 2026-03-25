@@ -1,17 +1,13 @@
-import sheetsApi from '@/app/services/SheetsApi';
+import { fetchParticipantAgreementData } from '@/app/actions';
 import ParticipantsAgreementForm from '@/components/participants-agreement/ParticipantsAgreementForm';
-import { env } from '@/env';
 
 export default async function ParticipantsAgreementFormViewModel({
   agreementVersion,
 }: {
   agreementVersion: number;
 }) {
-  const data = await sheetsApi.getSheetData(
-    env.GOOGLE_SHEETS_PARTICIPANTS_AGREEMENT_SHEET_ID,
-    'Sheet1',
-  );
-  sheetsApi.setParticipantAgreementData(data);
+  // Pre-fetching to put in the cache
+  await fetchParticipantAgreementData();
 
   return <ParticipantsAgreementForm agreementVersion={agreementVersion} />;
 }

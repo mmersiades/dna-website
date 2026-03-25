@@ -22,6 +22,7 @@ const nextConfig: NextConfig = {
     ],
   },
   typedRoutes: true,
+  cacheComponents: true,
 };
 
 export default withSentryConfig(withBotId(nextConfig), {

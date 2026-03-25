@@ -1,7 +1,10 @@
 'use client';
+import {
+  fetchParticipantAgreementByEmail,
+  updateCacheTag,
+} from '@/app/actions';
 import { WriteParticipantsAgreementRowBody } from '@/app/api/google/sheets/participants-agreements/route';
 import { SendEmailBody } from '@/app/api/send-email/route';
-import { ParticipantAgreementRow } from '@/app/services/SheetsApi';
 import SubmitButton from '@/components/buttons/SubmitButton';
 import Toast from '@/components/Toast';
 import copy from '@/constants/copy';
@@ -45,35 +48,12 @@ const ParticipantsAgreementForm: FC<Props> = ({ agreementVersion }) => {
     formState: { isSubmitting, isValid },
   } = useForm<Inputs>({ defaultValues, resolver: zodResolver(schema) });
 
-  const fetchSheetData = async ({
-    email,
-  }: {
-    email: string;
-  }): Promise<ParticipantAgreementRow[]> => {
-    const params = new URLSearchParams();
-    if (email.length > 0) params.append('email', email);
-
-    const response = await fetch(
-      `${paths.api.google.sheets.participantsAgreement}?${params.toString()}`,
-    );
-
-    if (!response.ok) {
-      return [];
-    }
-
-    const result = (await response.json()) as {
-      success: boolean;
-      data: ParticipantAgreementRow[];
-    };
-    return result.data;
-  };
-
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     setLoading(true);
     const { success, failure, existing } = copy.participantsAgreement.form;
 
     // Check for existing agreement
-    const existingAgreements = await fetchSheetData({
+    const existingAgreements = await fetchParticipantAgreementByEmail({
       email: data.email,
     });
 
@@ -112,6 +92,7 @@ const ParticipantsAgreementForm: FC<Props> = ({ agreementVersion }) => {
     );
 
     if (response.ok) {
+      await updateCacheTag('participant-agreement');
       toast(
         <Toast
           title={success.title}
