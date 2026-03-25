@@ -2,7 +2,11 @@
 import sheetsApi from '@/app/services/SheetsApi';
 import { env } from '@/env';
 import { sanityFetch } from '@/sanity/lib/live';
-import { PAGE_QUERY, PARTICIPANTS_AGREEMENT_QUERY } from '@/sanity/lib/queries';
+import {
+  EXT_RESOURCES_QUERY,
+  PAGE_QUERY,
+  PARTICIPANTS_AGREEMENT_QUERY,
+} from '@/sanity/lib/queries';
 import { PAGE_QUERYResult } from '@/sanity/types';
 import { cacheLife, cacheTag, updateTag } from 'next/cache';
 
@@ -79,6 +83,16 @@ export const fetchSanityParticipantsAgreement = async () => {
   cacheLife('hours');
   const { data } = await sanityFetch({
     query: PARTICIPANTS_AGREEMENT_QUERY,
+  });
+  return data;
+};
+
+export const fetchSanityExternalResources = async () => {
+  'use cache';
+  cacheLife('hours');
+  const { data } = await sanityFetch({
+    query: EXT_RESOURCES_QUERY,
+    stega: false,
   });
   return data;
 };

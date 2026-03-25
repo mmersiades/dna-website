@@ -1,5 +1,5 @@
-import ExternalResourceListSkeleton from '@/app/(main)/learn/ExternalResourceListSkeleton';
 import ExternalResourceViewModel from '@/app/(main)/learn/ExternalResourceViewModel';
+import ExternalResourceViewSkeleton from '@/app/(main)/learn/ExternalResourceViewSkeleton';
 import { pageStyles } from '@/components/styles';
 import { getPage } from '@/lib/actions';
 import generateDNAMetadata from '@/utils/generateDNAMetadata';
@@ -17,7 +17,7 @@ export default async function LearningPage() {
 
   return (
     <div className={pageContainer}>
-      <Suspense fallback={<ExternalResourceListSkeleton />}>
+      <Suspense fallback={<ExternalResourceViewSkeleton />}>
         <ExternalResourceViewModel />
       </Suspense>
     </div>
