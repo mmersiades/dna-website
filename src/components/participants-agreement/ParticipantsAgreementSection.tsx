@@ -16,7 +16,7 @@ interface Props {
 const ParticipantsAgreementSection: FC<Props> = ({ data }) => {
   if (!data) return null;
 
-  const { pageTitle, pageDivider, sectionContainer } = pageStyles;
+  const { pageTitle, pageDivider, proseSectionContainer } = pageStyles;
 
   const { detailsRow, details } = {
     detailsRow: cn('flex flex-row items-center gap-4 justify-start mb-8 px-2'),
@@ -25,7 +25,7 @@ const ParticipantsAgreementSection: FC<Props> = ({ data }) => {
   const dateUTC = dayjs.utc(data._updatedAt);
   const updated = dateUTC.local().format('D MMMM, YYYY');
   return (
-    <section className={sectionContainer}>
+    <section className={proseSectionContainer}>
       <div className={detailsRow}>
         <p className={details}>{`Version ${data.version}`}</p>
         <p className={details}>{`Updated ${updated}`}</p>

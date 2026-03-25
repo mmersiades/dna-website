@@ -1,6 +1,9 @@
 'use server';
 import sheetsApi from '@/app/services/SheetsApi';
 import { env } from '@/env';
+import { sanityFetch } from '@/sanity/lib/live';
+import { PAGE_QUERY, PARTICIPANTS_AGREEMENT_QUERY } from '@/sanity/lib/queries';
+import { PAGE_QUERYResult } from '@/sanity/types';
 import { cacheLife, cacheTag, updateTag } from 'next/cache';
 
 export const fetchGroupIntentData = async () => {
@@ -57,6 +60,27 @@ export const fetchParticipantAgreementByEmail = async ({
     email,
     rows,
   });
+};
+
+export const fetchSanityPage = async (
+  slug: string,
+): Promise<PAGE_QUERYResult> => {
+  'use cache';
+  cacheLife('hours');
+  const { data } = await sanityFetch({
+    query: PAGE_QUERY,
+    params: { slug },
+  });
+  return data;
+};
+
+export const fetchSanityParticipantsAgreement = async () => {
+  'use cache';
+  cacheLife('hours');
+  const { data } = await sanityFetch({
+    query: PARTICIPANTS_AGREEMENT_QUERY,
+  });
+  return data;
 };
 
 export const updateCacheTag = async (tag: string) => {

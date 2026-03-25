@@ -10,10 +10,10 @@ type PageBuilderProps = NonNullable<PAGE_QUERYResult>;
 const PageBuilder: FC<PageBuilderProps> = ({ pageBuilder, title }) => {
   if (!pageBuilder) return null;
 
-  const { pageTitle, pageDivider, sectionContainer } = pageStyles;
+  const { pageTitle, pageDivider, proseSectionContainer } = pageStyles;
 
   return (
-    <section className={sectionContainer}>
+    <section className={proseSectionContainer}>
       <h4 className={pageTitle}>{title}</h4>
       <hr className={pageDivider} />
       {pageBuilder.map((content, index) => {

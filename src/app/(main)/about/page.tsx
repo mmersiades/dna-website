@@ -1,31 +1,27 @@
-import PageBuilder from '@/components/pageBuilder/PageBuilder';
+import { fetchSanityPage } from '@/app/actions';
+import PageBuilderViewModel from '@/components/pageBuilder/PageBuilderViewModel';
 import { pageStyles } from '@/components/styles';
-import { getPage } from '@/lib/actions';
 import generateDNAMetadata from '@/utils/generateDNAMetadata';
 import { Metadata } from 'next';
-import { notFound } from 'next/navigation';
+import { Suspense } from 'react';
 
 export async function generateMetadata(): Promise<Metadata> {
-  const page = await getPage('about');
+  const page = await fetchSanityPage('about');
 
   return generateDNAMetadata(page);
 }
 
 export default async function AboutPage() {
-  const page = await getPage('about');
-
-  if (!page) return notFound();
-
   const { pageContainer } = pageStyles;
 
   return (
     <div className={pageContainer}>
-      {page && (
-        <PageBuilder
-          {...page}
-          title={page.title ?? 'About Degrowth Network Australia'}
+      <Suspense fallback={<div>TODO: Loading...</div>}>
+        <PageBuilderViewModel
+          page={'about'}
+          fallbackTitle={'About Degrowth Network Australia'}
         />
-      )}
+      </Suspense>
     </div>
   );
 }
