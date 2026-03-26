@@ -1,6 +1,6 @@
 'use client';
 
-import styles from '@/components/local/styles';
+import styles from '@/app/(main)/local/styles';
 import copy from '@/constants/copy';
 import cn from '@/utils/cn';
 import * as Sentry from '@sentry/nextjs';

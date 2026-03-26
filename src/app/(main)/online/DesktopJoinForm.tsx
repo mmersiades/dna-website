@@ -1,4 +1,4 @@
-import JoinOnlineGroupForm from '@/components/forms/JoinOnlineGroupForm';
+import JoinNationalGroupForm from '@/app/(main)/online/JoinNationalGroupForm';
 import { ONLINE_GROUPS_QUERYResult } from '@/sanity/types';
 import cn from '@/utils/cn';
 import { FC } from 'react';
@@ -29,7 +29,7 @@ const DesktopJoinForm: FC<Props> = ({ selectedGroup, onSubmit }) => {
       <div className={formInnerContainer}>
         <div className={formInnerInnerContainer}>
           {selectedGroup && (
-            <JoinOnlineGroupForm
+            <JoinNationalGroupForm
               selectedGroup={selectedGroup}
               aria-label={'Join online group form (desktop)'}
               onSubmit={onSubmit}

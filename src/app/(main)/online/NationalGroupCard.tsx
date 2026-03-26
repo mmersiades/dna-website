@@ -1,5 +1,5 @@
-import GroupPhoto from '@/components/local/GroupPhoto';
-import styles from '@/components/local/styles';
+import GroupPhoto from '@/app/(main)/local/GroupPhoto';
+import styles from '@/app/(main)/local/styles';
 import { cardStyles } from '@/components/styles';
 import copy from '@/constants/copy';
 import { urlFor } from '@/sanity/lib/image';

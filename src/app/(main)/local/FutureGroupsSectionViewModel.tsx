@@ -1,5 +1,5 @@
+import FutureGroupsSection from '@/app/(main)/local/FutureGroupsSection';
 import { fetchGroupIntentTableRows } from '@/app/actions';
-import FutureGroupsSection from '@/components/local/FutureGroupsSection';
 
 export default async function FutureGroupsSectionViewModel() {
   const tableData = await fetchGroupIntentTableRows({

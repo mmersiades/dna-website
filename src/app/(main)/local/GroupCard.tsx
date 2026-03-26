@@ -1,6 +1,6 @@
-import GroupActivityDisplay from '@/components/local/GroupActivityDisplay';
-import GroupContactsDisplay from '@/components/local/GroupContactsDisplay';
-import GroupPhoto from '@/components/local/GroupPhoto';
+import GroupActivityDisplay from '@/app/(main)/local/GroupActivityDisplay';
+import GroupContactsDisplay from '@/app/(main)/local/GroupContactsDisplay';
+import GroupPhoto from '@/app/(main)/local/GroupPhoto';
 import { cardStyles } from '@/components/styles';
 import { urlFor } from '@/sanity/lib/image';
 import { GROUPS_QUERYResult } from '@/sanity/types';

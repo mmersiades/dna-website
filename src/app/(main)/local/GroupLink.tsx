@@ -1,4 +1,4 @@
-import styles from '@/components/local/styles';
+import styles from '@/app/(main)/local/styles';
 import { GroupLink as Props } from '@/sanity/types';
 import cn from '@/utils/cn';
 import { Route } from 'next';

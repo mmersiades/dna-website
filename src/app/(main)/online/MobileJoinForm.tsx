@@ -1,4 +1,4 @@
-import JoinOnlineGroupForm from '@/components/forms/JoinOnlineGroupForm';
+import JoinNationalGroupForm from '@/app/(main)/online/JoinNationalGroupForm';
 import MobileFullScreenModal from '@/components/MobileFullScreenModal';
 import { ONLINE_GROUPS_QUERYResult } from '@/sanity/types';
 import { FC } from 'react';
@@ -16,7 +16,7 @@ const MobileJoinForm: FC<Props> = ({ selectedGroup, onClose, onSubmit }) => {
       open={!!selectedGroup}
       onClose={onClose}
     >
-      <JoinOnlineGroupForm
+      <JoinNationalGroupForm
         selectedGroup={selectedGroup}
         aria-label={'Join online group form (mobile)'}
         onSubmit={onSubmit}

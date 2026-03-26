@@ -1,4 +1,4 @@
-import GroupCard from '@/components/local/GroupCard';
+import GroupCard from '@/app/(main)/local/GroupCard';
 import { pageStyles } from '@/components/styles';
 import copy from '@/constants/copy';
 import { sanityFetch } from '@/sanity/lib/live';

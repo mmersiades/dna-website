@@ -1,6 +1,6 @@
 'use client';
-import GroupLink from '@/components/local/GroupLink';
-import styles from '@/components/local/styles';
+import GroupLink from '@/app/(main)/local/GroupLink';
+import styles from '@/app/(main)/local/styles';
 import { cardStyles } from '@/components/styles';
 import copy from '@/constants/copy';
 import { GroupLink as GroupLinkProps } from '@/sanity/types';

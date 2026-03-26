@@ -1,7 +1,7 @@
 'use client';
+import GroupIntentForm from '@/app/(main)/local/GroupIntentForm';
 import { fetchGroupIntentTableRows } from '@/app/actions';
 import { TableRow } from '@/app/services/SheetsApi';
-import GroupIntentForm from '@/components/forms/GroupIntentForm';
 import copy from '@/constants/copy';
 import indigenousRegions from '@/constants/indigenousRegions';
 import regions from '@/constants/regions';

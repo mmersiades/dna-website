@@ -25,7 +25,7 @@ interface Props {
   onSubmit: () => void;
 }
 
-export const JoinOnlineGroupForm: FC<Props> = ({
+export const JoinNationalGroupForm: FC<Props> = ({
   selectedGroup,
   onSubmit: submitCallback,
 }) => {
@@ -189,4 +189,4 @@ export const JoinOnlineGroupForm: FC<Props> = ({
   );
 };
 
-export default JoinOnlineGroupForm;
+export default JoinNationalGroupForm;

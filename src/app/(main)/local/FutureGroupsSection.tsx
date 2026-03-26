@@ -1,5 +1,5 @@
+import GroupInterestTable from '@/app/(main)/local/GroupInterestTable';
 import { TableRow } from '@/app/services/SheetsApi';
-import GroupInterestTable from '@/components/local/GroupInterestTable';
 import { pageStyles } from '@/components/styles';
 import { FC } from 'react';
 

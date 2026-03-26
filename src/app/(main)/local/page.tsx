@@ -1,7 +1,7 @@
-import FutureGroupsSectionSkeleton from '@/components/local/FutureGroupsSectionSkeleton';
-import FutureGroupsSectionViewModel from '@/components/local/FutureGroupsSectionViewModel';
-import LocalGroupList from '@/components/local/LocalGroupList';
-import LocalGroupListSkeleton from '@/components/local/LocalGroupListSkeleton';
+import FutureGroupsSectionSkeleton from '@/app/(main)/local/FutureGroupsSectionSkeleton';
+import FutureGroupsSectionViewModel from '@/app/(main)/local/FutureGroupsSectionViewModel';
+import LocalGroupList from '@/app/(main)/local/LocalGroupList';
+import LocalGroupListSkeleton from '@/app/(main)/local/LocalGroupListSkeleton';
 import { pageStyles } from '@/components/styles';
 import { getPage } from '@/lib/actions';
 import generateDNAMetadata from '@/utils/generateDNAMetadata';
