@@ -16,13 +16,13 @@ interface Props {
   selected: boolean;
 }
 
-const OnlineGroupCard: FC<Props> = ({
+const NationalGroupCard: FC<Props> = ({
   group,
   index,
   onSelectGroup,
   selected,
 }) => {
-  const { groupUrl } = copy.online;
+  const { groupUrl } = copy.national;
   const { linkContainer, linkLabel } = styles;
   const { cardHeading, externalLinkIcon } = cardStyles;
 
@@ -98,4 +98,4 @@ const OnlineGroupCard: FC<Props> = ({
   );
 };
 
-export default OnlineGroupCard;
+export default NationalGroupCard;

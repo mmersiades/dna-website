@@ -1,8 +1,8 @@
 import { defineField, defineType } from 'sanity';
 
-export const onlineGroupType = defineType({
+export const nationalGroupType = defineType({
   name: 'online-group',
-  title: 'Online Group',
+  title: 'National Group',
   type: 'document',
   description: `A national-level online group, such as a learning circle or working group`,
   fields: [
@@ -19,6 +19,7 @@ export const onlineGroupType = defineType({
         list: [
           { title: 'Learning Circle', value: 'learning-circle' },
           { title: 'Working Group', value: 'working-group' },
+          { title: 'Meeting', value: 'meeting' },
         ],
       },
       validation: (rule) => rule.required(),

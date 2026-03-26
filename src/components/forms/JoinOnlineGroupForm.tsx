@@ -29,7 +29,7 @@ export const JoinOnlineGroupForm: FC<Props> = ({
   selectedGroup,
   onSubmit: submitCallback,
 }) => {
-  const { instructions, success, failure } = copy.online.form;
+  const { instructions, success, failure } = copy.national.form;
 
   const nameInputRef = useRef<HTMLInputElement | null>(null);
 

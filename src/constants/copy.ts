@@ -68,7 +68,7 @@ const copy = {
       },
       {
         href: paths.online,
-        children: 'Join an online group',
+        children: 'Join a national group',
       },
       {
         href: paths.socials,
@@ -198,8 +198,8 @@ const copy = {
     usefulTitle: 'Useful Resources',
     alliesTitle: 'Allied Organisations and Movements',
   },
-  online: {
-    title: 'Online DNA Groups',
+  national: {
+    title: 'National DNA Groups',
     groupUrl: 'Find out more',
     form: {
       instructions: {
@@ -275,7 +275,7 @@ const copy = {
           href: paths.local,
         },
         {
-          children: 'Online Groups',
+          children: 'National Groups',
           href: paths.online,
         },
         {
@@ -321,7 +321,7 @@ const copy = {
         path: paths.local,
       },
       {
-        label: 'Online Groups',
+        label: 'National Groups',
         path: paths.online,
       },
       {
