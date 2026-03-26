@@ -4,6 +4,7 @@ import sheetsApi from '@/app/services/SheetsApi';
 import { env } from '@/env';
 import { sanityFetch } from '@/sanity/lib/live';
 import {
+  DEGROWTH_DESCRIPTIONS_QUERY,
   EXT_RESOURCES_QUERY,
   GROUPS_QUERY,
   ONLINE_GROUPS_QUERY,
@@ -118,6 +119,16 @@ export const fetchSanityLocalGroups = async () => {
     query: GROUPS_QUERY,
   });
   return data;
+};
+
+export const fetchSanityDegrowthDescriptions = async () => {
+  'use cache';
+  cacheLife('hours');
+  const { data } = await sanityFetch({
+    query: DEGROWTH_DESCRIPTIONS_QUERY,
+  });
+
+  return [...data].sort(() => Math.random() - 0.5).slice(0, 15);
 };
 
 export const fetchHumantixPastEvents = async () => {
