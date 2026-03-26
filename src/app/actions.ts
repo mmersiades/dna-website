@@ -1,4 +1,5 @@
 'use server';
+import humantixApi from '@/app/services/HumantixApi';
 import sheetsApi from '@/app/services/SheetsApi';
 import { env } from '@/env';
 import { sanityFetch } from '@/sanity/lib/live';
@@ -8,6 +9,7 @@ import {
   PARTICIPANTS_AGREEMENT_QUERY,
 } from '@/sanity/lib/queries';
 import { PAGE_QUERYResult } from '@/sanity/types';
+import dayjs from 'dayjs';
 import { cacheLife, cacheTag, updateTag } from 'next/cache';
 
 export const fetchGroupIntentData = async () => {
@@ -95,6 +97,41 @@ export const fetchSanityExternalResources = async () => {
     stega: false,
   });
   return data;
+};
+
+export const fetchHumantixPastEvents = async () => {
+  'use cache';
+  cacheLife('hours');
+  const events = await humantixApi.fetchPastEvents({
+    since: dayjs().subtract(1, 'year').toISOString(),
+  });
+
+  return events
+    .filter((event) => event.published && event.public)
+    .sort((a, b) => {
+      if (a.endDate && b.endDate) {
+        return new Date(b.endDate).getTime() - new Date(a.endDate).getTime();
+      }
+      return 0;
+    });
+};
+
+export const fetchHumantixFutureEvents = async () => {
+  'use cache';
+  cacheLife('hours');
+  const { events, status } = await humantixApi.fetchFutureEvents();
+  if (status !== 200) {
+    throw new Error('Failed to fetch future Humantix events');
+  }
+
+  return events
+    .filter((event) => event.published && event.public)
+    .sort((a, b) => {
+      if (a.endDate && b.endDate) {
+        return new Date(a.endDate).getTime() - new Date(b.endDate).getTime();
+      }
+      return 0;
+    });
 };
 
 export const updateCacheTag = async (tag: string) => {

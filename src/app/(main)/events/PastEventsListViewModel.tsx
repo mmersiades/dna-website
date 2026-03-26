@@ -1,13 +1,10 @@
 import PastEventList from '@/app/(main)/events/PastEventList';
 import PastEventListSkeleton from '@/app/(main)/events/PastEventsListSkeleton';
-import humantixApi from '@/app/services/HumantixApi';
-import dayjs from 'dayjs';
+import { fetchHumantixPastEvents } from '@/app/actions';
 import { Suspense } from 'react';
 
 export default async function PastEventsListViewModel() {
-  const events = await humantixApi.fetchPastEvents({
-    since: dayjs().subtract(1, 'year').toISOString(),
-  });
+  const events = await fetchHumantixPastEvents();
 
   return (
     <Suspense fallback={<PastEventListSkeleton />}>

@@ -34,7 +34,7 @@ export const EventDescriptionSkeleton: FC = () => {
 };
 
 const EventCardSkeleton: FC = () => {
-  const { container, content } = {
+  const { container, content, image } = {
     container: cn(
       'h-full w-full',
       'col-span-12 lg:col-span-6 xl:col-span-4',
@@ -42,16 +42,15 @@ const EventCardSkeleton: FC = () => {
       'border border-muted rounded-md',
     ),
     content: 'p-4',
+    image: 'bg-muted/50 relative aspect-2/1 w-full rounded-t-md',
   };
 
   const { cardHeading } = cardStyles;
 
   return (
-    <div className={cn(container, 'group')}>
+    <div className={container}>
       <div>
-        <div
-          className={'bg-muted/50 relative aspect-2/1 w-full rounded-t-md'}
-        ></div>
+        <div className={image} />
         <h4 className={cn(cardHeading, 'text-muted pt-2')}>Event</h4>
       </div>
       <div className={content}>
