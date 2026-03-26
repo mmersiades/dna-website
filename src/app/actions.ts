@@ -5,6 +5,7 @@ import { env } from '@/env';
 import { sanityFetch } from '@/sanity/lib/live';
 import {
   EXT_RESOURCES_QUERY,
+  GROUPS_QUERY,
   ONLINE_GROUPS_QUERY,
   PAGE_QUERY,
   PARTICIPANTS_AGREEMENT_QUERY,
@@ -106,6 +107,15 @@ export const fetchSanityNationalGroups = async () => {
   const { data } = await sanityFetch({
     query: ONLINE_GROUPS_QUERY,
     stega: false,
+  });
+  return data;
+};
+
+export const fetchSanityLocalGroups = async () => {
+  'use cache';
+  cacheLife('hours');
+  const { data } = await sanityFetch({
+    query: GROUPS_QUERY,
   });
   return data;
 };

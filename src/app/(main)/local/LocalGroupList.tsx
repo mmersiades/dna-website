@@ -1,14 +1,15 @@
 import GroupCard from '@/app/(main)/local/GroupCard';
 import { pageStyles } from '@/components/styles';
 import copy from '@/constants/copy';
-import { sanityFetch } from '@/sanity/lib/live';
-import { GROUPS_QUERY } from '@/sanity/lib/queries';
+import { GROUPS_QUERYResult } from '@/sanity/types';
+import { FC } from 'react';
 
-export default async function LocalGroupList() {
+interface Props {
+  groups: GROUPS_QUERYResult;
+}
+
+const LocalGroupList: FC<Props> = ({ groups }) => {
   const { title } = copy.local;
-  const { data: groups } = await sanityFetch({
-    query: GROUPS_QUERY,
-  });
 
   const { pageTitle, pageDivider, sectionContainer } = pageStyles;
 
@@ -31,4 +32,6 @@ export default async function LocalGroupList() {
       </div>
     </section>
   );
-}
+};
+
+export default LocalGroupList;

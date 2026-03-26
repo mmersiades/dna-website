@@ -107,7 +107,7 @@ class SheetsApi {
     if (!params.state && !params.region && !params.country) {
       const national = {
         label: 'Australia',
-        count: rows.length,
+        count: params.data.length,
         bold: true,
       };
       rows.push(national);
