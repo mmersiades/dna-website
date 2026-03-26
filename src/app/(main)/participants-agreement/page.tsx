@@ -1,4 +1,5 @@
-import ParticipantsAgreementViewModel from '@/components/participants-agreement/ParticipantsAgreementViewModel';
+import ParticipantsAgreementViewModel from '@/app/(main)/participants-agreement/ParticipantsAgreementViewModel';
+import ParticipantsAgreementViewSkeleton from '@/app/(main)/participants-agreement/ParticipantsAgreementViewSkeleton';
 import { pageStyles } from '@/components/styles';
 import { Suspense } from 'react';
 
@@ -7,7 +8,7 @@ export default async function ParticipantsAgreementPage() {
 
   return (
     <div className={pageContainer}>
-      <Suspense fallback={<p>TODO: Loading participants agreement...</p>}>
+      <Suspense fallback={<ParticipantsAgreementViewSkeleton />}>
         <ParticipantsAgreementViewModel />
       </Suspense>
     </div>
