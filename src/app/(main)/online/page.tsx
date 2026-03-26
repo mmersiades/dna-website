@@ -1,5 +1,5 @@
-import OnlineGroupsListSkeleton from '@/components/online/OnlineGroupsListSkeleton';
-import OnlineGroupsListViewModel from '@/components/online/OnlineGroupsListViewModel';
+import OnlineGroupsListSkeleton from '@/app/(main)/online/OnlineGroupsListSkeleton';
+import OnlineGroupsListViewModel from '@/app/(main)/online/OnlineGroupsListViewModel';
 import { pageStyles } from '@/components/styles';
 import { getPage } from '@/lib/actions';
 import generateDNAMetadata from '@/utils/generateDNAMetadata';

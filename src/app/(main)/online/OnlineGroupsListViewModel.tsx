@@ -1,4 +1,4 @@
-import OnlineGroupsList from '@/components/online/OnlineGroupsList';
+import OnlineGroupsList from '@/app/(main)/online/OnlineGroupsList';
 import { sanityFetch } from '@/sanity/lib/live';
 import { ONLINE_GROUPS_QUERY } from '@/sanity/lib/queries';
 
