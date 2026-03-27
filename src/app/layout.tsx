@@ -13,6 +13,9 @@ import { ToastContainer } from 'react-toastify';
 import { ContactPoint, Organization, WithContext } from 'schema-dts';
 import './globals.css';
 
+import DarkIcon from '../../public/favicon-dark.png';
+import LightIcon from '../../public/favicon-light.png';
+
 const atma = Atma({
   variable: '--atma-sans',
   subsets: ['latin'],
@@ -25,6 +28,20 @@ export const metadata: Metadata = {
   authors: [{ name: 'Michael Mersiades', url: 'https://www.neonkingkong.com' }],
   generator: 'Next.js',
   keywords: copy.seo.keywords,
+  icons: [
+    {
+      rel: 'icon',
+      type: 'image/png',
+      media: '(prefers-color-scheme: light)',
+      url: LightIcon.src,
+    },
+    {
+      rel: 'icon',
+      type: 'image/png',
+      media: '(prefers-color-scheme: dark)',
+      url: DarkIcon.src,
+    },
+  ],
   twitter: {
     card: 'summary_large_image',
     site: '@site',
