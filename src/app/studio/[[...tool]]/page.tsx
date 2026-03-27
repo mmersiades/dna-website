@@ -7,10 +7,16 @@
  * https://github.com/sanity-io/next-sanity
  */
 
+import { Metadata } from 'next';
 import { NextStudio } from 'next-sanity/studio';
 import config from '../../../../sanity.config';
 
-export { metadata, viewport } from 'next-sanity/studio';
+export { viewport } from 'next-sanity/studio';
+
+export const metadata: Metadata = {
+  title: 'Sanity Studio',
+  robots: { index: false },
+};
 
 export default function StudioPage() {
   return <NextStudio config={config} />;
