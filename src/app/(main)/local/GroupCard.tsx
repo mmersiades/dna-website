@@ -23,13 +23,16 @@ const GroupCard: FC<Props> = ({ group, index }) => {
   return (
     <div className={container}>
       <div>
-        {group.groupPhoto && (
-          <GroupPhoto
-            {...group.groupPhoto}
-            src={urlFor(group.groupPhoto).url()}
-            index={index}
-          />
-        )}
+        <GroupPhoto
+          {...group.groupPhoto}
+          altText={
+            group.groupPhoto?.altText ??
+            `Placeholder image for ${group.fullName}`
+          }
+          src={group.groupPhoto ? urlFor(group.groupPhoto).url() : undefined}
+          index={index}
+          _type={'image'}
+        />
         <h4 className={cn(cardHeading, 'pt-2')}>{group.fullName}</h4>
       </div>
       <div className={content}>
