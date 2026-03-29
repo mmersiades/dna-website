@@ -309,6 +309,7 @@ const copy = {
       name: 'Neon King Kong',
       url: paths.external.developer,
     },
+    illustratorUrl: paths.external.illustrator,
   },
   header: {
     links: [

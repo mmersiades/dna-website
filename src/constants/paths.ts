@@ -29,6 +29,7 @@ export const paths = {
     developer: 'https://www.neonkingkong.com' as Route,
     exploreDegrowth:
       'https://explore.degrowth.net/degrowth/what-is-degrowth/' as Route,
+    illustrator: 'https://www.instagram.com/milka.tattooer' as Route,
   },
 } as const;
 
