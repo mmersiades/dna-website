@@ -67,7 +67,7 @@ const copy = {
         children: 'Join a local Degrowth group',
       },
       {
-        href: paths.online,
+        href: paths.national,
         children: 'Join a national group',
       },
       {
@@ -145,7 +145,7 @@ const copy = {
       },
       {
         label: 'Online Groups Page',
-        path: paths.online,
+        path: paths.national,
       },
       {
         label: 'About Page',
@@ -276,7 +276,7 @@ const copy = {
         },
         {
           children: 'National Groups',
-          href: paths.online,
+          href: paths.national,
         },
         {
           children: 'Events',
@@ -323,7 +323,7 @@ const copy = {
       },
       {
         label: 'National Groups',
-        path: paths.online,
+        path: paths.national,
       },
       {
         label: 'Events',

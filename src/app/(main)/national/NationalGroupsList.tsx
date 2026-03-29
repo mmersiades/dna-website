@@ -1,7 +1,7 @@
 'use client';
-import DesktopJoinForm from '@/app/(main)/online/DesktopJoinForm';
-import MobileJoinForm from '@/app/(main)/online/MobileJoinForm';
-import NationalGroupCard from '@/app/(main)/online/NationalGroupCard';
+import DesktopJoinForm from '@/app/(main)/national/DesktopJoinForm';
+import MobileJoinForm from '@/app/(main)/national/MobileJoinForm';
+import NationalGroupCard from '@/app/(main)/national/NationalGroupCard';
 import { pageStyles } from '@/components/styles';
 import copy from '@/constants/copy';
 import { ONLINE_GROUPS_QUERYResult } from '@/sanity/types';

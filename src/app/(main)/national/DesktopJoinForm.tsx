@@ -1,4 +1,4 @@
-import JoinNationalGroupForm from '@/app/(main)/online/JoinNationalGroupForm';
+import JoinNationalGroupForm from '@/app/(main)/national/JoinNationalGroupForm';
 import { ONLINE_GROUPS_QUERYResult } from '@/sanity/types';
 import cn from '@/utils/cn';
 import { FC } from 'react';

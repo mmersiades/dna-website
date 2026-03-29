@@ -1,5 +1,5 @@
-import NationalGroupsListSkeleton from '@/app/(main)/online/NationalGroupsListSkeleton';
-import NationalGroupsListViewModel from '@/app/(main)/online/NationalGroupsListViewModel';
+import NationalGroupsListSkeleton from '@/app/(main)/national/NationalGroupsListSkeleton';
+import NationalGroupsListViewModel from '@/app/(main)/national/NationalGroupsListViewModel';
 import { pageStyles } from '@/components/styles';
 import { getPage } from '@/lib/actions';
 import generateDNAMetadata from '@/utils/generateDNAMetadata';
@@ -7,7 +7,7 @@ import { Metadata } from 'next';
 import { Suspense } from 'react';
 
 export async function generateMetadata(): Promise<Metadata> {
-  const page = await getPage('online');
+  const page = await getPage('national');
 
   return generateDNAMetadata(page);
 }

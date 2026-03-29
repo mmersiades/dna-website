@@ -1,4 +1,4 @@
-import NationalGroupCardSkeleton from '@/app/(main)/online/NationalGroupCardSkeleton';
+import NationalGroupCardSkeleton from '@/app/(main)/national/NationalGroupCardSkeleton';
 import { pageStyles } from '@/components/styles';
 import copy from '@/constants/copy';
 import { FC } from 'react';

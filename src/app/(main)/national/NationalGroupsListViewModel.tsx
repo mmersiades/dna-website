@@ -1,4 +1,4 @@
-import NationalGroupsList from '@/app/(main)/online/NationalGroupsList';
+import NationalGroupsList from '@/app/(main)/national/NationalGroupsList';
 import { fetchSanityNationalGroups } from '@/app/actions';
 
 export default async function NationalGroupsListViewModel() {
