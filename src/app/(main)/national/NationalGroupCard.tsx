@@ -6,6 +6,8 @@ import { urlFor } from '@/sanity/lib/image';
 import { ONLINE_GROUPS_QUERYResult } from '@/sanity/types';
 import cn from '@/utils/cn';
 import { Route } from 'next';
+import { useTheme } from 'next-themes';
+import Image from 'next/image';
 import Link from 'next/link';
 import { FC } from 'react';
 
@@ -15,6 +17,45 @@ interface Props {
   onSelectGroup: (group: ONLINE_GROUPS_QUERYResult[0]) => void;
   selected: boolean;
 }
+
+const NationalGroupImage: FC<Pick<Props, 'group' | 'index'>> = ({
+  group,
+  index,
+}) => {
+  const { resolvedTheme } = useTheme();
+
+  if (group.image) {
+    return (
+      <GroupPhoto
+        src={urlFor(group.image).url()}
+        index={index}
+        altText={group.image.alt ?? `Image for ${group.title}`}
+        _type={group.image._type}
+      />
+    );
+  } else {
+    const { placeholder, container } = {
+      container: cn('rounded-t-md', 'relative', 'aspect-video'),
+      placeholder: 'rounded-l-md p-4',
+    };
+
+    const src =
+      resolvedTheme === 'dark'
+        ? '/birdhouse-stippled-dark.svg'
+        : '/birdhouse-stippled-light.svg';
+
+    return (
+      <div className={container}>
+        <Image
+          src={src}
+          alt={`Image placeholder for ${group.title} website`}
+          fill
+          className={placeholder}
+        />
+      </div>
+    );
+  }
+};
 
 const NationalGroupCard: FC<Props> = ({
   group,
@@ -58,17 +99,14 @@ const NationalGroupCard: FC<Props> = ({
     <button
       role={'button'}
       className={container}
+      onMouseDown={(e) => e.stopPropagation()}
       onClick={() => onSelectGroup(group)}
     >
       <div>
-        {group.image && (
-          <GroupPhoto
-            src={urlFor(group.image).url()}
-            index={index}
-            altText={group.image.alt ?? `Image for ${group.title}`}
-            _type={group.image._type}
-          />
-        )}
+        <NationalGroupImage
+          group={group}
+          index={index}
+        />
         <h4 className={cn(cardHeading, 'pt-2')}>
           {group.title}
           <span

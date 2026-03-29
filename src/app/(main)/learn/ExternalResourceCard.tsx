@@ -48,7 +48,7 @@ const ResourceImage: FC<Props> = ({ resource, index }) => {
     return (
       <Image
         src={src}
-        alt={`Image placeholder`}
+        alt={`Image placeholder for ${resource.title} website`}
         fill
         className={placeholder}
         sizes={generatePhotoSizes({

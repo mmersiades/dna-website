@@ -46,6 +46,7 @@ const NationalGroupsList: FC<Props> = ({ groups }) => {
         <DesktopJoinForm
           selectedGroup={selectedGroup}
           onSubmit={clearSelectedGroup}
+          onClickOutside={clearSelectedGroup}
         />
       </div>
       <MobileJoinForm

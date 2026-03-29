@@ -1,14 +1,21 @@
 import JoinNationalGroupForm from '@/app/(main)/national/JoinNationalGroupForm';
 import { ONLINE_GROUPS_QUERYResult } from '@/sanity/types';
 import cn from '@/utils/cn';
-import { FC } from 'react';
+import { FC, useEffect, useRef } from 'react';
 
 interface Props {
   selectedGroup: ONLINE_GROUPS_QUERYResult[0] | null;
   onSubmit: () => void;
+  onClickOutside: () => void;
 }
 
-const DesktopJoinForm: FC<Props> = ({ selectedGroup, onSubmit }) => {
+const DesktopJoinForm: FC<Props> = ({
+  selectedGroup,
+  onSubmit,
+  onClickOutside,
+}) => {
+  const ref = useRef<HTMLDivElement | null>(null);
+
   const { formContainer, formInnerContainer, formInnerInnerContainer } = {
     formContainer: cn(
       'absolute top-(--header-height) left-1/2 -translate-x-1/2 w-[calc(100vw+10px)]',
@@ -24,8 +31,30 @@ const DesktopJoinForm: FC<Props> = ({ selectedGroup, onSubmit }) => {
     formInnerInnerContainer: cn('mx-4 py-4', 'border-b border-tertiary-700'),
   };
 
+  useEffect(() => {
+    const handleOutSideClick = (event: MouseEvent) => {
+      if (
+        selectedGroup &&
+        ref.current &&
+        event.target &&
+        !ref.current.contains(event.target as Node)
+      ) {
+        onClickOutside();
+      }
+    };
+
+    window.addEventListener('mousedown', handleOutSideClick);
+
+    return () => {
+      window.removeEventListener('mousedown', handleOutSideClick);
+    };
+  }, [ref, selectedGroup]);
+
   return (
-    <div className={formContainer}>
+    <div
+      ref={ref}
+      className={formContainer}
+    >
       <div className={formInnerContainer}>
         <div className={formInnerInnerContainer}>
           {selectedGroup && (
