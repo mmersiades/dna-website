@@ -1,4 +1,5 @@
 import GroupCard from '@/app/(main)/local/GroupCard';
+import GridCardPlaceholder from '@/components/GridCardPlaceholder';
 import { pageStyles } from '@/components/styles';
 import copy from '@/constants/copy';
 import { GROUPS_QUERYResult } from '@/sanity/types';
@@ -29,6 +30,15 @@ const LocalGroupList: FC<Props> = ({ groups }) => {
             />
           </div>
         ))}
+        {groups.length % 2 === 1 && (
+          <GridCardPlaceholder
+            type={'flower-bees'}
+            altText={'Local group placeholder'}
+          />
+          // <div className="hidden items-center justify-center md:flex">
+          //   <GroupCardPlaceholder />
+          // </div>
+        )}
       </div>
     </section>
   );

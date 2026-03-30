@@ -14,7 +14,11 @@ interface Props {
 
 const GroupCard: FC<Props> = ({ group, index }) => {
   const { container, content } = {
-    container: cn('bg-card/50', 'border border-border rounded-md', 'w-full'),
+    container: cn(
+      'bg-card/50',
+      'border border-border rounded-md',
+      'w-full h-full',
+    ),
     content: 'p-4',
   };
 
