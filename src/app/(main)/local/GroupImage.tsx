@@ -51,6 +51,7 @@ const GroupImage: FC<Props> = ({ src, index, altText }) => {
           alt={`Image placeholder`}
           fill
           className={placeholder}
+          priority
         />
       </picture>
     );
