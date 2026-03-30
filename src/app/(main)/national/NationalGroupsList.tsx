@@ -2,6 +2,7 @@
 import DesktopJoinForm from '@/app/(main)/national/DesktopJoinForm';
 import MobileJoinForm from '@/app/(main)/national/MobileJoinForm';
 import NationalGroupCard from '@/app/(main)/national/NationalGroupCard';
+import NationalGroupCardPlaceholder from '@/app/(main)/national/NationalGroupCardPlaceholder';
 import { pageStyles } from '@/components/styles';
 import copy from '@/constants/copy';
 import { ONLINE_GROUPS_QUERYResult } from '@/sanity/types';
@@ -67,6 +68,11 @@ const NationalGroupsList: FC<Props> = ({ groups }) => {
               selected={selectedGroup?._id === g._id}
             />
           ))}
+          {groups.length % 2 === 1 && (
+            <div className="hidden items-center justify-center md:flex">
+              <NationalGroupCardPlaceholder />
+            </div>
+          )}
         </div>
       </section>
     </>
