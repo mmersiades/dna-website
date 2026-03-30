@@ -2,16 +2,12 @@
 import { GroupPhotoProps } from '@/app/(main)/local/GroupPhoto';
 import cn from '@/utils/cn';
 import generatePhotoSizes from '@/utils/generatePhotoSizes';
-import { useTheme } from 'next-themes';
 import Image from 'next/image';
-import { FC, useEffect, useState } from 'react';
+import { FC } from 'react';
 
 type Props = Pick<GroupPhotoProps, 'src' | 'altText' | 'index'>;
 
 const GroupImage: FC<Props> = ({ src, index, altText }) => {
-  const { resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
   const { image, placeholder } = {
     image: cn(
       'rounded-t-md',
@@ -21,11 +17,6 @@ const GroupImage: FC<Props> = ({ src, index, altText }) => {
     ),
     placeholder: 'rounded-l-md p-4',
   };
-
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setMounted(true);
-  }, []);
 
   if (src) {
     return (
@@ -46,20 +37,22 @@ const GroupImage: FC<Props> = ({ src, index, altText }) => {
       />
     );
   } else {
-    if (!mounted) return null;
-
-    const src =
-      resolvedTheme === 'dark'
-        ? '/birdhouse-stippled-dark.svg'
-        : '/birdhouse-stippled-light.svg';
+    const src = '/birdhouse-stippled-light.svg';
+    const darkSrc = '/birdhouse-stippled-dark.svg';
 
     return (
-      <Image
-        src={src}
-        alt={`Image placeholder`}
-        fill
-        className={placeholder}
-      />
+      <picture>
+        <source
+          srcSet={darkSrc}
+          media="(prefers-color-scheme: dark)"
+        />
+        <Image
+          src={src}
+          alt={`Image placeholder`}
+          fill
+          className={placeholder}
+        />
+      </picture>
     );
   }
 };

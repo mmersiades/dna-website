@@ -1,8 +1,7 @@
-'use client';
+// 'use client';
 import cn from '@/utils/cn';
-import { useTheme } from 'next-themes';
 import Image from 'next/image';
-import { FC, useEffect, useState } from 'react';
+import { FC } from 'react';
 
 interface Props {
   type: 'snails' | 'flower-bees';
@@ -11,9 +10,6 @@ interface Props {
 
 // A placeholder to fill space in a grid. Only visible on medium and larger screens where there are two columns in the grid
 const GridCardPlaceholder: FC<Props> = ({ type, altText }) => {
-  const { resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
   const { container, image } = {
     container: cn(
       'hidden md:flex',
@@ -25,38 +21,35 @@ const GridCardPlaceholder: FC<Props> = ({ type, altText }) => {
     image: 'md:p-8 lg:p-20',
   };
 
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setMounted(true);
-  }, []);
-
-  if (!mounted) return null;
-
   let src;
+  let darkSrc;
 
   switch (type) {
     case 'flower-bees':
-      src =
-        resolvedTheme === 'dark'
-          ? '/flower-bees-stippled-dark.svg'
-          : '/flower-bees-stippled-light.svg';
+      src = '/flower-bees-stippled-light.svg';
+      darkSrc = '/flower-bees-stippled-dark.svg';
       break;
     case 'snails':
-      src =
-        resolvedTheme === 'dark'
-          ? '/snails-stippled-dark.svg'
-          : '/snails-stippled-light.svg';
+      src = '/snails-stippled-light.svg';
+      darkSrc = '/snails-stippled-dark.svg';
       break;
   }
 
   return (
     <div className={container}>
-      <Image
-        src={src}
-        alt={altText}
-        fill
-        className={image}
-      />
+      <picture>
+        <source
+          srcSet={darkSrc}
+          media="(prefers-color-scheme: dark)"
+        />
+        <Image
+          src={src}
+          alt={altText}
+          fill
+          className={image}
+          priority
+        />
+      </picture>
     </div>
   );
 };
