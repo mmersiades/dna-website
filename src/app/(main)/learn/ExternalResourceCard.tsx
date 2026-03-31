@@ -1,24 +1,22 @@
 'use client';
+import ResourceImage from '@/app/(main)/learn/ResourceImage';
 import { EXT_RESOURCES_QUERYResult } from '@/sanity/types';
 import cn from '@/utils/cn';
-import generatePhotoSizes from '@/utils/generatePhotoSizes';
 import { Route } from 'next';
-import Image from 'next/image';
 import Link from 'next/link';
 import { FC } from 'react';
 
-interface Props {
+export interface ResourceCardProps {
   resource: EXT_RESOURCES_QUERYResult[0];
   index: number; // 0-based
 }
 
-const ExternalResourceCard: FC<Props> = ({ resource, index }) => {
+const ExternalResourceCard: FC<ResourceCardProps> = ({ resource, index }) => {
   const {
     container,
     content,
     h4,
     imageContainer,
-    image,
     externalLinkIconContainer,
     externalLinkIcon,
   } = {
@@ -39,7 +37,6 @@ const ExternalResourceCard: FC<Props> = ({ resource, index }) => {
       'relative',
       'aspect-video w-full max-w-1/3',
     ),
-    image: 'rounded-l-md object-cover',
     externalLinkIconContainer: cn(
       'absolute top-0 right-0',
       'z-10',
@@ -65,28 +62,12 @@ const ExternalResourceCard: FC<Props> = ({ resource, index }) => {
       <div className={externalLinkIconContainer}>
         <span className={externalLinkIcon}></span>
       </div>
-      {resource.image && (
-        <div className={imageContainer}>
-          <Image
-            src={resource.image}
-            alt={`Image from ${resource.title} website`}
-            fill
-            className={image}
-            loader={({ src, width, quality }) =>
-              `${src}?w=${width}&q=${quality || 75}`
-            }
-            sizes={generatePhotoSizes({
-              mobile: 225,
-              sm: 225,
-              md: 310,
-              lg: 175, // Smaller because two columns
-              xl: 225,
-              xxl: 310,
-            })}
-            loading={index < 8 ? 'eager' : 'lazy'}
-          />
-        </div>
-      )}
+      <div className={imageContainer}>
+        <ResourceImage
+          resource={resource}
+          index={index}
+        />
+      </div>
       <div className={content}>
         <h4 className={h4}>{resource.title}</h4>
         <p>{resource.description}</p>

@@ -1,18 +1,10 @@
 'use client';
 
-import styles from '@/components/local/styles';
+import styles from '@/app/(main)/local/styles';
 import copy from '@/constants/copy';
 import cn from '@/utils/cn';
-import { Atma } from 'next/font/google';
 import Link from 'next/link';
 import { FC } from 'react';
-import '../../app/globals.css';
-
-const atma = Atma({
-  variable: '--atma-sans',
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
-});
 
 const Error: FC = () => {
   const { title, home } = copy.notFound;
@@ -30,7 +22,7 @@ const Error: FC = () => {
   };
 
   return (
-    <div className={cn(container, atma)}>
+    <div className={cn(container)}>
       <div className={card}>
         <h1 className={heading}>{title}</h1>
         <div className={buttonContainer}>

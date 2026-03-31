@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { ToastContentProps } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './toast.css';
 
 type Props = Partial<ToastContentProps> & {

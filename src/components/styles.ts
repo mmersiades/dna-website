@@ -16,6 +16,7 @@ export const pageStyles = {
   pageTitle: 'text-3xl sm:text-4xl lg:text-5xl font-bold px-2',
   pageDivider: 'text-tertiary-500/50 dark:text-tertiary/50 mt-2 mb-4 mx-2',
   sectionContainer: 'my-8 px-2',
+  proseSectionContainer: 'my-8 px-2 ml-auto mr-auto w-fit',
   anchor: cn(
     'font-bold',
     'decoration-transparent',

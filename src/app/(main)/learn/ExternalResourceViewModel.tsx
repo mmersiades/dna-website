@@ -1,14 +1,10 @@
 import ExternalResourceList from '@/app/(main)/learn/ExternalResourceList';
+import { fetchSanityExternalResources } from '@/app/actions';
 import copy from '@/constants/copy';
-import { sanityFetch } from '@/sanity/lib/live';
-import { EXT_RESOURCES_QUERY } from '@/sanity/lib/queries';
 
 export default async function ExternalResourceViewModel() {
   const { degrowthTitle, usefulTitle, alliesTitle } = copy.learn;
-  const { data: extResources } = await sanityFetch({
-    query: EXT_RESOURCES_QUERY,
-    stega: false,
-  });
+  const extResources = await fetchSanityExternalResources();
 
   const degrowthLinks = extResources.filter(
     (resource) => resource.category === 'degrowth',

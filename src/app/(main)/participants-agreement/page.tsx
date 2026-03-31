@@ -1,21 +1,16 @@
-import ParticipantsAgreementSection from '@/components/participants-agreement/ParticipantsAgreementSection';
+import ParticipantsAgreementViewModel from '@/app/(main)/participants-agreement/ParticipantsAgreementViewModel';
+import ParticipantsAgreementViewSkeleton from '@/app/(main)/participants-agreement/ParticipantsAgreementViewSkeleton';
 import { pageStyles } from '@/components/styles';
-import { sanityFetch } from '@/sanity/lib/live';
-import { PARTICIPANTS_AGREEMENT_QUERY } from '@/sanity/lib/queries';
-import { notFound } from 'next/navigation';
+import { Suspense } from 'react';
 
 export default async function ParticipantsAgreementPage() {
-  const { data } = await sanityFetch({
-    query: PARTICIPANTS_AGREEMENT_QUERY,
-  });
-
-  if (!data) return notFound();
-
   const { pageContainer } = pageStyles;
 
   return (
     <div className={pageContainer}>
-      <ParticipantsAgreementSection data={data} />
+      <Suspense fallback={<ParticipantsAgreementViewSkeleton />}>
+        <ParticipantsAgreementViewModel />
+      </Suspense>
     </div>
   );
 }

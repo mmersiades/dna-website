@@ -1,4 +1,3 @@
-import sheetsApi from '@/app/services/SheetsApi';
 import { env } from '@/env';
 import { checkBotId } from 'botid/server';
 import { google } from 'googleapis';
@@ -47,21 +46,4 @@ export async function POST(request: Request) {
       { status: 500 },
     );
   }
-}
-
-export async function GET(request: Request) {
-  const url = new URL(request.url);
-  if (!sheetsApi.participantAgreementInitialised) {
-    const data = await sheetsApi.getSheetData(
-      env.GOOGLE_SHEETS_PARTICIPANTS_AGREEMENT_SHEET_ID,
-      'Sheet1',
-    );
-    sheetsApi.setParticipantAgreementData(data);
-  }
-
-  const data = sheetsApi.filterParticipantAgreements({
-    email: url.searchParams.get('email'),
-  });
-
-  return NextResponse.json({ success: true, data });
 }

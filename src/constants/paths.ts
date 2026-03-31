@@ -4,7 +4,7 @@ export const paths = {
   home: '/' as Route,
   about: '/about' as Route,
   local: '/local' as Route,
-  online: '/online' as Route,
+  national: '/national' as Route,
   events: '/events',
   learn: '/learn' as Route,
   getInvolved: '/get-involved' as Route,
@@ -29,6 +29,7 @@ export const paths = {
     developer: 'https://www.neonkingkong.com' as Route,
     exploreDegrowth:
       'https://explore.degrowth.net/degrowth/what-is-degrowth/' as Route,
+    illustrator: 'https://www.instagram.com/milka.tattooer' as Route,
   },
 } as const;
 

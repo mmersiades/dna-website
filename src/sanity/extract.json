@@ -1154,6 +1154,10 @@
             {
               "type": "string",
               "value": "working-group"
+            },
+            {
+              "type": "string",
+              "value": "meeting"
             }
           ]
         },

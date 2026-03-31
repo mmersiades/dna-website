@@ -57,6 +57,14 @@ export const DesktopLandscape: Story = {
 };
 
 // noinspection JSUnusedGlobalSymbols
+export const WithImagePlaceholder: Story = {
+  globals: {
+    theme: 'light',
+  },
+  args: { ...args, resource: { ...args.resource, image: null } },
+};
+
+// noinspection JSUnusedGlobalSymbols
 export const DesktopLandscapeHover: Story = {
   globals: {
     theme: 'light',

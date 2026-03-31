@@ -77,39 +77,6 @@ class SheetsApi {
 
   private sheets = google.sheets({ version: 'v4', auth: this.auth });
 
-  public groupIntentRows: GroupIntentRow[] = [];
-  public participantAgreementRows: ParticipantAgreementRow[] = [];
-
-  get groupIntentInitialised(): boolean {
-    return this.groupIntentRows.length > 0;
-  }
-
-  get participantAgreementInitialised(): boolean {
-    return this.participantAgreementRows.length > 0;
-  }
-
-  public setGroupIntentData(data: sheets_v4.Schema$ValueRange['values']) {
-    if (!data) return;
-    this.groupIntentRows = this.mapRawGroupIntentData(data);
-  }
-
-  public setParticipantAgreementData(
-    data: sheets_v4.Schema$ValueRange['values'],
-  ) {
-    if (!data) return;
-    this.participantAgreementRows = this.mapRawParticipantAgreementData(data);
-  }
-
-  public filterParticipantAgreements = (params: {
-    email: string | null;
-  }): ParticipantAgreementRow[] => {
-    if (!params.email) return [];
-
-    return this.participantAgreementRows.filter(
-      (row) => row.email === params.email,
-    );
-  };
-
   public getSheetData = async (
     sheetId: string,
     range: string,
@@ -121,16 +88,26 @@ class SheetsApi {
     return response.data.values;
   };
 
-  public getTableRows = (params: {
+  public filterParticipantAgreements = (params: {
+    email: string | null;
+    rows: ParticipantAgreementRow[];
+  }): ParticipantAgreementRow[] => {
+    if (!params.email) return [];
+
+    return params.rows.filter((row) => row.email === params.email);
+  };
+
+  public getGroupIntentTableRows = (params: {
     state: string | null;
     region: string | null;
     country: string | null;
+    data: GroupIntentRow[];
   }): TableRow[] => {
     const rows: TableRow[] = [];
     if (!params.state && !params.region && !params.country) {
       const national = {
         label: 'Australia',
-        count: this.groupIntentRows.length,
+        count: params.data.length,
         bold: true,
       };
       rows.push(national);
@@ -145,6 +122,7 @@ class SheetsApi {
             this.populateRegionRows({
               selectedRegion: params.region,
               city: sydney,
+              data: params.data,
               rows,
             });
             break;
@@ -152,6 +130,7 @@ class SheetsApi {
             this.populateRegionRows({
               selectedRegion: params.region,
               city: melbourne,
+              data: params.data,
               rows,
             });
             break;
@@ -159,6 +138,7 @@ class SheetsApi {
             this.populateRegionRows({
               selectedRegion: params.region,
               city: adelaide,
+              data: params.data,
               rows,
             });
             break;
@@ -166,6 +146,7 @@ class SheetsApi {
             this.populateRegionRows({
               selectedRegion: params.region,
               city: brisbane,
+              data: params.data,
               rows,
             });
             break;
@@ -173,6 +154,7 @@ class SheetsApi {
             this.populateRegionRows({
               selectedRegion: params.region,
               city: perth,
+              data: params.data,
               rows,
             });
             break;
@@ -180,7 +162,7 @@ class SheetsApi {
       }
 
       // Add selected region
-      const regionRows = this.groupIntentRows.filter(
+      const regionRows = params.data.filter(
         (row) => row.region === params.region,
       );
       const region = {
@@ -192,9 +174,7 @@ class SheetsApi {
     }
 
     if (params.state) {
-      const stateRows = this.groupIntentRows.filter(
-        (row) => row.state === params.state,
-      );
+      const stateRows = params.data.filter((row) => row.state === params.state);
       const state = {
         label: params.state,
         count: stateRows.length,
@@ -204,7 +184,7 @@ class SheetsApi {
     }
 
     if (params.country) {
-      const countryRows = this.groupIntentRows.filter(
+      const countryRows = params.data.filter(
         (row) => row.country === params.country,
       );
       const country = {
@@ -221,18 +201,18 @@ class SheetsApi {
   private populateRegionRows({
     selectedRegion,
     city,
+    data,
     rows,
   }: {
     selectedRegion: string;
     city: string[];
+    data: GroupIntentRow[];
     rows: TableRow[];
   }) {
     if (city.includes(selectedRegion)) {
       const otherRegions = city.filter((r) => r !== selectedRegion);
       for (const r of otherRegions) {
-        const regionRows = this.groupIntentRows.filter(
-          (row) => row.region === r,
-        );
+        const regionRows = data.filter((row) => row.region === r);
         const region = {
           label: r,
           count: regionRows.length,
@@ -243,7 +223,7 @@ class SheetsApi {
     }
   }
 
-  private mapRawParticipantAgreementData = (
+  public mapRawParticipantAgreementData = (
     data: sheets_v4.Schema$ValueRange['values'],
   ) => {
     if (!data) return [];
@@ -266,7 +246,7 @@ class SheetsApi {
     return rows;
   };
 
-  private mapRawGroupIntentData = (data: string[][]): GroupIntentRow[] => {
+  public mapRawGroupIntentData = (data: string[][]): GroupIntentRow[] => {
     const rows: GroupIntentRow[] = [];
     const headerRow = data.shift();
     const stateIndex = headerRow?.indexOf('state');

@@ -1,19 +1,11 @@
 'use client';
 
-import styles from '@/components/local/styles';
+import styles from '@/app/(main)/local/styles';
 import copy from '@/constants/copy';
 import cn from '@/utils/cn';
 import * as Sentry from '@sentry/nextjs';
-import { Atma } from 'next/font/google';
 import Link from 'next/link';
 import { FC, useEffect } from 'react';
-import '../../app/globals.css';
-
-const atma = Atma({
-  variable: '--atma-sans',
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
-});
 
 interface Props {
   error: Error & { digest?: string };
@@ -41,7 +33,7 @@ const Error: FC<Props> = ({ error }) => {
   };
 
   return (
-    <div className={cn(container, atma)}>
+    <div className={cn(container)}>
       <div className={card}>
         <h1 className={heading}>{title}</h1>
         <div className={errorContainer}>

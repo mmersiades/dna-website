@@ -67,8 +67,8 @@ const copy = {
         children: 'Join a local Degrowth group',
       },
       {
-        href: paths.online,
-        children: 'Join an online group',
+        href: paths.national,
+        children: 'Join a national group',
       },
       {
         href: paths.socials,
@@ -145,7 +145,7 @@ const copy = {
       },
       {
         label: 'Online Groups Page',
-        path: paths.online,
+        path: paths.national,
       },
       {
         label: 'About Page',
@@ -198,8 +198,8 @@ const copy = {
     usefulTitle: 'Useful Resources',
     alliesTitle: 'Allied Organisations and Movements',
   },
-  online: {
-    title: 'Online DNA Groups',
+  national: {
+    title: 'National DNA Groups',
     groupUrl: 'Find out more',
     form: {
       instructions: {
@@ -275,8 +275,8 @@ const copy = {
           href: paths.local,
         },
         {
-          children: 'Online Groups',
-          href: paths.online,
+          children: 'National Groups',
+          href: paths.national,
         },
         {
           children: 'Events',
@@ -309,6 +309,7 @@ const copy = {
       name: 'Neon King Kong',
       url: paths.external.developer,
     },
+    illustratorUrl: paths.external.illustrator,
   },
   header: {
     links: [
@@ -321,8 +322,8 @@ const copy = {
         path: paths.local,
       },
       {
-        label: 'Online Groups',
-        path: paths.online,
+        label: 'National Groups',
+        path: paths.national,
       },
       {
         label: 'Events',

@@ -7,13 +7,15 @@
  * https://github.com/sanity-io/next-sanity
  */
 
-import { NextStudio } from 'next-sanity/studio';
-import config from '../../../../sanity.config';
-
-export const dynamic = 'force-static';
+import SanityStudio from '@/app/studio/[[...tool]]/SanityStudio';
+import { Suspense } from 'react';
 
 export { metadata, viewport } from 'next-sanity/studio';
 
-export default function StudioPage() {
-  return <NextStudio config={config} />;
+export default async function StudioPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <SanityStudio />
+    </Suspense>
+  );
 }
