@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { FC } from 'react';
 
 export interface WatermarkImageProps {
-  type: 'snails' | 'flower-bees' | 'bee-1' | 'bee-1-footer';
+  type: 'snails' | 'flower-bees' | 'bee-1' | 'bee-1-footer' | 'flower-footer';
   altText: string;
 }
 
@@ -27,6 +27,10 @@ const WatermarkImage: FC<WatermarkImageProps> = ({ type, altText }) => {
     case 'bee-1-footer':
       src = '/bee-1-footer-light.svg';
       darkSrc = '/bee-1-footer-dark.svg';
+      break;
+    case 'flower-footer':
+      src = '/flower-stippled-footer-light.svg';
+      darkSrc = '/flower-stippled-footer-dark.svg';
       break;
   }
 

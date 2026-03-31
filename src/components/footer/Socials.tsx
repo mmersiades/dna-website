@@ -1,4 +1,5 @@
 import styles from '@/components/footer/styles';
+import WatermarkImage from '@/components/WatermarkImage';
 import copy from '@/constants/copy';
 import cn from '@/utils/cn';
 import { Route } from 'next';
@@ -73,6 +74,23 @@ const Socials: FC<{ id: string }> = ({ id }) => {
   const { title: socialsTitle, networks } = copy.footer.socials;
   const { title, divider } = styles;
 
+  const { row, watermarkContainer } = {
+    row: cn(
+      'flex sm:flex-wrap flex-col sm:flex-row',
+      'justify-between lg:justify-around',
+      'gap-4 md:gap-6',
+    ),
+    watermarkContainer: cn(
+      'relative',
+      'w-12',
+      'py-4',
+      'hidden sm:flex',
+      'flex-1',
+      'items-center',
+      'justify-center',
+    ),
+  };
+
   return (
     <div>
       <h4
@@ -82,13 +100,25 @@ const Socials: FC<{ id: string }> = ({ id }) => {
         {socialsTitle}
       </h4>
       <hr className={divider} />
-      <div className={'flex flex-wrap justify-start gap-4 md:gap-8 lg:gap-16'}>
+      <div className={row}>
+        <div className={watermarkContainer}>
+          <WatermarkImage
+            type={'flower-footer'}
+            altText={'background image of hand-drawn flower'}
+          />
+        </div>
         {networks.map((prop) => (
           <SocialIcon
             key={prop.icon}
             {...prop}
           />
         ))}
+        <div className={watermarkContainer}>
+          <WatermarkImage
+            type={'flower-footer'}
+            altText={'background image of hand-drawn flower'}
+          />
+        </div>
       </div>
     </div>
   );
