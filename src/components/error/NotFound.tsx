@@ -5,7 +5,6 @@ import copy from '@/constants/copy';
 import cn from '@/utils/cn';
 import Link from 'next/link';
 import { FC } from 'react';
-import '../../app/globals.css';
 
 const Error: FC = () => {
   const { title, home } = copy.notFound;

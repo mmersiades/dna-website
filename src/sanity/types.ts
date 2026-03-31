@@ -210,7 +210,7 @@ export type OnlineGroup = {
   _updatedAt: string;
   _rev: string;
   title: string;
-  category: 'learning-circle' | 'working-group';
+  category: 'learning-circle' | 'working-group' | 'meeting';
   meetingFrequency:
     | 'Weekly'
     | 'Fortnightly'
@@ -476,9 +476,9 @@ export type GROUPS_QUERYResult = Array<{
     } & GroupActivity
   > | null;
 }>;
-// Variable: DEGROWTH_DEFINITIONS_QUERY
+// Variable: DEGROWTH_DESCRIPTIONS_QUERY
 // Query: *[_type == "degrowth-definition"]{  _id,   statement,   quote,  author,   identifier,   citationText,  citationUrl,}
-export type DEGROWTH_DEFINITIONS_QUERYResult = Array<{
+export type DEGROWTH_DESCRIPTIONS_QUERYResult = Array<{
   _id: string;
   statement: string;
   quote: string;
@@ -503,7 +503,7 @@ export type EXT_RESOURCES_QUERYResult = Array<{
 export type ONLINE_GROUPS_QUERYResult = Array<{
   _id: string;
   title: string;
-  category: 'learning-circle' | 'working-group';
+  category: 'learning-circle' | 'meeting' | 'working-group';
   meetingFrequency:
     | 'Fortnightly'
     | 'Monthly'
@@ -627,7 +627,7 @@ import '@sanity/client';
 declare module '@sanity/client' {
   interface SanityQueries {
     '*[_type == "group" && defined(slug.current)][0...12] | order(establishmentDate asc) {\n  _id, \n  fullName, \n  slug,\n  shortName, \n  website, \n  blurb,\n  groupPhoto,\n  contactEmail,\n  links[],\n  activities[]\n}': GROUPS_QUERYResult;
-    '*[_type == "degrowth-definition"]{\n  _id, \n  statement, \n  quote,\n  author, \n  identifier, \n  citationText,\n  citationUrl,\n}': DEGROWTH_DEFINITIONS_QUERYResult;
+    '*[_type == "degrowth-definition"]{\n  _id, \n  statement, \n  quote,\n  author, \n  identifier, \n  citationText,\n  citationUrl,\n}': DEGROWTH_DESCRIPTIONS_QUERYResult;
     '*[_type == "external-resource"]{\n  _id,\n  title,\n  category,\n  description,\n  url,\n  image,\n  logo\n}': EXT_RESOURCES_QUERYResult;
     '*[_type == "online-group"]{\n  _id,\n  title,\n  category,\n  meetingFrequency,\n  description,\n  url,\n  image\n}': ONLINE_GROUPS_QUERYResult;
     '*[_type == "participantAgreement"][0]{\n  _id,\n  _createdAt,\n  _updatedAt,\n  _rev,\n  version,\n  title,\n  content\n}': PARTICIPANTS_AGREEMENT_QUERYResult;

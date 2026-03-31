@@ -6,7 +6,6 @@ import cn from '@/utils/cn';
 import * as Sentry from '@sentry/nextjs';
 import Link from 'next/link';
 import { FC, useEffect } from 'react';
-import '../../app/globals.css';
 
 interface Props {
   error: Error & { digest?: string };

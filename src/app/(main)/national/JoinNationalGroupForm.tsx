@@ -103,7 +103,7 @@ export const JoinNationalGroupForm: FC<Props> = ({
       <h6 className={h6}>
         {instructions.a}
         <span className={highlight}>{selectedGroup.title}</span>
-        {instructions.b}
+        {selectedGroup.category !== 'meeting' ? instructions.b : '.'}
       </h6>
       <form
         className={formContainer}

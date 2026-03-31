@@ -1,5 +1,6 @@
 'use client';
 
+import WatermarkImage from '@/components/WatermarkImage';
 import copy from '@/constants/copy';
 import cn from '@/utils/cn';
 import Image from 'next/image';
@@ -24,6 +25,7 @@ const Credits: FC = () => {
     externalLinkIconContainer,
     externalLinkIcon,
     imageContainer,
+    watermarkContainer,
   } = {
     text: 'font-sans',
     row: cn('flex flex-row gap-2 justify-between items-center', 'w-full h-fit'),
@@ -56,6 +58,12 @@ const Credits: FC = () => {
       'transition-color duration-250',
     ),
     imageContainer: 'relative h-10 w-1/4 min-w-25',
+    watermarkContainer: cn(
+      'relative',
+      'hidden lg:block',
+      'aspect-square w-12',
+      'mx-10',
+    ),
   };
 
   return (
@@ -75,6 +83,12 @@ const Credits: FC = () => {
           </Suspense>
         </p>
       </Link>
+      <div className={watermarkContainer}>
+        <WatermarkImage
+          type={'bee-1-footer'}
+          altText={'A hand-drawn bee background image'}
+        />
+      </div>
       <Link
         href={illustratorUrl}
         target={'_blank'}
