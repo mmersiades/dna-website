@@ -1,4 +1,5 @@
 import Citation from '@/components/landing/Citation';
+import LandingBackgroundImage from '@/components/landing/LandingBackgroundImage';
 import copy from '@/constants/copy';
 import { CSSProperties, FC } from 'react';
 import './styles.css';
@@ -34,6 +35,7 @@ const Quote: FC<QuoteProps> = ({
       className={'quote-section'}
       style={{ '--i': index } as CSSProperties}
     >
+      <LandingBackgroundImage />
       {/*Subheader*/}
       <div className={'subheader-container'}>
         <div className={'subheader-a-container'}>

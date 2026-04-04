@@ -169,3 +169,49 @@ export const fetchHumantixFutureEvents = async () => {
 export const updateCacheTag = async (tag: string) => {
   updateTag(tag);
 };
+
+interface BackgroundImageProps {
+  src: string;
+  darkSrc: string;
+  altText: string;
+  position: string;
+}
+
+export const generateBackgroundImageProps =
+  async (): Promise<BackgroundImageProps> => {
+    const images: Omit<BackgroundImageProps, 'position'>[] = [
+      {
+        src: 'butterfly-stippled-coloured-light.svg',
+        darkSrc: 'butterfly-stippled-coloured-dark.svg',
+        altText: 'Hand-drawn butterfly background image',
+      },
+      {
+        src: 'flower-bees-stippled-coloured-light.svg',
+        darkSrc: 'flower-bees-stippled-coloured-dark.svg',
+        altText: 'Hand-drawn flower with bees background image',
+      },
+      {
+        src: 'snails-stippled-coloured-light.svg',
+        darkSrc: 'snails-stippled-coloured-dark.svg',
+        altText: 'Hand-drawn snails background image',
+      },
+    ];
+
+    const imageRand = Math.floor(Math.random() * images.length);
+    const image = images[imageRand];
+
+    const horizontalPositions: string[] = [
+      '-left-1/6 lg:-left-1/9',
+      '-right-1/6 lg:-right-1/9',
+    ];
+
+    const horizontalPositionRand = Math.floor(
+      Math.random() * horizontalPositions.length,
+    );
+    const horizontalPosition = horizontalPositions[horizontalPositionRand];
+
+    return {
+      ...image,
+      position: `${horizontalPosition} 'top-0'`,
+    };
+  };
