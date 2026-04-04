@@ -1,4 +1,5 @@
 import Citation from '@/components/landing/Citation';
+import LandingBackgroundImage from '@/components/landing/LandingBackgroundImage';
 import { CSSProperties, FC } from 'react';
 import './styles.css';
 
@@ -22,6 +23,7 @@ const IntroQuote: FC<Props> = ({
       className={'quote-section'}
       style={{ '--i': index } as CSSProperties}
     >
+      <LandingBackgroundImage />
       <div className="quote-spacer"></div>
       <div className={'intro-quote-container'}>
         <blockquote>{quote}</blockquote>
