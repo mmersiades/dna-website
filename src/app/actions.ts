@@ -12,6 +12,7 @@ import {
   PARTICIPANTS_AGREEMENT_QUERY,
 } from '@/sanity/lib/queries';
 import { PAGE_QUERYResult } from '@/sanity/types';
+import cn from '@/utils/cn';
 import dayjs from 'dayjs';
 import { cacheLife, cacheTag, updateTag } from 'next/cache';
 
@@ -175,6 +176,7 @@ interface BackgroundImageProps {
   darkSrc: string;
   altText: string;
   position: string;
+  flip: 'no-flip' | 'on-right' | 'on-left';
 }
 
 export const generateBackgroundImageProps =
@@ -184,34 +186,54 @@ export const generateBackgroundImageProps =
         src: 'butterfly-stippled-coloured-light.svg',
         darkSrc: 'butterfly-stippled-coloured-dark.svg',
         altText: 'Hand-drawn butterfly background image',
+        flip: 'on-right',
       },
       {
         src: 'flower-bees-stippled-coloured-light.svg',
         darkSrc: 'flower-bees-stippled-coloured-dark.svg',
         altText: 'Hand-drawn flower with bees background image',
+        flip: 'no-flip',
       },
       {
         src: 'snails-stippled-coloured-light.svg',
         darkSrc: 'snails-stippled-coloured-dark.svg',
         altText: 'Hand-drawn snails background image',
+        flip: 'on-left',
       },
     ];
 
     const imageRand = Math.floor(Math.random() * images.length);
     const image = images[imageRand];
 
-    const horizontalPositions: string[] = [
-      '-left-1/6 lg:-left-1/9',
-      '-right-1/6 lg:-right-1/9',
-    ];
-
-    const horizontalPositionRand = Math.floor(
-      Math.random() * horizontalPositions.length,
+    const horizontalPositionRand = Math.floor(Math.random() * 2);
+    console.log(
+      'generateBackgroundImageProps horizontalPositionRand',
+      horizontalPositionRand,
     );
-    const horizontalPosition = horizontalPositions[horizontalPositionRand];
+    let horizontalPosition = '';
+    let flip = '';
+    if (horizontalPositionRand === 0) {
+      // Left
+      horizontalPosition = '-left-1/6 lg:-left-1/9';
+      if (image.flip === 'on-left') {
+        flip = '-scale-x-100';
+      }
+    } else {
+      // Right
+      horizontalPosition = '-right-1/6 lg:-right-1/9';
+      if (image.flip === 'on-right') {
+        flip = '-scale-x-100';
+      }
+    }
+
+    console.log(
+      'generateBackgroundImageProps horizontalPosition',
+      horizontalPosition,
+    );
+    console.log('generateBackgroundImageProps flip', flip);
 
     return {
       ...image,
-      position: `${horizontalPosition} 'top-0'`,
+      position: cn(horizontalPosition, 'top-0', flip),
     };
   };

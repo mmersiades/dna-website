@@ -31,7 +31,13 @@ const LandingBackgroundImage: FC = () => {
   const resolvedSrc = resolvedTheme === 'dark' ? darkSrc : src;
 
   return (
-    <div className={cn('absolute h-1/2 w-1/2 lg:h-1/3 lg:w-1/3', position)}>
+    <div
+      className={cn(
+        'absolute h-1/2 w-1/2 lg:h-1/3 lg:w-1/3',
+        position,
+        'landing-background-image',
+      )}
+    >
       <Image
         fill
         src={resolvedSrc}
