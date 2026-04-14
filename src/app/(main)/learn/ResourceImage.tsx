@@ -45,8 +45,8 @@ const ResourceImage: FC<ResourceCardProps> = ({ resource, index }) => {
 
     const src =
       resolvedTheme === 'dark'
-        ? '/birdhouse-stippled-dark.svg'
-        : '/birdhouse-stippled-light.svg';
+        ? '/birdhouse-stippled-card-dark.svg'
+        : '/birdhouse-stippled-card-light.svg';
 
     return (
       <Image

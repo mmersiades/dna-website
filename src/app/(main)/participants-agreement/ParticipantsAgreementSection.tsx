@@ -1,4 +1,5 @@
 import ParticipantsAgreementFormViewModel from '@/app/(main)/participants-agreement/ParticipantsAgreementFormViewModel';
+import PageBackground from '@/components/PageBackground';
 import PageRichText from '@/components/pageBuilder/PageRichText';
 import { pageStyles } from '@/components/styles';
 import { PARTICIPANTS_AGREEMENT_QUERYResult } from '@/sanity/types';
@@ -26,17 +27,23 @@ const ParticipantsAgreementSection: FC<Props> = ({ data }) => {
   const updated = dateUTC.local().format('D MMMM, YYYY');
 
   return (
-    <section className={proseSectionContainer}>
-      <div className={detailsRow}>
-        <p className={details}>{`Version ${data.version}`}</p>
-        <p className={details}>{`Updated ${updated}`}</p>
-      </div>
-      <h4 className={pageTitle}>{data.title}</h4>
-      <hr className={pageDivider} />
-      <PageRichText value={data.content} />
-      <hr className={pageDivider} />
-      <ParticipantsAgreementFormViewModel agreementVersion={data.version} />
-    </section>
+    <>
+      <PageBackground
+        additionalClasses={'mt-20 h-full'}
+        imageCount={Math.ceil(data.content.length / 2)}
+      />
+      <section className={proseSectionContainer}>
+        <div className={detailsRow}>
+          <p className={details}>{`Version ${data.version}`}</p>
+          <p className={details}>{`Updated ${updated}`}</p>
+        </div>
+        <h4 className={pageTitle}>{data.title}</h4>
+        <hr className={pageDivider} />
+        <PageRichText value={data.content} />
+        <hr className={pageDivider} />
+        <ParticipantsAgreementFormViewModel agreementVersion={data.version} />
+      </section>
+    </>
   );
 };
 

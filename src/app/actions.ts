@@ -1,6 +1,7 @@
 'use server';
 import humantixApi from '@/app/services/HumantixApi';
 import sheetsApi from '@/app/services/SheetsApi';
+import { WallPaperImageProps } from '@/components/PageBackground';
 import { env } from '@/env';
 import { sanityFetch } from '@/sanity/lib/live';
 import {
@@ -206,11 +207,8 @@ export const generateBackgroundImageProps =
     const image = images[imageRand];
 
     const horizontalPositionRand = Math.floor(Math.random() * 2);
-    console.log(
-      'generateBackgroundImageProps horizontalPositionRand',
-      horizontalPositionRand,
-    );
-    let horizontalPosition = '';
+
+    let horizontalPosition;
     let flip = '';
     if (horizontalPositionRand === 0) {
       // Left
@@ -237,3 +235,36 @@ export const generateBackgroundImageProps =
       position: cn(horizontalPosition, 'top-0', flip),
     };
   };
+
+export const generateWallpaperImageProps = async (count: number) => {
+  const images: Omit<WallPaperImageProps, 'index'>[] = [
+    {
+      src: '/flower-bees-stippled-light.svg',
+      darkSrc: '/flower-bees-stippled-dark.svg',
+    },
+    {
+      src: 'butterfly-stippled-page-light.svg',
+      darkSrc: 'butterfly-stippled-page-dark.svg',
+    },
+    {
+      src: '/snails-stippled-page-light.svg',
+      darkSrc: '/snails-stippled-page-dark.svg',
+      padding: 'p-20 sm:p-24 md:p-28 lg:p-32',
+      flip: 'on-left',
+    },
+    {
+      src: '/ants-stippled-page-light.svg',
+      darkSrc: '/ants-stippled-page-dark.svg',
+      padding: 'p-10 sm:p-24 md:p-42 rotate-90',
+    },
+  ];
+
+  const result = [];
+
+  for (let i = 0; i < count; i++) {
+    const imageRand = Math.floor(Math.random() * images.length);
+    result.push(images[imageRand]);
+  }
+
+  return result;
+};

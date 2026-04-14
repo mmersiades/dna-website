@@ -40,8 +40,8 @@ const WatermarkImage: FC<WatermarkImageProps> = ({ type, altText }) => {
       darkSrc = '/flower-stippled-footer-dark.svg';
       break;
     case 'ants':
-      src = '/ants-stippled-light.svg';
-      darkSrc = '/ants-stippled-dark.svg';
+      src = '/ants-stippled-page-light.svg';
+      darkSrc = '/ants-stippled-page-dark.svg';
       break;
     case 'ants-footer':
       src = '/ants-stippled-footer-light.svg';

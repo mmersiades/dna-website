@@ -37,8 +37,8 @@ const GroupImage: FC<Props> = ({ src, index, altText }) => {
       />
     );
   } else {
-    const src = '/birdhouse-stippled-light.svg';
-    const darkSrc = '/birdhouse-stippled-dark.svg';
+    const src = '/birdhouse-stippled-card-light.svg';
+    const darkSrc = '/birdhouse-stippled-card-dark.svg';
 
     return (
       <picture>
