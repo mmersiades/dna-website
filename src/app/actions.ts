@@ -224,12 +224,6 @@ export const generateBackgroundImageProps =
       }
     }
 
-    console.log(
-      'generateBackgroundImageProps horizontalPosition',
-      horizontalPosition,
-    );
-    console.log('generateBackgroundImageProps flip', flip);
-
     return {
       ...image,
       position: cn(horizontalPosition, 'top-0', flip),
