@@ -6,7 +6,8 @@
     width: var(--size);
     margin-left: auto;
     margin-right: auto;
-    overflow: hidden;
+    overflow: visible;
+    margin-top: -1vh;
 }
 
 .header-container {
@@ -22,6 +23,7 @@
     align-items: center;
     justify-content: center;
     z-index: 10;
+    margin-top: min(3vh, 3vw);
 
     .heading {
         font-family: var(--font-display), serif;
@@ -42,11 +44,46 @@
     height: var(--size);
     border-radius: 50%;
 
+    text-shadow: 0 0 1px rgba(0, 0, 0, 1), 0 0 2px rgba(0, 0, 0, 0.75), 0 0 3px rgba(0, 0, 0, 0.50);
+
     transform:
             translate(-50%, -50%) /* Moves to dead center */
-            rotate(calc(var(--i) * var(--step) + 19deg)) /* Rotate orientation */
+            rotate(calc(var(--i) * var(--step) + 54deg)) /* Rotate orientation */
             translate(var(--radius)) /* Move outwards from center along orientation */
-            rotate(calc((var(--i) * var(--step) + 19deg) * -1 )); /* Restore original orientation */
+            rotate(calc((var(--i) * var(--step) + 54deg) * -1 )); /* Restore original orientation */
+
+    &:hover {
+        transform:
+                translate(-50%, -50%)
+                rotate(calc(var(--i) * var(--step) + 54deg))
+                translate(var(--radius))
+                rotate(calc((var(--i) * var(--step) + 54deg) * -1 ))
+                translateY(-5px);
+    }
+}
+
+.cta-position::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 135%;
+    height: 135%;
+    transform: translate(-50%, -35%);
+
+    background-image: url('/flower-stippled-coloured-light.svg');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    z-index: -1;
+    pointer-events: none;
+}
+
+@media (prefers-color-scheme: dark) {
+    .cta-position::before {
+        background-image: url('/flower-stippled-coloured-dark.svg');
+    }
 }
 
 @supports (width: calc(1px * sibling-index())) {
