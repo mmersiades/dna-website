@@ -89,16 +89,18 @@ const PageBackground: FC<Props> = ({ additionalClasses, imageCount }) => {
   };
 
   return (
-    <div className={wallpaperContainer}>
-      {images.map((image, index) => {
-        return (
-          <WallPaperImage
-            key={image.src + index}
-            {...image}
-            index={index}
-          />
-        );
-      })}
+    <div className={'overflow-x-hidden'}>
+      <div className={wallpaperContainer}>
+        {images.map((image, index) => {
+          return (
+            <WallPaperImage
+              key={image.src + index}
+              {...image}
+              index={index}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 };

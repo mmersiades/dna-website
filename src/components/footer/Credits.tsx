@@ -31,7 +31,7 @@ const Credits: FC = () => {
     row: cn('flex flex-row gap-2 justify-between items-center', 'w-full h-fit'),
     container: cn([
       'flex items-center flex-wrap gap-4 md:gap-8 flex-1 justify-center',
-      'max-w-lg h-[stretch]',
+      'max-w-lg h-[stretch] max-h-25',
       'border-1 border-tertiary-700 rounded-lg',
       'hover:border-secondary',
       'p-4 md:p-8',
@@ -71,7 +71,7 @@ const Credits: FC = () => {
       <Link
         href={developerUrl}
         target={'_blank'}
-        className={cn(container, 'h-[stretch]')}
+        className={container}
       >
         <div className={externalLinkIconContainer}>
           <span className={externalLinkIcon}></span>

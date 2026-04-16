@@ -93,7 +93,7 @@ const event: HumantixEvent = {
   },
   publishedAt: '2026-01-25T08:59:31.817Z',
   additionalQuestions: [],
-  bannerImage: { url: 'https://cdn.filestackcontent.com/dapRseh7TyaVUJmB5Avv' },
+  bannerImage: { url: '/birdhouse-stippled-card-light.svg' },
   featureImage: { url: '' },
   socialImage: { url: '' },
   eventLocation,
