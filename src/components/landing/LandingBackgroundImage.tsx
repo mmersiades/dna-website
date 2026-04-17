@@ -11,14 +11,16 @@ const LandingBackgroundImage: FC = () => {
   const [src, setSrc] = useState<string | null>(null);
   const [darkSrc, setDarkSrc] = useState<string | null>(null);
   const [altText, setAltText] = useState<string | null>();
+  const [padding, setPadding] = useState<string | null>(null);
 
   const initialise = async () => {
-    const { position, darkSrc, src, altText } =
+    const { position, darkSrc, src, altText, padding } =
       await generateBackgroundImageProps();
     setSrc(src);
     setAltText(altText);
     setPosition(position);
     setDarkSrc(darkSrc);
+    setPadding(padding ?? '');
   };
 
   useEffect(() => {
@@ -42,6 +44,7 @@ const LandingBackgroundImage: FC = () => {
         fill
         src={resolvedSrc}
         alt={altText}
+        className={padding ?? ''}
       />
     </div>
   );

@@ -20,7 +20,7 @@ const NavbarLink: FC<NavbarLinkProps> = ({ label, path, mobile = false }) => {
     link: cn(
       'nav-link',
       active && 'active',
-      'text-xl sm:text-2xl md:text-lg lg:text-lg xl:text-xl',
+      'text-xl sm:text-2xl md:text-base lg:text-lg xl:text-xl',
       'font-bold',
       'text-center',
     ),

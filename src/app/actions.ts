@@ -178,6 +178,7 @@ interface BackgroundImageProps {
   altText: string;
   position: string;
   flip: 'no-flip' | 'on-right' | 'on-left';
+  padding?: string;
 }
 
 export const generateBackgroundImageProps =
@@ -200,6 +201,7 @@ export const generateBackgroundImageProps =
         darkSrc: 'snails-stippled-coloured-dark.svg',
         altText: 'Hand-drawn snails background image',
         flip: 'on-left',
+        padding: 'p-12',
       },
     ];
 

@@ -4,10 +4,13 @@ import BreakPoint from '@/components/dev/BreakPoint';
 import DesktopNavMenu from '@/components/header/DesktopNavMenu';
 import MobileNavMenu from '@/components/header/MobileNavMenu';
 import headerStyles from '@/components/header/styles';
+import Wordmark from '@/components/header/Wordmark';
 import CtaLink from '@/components/links/CtaLink';
 import copy from '@/constants/copy';
+import { paths } from '@/constants/paths';
 import testIds from '@/constants/testIds';
 import cn from '@/utils/cn';
+import Link from 'next/link';
 import { FC, useEffect, useState } from 'react';
 
 const supportsPopover = () => Object.hasOwn(HTMLElement.prototype, 'popover');
@@ -48,11 +51,11 @@ const Header: FC = () => {
 
   const { container, desktopContainer } = headerStyles;
 
-  const { mobileContainer, menuContainer, menuHeader } = {
+  const { mobileContainer, menuContainer, menuHeader, wordmarkContainer } = {
     mobileContainer: cn(
       'w-full',
       'h-(--header-height)',
-      'flex flex-row items-center gap-4 justify-between',
+      'flex flex-row items-center gap-2 sm:gap-4 justify-between',
       'md:hidden',
       'p-2',
     ),
@@ -69,10 +72,11 @@ const Header: FC = () => {
       'w-full',
       'h-(--header-height)',
       'dark:text-white font-bold text-lg italic',
-      'flex flex-row items-center justify-start gap-4',
+      'flex flex-row items-center justify-between gap-4',
       'bg-tertiary-200 dark:bg-tertiary-950',
       'px-2',
     ),
+    wordmarkContainer: 'h-12 w-12 sm:h-12 sm:w-12 aspect-square',
   };
 
   return (
@@ -91,10 +95,14 @@ const Header: FC = () => {
           size={'size-12'}
           aria-label={openMenuLabel}
         />
+        <Link
+          href={paths.home}
+          className={wordmarkContainer}
+        >
+          <Wordmark />
+        </Link>
         <BreakPoint />
-        <div className={'ml-auto'}>
-          <CtaLink href={cta.href}>{cta.children}</CtaLink>
-        </div>
+        <CtaLink href={cta.href}>{cta.children}</CtaLink>
       </nav>
       <div className={desktopContainer}>
         <DesktopNavMenu />
