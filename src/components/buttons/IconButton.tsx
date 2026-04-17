@@ -36,7 +36,7 @@ const IconButton: FC<IconButtonProps> = ({
   iconName,
   srName,
   round = false,
-  size = 'size-6',
+  size = 'size-8',
   onDark = false,
   ...props
 }) => {
@@ -50,6 +50,7 @@ const IconButton: FC<IconButtonProps> = ({
         size,
         round && 'rounded-full',
         onDark && 'hover:text-secondary text-white',
+        'min-h-8 min-w-8',
       ])}
       {...props}
     >

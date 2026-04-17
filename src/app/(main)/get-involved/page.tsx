@@ -20,11 +20,12 @@ export default function GetInvolvedPage() {
       'flex items-center justify-center',
       'text-center',
       'rounded-md',
-      'font-bold sm:text-xl lg:text-2xl text-white',
-      'p-2 md:p-4 lg:p-6 xl:p-8',
+      'font-bold sm:text-xl lg:text-2xl',
+      'p-4 sm:p-4 md:p-8 lg:p-6 xl:p-8',
       'font-display',
-      'hover:ring-primary',
-      'transition-color duration-250',
+      'hover:opacity-100 dark:hover:opacity-95',
+      'opacity-90 dark:opacity-80',
+      'transition-color transition-opacity duration-250',
     ]),
   };
 
