@@ -1,10 +1,7 @@
-import copy from '@/constants/copy';
+import GetInvolvedCtaContent from '@/app/(main)/get-involved/GetInvolvedCtaContent';
 import { getPage } from '@/lib/actions';
-import cn from '@/utils/cn';
 import generateDNAMetadata from '@/utils/generateDNAMetadata';
 import { Metadata } from 'next';
-import Link from 'next/link';
-import './styles.css';
 
 export async function generateMetadata(): Promise<Metadata> {
   const page = await getPage('get-involved');
@@ -13,38 +10,5 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function GetInvolvedPage() {
-  const { header, links } = copy['get-involved'];
-  const { cta, container } = {
-    container: cn('w-fit h-fit', 'pb-15', 'ml-auto mr-auto'),
-    cta: cn([
-      'flex items-center justify-center',
-      'text-center',
-      'rounded-md',
-      'font-bold sm:text-xl lg:text-2xl',
-      'p-4 sm:p-4 md:p-8 lg:p-6 xl:p-8',
-      'font-display',
-      'hover:opacity-100 dark:hover:opacity-95',
-      'opacity-90 dark:opacity-80',
-      'transition-color transition-opacity duration-250',
-    ]),
-  };
-
-  return (
-    <div className={container}>
-      <div className={'cta-container'}>
-        <div className={'header-container'}>
-          <h4 className={'heading'}>{header}</h4>
-        </div>
-        {links.map((link, index) => (
-          <Link
-            key={link.href.toString() + index}
-            className={cn(cta, 'cta-position')}
-            href={link.href}
-          >
-            <span>{link.children}</span>
-          </Link>
-        ))}
-      </div>
-    </div>
-  );
+  return <GetInvolvedCtaContent />;
 }

@@ -1,3 +1,11 @@
+.centered {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - (var(--header-height)));
+    overflow-x: hidden;
+}
+
 .cta-container {
     --size: min(calc(100vh - (var(--header-height))), 100vw);
     position: relative;
@@ -23,7 +31,7 @@
     align-items: center;
     justify-content: center;
     z-index: 10;
-    margin-top: min(3vh, 3vw);
+    margin-top: min(2vh, 2vw);
 
     .heading {
         font-family: var(--font-display), serif;
@@ -44,11 +52,7 @@
     height: var(--size);
     border-radius: 50%;
 
-    transform:
-            translate(-50%, -50%) /* Moves to dead center */
-            rotate(calc(var(--i) * var(--step) + 54deg)) /* Rotate orientation */
-            translate(var(--radius)) /* Move outwards from center along orientation */
-            rotate(calc((var(--i) * var(--step) + 54deg) * -1 )); /* Restore original orientation */
+    transform: translate(-50%, -50%) /* Moves to dead center */ rotate(calc(var(--i) * var(--step) + 54deg)) /* Rotate orientation */ translate(var(--radius)) /* Move outwards from center along orientation */ rotate(calc((var(--i) * var(--step) + 54deg) * -1)); /* Restore original orientation */
 }
 
 .cta-position::before {
@@ -67,11 +71,23 @@
 
     z-index: -1;
     pointer-events: none;
+
+    opacity: 0.6;
+    transition: opacity 0.25s ease;
+}
+
+.cta-position:hover::before {
+    opacity: 1;
 }
 
 @media (prefers-color-scheme: dark) {
     .cta-position::before {
         background-image: url('/flower-stippled-coloured-no-outline-dark.svg');
+        opacity: 0.55;
+    }
+
+    .cta-position:hover::before {
+        opacity: 0.90;
     }
 }
 
