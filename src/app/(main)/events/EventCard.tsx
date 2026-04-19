@@ -84,8 +84,7 @@ export const EventLocation: FC<{ loc: HumantixEventLocation }> = ({ loc }) => {
       location = loc.instructions ?? 'Online';
       break;
     case 'custom':
-      // TODO:
-      location = 'Custom location';
+      location = `${loc.address} ${loc.venueName}`;
       break;
     case 'toBeAnnounced':
       location = 'To be announced';
