@@ -7,16 +7,22 @@ import { PAGE_QUERYResult } from '@/sanity/types';
 import cn from '@/utils/cn';
 import { FC } from 'react';
 
-type PageBuilderProps = NonNullable<PAGE_QUERYResult>;
+type PageBuilderProps = NonNullable<PAGE_QUERYResult> & {
+  watermarkImageCount: number;
+};
 
-const PageBuilder: FC<PageBuilderProps> = ({ pageBuilder, title }) => {
+const PageBuilder: FC<PageBuilderProps> = ({
+  pageBuilder,
+  title,
+  watermarkImageCount,
+}) => {
   if (!pageBuilder) return null;
 
   const { pageTitle, pageDivider, proseSectionContainer } = pageStyles;
 
   return (
     <div className={'relative'}>
-      <PageBackground imageCount={Math.ceil(pageBuilder.length / 2)} />
+      <PageBackground imageCount={watermarkImageCount} />
       <section className={cn(proseSectionContainer, 'relative')}>
         <h4 className={pageTitle}>{title}</h4>
         <hr className={pageDivider} />

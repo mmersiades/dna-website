@@ -914,6 +914,13 @@
         },
         "optional": false
       },
+      "watermarkImageCount": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "number"
+        },
+        "optional": false
+      },
       "pageBuilder": {
         "type": "objectAttribute",
         "value": {
@@ -1095,6 +1102,13 @@
         "value": {
           "type": "inline",
           "name": "blockContent"
+        },
+        "optional": false
+      },
+      "watermarkImageCount": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "number"
         },
         "optional": false
       }

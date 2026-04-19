@@ -201,7 +201,7 @@ export const generateBackgroundImageProps =
         darkSrc: 'snails-stippled-coloured-dark.svg',
         altText: 'Hand-drawn snails background image',
         flip: 'on-left',
-        padding: 'p-12',
+        padding: 'p-8 sm:p-12',
       },
     ];
 

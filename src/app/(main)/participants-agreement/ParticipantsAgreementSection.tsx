@@ -28,11 +28,11 @@ const ParticipantsAgreementSection: FC<Props> = ({ data }) => {
 
   return (
     <>
-      <PageBackground
-        additionalClasses={'mt-20 h-full'}
-        imageCount={Math.ceil(data.content.length / 2)}
-      />
       <section className={proseSectionContainer}>
+        <PageBackground
+          additionalClasses={'mt-20 h-full'}
+          imageCount={data.watermarkImageCount}
+        />
         <div className={detailsRow}>
           <p className={details}>{`Version ${data.version}`}</p>
           <p className={details}>{`Updated ${updated}`}</p>

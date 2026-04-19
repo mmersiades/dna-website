@@ -53,7 +53,8 @@ export const PARTICIPANTS_AGREEMENT_QUERY =
   _rev,
   version,
   title,
-  content
+  content,
+  watermarkImageCount,
 }`);
 
 export const PAGE_QUERY =
@@ -66,6 +67,7 @@ export const PAGE_QUERY =
   name, 
   slug, 
   title,
+  watermarkImageCount,
   "seo": {
     "title": coalesce(seo.title, title, ""),
     "description": coalesce(seo.description,  ""),

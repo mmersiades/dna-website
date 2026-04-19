@@ -81,7 +81,7 @@ const EmailButton: FC<{ email: string }> = ({ email }) => {
       'rounded-lg',
       'bg-primary',
     ),
-    popoverText: 'text-center font-bold',
+    popoverText: 'text-sm md:text-base text-center font-bold',
   };
 
   return (

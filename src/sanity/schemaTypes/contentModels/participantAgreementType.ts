@@ -31,5 +31,11 @@ export const participantAgreementType = defineType({
       type: 'blockContent',
       validation: (Rule) => Rule.required(),
     }),
+    defineField({
+      name: 'watermarkImageCount',
+      title: 'Watermark Image Count',
+      type: 'number',
+      validation: (Rule) => Rule.required().greaterThan(0),
+    }),
   ],
 });
