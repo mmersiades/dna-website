@@ -166,6 +166,7 @@ export type Page = {
   _rev: string;
   title?: string;
   slug: Slug;
+  watermarkImageCount: number;
   pageBuilder: Array<
     | ({
         _key: string;
@@ -201,6 +202,7 @@ export type ParticipantAgreement = {
   version: number;
   title: string;
   content: BlockContent;
+  watermarkImageCount: number;
 };
 
 export type OnlineGroup = {
@@ -527,7 +529,7 @@ export type ONLINE_GROUPS_QUERYResult = Array<{
   } | null;
 }>;
 // Variable: PARTICIPANTS_AGREEMENT_QUERY
-// Query: *[_type == "participantAgreement"][0]{  _id,  _createdAt,  _updatedAt,  _rev,  version,  title,  content}
+// Query: *[_type == "participantAgreement"][0]{  _id,  _createdAt,  _updatedAt,  _rev,  version,  title,  content,  watermarkImageCount,}
 export type PARTICIPANTS_AGREEMENT_QUERYResult = {
   _id: string;
   _createdAt: string;
@@ -536,9 +538,10 @@ export type PARTICIPANTS_AGREEMENT_QUERYResult = {
   version: number;
   title: string;
   content: BlockContent;
+  watermarkImageCount: number;
 } | null;
 // Variable: PAGE_QUERY
-// Query: *[_type == "page" && slug.current == $slug][0]{  _type,   _createdAt,   _updatedAt,   _rev,  _id,   name,   slug,   title,  "seo": {    "title": coalesce(seo.title, title, ""),    "description": coalesce(seo.description,  ""),    "image": seo.image,    "noIndex": seo.noIndex == true  },  pageBuilder[]{    _key,    _type,    _type == "hero" => {      heading,      tagline,      image    },    _type == "video" => {      videoLabel,      url,    },    _type == "richTextSection" => {      title,      content,    },    _type == "gallery" => {      images[]{        _key,        ...,      },    },  }}
+// Query: *[_type == "page" && slug.current == $slug][0]{  _type,   _createdAt,   _updatedAt,   _rev,  _id,   name,   slug,   title,  watermarkImageCount,  "seo": {    "title": coalesce(seo.title, title, ""),    "description": coalesce(seo.description,  ""),    "image": seo.image,    "noIndex": seo.noIndex == true  },  pageBuilder[]{    _key,    _type,    _type == "hero" => {      heading,      tagline,      image    },    _type == "video" => {      videoLabel,      url,    },    _type == "richTextSection" => {      title,      content,    },    _type == "gallery" => {      images[]{        _key,        ...,      },    },  }}
 export type PAGE_QUERYResult = {
   _type: 'page';
   _createdAt: string;
@@ -548,6 +551,7 @@ export type PAGE_QUERYResult = {
   name: null;
   slug: Slug;
   title: string | null;
+  watermarkImageCount: number;
   seo: {
     title: string | '';
     description: string | '';
@@ -630,7 +634,7 @@ declare module '@sanity/client' {
     '*[_type == "degrowth-definition"]{\n  _id, \n  statement, \n  quote,\n  author, \n  identifier, \n  citationText,\n  citationUrl,\n}': DEGROWTH_DESCRIPTIONS_QUERYResult;
     '*[_type == "external-resource"]{\n  _id,\n  title,\n  category,\n  description,\n  url,\n  image,\n  logo\n}': EXT_RESOURCES_QUERYResult;
     '*[_type == "online-group"]{\n  _id,\n  title,\n  category,\n  meetingFrequency,\n  description,\n  url,\n  image\n}': ONLINE_GROUPS_QUERYResult;
-    '*[_type == "participantAgreement"][0]{\n  _id,\n  _createdAt,\n  _updatedAt,\n  _rev,\n  version,\n  title,\n  content\n}': PARTICIPANTS_AGREEMENT_QUERYResult;
-    '*[_type == "page" && slug.current == $slug][0]{\n  _type, \n  _createdAt, \n  _updatedAt, \n  _rev,\n  _id, \n  name, \n  slug, \n  title,\n  "seo": {\n    "title": coalesce(seo.title, title, ""),\n    "description": coalesce(seo.description,  ""),\n    "image": seo.image,\n    "noIndex": seo.noIndex == true\n  },\n  pageBuilder[]{\n    _key,\n    _type,\n    _type == "hero" => {\n      heading,\n      tagline,\n      image\n    },\n    _type == "video" => {\n      videoLabel,\n      url,\n    },\n    _type == "richTextSection" => {\n      title,\n      content,\n    },\n    _type == "gallery" => {\n      images[]{\n        _key,\n        ...,\n      },\n    },\n  }\n}': PAGE_QUERYResult;
+    '*[_type == "participantAgreement"][0]{\n  _id,\n  _createdAt,\n  _updatedAt,\n  _rev,\n  version,\n  title,\n  content,\n  watermarkImageCount,\n}': PARTICIPANTS_AGREEMENT_QUERYResult;
+    '*[_type == "page" && slug.current == $slug][0]{\n  _type, \n  _createdAt, \n  _updatedAt, \n  _rev,\n  _id, \n  name, \n  slug, \n  title,\n  watermarkImageCount,\n  "seo": {\n    "title": coalesce(seo.title, title, ""),\n    "description": coalesce(seo.description,  ""),\n    "image": seo.image,\n    "noIndex": seo.noIndex == true\n  },\n  pageBuilder[]{\n    _key,\n    _type,\n    _type == "hero" => {\n      heading,\n      tagline,\n      image\n    },\n    _type == "video" => {\n      videoLabel,\n      url,\n    },\n    _type == "richTextSection" => {\n      title,\n      content,\n    },\n    _type == "gallery" => {\n      images[]{\n        _key,\n        ...,\n      },\n    },\n  }\n}': PAGE_QUERYResult;
   }
 }

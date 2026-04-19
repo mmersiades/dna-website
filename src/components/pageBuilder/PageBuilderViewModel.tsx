@@ -17,6 +17,7 @@ export default async function PageBuilderViewModel({
     <PageBuilder
       {...data}
       title={data.title ?? fallbackTitle}
+      watermarkImageCount={data.watermarkImageCount}
     />
   );
 }

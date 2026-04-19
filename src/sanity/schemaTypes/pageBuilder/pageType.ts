@@ -12,6 +12,12 @@ export const pageType = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'watermarkImageCount',
+      title: 'Watermark Image Count',
+      type: 'number',
+      validation: (Rule) => Rule.required().greaterThan(0),
+    }),
+    defineField({
       name: 'pageBuilder',
       type: 'array',
       title: 'Page builder',
