@@ -144,7 +144,7 @@ const copy = {
         path: paths.events,
       },
       {
-        label: 'Online Groups Page',
+        label: 'National Groups Page',
         path: paths.national,
       },
       {

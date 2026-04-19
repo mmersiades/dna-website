@@ -2,10 +2,20 @@
 
 import copy from '@/constants/copy';
 import cn from '@/utils/cn';
+import {
+  Document,
+  Font,
+  Image,
+  Page,
+  PDFDownloadLink,
+  Text,
+  View,
+} from '@react-pdf/renderer';
+import { StyleSheet } from '@react-pdf/renderer/lib/react-pdf.browser';
 import { Route } from 'next';
 import { useTheme } from 'next-themes';
 import { QRCodeCanvas, QRCodeSVG } from 'qrcode.react';
-import { FC, RefObject, useRef, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useIsClient } from 'usehooks-ts';
 import './styles.css';
 
@@ -48,40 +58,9 @@ const QrCodeCard: FC<{ selectedPath: Route }> = ({ selectedPath }) => {
         bgColor={bgColor}
         fgColor={fgColor}
       />
-      <h5 className={subheader}>{getLabel(selectedPath)}</h5>
-      <p className={caption}>{`${host}${selectedPath}`}</p>
-    </div>
-  );
-};
-
-const QrCodePDF: FC<{
-  selectedPath: Route;
-  qrCodeRef: RefObject<HTMLDivElement | null>;
-}> = ({ selectedPath, qrCodeRef }) => {
-  const { codeContainer, qrCode, subheader, caption, title } = {
-    qrCode: cn('size-full', 'rounded-md'),
-    codeContainer: cn(
-      'border border-tertiary-500/50 border:text-tertiary/50',
-      'rounded-md',
-      'pb-4 my-4 lg:my-8',
-      'text-center',
-      'size-full',
-      'bg-white',
-      'flex flex-col items-center',
-    ),
-    subheader: 'text-2xl sm:text-3xl lg:text-4xl font-bold py-2 text-black',
-    caption: 'text-xs text-black',
-    title: 'text-4xl font-bold pt-4 text-black',
-  };
-
-  return (
-    <div className={'hidden'}>
-      <div
-        ref={qrCodeRef}
-        className={codeContainer}
-      >
-        <h4 className={title}>{qrCodes.pdfTitle}</h4>
+      <div className={'hidden'}>
         <QRCodeCanvas
+          id={'qr-code-canvas'}
           className={qrCode}
           value={`${host}${selectedPath}`}
           marginSize={4}
@@ -90,22 +69,93 @@ const QrCodePDF: FC<{
           bgColor={'#FFF'}
           fgColor={'#000'}
         />
-        <h5 className={subheader}>{getLabel(selectedPath)}</h5>
-        <p className={caption}>{`${host}${selectedPath}`}</p>
       </div>
+      <h5 className={subheader}>{getLabel(selectedPath)}</h5>
+      <p className={caption}>{`${host}${selectedPath}`}</p>
     </div>
+  );
+};
+
+const QrCodePDF: FC<{
+  selectedPath: Route;
+  qrData: string; // base64 string
+}> = ({ qrData, selectedPath }) => {
+  Font.register({
+    family: 'Atma',
+    src: 'https://fonts.gstatic.com/s/atma/v1/Ca9FQNkREX9Mb-8NzZqSLg.ttf',
+    fontWeight: 'bold',
+  });
+
+  const styles = StyleSheet.create({
+    container: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      height: '100%',
+      textAlign: 'center',
+      paddingBottom: '20px',
+      backgroundColor: '#fff',
+      border: '1px solid #6c889480',
+      borderRadius: '14px',
+      color: '#000',
+    },
+    title: {
+      fontFamily: 'Atma',
+      fontSize: '2.25rem',
+      fontWeight: 700,
+      textWrap: 'balance',
+      overflowWrap: 'break-word',
+      paddingTop: '20px',
+    },
+    subheader: {
+      fontFamily: 'Atma',
+      fontSize: '2rem',
+      fontWeight: 700,
+      textWrap: 'balance',
+      overflowWrap: 'break-word',
+      paddingTop: '10px',
+      paddingBottom: '10px',
+    },
+    caption: {
+      fontSize: '0.75rem',
+      lineHeight: '1.33',
+      overflowWrap: 'break-word',
+    },
+    image: {
+      width: 512,
+      height: 512,
+    },
+  });
+
+  return (
+    <Document>
+      <Page size="A4">
+        <View style={styles.container}>
+          <Text style={styles.title}>{qrCodes.pdfTitle}</Text>
+          {/* eslint-disable-next-line jsx-a11y/alt-text */}
+          <Image
+            src={qrData}
+            style={styles.image}
+          />
+          <Text style={styles.subheader}>{getLabel(selectedPath)}</Text>
+          <Text style={styles.caption}>{`${host}${selectedPath}`}</Text>
+        </View>
+      </Page>
+    </Document>
   );
 };
 
 const QrCodeForm: FC = () => {
   const [selectedPath, setSelectedPath] = useState(qrCodes.links[0].path);
-  const qrCodeRef = useRef<HTMLDivElement | null>(null);
+  const [qrBase64, setQrBase64] = useState<string | null>(null);
 
-  const downloadQRCode = (pageName: string) => {
-    const filename =
-      'qr-code-dna-' + pageName.replace(/\s+/g, '-').toLowerCase();
+  const downloadQRCode = (selectedPath: Route) => {
+    const filename = generateFilename(selectedPath);
     // Access the canvas element via the ref
-    const canvas = qrCodeRef.current?.querySelector('canvas');
+    const canvas = document.getElementById(
+      'qr-code-canvas',
+    ) as HTMLCanvasElement;
 
     if (canvas) {
       // Convert the canvas content to a PNG data URL
@@ -125,6 +175,28 @@ const QrCodeForm: FC = () => {
     }
   };
 
+  const generateFilename = (selectedPath: Route) => {
+    const pageName = getLabel(selectedPath);
+    return 'qr-code-dna-' + pageName.replace(/\s+/g, '-').toLowerCase();
+  };
+
+  const generateQrBase64 = async () => {
+    const sleep = () => new Promise((resolve) => setTimeout(resolve, 50));
+    await sleep();
+    const canvas = document.getElementById(
+      'qr-code-canvas',
+    ) as HTMLCanvasElement;
+    const dataUrl = canvas.toDataURL('image/png');
+    setQrBase64(dataUrl);
+  };
+
+  useEffect(() => {
+    if (selectedPath) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      void generateQrBase64();
+    }
+  }, [selectedPath]);
+
   const {
     container,
     label,
@@ -133,6 +205,7 @@ const QrCodeForm: FC = () => {
     actionRow,
     downloadButton,
     downloadIcon,
+    iconContainer,
   } = {
     container: cn('w-full max-w-2xl', 'ml-auto mr-auto', 'px-2'),
     select: cn(
@@ -141,7 +214,7 @@ const QrCodeForm: FC = () => {
       'focus:outline-primary focus:outline-1 focus:border-primary focus:outline-offset-0',
       'hover:border-primary',
       'px-2',
-      'text-lg font-bold',
+      'text-lg sm:font-bold ',
       'flex flex-row items-center',
       'cursor-pointer',
     ),
@@ -164,7 +237,8 @@ const QrCodeForm: FC = () => {
       'cursor-pointer',
       'transition-color duration-250',
     ),
-    downloadIcon: cn('icon-[lucide--download]', 'size-6'),
+    downloadIcon: cn('icon-[lucide--download]', 'size-5'),
+    iconContainer: cn('flex flex-col items-center justify-center', 'p-1'),
   };
 
   return (
@@ -203,19 +277,36 @@ const QrCodeForm: FC = () => {
           <button
             role={'button'}
             className={downloadButton}
-            onClick={() => downloadQRCode(getLabel(selectedPath))}
+            onClick={() => downloadQRCode(selectedPath)}
           >
-            <span className={downloadIcon}></span>
-            <span className="sr-only">{qrCodes.download}</span>
+            <div className={iconContainer}>
+              <span className={downloadIcon}></span>
+              <span className="sr-only">{qrCodes.download}</span>
+              <p className="text-xs">PNG</p>
+            </div>
           </button>
         </div>
+        {qrBase64 && (
+          <PDFDownloadLink
+            className={downloadButton}
+            document={
+              <QrCodePDF
+                selectedPath={selectedPath}
+                qrData={qrBase64}
+              />
+            }
+            fileName={generateFilename(selectedPath) + '.pdf'}
+          >
+            <div className={iconContainer}>
+              <span className={downloadIcon}></span>
+              <span className="sr-only">{qrCodes.download}</span>
+              <p className="text-xs">PDF</p>
+            </div>
+          </PDFDownloadLink>
+        )}
       </div>
 
       <QrCodeCard selectedPath={selectedPath} />
-      <QrCodePDF
-        selectedPath={selectedPath}
-        qrCodeRef={qrCodeRef}
-      />
     </div>
   );
 };
