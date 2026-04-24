@@ -119,6 +119,58 @@ export const DesktopLandscape: Story = {
 };
 
 // noinspection JSUnusedGlobalSymbols
+export const DesktopLandscapeLocationOnline: Story = {
+  globals: {
+    theme: 'light',
+  },
+  args: {
+    ...args,
+    event: {
+      ...args.event,
+      eventLocation: {
+        ...args.event.eventLocation,
+        type: 'online',
+        instructions: 'Join us on Zoom',
+      },
+    },
+  },
+};
+
+// noinspection JSUnusedGlobalSymbols
+export const DesktopLandscapeLocationCustom: Story = {
+  globals: {
+    theme: 'light',
+  },
+  args: {
+    ...args,
+    event: {
+      ...args.event,
+      eventLocation: {
+        ...args.event.eventLocation,
+        type: 'custom',
+      },
+    },
+  },
+};
+
+// noinspection JSUnusedGlobalSymbols
+export const DesktopLandscapeLocationTBA: Story = {
+  globals: {
+    theme: 'light',
+  },
+  args: {
+    ...args,
+    event: {
+      ...args.event,
+      eventLocation: {
+        ...args.event.eventLocation,
+        type: 'toBeAnnounced',
+      },
+    },
+  },
+};
+
+// noinspection JSUnusedGlobalSymbols
 export const DesktopLandscapeHover: Story = {
   globals: {
     theme: 'light',

@@ -3,12 +3,12 @@ import { ToastContentProps } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './toast.css';
 
-type Props = Partial<ToastContentProps> & {
+export type ToastProps = Partial<ToastContentProps> & {
   title: string;
   message?: string;
 };
 
-const Toast: FC<Props> = ({ message, title }) => {
+const Toast: FC<ToastProps> = ({ message, title }) => {
   const { h4, p } = {
     h4: 'font-display text-xl font-bold',
     p: 'text-lg !font-sans',

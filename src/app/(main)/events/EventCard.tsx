@@ -6,7 +6,7 @@ import {
 } from '@/app/services/HumantixApi';
 import { cardStyles } from '@/components/styles';
 import copy from '@/constants/copy';
-import DateTimeHelpers from '@/lib/DateTimeHelpers';
+import DateTimeHelpers from '@/utils/DateTimeHelpers';
 import cn from '@/utils/cn';
 import generatePhotoSizes from '@/utils/generatePhotoSizes';
 import { Route } from 'next';
