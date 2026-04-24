@@ -35,5 +35,6 @@ export default defineConfig({
         },
       },
     ],
+    reporters: ['verbose', 'html'],
   },
 });
