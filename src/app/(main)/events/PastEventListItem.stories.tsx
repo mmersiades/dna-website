@@ -1,36 +1,20 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 
-import { pageStyles } from '@/components/styles';
+import PastEventListItem from '@/app/(main)/events/PastEventListItem';
 import TestFixtures from '@/utils/TestFixtures';
-import mainDecorator from '../../../../.storybook/mainDecorator';
-import EventCard from './EventCard';
 
 const meta = {
-  component: EventCard,
+  component: PastEventListItem,
   globals: {
     viewport: { value: 'desktop', isRotated: false },
   },
-  decorators: [
-    (Story) => {
-      const { sectionContainer } = pageStyles;
-      return (
-        <section className={sectionContainer}>
-          <div className={'grid grid-cols-12 gap-4 p-2 md:gap-8'}>
-            <Story />
-          </div>
-        </section>
-      );
-    },
-    mainDecorator,
-  ],
-} satisfies Meta<typeof EventCard>;
+} satisfies Meta<typeof PastEventListItem>;
 
 export default meta;
 
 type Story = StoryObj<typeof meta>;
 
 const args = {
-  index: 0,
   event: TestFixtures.event,
 };
 
@@ -140,5 +124,3 @@ export const LargeMobilePortrait: Story = {
   },
   args,
 };
-
-// I spent ages trying to get dark mode to work on Storybook with EventCard. Gave up.

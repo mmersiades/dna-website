@@ -1,7 +1,7 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { defineConfig } from 'vitest/config';
+import { coverageConfigDefaults, defineConfig } from 'vitest/config';
 
 import { storybookTest } from '@storybook/addon-vitest/vitest-plugin';
 
@@ -18,6 +18,18 @@ export default defineConfig({
     include: ['dayjs', 'dayjs/plugin/utc', 'dayjs/plugin/timezone'],
   },
   test: {
+    coverage: {
+      // provider: 'istanbul',
+      include: ['src/**/*.{ts,tsx}'],
+      exclude: [
+        ...coverageConfigDefaults.exclude,
+        '**/.storybook/**',
+        '**/*.stories.*',
+        '**/storybook-static/**',
+        'src/**/page.tsx',
+        'src/**/error.tsx',
+      ],
+    },
     projects: [
       {
         extends: true,
