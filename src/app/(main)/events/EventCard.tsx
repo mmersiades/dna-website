@@ -6,27 +6,13 @@ import {
 } from '@/app/services/HumantixApi';
 import { cardStyles } from '@/components/styles';
 import copy from '@/constants/copy';
+import DateTimeHelpers from '@/utils/DateTimeHelpers';
 import cn from '@/utils/cn';
 import generatePhotoSizes from '@/utils/generatePhotoSizes';
-import dayjs from 'dayjs';
-import timezone from 'dayjs/plugin/timezone';
-import utc from 'dayjs/plugin/utc';
 import { Route } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FC } from 'react';
-
-dayjs.extend(utc);
-dayjs.extend(timezone);
-
-const getTzAbbreviation = (date: Date, timeZone: string) => {
-  return new Intl.DateTimeFormat('en-AU', {
-    timeZone,
-    timeZoneName: 'short',
-  })
-    .formatToParts(date)
-    .find((part) => part.type === 'timeZoneName')?.value;
-};
 
 const EventDate: FC<{ date: HumantixEventDate; timezone: string }> = ({
   date,
@@ -34,14 +20,27 @@ const EventDate: FC<{ date: HumantixEventDate; timezone: string }> = ({
 }) => {
   const startDate = new Date(date.startDate);
 
-  const readableDate = dayjs(startDate)
-    .tz(timezone)
-    .format('ddd, MMMM D, YYYY');
+  const readableDate = DateTimeHelpers.formatDateTimeWithTimezone({
+    date: startDate,
+    timezone,
+    format: 'ddd, MMMM D, YYYY',
+  });
 
-  const start = dayjs(startDate).tz(timezone).format('HH:mm');
-  const end = dayjs(date.endDate).tz(timezone).format('HH:mm');
+  const start = DateTimeHelpers.formatDateTimeWithTimezone({
+    date: startDate,
+    timezone,
+    format: 'HH:mm',
+  });
+  const end = DateTimeHelpers.formatDateTimeWithTimezone({
+    date: date.endDate,
+    timezone,
+    format: 'HH:mm',
+  });
 
-  const tzAbbr = getTzAbbreviation(startDate, timezone);
+  const tzAbbr = DateTimeHelpers.getTzAbbreviation({
+    date: startDate,
+    timezone,
+  });
 
   const time = `${start} - ${end} ${tzAbbr}`;
 
@@ -84,8 +83,7 @@ export const EventLocation: FC<{ loc: HumantixEventLocation }> = ({ loc }) => {
       location = loc.instructions ?? 'Online';
       break;
     case 'custom':
-      // TODO:
-      location = 'Custom location';
+      location = `${loc.address} ${loc.venueName}`;
       break;
     case 'toBeAnnounced':
       location = 'To be announced';

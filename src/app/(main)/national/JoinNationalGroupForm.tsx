@@ -56,7 +56,7 @@ export const JoinNationalGroupForm: FC<Props> = ({
       from: 'mailer',
       to: ['dna-contact'],
       replyTo: data.email,
-      subject: `Online group support request from ${data.name}`,
+      subject: `National group support request from ${data.name}`,
       text,
     };
 

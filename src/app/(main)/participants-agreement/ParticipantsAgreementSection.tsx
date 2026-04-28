@@ -27,12 +27,12 @@ const ParticipantsAgreementSection: FC<Props> = ({ data }) => {
   const updated = dateUTC.local().format('D MMMM, YYYY');
 
   return (
-    <>
+    <div className={'relative'}>
+      <PageBackground
+        additionalClasses={'mt-20 h-screen'}
+        imageCount={data.watermarkImageCount}
+      />
       <section className={proseSectionContainer}>
-        <PageBackground
-          additionalClasses={'mt-20 h-full'}
-          imageCount={data.watermarkImageCount}
-        />
         <div className={detailsRow}>
           <p className={details}>{`Version ${data.version}`}</p>
           <p className={details}>{`Updated ${updated}`}</p>
@@ -43,7 +43,7 @@ const ParticipantsAgreementSection: FC<Props> = ({ data }) => {
         <hr className={pageDivider} />
         <ParticipantsAgreementFormViewModel agreementVersion={data.version} />
       </section>
-    </>
+    </div>
   );
 };
 

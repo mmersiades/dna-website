@@ -1,6 +1,6 @@
 {
   "name": "dna-website",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "private": true,
   "packageManager": "pnpm@10.33.0",
   "scripts": {
@@ -17,6 +17,7 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "test-storybook": "vitest --project=storybook",
+    "test-storybook:coverage": "vitest --project=storybook --coverage",
     "chromatic": "npx chromatic"
   },
   "dependencies": {

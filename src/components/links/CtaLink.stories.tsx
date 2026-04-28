@@ -1,37 +1,50 @@
+import CtaLink from '@/components/links/CtaLink';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
-
-import { pageStyles } from '@/components/styles';
-import TestFixtures from '@/utils/TestFixtures';
-import mainDecorator from '../../../../.storybook/mainDecorator';
-import EventCard from './EventCard';
+import { Route } from 'next';
 
 const meta = {
-  component: EventCard,
+  component: CtaLink,
   globals: {
     viewport: { value: 'desktop', isRotated: false },
   },
   decorators: [
     (Story) => {
-      const { sectionContainer } = pageStyles;
       return (
-        <section className={sectionContainer}>
-          <div className={'grid grid-cols-12 gap-4 p-2 md:gap-8'}>
-            <Story />
-          </div>
-        </section>
+        <div className={'grid place-items-center-safe p-10'}>
+          <Story />
+        </div>
       );
     },
-    mainDecorator,
   ],
-} satisfies Meta<typeof EventCard>;
+} satisfies Meta<typeof CtaLink>;
 
 export default meta;
 
 type Story = StoryObj<typeof meta>;
 
 const args = {
-  index: 0,
-  event: TestFixtures.event,
+  href: 'https://www.neonkingkong.com' as Route,
+  responsive: true,
+  children: 'Get Involved',
+};
+
+// noinspection JSUnusedGlobalSymbols
+export const DesktopLandscapeNonResponsive: Story = {
+  globals: {
+    theme: 'light',
+  },
+  args: { ...args, responsive: false },
+};
+
+// noinspection JSUnusedGlobalSymbols
+export const DesktopLandscapeNonResponsiveHover: Story = {
+  globals: {
+    theme: 'light',
+  },
+  args: { ...args, responsive: false },
+  parameters: {
+    pseudo: { hover: true },
+  },
 };
 
 // noinspection JSUnusedGlobalSymbols
@@ -40,58 +53,6 @@ export const DesktopLandscape: Story = {
     theme: 'light',
   },
   args,
-};
-
-// noinspection JSUnusedGlobalSymbols
-export const DesktopLandscapeLocationOnline: Story = {
-  globals: {
-    theme: 'light',
-  },
-  args: {
-    ...args,
-    event: {
-      ...args.event,
-      eventLocation: {
-        ...args.event.eventLocation,
-        type: 'online',
-        instructions: 'Join us on Zoom',
-      },
-    },
-  },
-};
-
-// noinspection JSUnusedGlobalSymbols
-export const DesktopLandscapeLocationCustom: Story = {
-  globals: {
-    theme: 'light',
-  },
-  args: {
-    ...args,
-    event: {
-      ...args.event,
-      eventLocation: {
-        ...args.event.eventLocation,
-        type: 'custom',
-      },
-    },
-  },
-};
-
-// noinspection JSUnusedGlobalSymbols
-export const DesktopLandscapeLocationTBA: Story = {
-  globals: {
-    theme: 'light',
-  },
-  args: {
-    ...args,
-    event: {
-      ...args.event,
-      eventLocation: {
-        ...args.event.eventLocation,
-        type: 'toBeAnnounced',
-      },
-    },
-  },
 };
 
 // noinspection JSUnusedGlobalSymbols
@@ -140,5 +101,3 @@ export const LargeMobilePortrait: Story = {
   },
   args,
 };
-
-// I spent ages trying to get dark mode to work on Storybook with EventCard. Gave up.

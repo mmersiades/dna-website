@@ -1,4 +1,5 @@
 import { fetchSanityPage } from '@/app/actions';
+import PageBuilderSkeleton from '@/components/pageBuilder/PageBuilderSkeleton';
 import PageBuilderViewModel from '@/components/pageBuilder/PageBuilderViewModel';
 import { pageStyles } from '@/components/styles';
 import generateDNAMetadata from '@/utils/generateDNAMetadata';
@@ -16,7 +17,7 @@ export default async function AboutPage() {
 
   return (
     <div className={pageContainer}>
-      <Suspense fallback={<div>TODO: Loading...</div>}>
+      <Suspense fallback={<PageBuilderSkeleton title={'About'} />}>
         <PageBuilderViewModel
           page={'about'}
           fallbackTitle={'About Degrowth Network Australia'}

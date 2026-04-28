@@ -1,4 +1,5 @@
 import { env } from '@/env';
+import * as Sentry from '@sentry/nextjs';
 import dayjs from 'dayjs';
 import { z } from 'zod';
 
@@ -316,7 +317,19 @@ class HumantixApi {
 
     const response = await fetch(url, config);
 
-    // TODO handle 400 and 401
+    if (!response.ok) {
+      const status = response.status;
+      const json = (await response.json()) as {
+        error: string;
+        message: string;
+        statusCode: number;
+      };
+      Sentry.captureException(
+        `Humanitix fetch error: ${status} - ${json.error} - ${json.message}`,
+      );
+      return [];
+    }
+
     // https://humanitix.stoplight.io/docs/humanitix-public-api/476881e4b5d55-get-events
     const json = await response.json();
     const result = humantixPaginatedEventResponseSchema.parse(json);

@@ -9,7 +9,6 @@ const meta = {
   globals: {
     viewport: { value: 'desktop', isRotated: false },
   },
-  decorators: [],
 } satisfies Meta<typeof Header>;
 
 export default meta;

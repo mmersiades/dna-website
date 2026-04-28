@@ -245,13 +245,13 @@ export const generateWallpaperImageProps = async (count: number) => {
     {
       src: '/snails-stippled-page-light.svg',
       darkSrc: '/snails-stippled-page-dark.svg',
-      padding: 'p-20 sm:p-24 md:p-28 lg:p-32',
+      padding: 'p-[calc(100vw*0.2)] sm:p-24 md:p-28 lg:p-32',
       flip: 'on-left',
     },
     {
       src: '/ants-stippled-page-light.svg',
       darkSrc: '/ants-stippled-page-dark.svg',
-      padding: 'p-10 sm:p-24 md:p-42 rotate-90',
+      padding: 'p-[calc(100vw*0.2)] sm:p-24 md:p-42 lg:p-44 rotate-90',
     },
   ];
 

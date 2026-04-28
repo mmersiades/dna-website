@@ -41,7 +41,7 @@ const GroupImage: FC<Props> = ({ src, index, altText }) => {
     const darkSrc = '/birdhouse-stippled-card-dark.svg';
 
     return (
-      <picture>
+      <picture className={'relative h-full w-full'}>
         <source
           srcSet={darkSrc}
           media="(prefers-color-scheme: dark)"
