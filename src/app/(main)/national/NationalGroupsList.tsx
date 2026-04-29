@@ -22,6 +22,11 @@ const NationalGroupsList: FC<Props> = ({ groups }) => {
   const { pageTitle, pageDivider, sectionContainer } = pageStyles;
 
   const onSelectGroup = (group: ONLINE_GROUPS_QUERYResult[0]) => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
     setSelectedGroup((prev) => {
       if (prev === null) {
         return group;
