@@ -1,5 +1,6 @@
 import IntroQuote from '@/components/landing/IntroQuote';
 import LandingFooter from '@/components/landing/LandingFooter';
+import LandingFooterSpacer from '@/components/landing/LandingFooterSpacer';
 import LandingHeader from '@/components/landing/LandingHeader';
 import LandingHeaderSpacer from '@/components/landing/LandingHeaderSpacer';
 import QuotesList from '@/components/landing/QuotesList';
@@ -24,6 +25,7 @@ export default function Landing() {
         <Suspense fallback={<div />}>
           <QuotesList />
         </Suspense>
+        <LandingFooterSpacer />
       </main>
       <LandingFooter />
     </>
