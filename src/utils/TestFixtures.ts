@@ -4,6 +4,7 @@ import {
   HumantixEventLocation,
 } from '@/app/services/HumantixApi';
 import { QuoteProps } from '@/components/landing/Quote';
+import { ONLINE_GROUPS_QUERYResult } from '@/sanity/types';
 
 class TestFixtures {
   static eventDates: HumantixEventDate[] = [
@@ -98,6 +99,31 @@ class TestFixtures {
       "It's about making decisions about what we make and what we buy based on what makes us happy, rather than what makes money. And it’s about us making those decisions, not corporations.",
     statement: 'about decisions.',
   };
+
+  static nationalGroups: ONLINE_GROUPS_QUERYResult = [
+    {
+      _id: '22c96ab8-baae-472d-8c4c-6e128e4602cb',
+      category: 'meeting',
+      description:
+        'Nationally we meet online on the second Wednesday of the month at 6:30pm AEST. Sign up to the email list to receive the link to join us. All welcome. :-)\n' +
+        '\n' +
+        'We are a diverse group that come together to discuss ways we can disseminate degrowth information and resources. Some of us are working or studying in this field and others are just keen to participate in a sustainable future. Together we can encourage others too.',
+      image: null,
+      meetingFrequency: 'Monthly',
+      title: 'National DNA online monthly meeting',
+      url: null,
+    },
+    {
+      _id: '421a2cb1-1852-455e-a579-7da0c68089f4',
+      category: 'learning-circle',
+      description:
+        'The aim of this peer learning circle is for us all to explore and learn together about the processes and practices of group decision making. Good foundations for decision making helps groups share power and make better decisions together, and ensures all group members feel included, good about belonging to a group and about implementing a group’s decisions. We feel this is crucial for the world we are wanting to bring into existence to have a culture of social cohesion, and all the work we need to do together to get there.',
+      image: null,
+      meetingFrequency: 'Monthly',
+      title: 'Decision Making Learning Circle',
+      url: null,
+    },
+  ];
 }
 
 export default TestFixtures;

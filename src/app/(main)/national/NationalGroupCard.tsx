@@ -76,7 +76,7 @@ const NationalGroupCard: FC<Props> = ({
         </h4>
       </div>
       <div className={content}>
-        <p>{group.description}</p>
+        <p className="whitespace-pre-line">{group.description}</p>
         {group.url && (
           <div className={anchorContainer}>
             <span className={checkIcon}></span>

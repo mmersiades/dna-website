@@ -2,6 +2,7 @@
 
 import { WallPaperImageProps } from '@/components/PageBackground';
 import cn from '@/utils/cn';
+import TestFixtures from '@/utils/TestFixtures';
 
 export const fetchGroupIntentData = async () => {
   // 'use cache';
@@ -91,13 +92,7 @@ export const fetchSanityExternalResources = async () => {
 };
 
 export const fetchSanityNationalGroups = async () => {
-  // 'use cache';
-  // cacheLife('hours');
-  // const { data } = await sanityFetch({
-  //   query: ONLINE_GROUPS_QUERY,
-  //   stega: false,
-  // });
-  // return data;
+  return TestFixtures.nationalGroups;
 };
 
 export const fetchSanityLocalGroups = async () => {

@@ -47,6 +47,7 @@ const GroupImage: FC<Props> = ({ src, index, altText }) => {
           media="(prefers-color-scheme: dark)"
         />
         <Image
+          aria-hidden={true}
           src={src}
           alt={`Image placeholder`}
           fill

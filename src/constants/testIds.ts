@@ -16,6 +16,13 @@ const testIds = {
     openMenuButton: 'header__menu__open-button',
     closeMenuButton: 'header__menu__close-button',
   },
+  national: {
+    form: {
+      nameInput: 'national__join-form__name-input',
+      emailInput: 'national__join-form__email-input',
+      submitButton: 'national__join-form__submit-button',
+    },
+  },
 };
 
 export default testIds;

@@ -4,6 +4,7 @@ import { SendEmailBody } from '@/app/api/send-email/route';
 import FooterSubmitButton from '@/components/buttons/FooterSubmitButton';
 import styles from '@/components/footer/styles';
 import copy from '@/constants/copy';
+import testIds from '@/constants/testIds';
 import { ONLINE_GROUPS_QUERYResult } from '@/sanity/types';
 import cn from '@/utils/cn';
 import sendEmailOnSubmit from '@/utils/sendEmailOnSubmit';
@@ -30,6 +31,7 @@ export const JoinNationalGroupForm: FC<Props> = ({
   onSubmit: submitCallback,
 }) => {
   const { instructions, success, failure } = copy.national.form;
+  const { nameInput, emailInput, submitButton } = testIds.national.form;
 
   const nameInputRef = useRef<HTMLInputElement | null>(null);
 
@@ -116,15 +118,16 @@ export const JoinNationalGroupForm: FC<Props> = ({
             return (
               <div className={col}>
                 <label
-                  htmlFor={'online-group-name'}
+                  htmlFor={'national-group-name'}
                   className={label}
                 >
                   Name
                 </label>
                 <input
+                  data-testid={nameInput}
                   className={cn(input, 'h-10')}
                   type="text"
-                  id={'online-group-name'}
+                  id={'national-group-name'}
                   required
                   aria-required="true"
                   {...field}
@@ -136,7 +139,7 @@ export const JoinNationalGroupForm: FC<Props> = ({
 
                 <span
                   className={error}
-                  aria-describedby={'online-group-name'}
+                  aria-describedby={'national-group-name'}
                 >
                   {errors.name ? errors.name.message : ''}
                 </span>
@@ -157,6 +160,7 @@ export const JoinNationalGroupForm: FC<Props> = ({
                   Email
                 </label>
                 <input
+                  data-testid={emailInput}
                   className={cn(input, 'h-10')}
                   type="email"
                   id={'email'}
@@ -177,6 +181,7 @@ export const JoinNationalGroupForm: FC<Props> = ({
         />
         <div className={submitContainer}>
           <FooterSubmitButton
+            data-testid={submitButton}
             type="submit"
             submitting={isSubmitting}
             disabled={!isValid}

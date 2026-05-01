@@ -19,7 +19,10 @@ const MobileJoinForm: FC<Props> = ({ selectedGroup, onClose, onSubmit }) => {
       <JoinNationalGroupForm
         selectedGroup={selectedGroup}
         aria-label={'Join online group form (mobile)'}
-        onSubmit={onSubmit}
+        onSubmit={() => {
+          onSubmit();
+          onClose();
+        }}
       />
     </MobileFullScreenModal>
   );
