@@ -23,6 +23,11 @@ const testIds = {
       submitButton: 'national__join-form__submit-button',
     },
   },
+  local: {
+    groupCard: {
+      emailLink: 'local__group-card__email-link',
+    },
+  },
 };
 
 export default testIds;

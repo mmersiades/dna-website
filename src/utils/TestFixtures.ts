@@ -4,7 +4,7 @@ import {
   HumantixEventLocation,
 } from '@/app/services/HumantixApi';
 import { QuoteProps } from '@/components/landing/Quote';
-import { ONLINE_GROUPS_QUERYResult } from '@/sanity/types';
+import { GROUPS_QUERYResult, ONLINE_GROUPS_QUERYResult } from '@/sanity/types';
 
 class TestFixtures {
   static eventDates: HumantixEventDate[] = [
@@ -94,7 +94,7 @@ class TestFixtures {
     author: 'Michael M',
     citationText: null,
     citationUrl: null,
-    identifier: 'DNA member',
+    identifier: 'software developer',
     quote:
       "It's about making decisions about what we make and what we buy based on what makes us happy, rather than what makes money. And it’s about us making those decisions, not corporations.",
     statement: 'about decisions.',
@@ -122,6 +122,63 @@ class TestFixtures {
       meetingFrequency: 'Monthly',
       title: 'Decision Making Learning Circle',
       url: null,
+    },
+  ];
+
+  static localGroups: GROUPS_QUERYResult = [
+    {
+      _id: '741819dd-67b0-4212-8c74-2a08fdc27266',
+      activities: [
+        {
+          _key: '7cec3871dba2',
+          _type: 'groupActivity',
+          activityLabel: '2026 Degrowth Festival',
+          activityUrl: 'https://tinyurl.com/degrowthfest26',
+        },
+      ],
+      blurb:
+        'Naarm Degrowth is a network for those who want to and/or are acting, organising and fighting for a degrowth world. We gather locally in person every first Wednesday of the month to learn from and support each other, share food and updates, and plan projects. ',
+      contactEmail: 'degrowthnetwork@proton.me',
+      fullName: 'Naarm/Kulin Degrowth',
+      groupPhoto: {
+        _type: 'image',
+        altText: '11 Naarm Degrowth posing for photo in park',
+        asset: {
+          _ref: 'image-e9bd23a53c6a0479fdd430375578b89ecda60153-1000x563-jpg',
+          _type: 'reference',
+        },
+        caption:
+          'Naarm/Kulin Degrowth practising conviviality at a social picnic in the park',
+        crop: {
+          _type: 'sanity.imageCrop',
+          bottom: 0,
+          left: 0,
+          right: 0,
+          top: 0,
+        },
+        hotspot: {
+          _type: 'sanity.imageHotspot',
+          height: 0.803795507579373,
+          width: 0.3723651920610606,
+          x: 0.5,
+          y: 0.5981022462103135,
+        },
+      },
+      links: [
+        {
+          _key: 'ec9b18708307',
+          _type: 'groupLink',
+          category: 'matrix',
+          label: 'Matrix',
+          url: 'https://matrix.to/#/!fsQeoZbQMxpiAcOVnZ:matrix.org?via=matrix.org',
+        },
+      ],
+      shortName: 'Naarm DNA',
+      slug: {
+        _type: 'slug',
+        current: 'naarm-kulin-degrowth',
+      },
+      website: null,
     },
   ];
 }

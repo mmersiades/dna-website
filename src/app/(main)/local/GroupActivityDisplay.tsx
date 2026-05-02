@@ -15,7 +15,7 @@ const GroupActivityDisplay: FC<Props> = ({ activities }) => {
 
   return (
     <>
-      <h6 className={cardSubHeading}>Activities</h6>
+      <h5 className={cardSubHeading}>Activities</h5>
       <div className={cardListContainer}>
         {activities.map((a) => (
           <GroupActivity

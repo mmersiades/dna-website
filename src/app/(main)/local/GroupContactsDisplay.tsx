@@ -3,6 +3,7 @@ import GroupLink from '@/app/(main)/local/GroupLink';
 import styles from '@/app/(main)/local/styles';
 import { cardStyles } from '@/components/styles';
 import copy from '@/constants/copy';
+import testIds from '@/constants/testIds';
 import { GroupLink as GroupLinkProps } from '@/sanity/types';
 import cn from '@/utils/cn';
 import {
@@ -72,6 +73,8 @@ const EmailButton: FC<{ email: string }> = ({ email }) => {
 
   const { linkIcon, linkContainer, linkLabel } = styles;
 
+  const { local } = testIds;
+
   const { container, popoverPlacement, popoverContainer, popoverText } = {
     container: 'hover:cursor-pointer',
     popoverPlacement: 'z-20 flex',
@@ -87,12 +90,13 @@ const EmailButton: FC<{ email: string }> = ({ email }) => {
   return (
     <>
       <button
+        data-testid={local.groupCard.emailLink}
         ref={refs.setReference}
         className={cn([linkContainer, container])}
         onClick={handleCopy}
       >
         <span className={cn([linkIcon, 'icon-[lucide--mail]'])}></span>
-        <p className={linkLabel}>{copy.local.contacts.email}</p>
+        <h5 className={linkLabel}>{copy.local.contacts.email}</h5>
       </button>
       {isMounted && (
         <div
