@@ -3,6 +3,7 @@ import {
   HumantixEventDate,
   HumantixEventLocation,
 } from '@/app/services/HumantixApi';
+import { TableRow } from '@/app/services/SheetsApi';
 import { QuoteProps } from '@/components/landing/Quote';
 import { GROUPS_QUERYResult, ONLINE_GROUPS_QUERYResult } from '@/sanity/types';
 
@@ -179,6 +180,60 @@ class TestFixtures {
         current: 'naarm-kulin-degrowth',
       },
       website: null,
+    },
+  ];
+
+  static groupInterestData_Australia: TableRow[] = [
+    {
+      label: 'Australia',
+      count: 6,
+      bold: true,
+    },
+  ];
+
+  static groupInterestData_State = (state: string): TableRow[] => [
+    {
+      label: state,
+      count: 6,
+      bold: true,
+    },
+  ];
+
+  static groupInterestData_Region = (
+    state: string,
+    region: string,
+  ): TableRow[] => [
+    {
+      label: state,
+      count: 6,
+      bold: true,
+    },
+    {
+      label: region,
+      count: 2,
+      bold: true,
+    },
+  ];
+
+  static groupInterestData_Country = (
+    state: string,
+    region: string,
+    country: string,
+  ): TableRow[] => [
+    {
+      label: state,
+      count: 6,
+      bold: true,
+    },
+    {
+      label: region,
+      count: 2,
+      bold: true,
+    },
+    {
+      label: country,
+      count: 2,
+      bold: true,
     },
   ];
 }

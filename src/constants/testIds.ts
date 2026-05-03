@@ -27,6 +27,16 @@ const testIds = {
     groupCard: {
       emailLink: 'local__group-card__email-link',
     },
+    table: {
+      stateSelect: 'local__table__state-select',
+      regionSelect: 'local__table__region-select',
+      countrySelect: 'local__table__country-select',
+    },
+    form: {
+      nameInput: 'local__join-form__name-input',
+      emailInput: 'local__join-form__email-input',
+      submitButton: 'local__join-form__submit-button',
+    },
   },
 };
 

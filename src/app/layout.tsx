@@ -22,7 +22,10 @@ const atma = Atma({
 export const metadata: Metadata = {
   title: `${copy.seo.fullName} | ${copy.seo.tagline}`,
   description: copy.seo.description,
-  authors: [{ name: 'Michael Mersiades', url: 'https://www.neonkingkong.com' }],
+  authors: [
+    { name: 'Michael Mersiades', url: 'https://www.neonkingkong.com' },
+    { name: 'Milka', url: 'https://www.instagram.com/milka.tattooer' },
+  ],
   generator: 'Next.js',
   keywords: copy.seo.keywords,
   twitter: {

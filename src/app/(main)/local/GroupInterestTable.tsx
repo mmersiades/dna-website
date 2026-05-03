@@ -5,6 +5,7 @@ import { TableRow } from '@/app/services/SheetsApi';
 import copy from '@/constants/copy';
 import indigenousRegions from '@/constants/indigenousRegions';
 import regions from '@/constants/regions';
+import testIds from '@/constants/testIds';
 import cn from '@/utils/cn';
 import { FC, useState } from 'react';
 import { Controller, useForm, useWatch } from 'react-hook-form';
@@ -73,8 +74,8 @@ const GroupInterestTable: FC<Props> = ({ initialTableData }) => {
     input: cn(
       'border-1 border-tertiary-500 rounded-lg',
       'focus:outline-primary focus:outline-1 focus:border-primary focus:outline-offset-0',
-      'px-2',
-      'text-lg font-bold',
+      'px-1 md:px-2',
+      'text-sm sm:text-lg font-bold',
       'h-full',
     ),
     table: cn(
@@ -87,6 +88,8 @@ const GroupInterestTable: FC<Props> = ({ initialTableData }) => {
     ),
     tableHead: 'font-display text-xl md:text-2xl',
   };
+
+  const { stateSelect, regionSelect, countrySelect } = testIds.local.table;
 
   const tdStyle = (row: TableRow) =>
     cn('text-center text-xl !font-sans', row.bold && 'font-bold');
@@ -107,6 +110,7 @@ const GroupInterestTable: FC<Props> = ({ initialTableData }) => {
                 {copy.local.interest.state}
               </label>
               <select
+                data-testid={stateSelect}
                 id={'state'}
                 {...field}
                 onChange={(e) => handleFieldChange('state', e.target.value)}
@@ -140,6 +144,7 @@ const GroupInterestTable: FC<Props> = ({ initialTableData }) => {
                 {copy.local.interest.region}
               </label>
               <select
+                data-testid={regionSelect}
                 id={'subregion'}
                 className={cn(input, 'h-10 w-full')}
                 {...field}
@@ -182,6 +187,7 @@ const GroupInterestTable: FC<Props> = ({ initialTableData }) => {
                 {copy.local.interest.country}
               </label>
               <select
+                data-testid={countrySelect}
                 id={'country'}
                 className={cn(input, 'h-10 w-full')}
                 {...field}

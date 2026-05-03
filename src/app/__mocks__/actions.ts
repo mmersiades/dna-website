@@ -25,9 +25,27 @@ export const fetchGroupIntentTableRows = async (params: {
   region: string | null;
   country: string | null;
 }) => {
-  // const data = (await fetchGroupIntentData()) as string[][];
-  // const rows = sheetsApi.mapRawGroupIntentData(data);
-  // return sheetsApi.getGroupIntentTableRows({ ...params, data: rows });
+  if (!params.state && !params.region && !params.country) {
+    return TestFixtures.groupInterestData_Australia;
+  }
+
+  if (params.state && !params.region && !params.country) {
+    return TestFixtures.groupInterestData_State(params.state);
+  }
+
+  if (params.state && params.region && !params.country) {
+    return TestFixtures.groupInterestData_Region(params.state, params.region);
+  }
+
+  if (params.state && params.region && params.country) {
+    return TestFixtures.groupInterestData_Country(
+      params.state,
+      params.region,
+      params.country,
+    );
+  }
+
+  return [];
 };
 
 export const fetchParticipantAgreementData = async () => {
