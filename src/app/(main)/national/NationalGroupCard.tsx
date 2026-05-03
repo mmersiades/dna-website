@@ -28,6 +28,7 @@ const NationalGroupCard: FC<Props> = ({
 
   const { container, content, anchorContainer, checkIcon } = {
     container: cn(
+      'flex flex-col',
       'bg-card/50',
       'border rounded-md',
       selected
