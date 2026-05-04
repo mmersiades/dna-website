@@ -5,7 +5,11 @@ import {
 } from '@/app/services/HumantixApi';
 import { TableRow } from '@/app/services/SheetsApi';
 import { QuoteProps } from '@/components/landing/Quote';
-import { GROUPS_QUERYResult, ONLINE_GROUPS_QUERYResult } from '@/sanity/types';
+import {
+  EXT_RESOURCES_QUERYResult,
+  GROUPS_QUERYResult,
+  ONLINE_GROUPS_QUERYResult,
+} from '@/sanity/types';
 import DateTimeHelpers from '@/utils/DateTimeHelpers';
 import dayjs from 'dayjs';
 
@@ -645,6 +649,51 @@ class TestFixtures {
       },
     ];
   };
+
+  static externalResourcesDegrowth: EXT_RESOURCES_QUERYResult = [
+    {
+      _id: '29ce12b4-907d-4d10-a9d1-271c4a723812',
+      category: 'degrowth',
+      description:
+        'Working for transition from consumer society to a simpler, more cooperative, just and ecologically sustainable society.',
+      image: null,
+      logo: null,
+      title: 'The Simpler Way',
+      url: 'https://thesimplerway.info/',
+    },
+    {
+      _id: '8ce7ec06-0854-4199-8358-438ff214c275',
+      category: 'degrowth',
+      description:
+        'Critics argue that endless growth on a planet with finite resources is driving the climate crisis and increasing inequality. This series examines alternative economic models',
+      image: null,
+      logo: null,
+      title: 'The Guardian | Beyond Growth',
+      url: 'https://www.theguardian.com/environment/series/beyond-growth',
+    },
+    {
+      _id: 'ec4ab8e1-95e9-4f12-beaf-add29f02a88d',
+      category: 'degrowth',
+      description:
+        'Degrowth.info is an independent media platform driven by an international political collective dedicated to amplifying degrowth perspectives.',
+      image:
+        'https://www.degrowth.info/assets/og_image-a1ee48c8fa3d620aafe68ea95eb741659208d4aba83d2495899863079aa4092f.jpg',
+      logo: null,
+      title: 'Degrowth.info',
+      url: 'https://degrowth.info/',
+    },
+    {
+      _id: 'f84cc01f-1978-4b03-83fb-749931d50596',
+      category: 'degrowth',
+      description:
+        'Here, we aim to provide you with: 🌱 Knowledge on degrowth that is accessible 🌱 Tools to communicate degrowth 🌱 Inspiration to imagine the good life …',
+      image:
+        'https://osuny-1b4da.kxcdn.com/lczc6way6yqyk5exus6zg7vas77b?width=1200&height=0&&fit=inside&quality=80',
+      logo: null,
+      title: "So you've heard about Degrowth.",
+      url: 'https://explore.degrowth.net/',
+    },
+  ];
 }
 
 export default TestFixtures;
