@@ -6,6 +6,8 @@ import {
 import { TableRow } from '@/app/services/SheetsApi';
 import { QuoteProps } from '@/components/landing/Quote';
 import { GROUPS_QUERYResult, ONLINE_GROUPS_QUERYResult } from '@/sanity/types';
+import DateTimeHelpers from '@/utils/DateTimeHelpers';
+import dayjs from 'dayjs';
 
 class TestFixtures {
   static eventDates: HumantixEventDate[] = [
@@ -236,6 +238,413 @@ class TestFixtures {
       bold: true,
     },
   ];
+
+  static pastEvents: HumantixEvent[] = [
+    {
+      _id: '69aa125f1babd956662e22a9',
+      userId: 'yQpinmGCKAWKJetDZJsPJUoL2gz2',
+      organiserId: '63c5dceacc6ae437cbad00ff',
+      currency: 'AUD',
+      name: 'Paths to Degrowth series',
+      description:
+        '<p>Degrowth Network Australia is presenting a series of three workshops on strategy to stimulate thinking and discussion among our local action groups</p>',
+      sharingDescription:
+        'A series of three Degrowth strategy workshops presented by Ted Trainer (Tue 7 Apr), Tim Hollo (Thu 16 Apr) and Anisa (Tue 21 Apr).',
+      slug: 'strategy-workshop-i-does-degrowth-need-more-focus-ted-trainer',
+      url: 'https://events.humanitix.com/strategy-workshop-i-does-degrowth-need-more-focus-ted-trainer',
+      tagIds: [],
+      classification: {
+        type: 'seminarOrTalk',
+        category: 'charityAndCauses',
+        subcategory: 'environment',
+      },
+      public: true,
+      published: true,
+      suspendSales: false,
+      markedAsSoldOut: false,
+      startDate: '2026-04-07T08:00:00.900Z',
+      endDate: '2026-04-21T09:30:00.900Z',
+      timezone: 'Australia/Sydney',
+      totalCapacity: 400,
+      ticketTypes: [
+        {
+          _id: '69aa125f1babd956662e22b9',
+          name: '7 April 6-7pm: Focussing the Degrowth movement, with Ted Trainer',
+          price: 0,
+          quantity: 100,
+          disabled: false,
+          deleted: false,
+          isDonation: false,
+        },
+        {
+          _id: '69b099097aa53c3cc7d88594',
+          name: '16 April 6-7pm: Degrowth by direct action, with Tim Hollo',
+          price: 0,
+          quantity: 150,
+          disabled: false,
+          deleted: false,
+          isDonation: false,
+        },
+        {
+          _id: '69b099237aa53c3cc7d88595',
+          name: '21 April 6pm-7.30pm: Bringing Degrowth into reality, with Anisa',
+          price: 0,
+          quantity: 150,
+          disabled: false,
+          deleted: false,
+          isDonation: false,
+        },
+      ],
+      pricing: {
+        minimumPrice: 0,
+        maximumPrice: 0,
+      },
+      paymentOptions: {
+        refundSettings: {
+          refundPolicy: '',
+          customRefundPolicy: '',
+        },
+      },
+      publishedAt: '2026-03-05T23:49:22.334Z',
+      additionalQuestions: [],
+      bannerImage: {
+        url: 'https://images.humanitix.com/i/5bb70c3d-b20c-4998-90e8-a5e282d1bfad.png@original',
+      },
+      eventLocation: {
+        type: 'online',
+        latLng: [],
+        instructions:
+          'Online meeting on Zoom. Meeting link will be sent to you by email.',
+      },
+      dates: [
+        {
+          _id: '69aa125f1babd956662e22b0',
+          startDate: '2026-04-07T08:00:00.900Z',
+          endDate: '2026-04-21T09:30:00.900Z',
+          disabled: false,
+          deleted: false,
+        },
+      ],
+      packagedTickets: [],
+      keywords: [
+        'degrowth',
+        'australia',
+        'capitalism',
+        'economics',
+        'social change',
+        'activism',
+        'environment',
+      ],
+      location: 'AU',
+      createdAt: '2026-03-05T23:31:43.215Z',
+      updatedAt: '2026-04-19T08:08:55.711Z',
+    },
+    {
+      _id: '6975d6cd9c1830e9b608a4b4',
+      userId: 'yQpinmGCKAWKJetDZJsPJUoL2gz2',
+      organiserId: '63c5dceacc6ae437cbad00ff',
+      currency: 'AUD',
+      name: 'Degrowth Festival 2026',
+      description:
+        '<p>A jam packed day of community resilience, convivial technology and joy - prefiguring the truly sustainable world we need.</p>',
+      sharingDescription:
+        'Festival to bring community together sharing degrowth-aligned skills, have fun and dance together for resilience and community cohesion through collapse.',
+      slug: 'degrowth-festival-2026',
+      url: 'https://events.humanitix.com/degrowth-festival-2026',
+      tagIds: [],
+      classification: {
+        type: 'festivalOrFair',
+        category: 'communityAndCulture',
+        subcategory: 'other',
+      },
+      public: true,
+      published: true,
+      suspendSales: false,
+      markedAsSoldOut: false,
+      startDate: '2026-03-22T00:00:00.100Z',
+      endDate: '2026-03-22T08:00:00.100Z',
+      timezone: 'Australia/Melbourne',
+      totalCapacity: 1000,
+      ticketTypes: [
+        {
+          _id: '6975d6cd9c1830e9b608a4c3',
+          name: 'General Admission',
+          price: 0,
+          quantity: 1000,
+          disabled: false,
+          deleted: false,
+          isDonation: false,
+        },
+        {
+          _id: '6975daa9e1fe663a8e41f8b3',
+          name: 'Help us pay for the venue costs and any future degrowth related events. Degrowth Network Australia is fully volunteer run :)',
+          price: 0,
+          priceRange: {
+            enabled: true,
+          },
+          quantity: 1,
+          disabled: false,
+          deleted: false,
+          isDonation: true,
+        },
+      ],
+      pricing: {
+        minimumPrice: 0,
+        maximumPrice: 0,
+      },
+      paymentOptions: {
+        refundSettings: {
+          refundPolicy: '',
+          customRefundPolicy: '',
+        },
+      },
+      publishedAt: '2026-01-25T08:59:31.817Z',
+      additionalQuestions: [
+        {
+          _id: '698bc3937c77ff604895705f',
+          question: 'How did you hear about the festival?',
+          required: false,
+          perOrder: false,
+          disabled: false,
+          createdAt: '2026-02-10T23:47:46.783Z',
+          updatedAt: '2026-02-10T23:47:46.783Z',
+        },
+      ],
+      bannerImage: {
+        url: 'https://images.humanitix.com/i/dapRseh7TyaVUJmB5Avv@original',
+      },
+      eventLocation: {
+        type: 'address',
+        venueName: 'Curtain Square',
+        address: 'Rathdowne St, Carlton North VIC 3054, Australia',
+        latLng: [-37.7893717, 144.9731269],
+        placeId: 'ChIJ_ycxaSVD1moR8H8xBXZWBA8',
+        city: 'Carlton North',
+        region: 'VIC',
+        country: 'AU',
+      },
+      dates: [
+        {
+          _id: '6975d6cd9c1830e9b608a4ba',
+          startDate: '2026-03-22T00:00:00.100Z',
+          endDate: '2026-03-22T08:00:00.100Z',
+          disabled: false,
+          deleted: false,
+        },
+      ],
+      packagedTickets: [],
+      keywords: [],
+      location: 'AU',
+      createdAt: '2026-01-25T08:39:41.209Z',
+      updatedAt: '2026-04-19T08:08:55.711Z',
+    },
+    {
+      _id: '697bd42faefb673348cecc78',
+      userId: 'yQpinmGCKAWKJetDZJsPJUoL2gz2',
+      organiserId: '63c5dceacc6ae437cbad00ff',
+      currency: 'AUD',
+      name: 'Screening of the Cost of Growth hosted by Sydney Degrowth',
+      description:
+        '<p>Will the renewable transition save us from the ecological crisis?</p>',
+      sharingDescription:
+        "The Cost of Growth explores uncomfortable realities about 'green growth' and invites us to look harder at our assumptions about the nature of growth.",
+      slug: 'screening-of-the-cost-of-growth-hosted-by-sydney-degrowth',
+      url: 'https://events.humanitix.com/screening-of-the-cost-of-growth-hosted-by-sydney-degrowth',
+      tagIds: [],
+      classification: {
+        type: 'screening',
+        category: 'charityAndCauses',
+        subcategory: 'environment',
+      },
+      public: true,
+      published: true,
+      suspendSales: false,
+      markedAsSoldOut: false,
+      startDate: '2026-03-12T07:30:00.800Z',
+      endDate: '2026-03-12T10:00:00.800Z',
+      timezone: 'Australia/Sydney',
+      totalCapacity: 60,
+      ticketTypes: [
+        {
+          _id: '697bd42faefb673348cecc87',
+          name: 'General Admission',
+          price: 9,
+          quantity: 60,
+          disabled: false,
+          deleted: false,
+          isDonation: false,
+        },
+        {
+          _id: '697bd48f1aed409ae438ad1e',
+          name: 'Optional donation to Degrowth Network Australia',
+          price: 0,
+          priceRange: {
+            enabled: true,
+          },
+          quantity: 1,
+          disabled: false,
+          deleted: false,
+          isDonation: true,
+        },
+      ],
+      pricing: {
+        minimumPrice: 9,
+        maximumPrice: 9,
+      },
+      paymentOptions: {
+        refundSettings: {
+          refundPolicy: 'Refunds are available up to 7 days prior to the event',
+          customRefundPolicy: '',
+        },
+      },
+      publishedAt: '2026-02-12T23:52:08.917Z',
+      additionalQuestions: [],
+      bannerImage: {
+        url: 'https://images.humanitix.com/i/hKdcV3YZS4ePgPyxxeLB@original',
+      },
+      eventLocation: {
+        type: 'address',
+        venueName: 'Newtown Neighbourhood Centre',
+        address: '11/13 Darley St, Newtown NSW 2042, Australia',
+        latLng: [-33.9058763, 151.1802907],
+        placeId: 'ChIJ-U_cJjewEmsR9gpzrb0YskA',
+        city: 'Newtown',
+        region: 'NSW',
+        country: 'AU',
+      },
+      dates: [
+        {
+          _id: '697bd42faefb673348cecc7e',
+          startDate: '2026-03-12T07:30:00.800Z',
+          endDate: '2026-03-12T10:00:00.800Z',
+          disabled: false,
+          deleted: false,
+        },
+      ],
+      packagedTickets: [],
+      keywords: [],
+      location: 'AU',
+      createdAt: '2026-01-29T21:42:07.224Z',
+      updatedAt: '2026-04-19T08:08:55.711Z',
+    },
+  ];
+
+  static futureEvents = (): HumantixEvent[] => {
+    const startDate = DateTimeHelpers.formatDateTimeWithTimezone({
+      date: dayjs().startOf('day').add(1, 'week').add(18, 'hours'),
+      timezone: 'UTC',
+      format: 'YYYY-MM-DDTHH:mm:ss.SSSZ',
+    });
+    console.log('startDate', startDate);
+
+    const endDate = DateTimeHelpers.formatDateTimeWithTimezone({
+      date: dayjs().startOf('day').add(1, 'week').add(20, 'hours'),
+      timezone: 'UTC',
+      format: 'YYYY-MM-DDTHH:mm:ss.SSSZ',
+    });
+
+    return [
+      {
+        _id: '6975d6cd9c1830e9b608a4b4',
+        userId: 'yQpinmGCKAWKJetDZJsPJUoL2gz2',
+        organiserId: '63c5dceacc6ae437cbad00ff',
+        currency: 'AUD',
+        name: 'Degrowth Festival 2026',
+        description:
+          '<p>A jam packed day of community resilience, convivial technology and joy - prefiguring the truly sustainable world we need.</p>',
+        sharingDescription:
+          'Festival to bring community together sharing degrowth-aligned skills, have fun and dance together for resilience and community cohesion through collapse.',
+        slug: 'degrowth-festival-2026',
+        url: 'https://events.humanitix.com/degrowth-festival-2026',
+        tagIds: [],
+        classification: {
+          type: 'festivalOrFair',
+          category: 'communityAndCulture',
+          subcategory: 'other',
+        },
+        public: true,
+        published: true,
+        suspendSales: false,
+        markedAsSoldOut: false,
+        startDate,
+        endDate,
+        timezone: 'Australia/Melbourne',
+        totalCapacity: 1000,
+        ticketTypes: [
+          {
+            _id: '6975d6cd9c1830e9b608a4c3',
+            name: 'General Admission',
+            price: 0,
+            quantity: 1000,
+            disabled: false,
+            deleted: false,
+            isDonation: false,
+          },
+          {
+            _id: '6975daa9e1fe663a8e41f8b3',
+            name: 'Help us pay for the venue costs and any future degrowth related events. Degrowth Network Australia is fully volunteer run :)',
+            price: 0,
+            priceRange: {
+              enabled: true,
+            },
+            quantity: 1,
+            disabled: false,
+            deleted: false,
+            isDonation: true,
+          },
+        ],
+        pricing: {
+          minimumPrice: 0,
+          maximumPrice: 0,
+        },
+        paymentOptions: {
+          refundSettings: {
+            refundPolicy: '',
+            customRefundPolicy: '',
+          },
+        },
+        publishedAt: '2026-01-25T08:59:31.817Z',
+        additionalQuestions: [
+          {
+            _id: '698bc3937c77ff604895705f',
+            question: 'How did you hear about the festival?',
+            required: false,
+            perOrder: false,
+            disabled: false,
+            createdAt: '2026-02-10T23:47:46.783Z',
+            updatedAt: '2026-02-10T23:47:46.783Z',
+          },
+        ],
+        bannerImage: {
+          url: 'https://images.humanitix.com/i/dapRseh7TyaVUJmB5Avv@original',
+        },
+        eventLocation: {
+          type: 'address',
+          venueName: 'Curtain Square',
+          address: 'Rathdowne St, Carlton North VIC 3054, Australia',
+          latLng: [-37.7893717, 144.9731269],
+          placeId: 'ChIJ_ycxaSVD1moR8H8xBXZWBA8',
+          city: 'Carlton North',
+          region: 'VIC',
+          country: 'AU',
+        },
+        dates: [
+          {
+            _id: '6975d6cd9c1830e9b608a4ba',
+            startDate,
+            endDate,
+            disabled: false,
+            deleted: false,
+          },
+        ],
+        packagedTickets: [],
+        keywords: [],
+        location: 'AU',
+        createdAt: '2026-01-25T08:39:41.209Z',
+        updatedAt: '2026-04-19T08:08:55.711Z',
+      },
+    ];
+  };
 }
 
 export default TestFixtures;

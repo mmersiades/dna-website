@@ -22,7 +22,7 @@ const PastEventListItemSkeleton: FC = () => {
   return (
     <div className={container}>
       <div className={'flex-3'}>
-        <h4 className={cn(cardSubHeading, 'text-muted')}>Event</h4>
+        <h4 className={cn(cardSubHeading, 'opacity-60')}>Event</h4>
         <EventDescriptionSkeleton />
       </div>
 

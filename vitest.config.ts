@@ -28,6 +28,10 @@ export default defineConfig({
         '**/storybook-static/**',
         'src/**/page.tsx',
         'src/**/error.tsx',
+        'src/app/studio/**.*',
+        '**/__mocks__/**.*',
+        '/src/sanity/*/**',
+        '/src/sanity/**.*',
       ],
     },
     projects: [

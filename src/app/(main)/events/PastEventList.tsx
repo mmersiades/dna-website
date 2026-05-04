@@ -4,11 +4,11 @@ import { pageStyles } from '@/components/styles';
 import copy from '@/constants/copy';
 import { FC } from 'react';
 
-interface Props {
+export interface PastEventListProps {
   events: HumantixEvent[];
 }
 
-const PastEventList: FC<Props> = ({ events }) => {
+const PastEventList: FC<PastEventListProps> = ({ events }) => {
   const { pageTitle, pageDivider, sectionContainer } = pageStyles;
   return (
     <section className={sectionContainer}>
