@@ -69,13 +69,7 @@ export const fetchParticipantAgreementByEmail = async ({
 }: {
   email: string;
 }) => {
-  // const data = await fetchParticipantAgreementData();
-  // const rows = sheetsApi.mapRawParticipantAgreementData(data);
-  //
-  // return sheetsApi.filterParticipantAgreements({
-  //   email,
-  //   rows,
-  // });
+  return [];
 };
 
 // export const fetchSanityPage = async (

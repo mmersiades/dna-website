@@ -9,9 +9,8 @@ import {
   EXT_RESOURCES_QUERYResult,
   GROUPS_QUERYResult,
   ONLINE_GROUPS_QUERYResult,
+  PARTICIPANTS_AGREEMENT_QUERYResult,
 } from '@/sanity/types';
-import DateTimeHelpers from '@/utils/DateTimeHelpers';
-import dayjs from 'dayjs';
 
 class TestFixtures {
   static eventDates: HumantixEventDate[] = [
@@ -534,18 +533,9 @@ class TestFixtures {
   ];
 
   static futureEvents = (): HumantixEvent[] => {
-    const startDate = DateTimeHelpers.formatDateTimeWithTimezone({
-      date: dayjs().startOf('day').add(1, 'week').add(18, 'hours'),
-      timezone: 'UTC',
-      format: 'YYYY-MM-DDTHH:mm:ss.SSSZ',
-    });
-    console.log('startDate', startDate);
+    const startDate = '2046-05-06T18:00:00Z';
 
-    const endDate = DateTimeHelpers.formatDateTimeWithTimezone({
-      date: dayjs().startOf('day').add(1, 'week').add(20, 'hours'),
-      timezone: 'UTC',
-      format: 'YYYY-MM-DDTHH:mm:ss.SSSZ',
-    });
+    const endDate = '2046-05-06T19:00:00Z';
 
     return [
       {
@@ -694,6 +684,60 @@ class TestFixtures {
       url: 'https://explore.degrowth.net/',
     },
   ];
+
+  static participantsAgreement: PARTICIPANTS_AGREEMENT_QUERYResult = {
+    _createdAt: '2026-03-08T05:55:17Z',
+    _id: 'c278730f-0efa-410a-9ae3-acd7d89100b3',
+    _rev: '6Tn0RnrllCsNn7jHPuufu5',
+    _updatedAt: '2026-04-19T01:39:21Z',
+    content: [
+      {
+        _key: '626119f2f08f',
+        _type: 'block',
+        children: [
+          {
+            _key: 'cfc4a91736a0',
+            _type: 'span',
+            marks: ['em'],
+            text: 'Acknowledgement of country',
+          },
+        ],
+        markDefs: [],
+        style: 'normal',
+      },
+      {
+        _key: 'ec814fb49376',
+        _type: 'block',
+        children: [
+          {
+            _key: '4b37e17cdbaf',
+            _type: 'span',
+            marks: [],
+            text: 'We meet on the lands of First Nations peoples and acknowledge sovereignty over these lands were never ceded. We acknowledge the centuries of resistance that indigenous people have led against unsustainable and inhumane practices of capitalist colonisation. We learn from indigenous knowledge systems that have embodied many of the degrowth values for countless generations.',
+          },
+        ],
+        markDefs: [],
+        style: 'normal',
+      },
+      {
+        _key: '0a2be77dd35f',
+        _type: 'block',
+        children: [
+          {
+            _key: '7fa5a9b14ba9',
+            _type: 'span',
+            marks: [],
+            text: '',
+          },
+        ],
+        markDefs: [],
+        style: 'normal',
+      },
+    ],
+    title: "Participants' Agreement",
+    version: 1,
+    watermarkImageCount: 1,
+  };
 }
 
 export default TestFixtures;

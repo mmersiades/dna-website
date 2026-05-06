@@ -38,6 +38,14 @@ const testIds = {
       submitButton: 'local__join-form__submit-button',
     },
   },
+  participantsAgreement: {
+    form: {
+      agreementCheckbox: 'participants-agreement__form__agreement-checkbox',
+      nameInput: 'participants-agreement__form__name-input',
+      emailInput: 'participants-agreement__form__email-input',
+      submitButton: 'participants-agreement__form__submit-button',
+    },
+  },
 };
 
 export default testIds;

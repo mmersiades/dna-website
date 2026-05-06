@@ -2,8 +2,9 @@ import PageRichText from '@/components/pageBuilder/PageRichText';
 import { pageStyles } from '@/components/styles';
 import { BlockContent } from '@/sanity/types';
 import cn from '@/utils/cn';
+import { FC } from 'react';
 
-export default async function ParticipantsAgreementViewSkeleton() {
+const ParticipantsAgreementViewSkeleton: FC = () => {
   const { pageTitle, pageDivider, proseSectionContainer } = pageStyles;
 
   const { detailsRow, text } = {
@@ -41,4 +42,6 @@ export default async function ParticipantsAgreementViewSkeleton() {
       </div>
     </section>
   );
-}
+};
+
+export default ParticipantsAgreementViewSkeleton;

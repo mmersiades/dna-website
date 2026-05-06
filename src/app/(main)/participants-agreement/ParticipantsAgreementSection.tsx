@@ -1,4 +1,4 @@
-import ParticipantsAgreementFormViewModel from '@/app/(main)/participants-agreement/ParticipantsAgreementFormViewModel';
+import ParticipantsAgreementForm from '@/app/(main)/participants-agreement/ParticipantsAgreementForm';
 import PageBackground from '@/components/PageBackground';
 import PageRichText from '@/components/pageBuilder/PageRichText';
 import { pageStyles } from '@/components/styles';
@@ -10,11 +10,13 @@ import { FC } from 'react';
 
 dayjs.extend(utc);
 
-interface Props {
+export interface ParticipantsAgreementSectionProps {
   data: PARTICIPANTS_AGREEMENT_QUERYResult;
 }
 
-const ParticipantsAgreementSection: FC<Props> = ({ data }) => {
+const ParticipantsAgreementSection: FC<ParticipantsAgreementSectionProps> = ({
+  data,
+}) => {
   if (!data) return null;
 
   const { pageTitle, pageDivider, proseSectionContainer } = pageStyles;
@@ -41,7 +43,7 @@ const ParticipantsAgreementSection: FC<Props> = ({ data }) => {
         <hr className={pageDivider} />
         <PageRichText value={data.content} />
         <hr className={pageDivider} />
-        <ParticipantsAgreementFormViewModel agreementVersion={data.version} />
+        <ParticipantsAgreementForm agreementVersion={data.version} />
       </section>
     </div>
   );
