@@ -534,7 +534,6 @@ class TestFixtures {
 
   static futureEvents = (): HumantixEvent[] => {
     const startDate = '2046-05-06T18:00:00Z';
-
     const endDate = '2046-05-06T19:00:00Z';
 
     return [
