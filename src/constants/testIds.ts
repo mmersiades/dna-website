@@ -46,6 +46,11 @@ const testIds = {
       submitButton: 'participants-agreement__form__submit-button',
     },
   },
+  qrCodes: {
+    pageSelect: 'qr-codes__page-select',
+    pngDownloadButton: 'qr-codes__png-download-button',
+    pdfDownloadButton: 'qr-codes__pdf-download-button',
+  },
 };
 
 export default testIds;
