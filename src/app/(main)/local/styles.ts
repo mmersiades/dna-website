@@ -17,7 +17,7 @@ const styles = {
     'size-8 lg:size-12 z-10',
     'bg-radial from-secondary-200 to-secondary-400',
   ),
-  linkLabel: 'font-display z-10',
+  linkLabel: 'font-display z-10 font-medium',
 
   title: 'text-lg font-bold',
   divider: 'text-tertiary-500/50 dark:text-tertiary/50  mt-2 mb-4',

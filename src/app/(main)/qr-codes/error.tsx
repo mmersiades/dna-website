@@ -1,6 +1,6 @@
 'use client';
 
-import Error from '@/components/error/Error';
+import ErrorComponent from '../../../components/error/ErrorComponent';
 
 export default function PageError({
   error,
@@ -9,7 +9,7 @@ export default function PageError({
 }) {
   return (
     <div className={'flex h-[calc(100svh-var(--header-height))]'}>
-      <Error error={error} />
+      <ErrorComponent error={error} />
     </div>
   );
 }
