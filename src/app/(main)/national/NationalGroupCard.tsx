@@ -28,6 +28,7 @@ const NationalGroupCard: FC<Props> = ({
 
   const { container, content, anchorContainer, checkIcon } = {
     container: cn(
+      'flex flex-col',
       'bg-card/50',
       'border rounded-md',
       selected
@@ -76,7 +77,7 @@ const NationalGroupCard: FC<Props> = ({
         </h4>
       </div>
       <div className={content}>
-        <p>{group.description}</p>
+        <p className="whitespace-pre-line">{group.description}</p>
         {group.url && (
           <div className={anchorContainer}>
             <span className={checkIcon}></span>

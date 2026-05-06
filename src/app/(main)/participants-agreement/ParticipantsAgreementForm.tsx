@@ -9,6 +9,7 @@ import SubmitButton from '@/components/buttons/SubmitButton';
 import Toast from '@/components/Toast';
 import copy from '@/constants/copy';
 import { paths } from '@/constants/paths';
+import testIds from '@/constants/testIds';
 import cn from '@/utils/cn';
 import { zodResolver } from '@hookform/resolvers/zod';
 import dayjs from 'dayjs';
@@ -33,6 +34,9 @@ interface Props {
 }
 
 const ParticipantsAgreementForm: FC<Props> = ({ agreementVersion }) => {
+  const { nameInput, emailInput, agreementCheckbox, submitButton } =
+    testIds.participantsAgreement.form;
+
   const [loading, setLoading] = useState(false);
   const defaultValues = {
     name: '',
@@ -201,6 +205,8 @@ const ParticipantsAgreementForm: FC<Props> = ({ agreementVersion }) => {
                 {form.name.label}
               </label>
               <input
+                id={'name'}
+                data-testid={nameInput}
                 {...field}
                 className={cn(input, 'h-10 w-full')}
                 aria-required="true"
@@ -223,8 +229,11 @@ const ParticipantsAgreementForm: FC<Props> = ({ agreementVersion }) => {
                 {form.email.label}
               </label>
               <input
+                id={'email'}
+                data-testid={emailInput}
                 className={cn(input, 'h-10 w-full')}
                 aria-required="true"
+                type={'email'}
                 required
                 {...field}
               />
@@ -237,6 +246,7 @@ const ParticipantsAgreementForm: FC<Props> = ({ agreementVersion }) => {
           render={({ field: { value, ...field } }) => (
             <div className={checkboxContainer}>
               <input
+                data-testid={agreementCheckbox}
                 type={'checkbox'}
                 id={'agree'}
                 checked={value}
@@ -257,6 +267,7 @@ const ParticipantsAgreementForm: FC<Props> = ({ agreementVersion }) => {
         />
         <div className={submitContainer}>
           <SubmitButton
+            data-testid={submitButton}
             type="submit"
             submitting={isSubmitting}
             disabled={!isValid || loading}

@@ -5,11 +5,11 @@ import copy from '@/constants/copy';
 import { GROUPS_QUERYResult } from '@/sanity/types';
 import { FC } from 'react';
 
-interface Props {
+export interface LocalGroupsListProps {
   groups: GROUPS_QUERYResult;
 }
 
-const LocalGroupList: FC<Props> = ({ groups }) => {
+const LocalGroupList: FC<LocalGroupsListProps> = ({ groups }) => {
   const { title } = copy.local;
 
   const { pageTitle, pageDivider, sectionContainer } = pageStyles;
@@ -35,9 +35,6 @@ const LocalGroupList: FC<Props> = ({ groups }) => {
             type={'flower-bees'}
             altText={'Local group placeholder'}
           />
-          // <div className="hidden items-center justify-center md:flex">
-          //   <GroupCardPlaceholder />
-          // </div>
         )}
       </div>
     </section>

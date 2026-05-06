@@ -1,7 +1,8 @@
 import ExternalResourceListSkeleton from '@/app/(main)/learn/ExternalResourceListSkeleton';
 import copy from '@/constants/copy';
+import { FC } from 'react';
 
-export default async function ExternalResourceViewSkeleton() {
+const ExternalResourceViewSkeleton: FC = () => {
   const { degrowthTitle, usefulTitle, alliesTitle } = copy.learn;
 
   return (
@@ -11,4 +12,6 @@ export default async function ExternalResourceViewSkeleton() {
       <ExternalResourceListSkeleton title={usefulTitle} />
     </>
   );
-}
+};
+
+export default ExternalResourceViewSkeleton;

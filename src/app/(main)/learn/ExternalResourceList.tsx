@@ -3,12 +3,15 @@ import { pageStyles } from '@/components/styles';
 import { EXT_RESOURCES_QUERYResult } from '@/sanity/types';
 import { FC } from 'react';
 
-interface Props {
+export interface ExternalResourceListProps {
   title: string;
   list: EXT_RESOURCES_QUERYResult[0][];
 }
 
-const ExternalResourceList: FC<Props> = ({ list, title }) => {
+const ExternalResourceList: FC<ExternalResourceListProps> = ({
+  list,
+  title,
+}) => {
   const { pageTitle, pageDivider, sectionContainer } = pageStyles;
 
   const { grid, cell } = {

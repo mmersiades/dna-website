@@ -16,6 +16,36 @@ const testIds = {
     openMenuButton: 'header__menu__open-button',
     closeMenuButton: 'header__menu__close-button',
   },
+  national: {
+    form: {
+      nameInput: 'national__join-form__name-input',
+      emailInput: 'national__join-form__email-input',
+      submitButton: 'national__join-form__submit-button',
+    },
+  },
+  local: {
+    groupCard: {
+      emailLink: 'local__group-card__email-link',
+    },
+    table: {
+      stateSelect: 'local__table__state-select',
+      regionSelect: 'local__table__region-select',
+      countrySelect: 'local__table__country-select',
+    },
+    form: {
+      nameInput: 'local__join-form__name-input',
+      emailInput: 'local__join-form__email-input',
+      submitButton: 'local__join-form__submit-button',
+    },
+  },
+  participantsAgreement: {
+    form: {
+      agreementCheckbox: 'participants-agreement__form__agreement-checkbox',
+      nameInput: 'participants-agreement__form__name-input',
+      emailInput: 'participants-agreement__form__email-input',
+      submitButton: 'participants-agreement__form__submit-button',
+    },
+  },
 };
 
 export default testIds;

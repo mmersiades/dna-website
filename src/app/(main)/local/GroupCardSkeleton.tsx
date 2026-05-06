@@ -18,7 +18,12 @@ const GroupCardSkeleton: FC = () => {
         <div className={imageContainer}>
           <div className={image} />
         </div>
-        <h4 className={cn(cardHeading, 'text-muted pt-2')}>Group</h4>
+        <h4
+          aria-hidden={true}
+          className={cn(cardHeading, 'pt-2 opacity-50')}
+        >
+          Local Group
+        </h4>
       </div>
       <div className={content}>
         <div className={'bg-muted h-20 w-full'}></div>

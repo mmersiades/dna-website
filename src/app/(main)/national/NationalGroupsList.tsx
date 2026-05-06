@@ -8,20 +8,29 @@ import copy from '@/constants/copy';
 import { ONLINE_GROUPS_QUERYResult } from '@/sanity/types';
 import cn from '@/utils/cn';
 import { FC, useState } from 'react';
+import { useMediaQuery } from 'usehooks-ts';
 
-interface Props {
+export interface NationalGroupsListProps {
   groups: ONLINE_GROUPS_QUERYResult[0][];
 }
 
-const NationalGroupsList: FC<Props> = ({ groups }) => {
+const NationalGroupsList: FC<NationalGroupsListProps> = ({ groups }) => {
   const [selectedGroup, setSelectedGroup] = useState<
     ONLINE_GROUPS_QUERYResult[0] | null
   >(null);
+
+  const isDesktop = useMediaQuery('(min-width: 768px)');
+
   const { title } = copy.national;
 
   const { pageTitle, pageDivider, sectionContainer } = pageStyles;
 
   const onSelectGroup = (group: ONLINE_GROUPS_QUERYResult[0]) => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
     setSelectedGroup((prev) => {
       if (prev === null) {
         return group;
@@ -37,24 +46,21 @@ const NationalGroupsList: FC<Props> = ({ groups }) => {
     setSelectedGroup(null);
   };
 
-  const { desktopForm } = {
-    desktopForm: 'hidden md:block',
-  };
-
   return (
     <>
-      <div className={desktopForm}>
+      {isDesktop ? (
         <DesktopJoinForm
           selectedGroup={selectedGroup}
           onSubmit={clearSelectedGroup}
           onClickOutside={clearSelectedGroup}
         />
-      </div>
-      <MobileJoinForm
-        selectedGroup={selectedGroup}
-        onClose={clearSelectedGroup}
-        onSubmit={clearSelectedGroup}
-      />
+      ) : (
+        <MobileJoinForm
+          selectedGroup={selectedGroup}
+          onClose={clearSelectedGroup}
+          onSubmit={clearSelectedGroup}
+        />
+      )}
       <section className={cn(sectionContainer, 'mt-0 pt-8')}>
         <h4 className={pageTitle}>{title}</h4>
         <hr className={pageDivider} />

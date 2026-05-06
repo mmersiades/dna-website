@@ -6,6 +6,7 @@ import SubmitButton from '@/components/buttons/SubmitButton';
 import Toast from '@/components/Toast';
 import copy from '@/constants/copy';
 import { paths } from '@/constants/paths';
+import testIds from '@/constants/testIds';
 import cn from '@/utils/cn';
 import { zodResolver } from '@hookform/resolvers/zod';
 import dayjs from 'dayjs';
@@ -59,6 +60,7 @@ const GroupInterestForm: FC<Props> = ({
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const { success, failure } = copy.local.intent;
+
     const body: WriteGroupIntentRowBody = {
       ...data,
       date: dayjs().format('YYYY-MM-DD'),
@@ -142,6 +144,8 @@ const GroupInterestForm: FC<Props> = ({
     ),
   };
 
+  const { nameInput, emailInput, submitButton } = testIds.local.form;
+
   return (
     <div className={container}>
       <p className={'text-md'}>{copy.local.intent.title}</p>
@@ -161,6 +165,8 @@ const GroupInterestForm: FC<Props> = ({
                 {copy.local.intent.name}
               </label>
               <input
+                id={'name'}
+                data-testid={nameInput}
                 {...field}
                 className={cn(input, 'h-10 w-full')}
                 aria-required="true"
@@ -183,6 +189,8 @@ const GroupInterestForm: FC<Props> = ({
                 {copy.local.intent.email}
               </label>
               <input
+                id={'email'}
+                data-testid={emailInput}
                 className={cn(input, 'h-10 w-full')}
                 aria-required="true"
                 required
@@ -192,6 +200,7 @@ const GroupInterestForm: FC<Props> = ({
           )}
         />
         <SubmitButton
+          data-testid={submitButton}
           type="submit"
           submitting={isSubmitting}
           disabled={!isValid}

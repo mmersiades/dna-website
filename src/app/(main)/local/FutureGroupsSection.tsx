@@ -3,11 +3,13 @@ import { TableRow } from '@/app/services/SheetsApi';
 import { pageStyles } from '@/components/styles';
 import { FC } from 'react';
 
-interface Props {
+export interface FutureGroupsSectionProps {
   initialTableData: TableRow[];
 }
 
-const FutureGroupsSection: FC<Props> = ({ initialTableData }) => {
+const FutureGroupsSection: FC<FutureGroupsSectionProps> = ({
+  initialTableData,
+}) => {
   const { pageTitle, pageDivider, sectionContainer } = pageStyles;
 
   return (

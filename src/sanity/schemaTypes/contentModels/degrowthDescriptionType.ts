@@ -10,7 +10,7 @@ export const degrowthDescriptionType = defineType({
       title: 'Description Heading',
       name: 'statement',
       type: 'string',
-      description: `A 1-3 word summary of the description/quote, typically no more than 30 characters.
+      description: `A 1-3 word summary of the description/quote, typically no more than 25 characters.
       It completes the sentence: "Degrowth is...". Examples:
       
       - "a movement."
@@ -52,7 +52,7 @@ export const degrowthDescriptionType = defineType({
       - "Journalist"
       - "Mad Liverpool supporter"
       `,
-      validation: (rule) => rule.max(30),
+      validation: (rule) => rule.max(25),
     }),
     defineField({
       title: 'Citation',

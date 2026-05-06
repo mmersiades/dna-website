@@ -183,8 +183,8 @@
     .quote-container, .intro-quote-container {
         width: var(--width-quote-container);
         border: var(--border-width-quote-container) solid var(--color-tertiary-600);
-        background-color: oklch(from var(--color-tertiary) calc(l + 0.4) c h);
-        background-image: radial-gradient(rgb(255 255 255 / 0.75), transparent);
+        background-color: oklch(from var(--color-tertiary-600) calc(l + 0.4) c h);
+        background-image: radial-gradient(rgb(255 255 255 / 0.95), transparent);
         font-size: var(--font-size-quote);
         border-radius: var(--radius);
 

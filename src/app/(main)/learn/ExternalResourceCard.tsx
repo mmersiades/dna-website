@@ -21,7 +21,7 @@ const ExternalResourceCard: FC<ResourceCardProps> = ({ resource, index }) => {
     externalLinkIcon,
   } = {
     container: cn(
-      'h-fit w-full',
+      'h-full w-full',
       'flex flex-row',
       'bg-card/50',
       'border border-border rounded-md',

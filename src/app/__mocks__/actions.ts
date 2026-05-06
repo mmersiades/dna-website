@@ -2,6 +2,7 @@
 
 import { WallPaperImageProps } from '@/components/PageBackground';
 import cn from '@/utils/cn';
+import TestFixtures from '@/utils/TestFixtures';
 
 export const fetchGroupIntentData = async () => {
   // 'use cache';
@@ -24,9 +25,27 @@ export const fetchGroupIntentTableRows = async (params: {
   region: string | null;
   country: string | null;
 }) => {
-  // const data = (await fetchGroupIntentData()) as string[][];
-  // const rows = sheetsApi.mapRawGroupIntentData(data);
-  // return sheetsApi.getGroupIntentTableRows({ ...params, data: rows });
+  if (!params.state && !params.region && !params.country) {
+    return TestFixtures.groupInterestData_Australia;
+  }
+
+  if (params.state && !params.region && !params.country) {
+    return TestFixtures.groupInterestData_State(params.state);
+  }
+
+  if (params.state && params.region && !params.country) {
+    return TestFixtures.groupInterestData_Region(params.state, params.region);
+  }
+
+  if (params.state && params.region && params.country) {
+    return TestFixtures.groupInterestData_Country(
+      params.state,
+      params.region,
+      params.country,
+    );
+  }
+
+  return [];
 };
 
 export const fetchParticipantAgreementData = async () => {
@@ -50,13 +69,7 @@ export const fetchParticipantAgreementByEmail = async ({
 }: {
   email: string;
 }) => {
-  // const data = await fetchParticipantAgreementData();
-  // const rows = sheetsApi.mapRawParticipantAgreementData(data);
-  //
-  // return sheetsApi.filterParticipantAgreements({
-  //   email,
-  //   rows,
-  // });
+  return [];
 };
 
 // export const fetchSanityPage = async (
@@ -91,13 +104,7 @@ export const fetchSanityExternalResources = async () => {
 };
 
 export const fetchSanityNationalGroups = async () => {
-  // 'use cache';
-  // cacheLife('hours');
-  // const { data } = await sanityFetch({
-  //   query: ONLINE_GROUPS_QUERY,
-  //   stega: false,
-  // });
-  // return data;
+  return TestFixtures.nationalGroups;
 };
 
 export const fetchSanityLocalGroups = async () => {

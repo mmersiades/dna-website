@@ -27,7 +27,7 @@ const Quote: FC<QuoteProps> = ({
   let label = ` - ${author}`;
 
   if (identifier) {
-    label = label + `, ${identifier}`;
+    label = label + `, ${identifier} ★ DNA member`;
   }
 
   return (

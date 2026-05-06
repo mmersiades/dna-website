@@ -8,7 +8,7 @@ export const EventDatesSkeleton: FC = () => {
 
   return (
     <div className={'flex flex-col'}>
-      <p className={cn(cardSubHeading, 'text-muted')}>
+      <p className={cn(cardSubHeading, 'opacity-60')}>
         {copy.events.card.date}
       </p>
       <div className={'bg-muted h-20 w-1/2'}></div>
@@ -21,7 +21,7 @@ export const EventLocationSkeleton: FC = () => {
 
   return (
     <div className={'flex flex-col'}>
-      <p className={cn(cardSubHeading, 'text-muted')}>
+      <p className={cn(cardSubHeading, 'opacity-60')}>
         {copy.events.card.location}
       </p>
       <div className={'bg-muted h-10 w-full'}></div>
@@ -51,7 +51,7 @@ const EventCardSkeleton: FC = () => {
     <div className={container}>
       <div>
         <div className={image} />
-        <h4 className={cn(cardHeading, 'text-muted pt-2')}>Event</h4>
+        <h4 className={cn(cardHeading, 'pt-2 opacity-60')}>Event</h4>
       </div>
       <div className={content}>
         <EventDescriptionSkeleton />
