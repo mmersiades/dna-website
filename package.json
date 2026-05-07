@@ -15,6 +15,8 @@
     "prettier:check": "npx prettier . --check",
     "prepare": "husky",
     "storybook": "storybook dev -p 6006",
+    "test": "vitest --project=node",
+    "test:coverage": "vitest --project=node --coverage --run",
     "build-storybook": "storybook build",
     "test-storybook": "vitest --project=storybook",
     "test-storybook:coverage": "vitest --project=storybook --coverage --run",
@@ -90,6 +92,7 @@
     "tailwindcss": "^4",
     "typescript": "^5",
     "vite": "^7.3.1",
+    "vite-tsconfig-paths": "^6.1.1",
     "vitest": "^4.0.18"
   },
   "lint-staged": {

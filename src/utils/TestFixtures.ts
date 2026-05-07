@@ -9,7 +9,9 @@ import {
   EXT_RESOURCES_QUERYResult,
   GROUPS_QUERYResult,
   ONLINE_GROUPS_QUERYResult,
+  PAGE_QUERYResult,
   PARTICIPANTS_AGREEMENT_QUERYResult,
+  Seo,
 } from '@/sanity/types';
 
 class TestFixtures {
@@ -736,6 +738,59 @@ class TestFixtures {
     title: "Participants' Agreement",
     version: 1,
     watermarkImageCount: 1,
+  };
+
+  static pageResultEvents: NonNullable<PAGE_QUERYResult> = {
+    _createdAt: '2026-02-27T07:15:53Z',
+    _id: '6df4b7d2-3dfb-49d9-8b12-ad48d34903cd',
+    _rev: 'zmdbSLnMcb2AbnNAdFxtCi',
+    _type: 'page',
+    _updatedAt: '2026-05-03T08:06:09Z',
+    name: null,
+    pageBuilder: [
+      {
+        _key: 'd0a87c734324',
+        _type: 'richTextSection',
+        content: [
+          {
+            _key: 'b6335115f576',
+            _type: 'block',
+            children: [
+              {
+                _key: '218b0851b47e',
+                _type: 'span',
+                marks: [],
+                text: 'This page does not use Page Builder',
+              },
+            ],
+            markDefs: [],
+            style: 'normal',
+          },
+        ],
+        title: 'Ignore',
+      },
+    ],
+    seo: {
+      description:
+        "Degrowth Network Australia's member groups and individuals often host Degrowth-related events, such as the Degrowth Festival and documentary screens. Find upcoming events here!",
+      image: null,
+      noIndex: false,
+      title: 'Events | DNA',
+    },
+    slug: {
+      _type: 'slug',
+      current: 'events',
+    },
+    title: 'Events',
+    watermarkImageCount: 1,
+  };
+
+  static pageResultsSeoImage: NonNullable<Seo['image']> = {
+    _type: 'image',
+    asset: {
+      _ref: 'image-cbc493fb760d900216db64576a17a20ce9a26dd1-1200x630-png',
+      _type: 'reference',
+    },
   };
 }
 
