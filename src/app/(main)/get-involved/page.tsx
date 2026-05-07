@@ -1,10 +1,10 @@
 import GetInvolvedCtaContent from '@/app/(main)/get-involved/GetInvolvedCtaContent';
-import { getPage } from '@/lib/actions';
+import { fetchSanityPage } from '@/app/actions';
 import generateDNAMetadata from '@/utils/generateDNAMetadata';
 import { Metadata } from 'next';
 
 export async function generateMetadata(): Promise<Metadata> {
-  const page = await getPage('get-involved');
+  const page = await fetchSanityPage('get-involved');
 
   return generateDNAMetadata(page);
 }
