@@ -56,4 +56,9 @@ export default defineConfig({
     ],
     reporters: ['verbose', 'html'],
   },
+  server: {
+    watch: {
+      ignored: [path.resolve(dirname, 'html')],
+    },
+  },
 });

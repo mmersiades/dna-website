@@ -1,5 +1,4 @@
 import FutureEventsListSkeleton from '@/app/(main)/events/FutureEventsListSkeleton';
-import LocalGroupListSkeleton from '@/app/(main)/local/LocalGroupListSkeleton';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 
 const meta = {
@@ -7,7 +6,7 @@ const meta = {
   globals: {
     viewport: { value: 'desktop', isRotated: false },
   },
-} satisfies Meta<typeof LocalGroupListSkeleton>;
+} satisfies Meta<typeof FutureEventsListSkeleton>;
 
 export default meta;
 
