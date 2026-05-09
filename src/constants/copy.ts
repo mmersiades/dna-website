@@ -344,7 +344,7 @@ const copy = {
         path: paths.events,
       },
       {
-        label: 'Learn More',
+        label: 'Resources',
         path: paths.learn,
       },
       {
