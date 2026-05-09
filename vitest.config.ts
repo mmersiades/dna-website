@@ -13,7 +13,14 @@ const dirname =
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 export default defineConfig({
   optimizeDeps: {
-    include: ['dayjs', 'dayjs/plugin/utc', 'dayjs/plugin/timezone'],
+    include: [
+      'react',
+      'react-dom',
+      'react/jsx-runtime',
+      'dayjs',
+      'dayjs/plugin/utc',
+      'dayjs/plugin/timezone',
+    ],
   },
   plugins: [tsconfigPaths()],
   test: {

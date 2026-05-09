@@ -189,6 +189,9 @@ const QrCodeForm: FC = () => {
     const canvas = document.getElementById(
       'qr-code-canvas',
     ) as HTMLCanvasElement;
+
+    if (!canvas) return;
+
     const dataUrl = canvas.toDataURL('image/png');
     setQrBase64(dataUrl);
   };
