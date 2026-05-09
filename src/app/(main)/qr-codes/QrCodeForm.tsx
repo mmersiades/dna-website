@@ -1,6 +1,7 @@
 'use client';
 
 import copy from '@/constants/copy';
+import testIds from '@/constants/testIds';
 import cn from '@/utils/cn';
 import {
   Document,
@@ -150,6 +151,8 @@ const QrCodeForm: FC = () => {
   const [selectedPath, setSelectedPath] = useState(qrCodes.links[0].path);
   const [qrBase64, setQrBase64] = useState<string | null>(null);
 
+  const { pageSelect, pngDownloadButton, pdfDownloadButton } = testIds.qrCodes;
+
   const downloadQRCode = (selectedPath: Route) => {
     const filename = generateFilename(selectedPath);
     // Access the canvas element via the ref
@@ -186,6 +189,9 @@ const QrCodeForm: FC = () => {
     const canvas = document.getElementById(
       'qr-code-canvas',
     ) as HTMLCanvasElement;
+
+    if (!canvas) return;
+
     const dataUrl = canvas.toDataURL('image/png');
     setQrBase64(dataUrl);
   };
@@ -214,7 +220,7 @@ const QrCodeForm: FC = () => {
       'focus:outline-primary focus:outline-1 focus:border-primary focus:outline-offset-0',
       'hover:border-primary',
       'px-2',
-      'text-lg sm:font-bold ',
+      'text-md sm:font-bold sm:text-lg ',
       'flex flex-row items-center',
       'cursor-pointer',
     ),
@@ -253,6 +259,7 @@ const QrCodeForm: FC = () => {
           </label>
 
           <select
+            data-testid={pageSelect}
             id="qr-code-select"
             onChange={(e) => {
               setSelectedPath(e.target.value as Route);
@@ -275,6 +282,7 @@ const QrCodeForm: FC = () => {
         </div>
         <div className={downloadButton}>
           <button
+            data-testid={pngDownloadButton}
             role={'button'}
             className={downloadButton}
             onClick={() => downloadQRCode(selectedPath)}
@@ -288,6 +296,7 @@ const QrCodeForm: FC = () => {
         </div>
         {qrBase64 && (
           <PDFDownloadLink
+            data-testid={pdfDownloadButton}
             className={downloadButton}
             document={
               <QrCodePDF

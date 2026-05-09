@@ -1,6 +1,6 @@
 {
   "name": "dna-website",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "private": true,
   "packageManager": "pnpm@10.33.0",
   "scripts": {
@@ -15,9 +15,11 @@
     "prettier:check": "npx prettier . --check",
     "prepare": "husky",
     "storybook": "storybook dev -p 6006",
+    "test": "vitest --project=node",
+    "test:coverage": "vitest --project=node --coverage --run",
     "build-storybook": "storybook build",
     "test-storybook": "vitest --project=storybook",
-    "test-storybook:coverage": "vitest --project=storybook --coverage",
+    "test-storybook:coverage": "vitest --project=storybook --coverage --run",
     "chromatic": "npx chromatic"
   },
   "dependencies": {
@@ -72,6 +74,7 @@
     "@types/react-dom": "^19",
     "@vitest/browser-playwright": "^4.0.18",
     "@vitest/coverage-v8": "^4.0.18",
+    "@vitest/ui": "4.0.18",
     "babel-plugin-react-compiler": "1.0.0",
     "chromatic": "^15.2.0",
     "domhandler": "^5.0.3",
@@ -89,6 +92,7 @@
     "tailwindcss": "^4",
     "typescript": "^5",
     "vite": "^7.3.1",
+    "vite-tsconfig-paths": "^6.1.1",
     "vitest": "^4.0.18"
   },
   "lint-staged": {

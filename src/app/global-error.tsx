@@ -1,6 +1,6 @@
 'use client';
 
-import Error from '@/components/error/Error';
+import ErrorComponent from '../components/error/ErrorComponent';
 
 export default function GlobalError({
   error,
@@ -23,7 +23,7 @@ export default function GlobalError({
             alignItems: 'center',
           }}
         >
-          <Error error={error} />
+          <ErrorComponent error={error} />
         </main>
       </body>
     </html>

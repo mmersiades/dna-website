@@ -7,11 +7,11 @@ import * as Sentry from '@sentry/nextjs';
 import Link from 'next/link';
 import { FC, useEffect } from 'react';
 
-interface Props {
+export interface ErrorComponentProps {
   error: Error & { digest?: string };
 }
 
-const Error: FC<Props> = ({ error }) => {
+const ErrorComponent: FC<ErrorComponentProps> = ({ error }) => {
   const { title, reload, home } = copy.error;
 
   useEffect(() => {
@@ -58,4 +58,4 @@ const Error: FC<Props> = ({ error }) => {
   );
 };
 
-export default Error;
+export default ErrorComponent;

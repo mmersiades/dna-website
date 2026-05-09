@@ -1,11 +1,9 @@
+import { storybookTest } from '@storybook/addon-vitest/vitest-plugin';
+import { playwright } from '@vitest/browser-playwright';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-
+import tsconfigPaths from 'vite-tsconfig-paths';
 import { coverageConfigDefaults, defineConfig } from 'vitest/config';
-
-import { storybookTest } from '@storybook/addon-vitest/vitest-plugin';
-
-import { playwright } from '@vitest/browser-playwright';
 
 const dirname =
   typeof __dirname !== 'undefined'
@@ -15,8 +13,16 @@ const dirname =
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 export default defineConfig({
   optimizeDeps: {
-    include: ['dayjs', 'dayjs/plugin/utc', 'dayjs/plugin/timezone'],
+    include: [
+      'react',
+      'react-dom',
+      'react/jsx-runtime',
+      'dayjs',
+      'dayjs/plugin/utc',
+      'dayjs/plugin/timezone',
+    ],
   },
+  plugins: [tsconfigPaths()],
   test: {
     coverage: {
       // provider: 'istanbul',
@@ -32,6 +38,7 @@ export default defineConfig({
         '**/__mocks__/**.*',
         '/src/sanity/*/**',
         '/src/sanity/**.*',
+        'src/utils/TestFixtures.ts',
       ],
     },
     projects: [
@@ -53,7 +60,20 @@ export default defineConfig({
           setupFiles: ['.storybook/vitest.setup.ts'],
         },
       },
+      {
+        extends: true,
+        test: {
+          include: ['**/*.test.ts'],
+          name: { label: 'node', color: 'green' },
+          environment: 'node',
+        },
+      },
     ],
     reporters: ['verbose', 'html'],
+  },
+  server: {
+    watch: {
+      ignored: [path.resolve(dirname, 'html')],
+    },
   },
 });

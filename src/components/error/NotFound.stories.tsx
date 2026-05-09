@@ -1,12 +1,21 @@
-import FutureEventsListSkeleton from '@/app/(main)/events/FutureEventsListSkeleton';
+import NotFound from '@/components/error/NotFound';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 
 const meta = {
-  component: FutureEventsListSkeleton,
+  component: NotFound,
   globals: {
     viewport: { value: 'desktop', isRotated: false },
   },
-} satisfies Meta<typeof FutureEventsListSkeleton>;
+  decorators: [
+    (Story) => {
+      return (
+        <div className={'flex h-[calc(100svh-var(--header-height))]'}>
+          <Story />
+        </div>
+      );
+    },
+  ],
+} satisfies Meta<typeof NotFound>;
 
 export default meta;
 
@@ -16,6 +25,18 @@ type Story = StoryObj<typeof meta>;
 export const DesktopLandscape: Story = {
   globals: {
     theme: 'light',
+  },
+};
+
+// noinspection JSUnusedGlobalSymbols
+export const DesktopLandscapeHover: Story = {
+  globals: {
+    theme: 'light',
+  },
+  parameters: {
+    pseudo: {
+      hover: true,
+    },
   },
 };
 
