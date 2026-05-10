@@ -59,6 +59,7 @@ const WallPaperImage: FC<WallPaperImageProps> = ({
           aria-hidden={true}
           fill
           loading={index === 0 ? 'eager' : 'lazy'}
+          preload={index === 0}
         />
       </picture>
     </div>

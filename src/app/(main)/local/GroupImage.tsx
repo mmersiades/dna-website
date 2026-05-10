@@ -33,7 +33,8 @@ const GroupImage: FC<Props> = ({ src, index, altText }) => {
           xl: 620,
           xxl: 750,
         })}
-        loading={index === 0 || (index && index < 2) ? 'eager' : 'lazy'}
+        loading={index === 0 || (!!index && index < 3) ? 'eager' : 'lazy'}
+        preload={index === 0 || (!!index && index < 3)}
       />
     );
   } else {
@@ -52,7 +53,8 @@ const GroupImage: FC<Props> = ({ src, index, altText }) => {
           alt={`Image placeholder`}
           fill
           className={placeholder}
-          priority
+          loading={index === 0 || (!!index && index < 3) ? 'eager' : 'lazy'}
+          priority={index === 0 || (!!index && index < 3)}
         />
       </picture>
     );

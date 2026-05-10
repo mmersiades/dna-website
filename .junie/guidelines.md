@@ -14,6 +14,7 @@ and development workflows.
 - **Logging**: [Pino](https://getpino.io/)
 - **Environment**: [@t3-oss/env-nextjs](https://env.t3.gg/) (with [Zod](https://zod.dev/))
 - **Package Manager**: `pnpm`
+- **Testing**: [Vitest](https://vitest.dev/), [Storybook](https://storybook.js.org/), [Chromatic](https://www.chromatic.com/)
 - **Linting & Formatting
   **: [ESLint](https://eslint.org/), [Prettier](https://prettier.io/), [Husky](https://typicode.github.io/husky/)
 
@@ -38,13 +39,19 @@ and development workflows.
 
 Use `pnpm` to run the following commands:
 
-| Command               | Description                                                 |
-|:----------------------|:------------------------------------------------------------|
-| `pnpm dev`            | Starts the development server.                              |
-| `pnpm build`          | Builds the application for production.                      |
-| `pnpm sanity:typegen` | Generates TypeScript types from Sanity schemas and queries. |
-| `pnpm lint`           | Runs ESLint to find and fix code quality issues.            |
-| `pnpm prettier:write` | Formats the entire codebase using Prettier.                 |
+| Command                    | Description                                                 |
+|:---------------------------|:------------------------------------------------------------|
+| `pnpm dev`                 | Starts the development server.                              |
+| `pnpm build`               | Builds the application for production.                      |
+| `pnpm sanity:typegen`      | Generates TypeScript types from Sanity schemas and queries. |
+| `pnpm lint`                | Runs ESLint to find and fix code quality issues.            |
+| `pnpm prettier:write`      | Formats the entire codebase using Prettier.                 |
+| `pnpm test`                | Runs unit tests with Vitest.                                |
+| `pnpm test:coverage`       | Runs unit tests with coverage reporting.                    |
+| `pnpm test-storybook`      | Runs Storybook interaction tests with Vitest.               |
+| `pnpm test-storybook:coverage` | Runs Storybook tests with coverage reporting.               |
+| `pnpm storybook`           | Starts Storybook for component development.                 |
+| `pnpm chromatic`           | Runs visual regression tests on Chromatic.                  |
 
 ---
 
@@ -68,6 +75,13 @@ The project uses Husky and `lint-staged`. On every commit:
 #### Styling
 
 - Use **Tailwind CSS** for most styling needs.
+
+#### Testing
+
+- **Unit Testing**: Use **Vitest** for testing business logic and utilities. Place `.test.ts` files alongside the code they test. Run `pnpm test:coverage` to see code coverage.
+- **Visual Regression Testing**: Use **Chromatic** for UI components. It automatically captures snapshots of stories defined in Storybook.
+- **Interaction Testing**: Use **Storybook's `play` function** along with **Vitest** to test component interactions. These tests run in a browser environment. Run `pnpm test-storybook:coverage` for coverage.
+- **Storybook**: Every UI component should have a `.stories.tsx` file. Use stories to document component states and variants.
 
 #### Git Commits
 
@@ -93,4 +107,5 @@ Follow these conventions for commit messages:
 - **Imports**: Imports are automatically organized via `prettier-plugin-organize-imports`. Keep them clean.
 - **Components**: Prefer React Server Components (RSC) by default; use `'use client'` only when necessary for
   interactivity or browser APIs.
+- **Testing**: Write tests for new features and bug fixes. Ensure unit tests pass with `pnpm test` and interaction tests pass with `pnpm test-storybook`. Use Chromatic to catch unintended visual changes.
 - **Commits**: Write clear, descriptive commit messages. Pre-commit hooks will handle formatting.

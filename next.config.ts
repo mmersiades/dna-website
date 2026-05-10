@@ -23,6 +23,12 @@ const nextConfig: NextConfig = {
   },
   typedRoutes: true,
   cacheComponents: true,
+  compiler: {
+    // Removes console.error calls in production
+    removeConsole: {
+      exclude: ['log', 'warn', 'info'],
+    },
+  },
 };
 
 export default withSentryConfig(withBotId(nextConfig), {
