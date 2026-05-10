@@ -297,7 +297,7 @@ const copy = {
           href: paths.events,
         },
         {
-          children: 'Learn More',
+          children: 'Resources',
           href: paths.learn,
         },
         {
