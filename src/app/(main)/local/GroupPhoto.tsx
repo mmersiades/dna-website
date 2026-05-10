@@ -7,7 +7,7 @@ export type GroupPhotoProps = NonNullable<
   GROUPS_QUERYResult[number]['groupPhoto']
 > & {
   src?: string;
-  index?: number; // 0-based
+  index: number; // 0-based
 };
 
 const GroupPhoto: FC<GroupPhotoProps> = ({

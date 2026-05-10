@@ -33,8 +33,8 @@ const GroupImage: FC<Props> = ({ src, index, altText }) => {
           xl: 620,
           xxl: 750,
         })}
-        loading={index === 0 || (!!index && index < 3) ? 'eager' : 'lazy'}
-        preload={index === 0 || (!!index && index < 3)}
+        loading={index < 2 ? 'eager' : 'lazy'}
+        preload={index < 2}
       />
     );
   } else {
