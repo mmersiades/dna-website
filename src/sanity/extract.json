@@ -1435,6 +1435,10 @@
             {
               "type": "string",
               "value": "allied"
+            },
+            {
+              "type": "string",
+              "value": "members"
             }
           ]
         },

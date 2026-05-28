@@ -211,6 +211,7 @@ const copy = {
     degrowthTitle: 'More about Degrowth',
     usefulTitle: 'Useful Resources',
     alliesTitle: 'Allied Organisations and Movements',
+    membersTitle: 'From Our Members',
   },
   national: {
     title: 'National DNA Groups',

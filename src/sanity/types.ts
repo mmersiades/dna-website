@@ -257,7 +257,7 @@ export type ExternalResource = {
   _updatedAt: string;
   _rev: string;
   title: string;
-  category: 'degrowth' | 'useful' | 'allied';
+  category: 'degrowth' | 'useful' | 'allied' | 'members';
   description: string;
   url: string;
   image?: string;
@@ -494,7 +494,7 @@ export type DEGROWTH_DESCRIPTIONS_QUERYResult = Array<{
 export type EXT_RESOURCES_QUERYResult = Array<{
   _id: string;
   title: string;
-  category: 'allied' | 'degrowth' | 'useful';
+  category: 'allied' | 'degrowth' | 'members' | 'useful';
   description: string;
   url: string;
   image: string | null;
