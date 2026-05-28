@@ -27,6 +27,7 @@ export const externalResourceType = defineType({
           { title: 'Learning Degrowth', value: 'degrowth' },
           { title: 'Useful Resource', value: 'useful' },
           { title: 'Allied Org/Movement', value: 'allied' },
+          { title: 'From Our Members', value: 'members' },
         ],
       },
       validation: (rule) => rule.required(),

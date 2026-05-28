@@ -3,7 +3,7 @@ import { fetchSanityExternalResources } from '@/app/actions';
 import copy from '@/constants/copy';
 
 export default async function ExternalResourceViewModel() {
-  const { degrowthTitle, usefulTitle, alliesTitle } = copy.learn;
+  const { degrowthTitle, usefulTitle, alliesTitle, membersTitle } = copy.learn;
   const extResources = await fetchSanityExternalResources();
 
   const degrowthLinks = extResources.filter(
@@ -15,9 +15,16 @@ export default async function ExternalResourceViewModel() {
   const usefulLinks = extResources.filter(
     (resource) => resource.category === 'useful',
   );
+  const memberLinks = extResources.filter(
+    (resource) => resource.category === 'members',
+  );
 
   return (
     <>
+      <ExternalResourceList
+        list={memberLinks}
+        title={membersTitle}
+      />
       <ExternalResourceList
         list={degrowthLinks}
         title={degrowthTitle}
