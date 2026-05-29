@@ -1,8 +1,9 @@
+'use client';
 import { NextStudio } from 'next-sanity/studio';
-import { connection } from 'next/server';
+
+import { FC } from 'react';
 import config from '../../../../sanity.config';
 
-export default async function SanityStudio() {
-  await connection();
-  return <NextStudio config={config} />;
-}
+const SanityStudio: FC = () => <NextStudio config={config} />;
+
+export default SanityStudio;
