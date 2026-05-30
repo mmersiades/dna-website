@@ -51,6 +51,27 @@ export const externalResourceType = defineType({
           .required(),
     }),
     defineField({
+      title: 'Thumbnail',
+      name: 'thumbnail',
+      type: 'image',
+      description:
+        'An image, preferably from the target website, with 16:9 aspect ratio and 400px width.',
+      options: {
+        hotspot: true,
+        accept: '.jpg,.png,.jpeg,.webp',
+      },
+      fields: [
+        defineField({
+          name: 'altText',
+          type: 'string',
+          title: 'Alternative text',
+          description:
+            'Alternative text for the thumbnail. Should describe the content of the thumbbnail for accessibility.',
+          validation: (rule) => rule.required(),
+        }),
+      ],
+    }),
+    defineField({
       name: 'image',
       type: 'url',
       validation: (rule) =>

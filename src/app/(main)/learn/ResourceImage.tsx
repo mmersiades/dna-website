@@ -1,5 +1,6 @@
 'use client';
 import { ResourceCardProps } from '@/app/(main)/learn/ExternalResourceCard';
+import { urlFor } from '@/sanity/lib/image';
 import generatePhotoSizes from '@/utils/generatePhotoSizes';
 import * as Sentry from '@sentry/nextjs';
 import { useTheme } from 'next-themes';
@@ -9,7 +10,9 @@ import { FC, useEffect, useState } from 'react';
 const ResourceImage: FC<ResourceCardProps> = ({ resource, index }) => {
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
-  const [source, setSource] = useState(resource.image);
+  const [source, setSource] = useState<string | null>(
+    resource.thumbnail ? urlFor(resource.thumbnail).url() : null,
+  );
 
   const { image, placeholder } = {
     image: 'rounded-l-md object-cover',
@@ -24,8 +27,8 @@ const ResourceImage: FC<ResourceCardProps> = ({ resource, index }) => {
   if (source) {
     return (
       <Image
-        src={source}
-        alt={`Image from ${resource.title} website`}
+        src={urlFor(source).url()}
+        alt={resource.thumbnail!.altText}
         fill
         className={image}
         loader={({ src, width, quality }) =>

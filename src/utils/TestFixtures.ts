@@ -869,6 +869,7 @@ class TestFixtures {
         'Working for transition from consumer society to a simpler, more cooperative, just and ecologically sustainable society.',
       image: null,
       logo: null,
+      thumbnail: null,
       title: 'The Simpler Way',
       url: 'https://thesimplerway.info/',
     },
@@ -879,6 +880,14 @@ class TestFixtures {
         'Critics argue that endless growth on a planet with finite resources is driving the climate crisis and increasing inequality. This series examines alternative economic models',
       image: null,
       logo: null,
+      thumbnail: {
+        _type: 'image',
+        altText: 'Antonio Guterres giving a speech',
+        asset: {
+          _ref: 'image-117a7a10c4c238236635baceb9cd538a40255171-400x226-webp',
+          _type: 'reference',
+        },
+      },
       title: 'The Guardian | Beyond Growth',
       url: 'https://www.theguardian.com/environment/series/beyond-growth',
     },
@@ -887,9 +896,16 @@ class TestFixtures {
       category: 'degrowth',
       description:
         'Degrowth.info is an independent media platform driven by an international political collective dedicated to amplifying degrowth perspectives.',
-      image:
-        'https://www.degrowth.info/assets/og_image-a1ee48c8fa3d620aafe68ea95eb741659208d4aba83d2495899863079aa4092f.jpg',
+      image: null,
       logo: null,
+      thumbnail: {
+        _type: 'image',
+        altText: 'Degrowth Info logo',
+        asset: {
+          _ref: 'image-7a12e9c696e36919553dbf151095f6aae320a981-400x225-webp',
+          _type: 'reference',
+        },
+      },
       title: 'Degrowth.info',
       url: 'https://degrowth.info/',
     },
@@ -898,9 +914,16 @@ class TestFixtures {
       category: 'degrowth',
       description:
         'Here, we aim to provide you with: 🌱 Knowledge on degrowth that is accessible 🌱 Tools to communicate degrowth 🌱 Inspiration to imagine the good life …',
-      image:
-        'https://osuny-1b4da.kxcdn.com/lczc6way6yqyk5exus6zg7vas77b?width=1200&height=0&&fit=inside&quality=80',
+      image: null,
       logo: null,
+      thumbnail: {
+        _type: 'image',
+        altText: 'Degrowth Network logo',
+        asset: {
+          _ref: 'image-083dd62ba8f342501b2fa82cb8c7c468e348a171-400x225-webp',
+          _type: 'reference',
+        },
+      },
       title: "So you've heard about Degrowth.",
       url: 'https://explore.degrowth.net/',
     },
