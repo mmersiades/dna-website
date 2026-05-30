@@ -31,7 +31,6 @@ export const EXT_RESOURCES_QUERY = defineQuery(`*[_type == "external-resource"]{
   category,
   description,
   url,
-  image,
   thumbnail,
   logo
 }`);

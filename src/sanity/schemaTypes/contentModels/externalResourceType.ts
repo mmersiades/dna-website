@@ -55,7 +55,7 @@ export const externalResourceType = defineType({
       name: 'thumbnail',
       type: 'image',
       description:
-        'An image, preferably from the target website, with 16:9 aspect ratio and 400px width.',
+        'An image, preferably from the target website, with 16:9 aspect ratio and 400px width. Try to have main content in the centre, so it still looks good if cropped to a square shape.',
       options: {
         hotspot: true,
         accept: '.jpg,.png,.jpeg,.webp',
@@ -66,21 +66,10 @@ export const externalResourceType = defineType({
           type: 'string',
           title: 'Alternative text',
           description:
-            'Alternative text for the thumbnail. Should describe the content of the thumbbnail for accessibility.',
+            'Alternative text for the thumbnail. Should describe the content of the thumbnail for accessibility.',
           validation: (rule) => rule.required(),
         }),
       ],
-    }),
-    defineField({
-      name: 'image',
-      type: 'url',
-      validation: (rule) =>
-        rule.uri({
-          scheme: 'https',
-          allowCredentials: false,
-          allowRelative: false,
-          relativeOnly: false,
-        }),
     }),
   ],
 });

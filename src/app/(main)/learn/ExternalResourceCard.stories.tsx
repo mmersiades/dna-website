@@ -36,7 +36,6 @@ const resource: EXT_RESOURCES_QUERYResult[0] = {
   category: 'degrowth',
   description:
     'Degrowth.info is an independent media platform driven by an international political collective dedicated to amplifying degrowth perspectives.',
-  image: null,
   logo: null,
   thumbnail: {
     _type: 'image',
@@ -68,7 +67,7 @@ export const WithImagePlaceholder: Story = {
   globals: {
     theme: 'light',
   },
-  args: { ...args, resource: { ...args.resource, image: null } },
+  args: { ...args, resource: { ...args.resource, thumbnail: null } },
 };
 
 // noinspection JSUnusedGlobalSymbols

@@ -867,7 +867,6 @@ class TestFixtures {
       category: 'degrowth',
       description:
         'Working for transition from consumer society to a simpler, more cooperative, just and ecologically sustainable society.',
-      image: null,
       logo: null,
       thumbnail: null,
       title: 'The Simpler Way',
@@ -878,7 +877,6 @@ class TestFixtures {
       category: 'degrowth',
       description:
         'Critics argue that endless growth on a planet with finite resources is driving the climate crisis and increasing inequality. This series examines alternative economic models',
-      image: null,
       logo: null,
       thumbnail: {
         _type: 'image',
@@ -896,7 +894,6 @@ class TestFixtures {
       category: 'degrowth',
       description:
         'Degrowth.info is an independent media platform driven by an international political collective dedicated to amplifying degrowth perspectives.',
-      image: null,
       logo: null,
       thumbnail: {
         _type: 'image',
@@ -914,7 +911,6 @@ class TestFixtures {
       category: 'degrowth',
       description:
         'Here, we aim to provide you with: 🌱 Knowledge on degrowth that is accessible 🌱 Tools to communicate degrowth 🌱 Inspiration to imagine the good life …',
-      image: null,
       logo: null,
       thumbnail: {
         _type: 'image',
