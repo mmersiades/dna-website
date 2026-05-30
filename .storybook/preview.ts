@@ -38,7 +38,9 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
-
+    chromatic: {
+      delay: 2000,
+    },
     a11y: {
       test: 'error',
       context: 'body',
