@@ -46,11 +46,6 @@ const ResourceImage: FC<ResourceCardProps> = ({ resource, index }) => {
         preload={index < 5}
         onError={(e) => {
           Sentry.captureException(e);
-          if (resolvedTheme === 'dark') {
-            setSource('/bee-1-dark.svg');
-          } else {
-            setSource('/bee-1-light.svg');
-          }
         }}
       />
     );
