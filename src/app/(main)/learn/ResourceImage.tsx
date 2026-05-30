@@ -10,9 +10,6 @@ import { FC, useEffect, useState } from 'react';
 const ResourceImage: FC<ResourceCardProps> = ({ resource, index }) => {
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
-  const [source, setSource] = useState<string | null>(
-    resource.thumbnail ? urlFor(resource.thumbnail).url() : null,
-  );
 
   const { image, placeholder } = {
     image: 'rounded-l-md object-cover',
@@ -24,11 +21,11 @@ const ResourceImage: FC<ResourceCardProps> = ({ resource, index }) => {
     setMounted(true);
   }, []);
 
-  if (source) {
+  if (resource.thumbnail) {
     return (
       <Image
-        src={urlFor(source).url()}
-        alt={resource.thumbnail!.altText}
+        src={urlFor(resource.thumbnail).url()}
+        alt={resource.thumbnail.altText}
         fill
         className={image}
         loader={({ src, width, quality }) =>

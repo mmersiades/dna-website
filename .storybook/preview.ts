@@ -39,7 +39,7 @@ const preview: Preview = {
       },
     },
     chromatic: {
-      delay: 2000,
+      delay: 3000,
     },
     a11y: {
       test: 'error',
