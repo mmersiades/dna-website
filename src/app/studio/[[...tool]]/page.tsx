@@ -8,14 +8,11 @@
  */
 
 import SanityStudio from '@/app/studio/[[...tool]]/SanityStudio';
-import { connection } from 'next/server';
 import { Suspense } from 'react';
 
 export { metadata, viewport } from 'next-sanity/studio';
 
 export default async function StudioPage() {
-  await connection();
-
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <SanityStudio />
