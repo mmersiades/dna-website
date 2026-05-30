@@ -32,15 +32,21 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const resource: EXT_RESOURCES_QUERYResult[0] = {
+  _id: 'ec4ab8e1-95e9-4f12-beaf-add29f02a88d',
   category: 'degrowth',
   description:
     'Degrowth.info is an independent media platform driven by an international political collective dedicated to amplifying degrowth perspectives.',
-  image:
-    'https://www.degrowth.info/assets/og_image-a1ee48c8fa3d620aafe68ea95eb741659208d4aba83d2495899863079aa4092f.jpg',
+  logo: null,
+  thumbnail: {
+    _type: 'image',
+    altText: 'Degrowth Info logo',
+    asset: {
+      _ref: 'image-7a12e9c696e36919553dbf151095f6aae320a981-400x225-webp',
+      _type: 'reference',
+    },
+  },
   title: 'Degrowth.info',
   url: 'https://degrowth.info/',
-  _id: 'ec4ab8e1-95e9-4f12-beaf-add29f02a88d',
-  logo: null,
 };
 
 const args = {
@@ -61,7 +67,7 @@ export const WithImagePlaceholder: Story = {
   globals: {
     theme: 'light',
   },
-  args: { ...args, resource: { ...args.resource, image: null } },
+  args: { ...args, resource: { ...args.resource, thumbnail: null } },
 };
 
 // noinspection JSUnusedGlobalSymbols
