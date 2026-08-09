@@ -22,7 +22,7 @@ const styles = {
   grid: cn(
     'grid auto-rows-min',
     'gap-8 xl:gap-12',
-    '[column-rule:1px_solid_#ccc]',
+    '[column-rule:1px_solid_lab(37.2624%_-6.41605_-7.33965)]',
     // mobile, sm, md
     'grid-cols-1',
     // lg, xl, 2xl
