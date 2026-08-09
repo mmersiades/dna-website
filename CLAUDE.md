@@ -79,7 +79,7 @@ Tailwind CSS is the primary styling mechanism; Styled Components is also a depen
 
 ### Testing layout
 
-Three distinct layers, each with its own Vitest project (see `vitest.config.ts`):
+Three distinct layers, each with its own Vitest project (see `vitest.config.mts`):
 - **Unit tests** (`*.test.ts`, `node` project): colocated with the code under test, e.g. `src/app/services/HumantixApi.test.ts`.
 - **Interaction tests**: `*.stories.tsx` play functions run under the `storybook` Vitest project (real browser via Playwright/Chromium).
 - **Visual regression**: Chromatic snapshots every Storybook story on push (`.github/workflows/chromatic.yml`); failures are non-blocking.

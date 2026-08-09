@@ -2,12 +2,11 @@ import { storybookTest } from '@storybook/addon-vitest/vitest-plugin';
 import { playwright } from '@vitest/browser-playwright';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import tsconfigPaths from 'vite-tsconfig-paths';
 import { coverageConfigDefaults, defineConfig } from 'vitest/config';
 
 const dirname =
-  typeof __dirname !== 'undefined'
-    ? __dirname
+  typeof import.meta.dirname !== 'undefined'
+    ? import.meta.dirname
     : path.dirname(fileURLToPath(import.meta.url));
 
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
@@ -22,7 +21,7 @@ export default defineConfig({
       'dayjs/plugin/timezone',
     ],
   },
-  plugins: [tsconfigPaths()],
+  plugins: [],
   test: {
     coverage: {
       // provider: 'istanbul',
@@ -75,5 +74,8 @@ export default defineConfig({
     watch: {
       ignored: [path.resolve(dirname, 'html')],
     },
+  },
+  resolve: {
+    tsconfigPaths: true,
   },
 });
