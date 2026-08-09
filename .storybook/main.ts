@@ -9,11 +9,13 @@ const config: StorybookConfig = {
     '@storybook/addon-docs',
     '@storybook/addon-themes',
     'storybook-addon-pseudo-states',
+    '@storybook/addon-mcp',
   ],
   framework: '@storybook/nextjs-vite',
   staticDirs: ['../public'],
   features: {
     developmentModeForBuild: true,
+    componentsManifest: true,
   },
   async viteFinal(config) {
     return {
