@@ -1,24 +1,12 @@
+// noinspection JSUnusedGlobalSymbols
+
 'use client';
 
 import { WallPaperImageProps } from '@/components/PageBackground';
 import cn from '@/utils/cn';
 import TestFixtures from '@/utils/TestFixtures';
 
-export const fetchGroupIntentData = async () => {
-  // 'use cache';
-  // cacheLife('hours');
-  // cacheTag('group-intent');
-  // const data = await sheetsApi.getSheetData(
-  //   env.GOOGLE_SHEETS_GROUP_INTENT_SHEET_ID,
-  //   'Sheet1',
-  // );
-  //
-  // if (!data) {
-  //   throw new Error('Failed to fetch group intent data');
-  // }
-  //
-  // return data;
-};
+export const fetchGroupIntentData = async () => {};
 
 export const fetchGroupIntentTableRows = async (params: {
   state: string | null;
@@ -48,21 +36,7 @@ export const fetchGroupIntentTableRows = async (params: {
   return [];
 };
 
-export const fetchParticipantAgreementData = async () => {
-  // 'use cache';
-  // cacheLife('hours');
-  // cacheTag('participant-agreement');
-  // const data = await sheetsApi.getSheetData(
-  //   env.GOOGLE_SHEETS_PARTICIPANTS_AGREEMENT_SHEET_ID,
-  //   'Sheet1',
-  // );
-  //
-  // if (!data) {
-  //   throw new Error('Failed to fetch participant agreement data');
-  // }
-  //
-  // return data;
-};
+export const fetchParticipantAgreementData = async () => {};
 
 export const fetchParticipantAgreementByEmail = async ({
   email,
@@ -72,94 +46,21 @@ export const fetchParticipantAgreementByEmail = async ({
   return [];
 };
 
-// export const fetchSanityPage = async (
-//   slug: string,
-// ): Promise<PAGE_QUERYResult> => {
-//   // 'use cache';
-//   // cacheLife('hours');
-//   // const { data } = await sanityFetch({
-//   //   query: PAGE_QUERY,
-//   //   params: { slug },
-//   // });
-//   // return data;
-// };
+export const fetchSanityParticipantsAgreement = async () => {};
 
-export const fetchSanityParticipantsAgreement = async () => {
-  // 'use cache';
-  // cacheLife('hours');
-  // const { data } = await sanityFetch({
-  //   query: PARTICIPANTS_AGREEMENT_QUERY,
-  // });
-  // return data;
-};
-
-export const fetchSanityExternalResources = async () => {
-  // 'use cache';
-  // cacheLife('hours');
-  // const { data } = await sanityFetch({
-  //   query: EXT_RESOURCES_QUERY,
-  //   stega: false,
-  // });
-  // return data;
-};
+export const fetchSanityExternalResources = async () => {};
 
 export const fetchSanityNationalGroups = async () => {
   return TestFixtures.nationalGroups;
 };
 
-export const fetchSanityLocalGroups = async () => {
-  // 'use cache';
-  // cacheLife('hours');
-  // const { data } = await sanityFetch({
-  //   query: GROUPS_QUERY,
-  // });
-  // return data;
-};
+export const fetchSanityLocalGroups = async () => {};
 
-export const fetchSanityDegrowthDescriptions = async () => {
-  // 'use cache';
-  // cacheLife('hours');
-  // const { data } = await sanityFetch({
-  //   query: DEGROWTH_DESCRIPTIONS_QUERY,
-  // });
-  //
-  // return [...data].sort(() => Math.random() - 0.5).slice(0, 15);
-};
+export const fetchSanityDegrowthDescriptions = async () => {};
 
-export const fetchHumantixPastEvents = async () => {
-  // 'use cache';
-  // cacheLife('hours');
-  // const events = await humantixApi.fetchPastEvents({
-  //   since: dayjs().subtract(1, 'year').toISOString(),
-  // });
-  //
-  // return events
-  //   .filter((event) => event.published && event.public)
-  //   .sort((a, b) => {
-  //     if (a.endDate && b.endDate) {
-  //       return new Date(b.endDate).getTime() - new Date(a.endDate).getTime();
-  //     }
-  //     return 0;
-  //   });
-};
+export const fetchHumantixPastEvents = async () => {};
 
-export const fetchHumantixFutureEvents = async () => {
-  // 'use cache';
-  // cacheLife('hours');
-  // const { events, status } = await humantixApi.fetchFutureEvents();
-  // if (status !== 200) {
-  //   throw new Error('Failed to fetch future Humantix events');
-  // }
-  //
-  // return events
-  //   .filter((event) => event.published && event.public)
-  //   .sort((a, b) => {
-  //     if (a.endDate && b.endDate) {
-  //       return new Date(a.endDate).getTime() - new Date(b.endDate).getTime();
-  //     }
-  //     return 0;
-  //   });
-};
+export const fetchHumantixFutureEvents = async () => {};
 
 export const updateCacheTag = async (tag: string) => {
   // updateTag(tag);
