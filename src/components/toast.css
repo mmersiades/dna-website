@@ -1,21 +1,31 @@
-:root {
+.Toastify__toast {
     --toastify-color-light: var(--color-tertiary-100);
     --toastify-color-info: var(--color-gray-600);
     --toastify-color-success: var(--color-green-600);
     --toastify-color-warning: var(--color-orange-600);
     --toastify-color-error: var(--color-red-600);
+    --toastify-icon-color-info: var(--color-gray-600);
+    --toastify-icon-color-success: var(--color-green-600);
+    --toastify-icon-color-warning: var(--color-orange-600);
+    --toastify-icon-color-error: var(--color-red-600);
     --toastify-toast-padding: calc(var(--spacing) * 4);
     --toastify-toast-width: 24rem;
     --toastify-toast-offset: 1rem;
     --toastify-toast-bd-radius: var(--radius);
     --toastify-text-color-light: var(--color-foreground);
     --toastify-color-progress-light: linear-gradient(to right, var(--color-tertiary-400), var(--color-tertiary-800));
-}
 
-.Toastify__close-button--light {
-    padding: calc(var(--toastify-toast-padding) / 2);
-    color: var(--color-foreground);
-    opacity: .5;
+    .Toastify__close-button {
+        padding: calc(var(--toastify-toast-padding) / 2);
+        color: var(--color-foreground);
+        opacity: .5;
+    }
+
+    .Toastify__close-button--light {
+        padding: calc(var(--toastify-toast-padding) / 2);
+        color: var(--color-foreground);
+        opacity: .5;
+    }
 }
 
 .Toastify__toast-theme--light {
@@ -44,7 +54,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
-    :root {
+    .Toastify__toast {
         --toastify-color-light: var(--color-tertiary-900);
         --toastify-color-info: var(--color-gray-400);
         --toastify-color-success: var(--color-green-400);
