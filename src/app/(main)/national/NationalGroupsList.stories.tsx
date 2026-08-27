@@ -45,16 +45,17 @@ export const DesktopLandscapeForm: Story = {
   globals: {
     theme: 'light',
   },
+
   args,
-  parameters: {
-    msw: {
-      handlers: [
-        http.post(paths.api.sendEmail, () => {
-          return HttpResponse.json({}, { status: 204 });
-        }),
-      ],
-    },
+
+  beforeEach({ msw }) {
+    msw.use(
+      http.post(paths.api.sendEmail, () => {
+        return HttpResponse.json({}, { status: 204 });
+      }),
+    );
   },
+
   play: async ({ canvasElement, userEvent }) => {
     const canvas = within(canvasElement);
     const cards = await canvas.findAllByRole('button');
@@ -113,16 +114,17 @@ export const LargeMobilePortraitForm: Story = {
     viewport: { value: 'mobile2', isRotated: false },
     theme: 'light',
   },
+
   args,
-  parameters: {
-    msw: {
-      handlers: [
-        http.post(paths.api.sendEmail, () => {
-          return HttpResponse.json({}, { status: 204 });
-        }),
-      ],
-    },
+
+  beforeEach({ msw }) {
+    msw.use(
+      http.post(paths.api.sendEmail, () => {
+        return HttpResponse.json({}, { status: 204 });
+      }),
+    );
   },
+
   play: async ({ canvasElement, userEvent }) => {
     const canvas = within(canvasElement);
     const cards = await canvas.findAllByRole('button');

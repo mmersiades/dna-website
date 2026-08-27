@@ -10,6 +10,7 @@ const config: StorybookConfig = {
     '@storybook/addon-themes',
     'storybook-addon-pseudo-states',
     '@storybook/addon-mcp',
+    'msw-storybook-addon',
   ],
   framework: '@storybook/nextjs-vite',
   staticDirs: ['../public'],

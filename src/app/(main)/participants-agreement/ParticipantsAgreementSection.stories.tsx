@@ -45,19 +45,20 @@ export const DesktopLandscapeSubmitForm: Story = {
   globals: {
     theme: 'light',
   },
+
   args,
-  parameters: {
-    msw: {
-      handlers: [
-        http.post(paths.api.google.sheets.participantsAgreement, () => {
-          return HttpResponse.json({}, { status: 200 });
-        }),
-        http.post(paths.api.sendEmail, () => {
-          return HttpResponse.json({}, { status: 200 });
-        }),
-      ],
-    },
+
+  beforeEach({ msw }) {
+    msw.use(
+      http.post(paths.api.google.sheets.participantsAgreement, () => {
+        return HttpResponse.json({}, { status: 200 });
+      }),
+      http.post(paths.api.sendEmail, () => {
+        return HttpResponse.json({}, { status: 200 });
+      }),
+    );
   },
+
   play: async ({ canvasElement, userEvent }) => {
     const form = testIds.participantsAgreement.form;
     const canvas = within(canvasElement);
