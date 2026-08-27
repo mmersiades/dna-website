@@ -150,7 +150,7 @@
 
     .home-icon {
         height: calc(var(--size-home-icon) - var(--spacing));
-        width: calc(var(--size-home-icon)- var(--spacing));
+        width: calc(var(--size-home-icon) - var(--spacing));
         color: var(--color-white);
     }
 
