@@ -38,11 +38,7 @@ export const fetchGroupIntentTableRows = async (params: {
 
 export const fetchParticipantAgreementData = async () => {};
 
-export const fetchParticipantAgreementByEmail = async ({
-  email,
-}: {
-  email: string;
-}) => {
+export const fetchParticipantAgreementByEmail = async () => {
   return [];
 };
 
@@ -62,7 +58,7 @@ export const fetchHumantixPastEvents = async () => {};
 
 export const fetchHumantixFutureEvents = async () => {};
 
-export const updateCacheTag = async (tag: string) => {
+export const updateCacheTag = async () => {
   // updateTag(tag);
 };
 
