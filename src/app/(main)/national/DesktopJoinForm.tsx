@@ -48,7 +48,7 @@ const DesktopJoinForm: FC<Props> = ({
     return () => {
       window.removeEventListener('mousedown', handleOutSideClick);
     };
-  }, [ref, selectedGroup]);
+  }, [onClickOutside, ref, selectedGroup]);
 
   return (
     <div
