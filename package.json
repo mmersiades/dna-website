@@ -18,7 +18,7 @@
     "test": "vitest --project=node",
     "test:coverage": "vitest --project=node --coverage --run",
     "build-storybook": "storybook build",
-    "test-storybook": "vitest --project=storybook",
+    "test-storybook": "vitest --project=storybook --run",
     "test-storybook:coverage": "vitest --project=storybook --coverage --run",
     "chromatic": "npx chromatic"
   },
@@ -70,9 +70,9 @@
     "@types/nodemailer": "^8.0.2",
     "@types/react": "^19.3.3",
     "@types/react-dom": "^19.3.0",
-    "@vitest/browser-playwright": "^4.1.12",
-    "@vitest/coverage-v8": "^4.1.12",
-    "@vitest/ui": "^4.1.12",
+    "@vitest/browser-playwright": "^5.1.2",
+    "@vitest/coverage-v8": "^5.1.2",
+    "@vitest/ui": "^5.1.2",
     "babel-plugin-react-compiler": "1.0.0",
     "chromatic": "^18.15.3",
     "domhandler": "^6.0.1",
@@ -92,7 +92,7 @@
     "tailwindcss": "^4.3.5",
     "typescript": "^6.0.3",
     "vite": "^8.4.0",
-    "vitest": "^4.1.12"
+    "vitest": "^5.1.2"
   },
   "lint-staged": {
     "*.{ts,tsx}": "eslint --cache --fix",
